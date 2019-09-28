@@ -8,13 +8,11 @@ public class Bullet : BaseObject
     const int iBulletSpeed = 1;
     const float fBulletPhysisSiz = 0.2f;
 
-    // Start is called before the first frame update
     void Start()
     {
         iSpeed = iBulletSpeed;
     }
 
-    // Update is called once per frame
     void Update()
     {
         BulletUpdate();

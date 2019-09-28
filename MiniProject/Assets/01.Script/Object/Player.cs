@@ -11,7 +11,6 @@ public class Player : BaseObject
 
     private const int iBulletCnt = 20;
 
-    // Start is called before the first frame update
     void Awake()
     {
         iSpeed = 10;
@@ -23,7 +22,6 @@ public class Player : BaseObject
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         PlayerMove();
@@ -43,11 +41,6 @@ public class Player : BaseObject
         {
             BulletSetActivate();
         }
-
-        //if(Input.GetKeyDown("z"))
-        //{
-        //    BulletSetActivate();
-        //}
     }
 
     void BulletSetActivate()
