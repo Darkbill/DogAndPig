@@ -24,5 +24,5 @@ public class GameMng : MonoBehaviour
 		}
 	}
 	#endregion
-
+	public Player player;
 }
