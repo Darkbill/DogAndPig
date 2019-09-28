@@ -39,7 +39,7 @@ public class Player : BaseObject
         Mov.iSpeed = iSpeed;
         transform.position += Mov.Move(fHorizontal, fVertical);
 
-        if(Mov.GetKeyBoardDown("w"))
+        if(Input.GetKeyDown("w"))
         {
             BulletSetActivate();
         }
