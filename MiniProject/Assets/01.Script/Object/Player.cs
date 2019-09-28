@@ -7,6 +7,7 @@ public class Player : BaseObject
     List<GameObject> objBullets = new List<GameObject>();
 
     public GameObject objBullet;
+    public Movement Mov;
 
     private const int iBulletCnt = 20;
 
@@ -33,10 +34,10 @@ public class Player : BaseObject
         fHorizontal = Input.GetAxis("Horizontal");
         fVertical = Input.GetAxis("Vertical");
 
-        Debug.Log("(" + fHorizontal + " : " + fVertical + ")");
+        //Debug.Log("(" + fHorizontal + " : " + fVertical + ")");
 
-        Vector3 vMovement = new Vector3(fHorizontal, fVertical, 0);
-        transform.position += vMovement * iSpeed * Time.deltaTime;
+        Mov.iSpeed = iSpeed;
+        transform.position += Mov.Move(fHorizontal, fVertical);
 
         if(Input.GetKeyDown("z"))
         {

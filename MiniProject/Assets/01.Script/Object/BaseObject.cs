@@ -16,6 +16,4 @@ public class BaseObject : MonoBehaviour
     {
         gameObject.transform.position = pos;
     }
-
-
 }
