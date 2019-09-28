@@ -23,8 +23,8 @@ public class Bullet : BaseObject
     void BulletUpdate()
     {
         gameObject.transform.position += new Vector3(
-            (Time.deltaTime + fHorizontal) * iSpeed,
-            (Time.deltaTime + fVertical) * iSpeed, 
+            (Time.deltaTime + fHorizontal * fBulletPhysisSiz) * iSpeed,
+            (Time.deltaTime + fVertical * fBulletPhysisSiz) * iSpeed, 
             0);
         Vector3 pos = transform.position;
 
