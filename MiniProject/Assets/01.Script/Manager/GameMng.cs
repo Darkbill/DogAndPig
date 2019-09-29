@@ -26,4 +26,5 @@ public class GameMng : MonoBehaviour
 	#endregion
 	public Player player;
 	public BulletPool bulletPool;
+    public BulletPool bulletMonster;
 }
