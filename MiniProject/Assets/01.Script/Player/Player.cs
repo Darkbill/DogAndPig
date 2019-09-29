@@ -39,4 +39,8 @@ public class Player : MonoBehaviour
         Mov.iSpeed = iSpeed;
         transform.position += Mov.Move(fHorizontal, fVertical);
     }
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		
+	}
 }

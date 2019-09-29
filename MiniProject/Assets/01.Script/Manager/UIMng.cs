@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 public class UIMng : MonoBehaviour
 {
 	#region SINGLETON
 	static UIMng _instance = null;
 
-    public Inventory ItemInventory;
+
 
 	public static UIMng Ins
 	{
@@ -25,5 +26,5 @@ public class UIMng : MonoBehaviour
 		}
 	}
 	#endregion
-	
+	public Inventory ItemInventory;
 }
