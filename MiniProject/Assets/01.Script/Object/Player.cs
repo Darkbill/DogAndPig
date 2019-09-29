@@ -32,8 +32,6 @@ public class Player : BaseObject
         fHorizontal = Input.GetAxis("Horizontal");
         fVertical = Input.GetAxis("Vertical");
 
-        //Debug.Log("(" + fHorizontal + " : " + fVertical + ")");
-
         Mov.iSpeed = iSpeed;
         transform.position += Mov.Move(fHorizontal, fVertical);
 

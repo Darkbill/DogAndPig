@@ -6,6 +6,8 @@ public class UIMng : MonoBehaviour
 	#region SINGLETON
 	static UIMng _instance = null;
 
+    public Inventory ItemInventory;
+
 	public static UIMng Ins
 	{
 		get
