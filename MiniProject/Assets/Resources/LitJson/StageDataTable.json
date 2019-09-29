@@ -1,0 +1,11 @@
+[
+  {
+    "stageID": 1,
+    "monsterCount": 10,
+    "limitTime": 60,
+    "spawnWayType": 1,
+    "monsterIDArr": [
+      1
+    ]
+  }
+]

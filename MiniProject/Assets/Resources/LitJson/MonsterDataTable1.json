@@ -1,0 +1,8 @@
+[
+  {
+    "monsterID": 1,
+    "monsterName": "BabyFire",
+    "monsterHP": 50,
+    "moveSpeed": 0.5
+  }
+]

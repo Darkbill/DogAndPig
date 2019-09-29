@@ -8,11 +8,16 @@ public class MonsterStateMachine : MonoBehaviour
 	public MonsterState cState;
 	private void Awake()
 	{
+		StateSetting();
+	}
+	private void StateSetting()
+	{
 		stateDict.Add(eMonsterState.Idle, new MonsterStateIdle(this));
 		stateDict.Add(eMonsterState.Chase, new MonsterStateChase(this));
 		stateDict.Add(eMonsterState.Attack, new MonsterStateAttack(this));
 		stateDict.Add(eMonsterState.Dead, new MonsterStateDead(this));
-		cState = stateDict[eMonsterState.Chase];
+		stateDict.Add(eMonsterState.Dodge, new MonsterStateDodge(this));
+		cState = stateDict[eMonsterState.Idle];
 		cState.OnStart();
 	}
 	public void ChangeState(eMonsterState stateType)
@@ -25,4 +30,5 @@ public class MonsterStateMachine : MonoBehaviour
 	{
 		cState.Tick();
 	}
+	
 }

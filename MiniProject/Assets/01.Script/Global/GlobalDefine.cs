@@ -10,6 +10,16 @@ namespace GlobalDefine
 		Idle,
 		Chase,
 		Attack,
+		Dodge,
 		Dead,
+	}
+	public enum eSpawnWay
+	{
+		None = 0,
+		Top,
+		Bottom,
+		Right,
+		Left,
+		All,
 	}
 }
