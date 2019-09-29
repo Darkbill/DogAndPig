@@ -10,7 +10,7 @@ public class MonsterStateChase : MonsterState
 
     private const float bullettime = 2.0f;
 
-    private const float shotime;
+    private float shotime = 0.0f;
 
 	public MonsterStateChase(MonsterStateMachine o) : base(o)
 	{
@@ -19,7 +19,6 @@ public class MonsterStateChase : MonsterState
 
 	public override void OnStart()
 	{
-        shotime = 0.0f;
 	}
 
 	public override bool OnTransition()
