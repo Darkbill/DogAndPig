@@ -11,19 +11,21 @@ public class BulletPool : MonoBehaviour
 	{
 		ResizeBullet(iBulletCnt);
 	}
-	public void OnBullet()
+	public void OnBullet(Vector3 target, Vector3 startpos)
 	{
 		for (int i = 0; i < bullets.Count; ++i)
 		{
 			if(bullets[i].gameObject.activeSelf == false)
 			{
-				bullets[i].SetBulletStart();
+				bullets[i].SetBulletStart(target, startpos);
 				return;
 			}
 		}
 		ResizeBullet(bullets.Count / 2);
-		OnBullet();
+		OnBullet(target, startpos);
 	}
+    //TODO : 몬스터나 플레이어나 둘다 쓸수있게끔 수정해범 ㅇㅅㅇ
+
 	private void ResizeBullet(int addCount)
 	{
 		for (int i = 0; i < addCount; ++i)

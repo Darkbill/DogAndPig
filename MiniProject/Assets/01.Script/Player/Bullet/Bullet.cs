@@ -28,12 +28,13 @@ public class Bullet : MonoBehaviour
 	{
 		BulletUpdate();
 	}
-	public void SetBulletStart()
+    //TODO : 몬스터 사용하려고 수정.
+	public void SetBulletStart(Vector3 target, Vector3 startpos)
 	{
 		gameObject.SetActive(true);
-		gameObject.transform.position = GameMng.Ins.player.transform.position;
-		moveDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - GameMng.Ins.player.transform.position;
-		moveDirection.z = 0;
+		gameObject.transform.position = startpos;
+        moveDirection = target - gameObject.transform.position;
+        moveDirection.z = 0;
 		moveDirection.Normalize();
 	}
 

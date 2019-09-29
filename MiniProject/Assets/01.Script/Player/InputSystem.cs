@@ -6,7 +6,8 @@ public class InputSystem : MonoBehaviour
 	{
 		if (Input.GetMouseButtonUp(0))
 		{
-			GameMng.Ins.bulletPool.OnBullet();
+			GameMng.Ins.bulletPool.OnBullet(Camera.main.ScreenToWorldPoint(Input.mousePosition),
+                GameMng.Ins.player.transform.position);
 		}
 	}
 }
