@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     }
 	private void PlayerSetting()
 	{
-		iSpeed = 10;
+		iSpeed = 2;
 	}
 	private void Update()
 	{
