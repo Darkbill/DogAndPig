@@ -27,4 +27,16 @@ public class UIMng : MonoBehaviour
 	}
 	#endregion
 	public Inventory ItemInventory;
+	public GameObject MainLobby;
+	public GameObject UserInfomation;
+	public GameObject Store;
+	public GameObject Ranking;
+	public GameObject Option;
+
+	List<GameObject> ItemList = new List<GameObject>();
+
+	public void ClickGameStart()
+	{
+
+	}
 }
