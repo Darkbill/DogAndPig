@@ -27,4 +27,11 @@ public class GameMng : MonoBehaviour
 	public Player player;
 	public BulletPool bulletPool;
     public BulletPool bulletMonster;
+	public CameraMove cameraMove;
+	public void DamagePlayer()
+	{
+		//TODO : 플레이어 HP 감소 등등 추가
+		cameraMove.OnStart();
+	}
 }
+	

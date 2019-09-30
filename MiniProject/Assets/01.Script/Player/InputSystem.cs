@@ -14,5 +14,9 @@ public class InputSystem : MonoBehaviour
                                      GameMng.Ins.player.transform.position);
             bulletpattern.CircleShot(10);
 		}
+		if(Input.GetMouseButtonDown(1))
+		{
+			GameMng.Ins.DamagePlayer();
+		}
 	}
 }
