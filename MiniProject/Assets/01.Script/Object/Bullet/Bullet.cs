@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using GlobalDefine;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,32 +21,50 @@ public class Bullet : MonoBehaviour
 	// * public * //
 	public float fHorizontal { get; set; }
 	public float fVertical { get; set; }
-	//Active True일 때 호출되는 유니티 함수
-	private void OnEnable()
+    eBulletType bullettype = eBulletType.None;
+    //Active True일 때 호출되는 유니티 함수
+    BulletBurn bulletCheck = new BulletBurn();
+
+    private void Awake()
+    {
+        bulletCheck.Start();
+    }
+    private void OnEnable()
 	{
 		StartCoroutine(ActiveTimer());
-	}
+    }
 	void Update()
 	{
 		BulletUpdate();
 	}
     //TODO : 몬스터 사용하려고 수정.
-	public void SetBulletStart(Vector3 target, Vector3 startpos)
+	public void SetBulletStart(Vector3 target, Vector3 startpos, eBulletType host)
 	{
 		gameObject.SetActive(true);
 		gameObject.transform.position = startpos;
         moveDirection = target - gameObject.transform.position;
         moveDirection.z = 0;
 		moveDirection.Normalize();
-	}
+        bullettype = host;
+    }
 
     void BulletUpdate()
     {
 		gameObject.transform.position += moveDirection * Time.timeScale * 0.1f;
-	}
+        BulletObjectCheck();
 
-	//총알 끄는 시기에 총알마다 다른 효과를 주고싶으면 자식에서 재정의
-	protected virtual void OffBullet()
+    }
+
+    public void BulletObjectCheck()
+    {
+        if(bulletCheck.CallBulletBurn(bullettype, gameObject.transform.position))
+        {
+            OffBullet();
+        }
+    }
+
+    //총알 끄는 시기에 총알마다 다른 효과를 주고싶으면 자식에서 재정의
+    protected virtual void OffBullet()
 	{
 		gameObject.SetActive(false);
 	}

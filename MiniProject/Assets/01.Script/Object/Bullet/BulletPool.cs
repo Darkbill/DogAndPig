@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using GlobalDefine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,22 +8,22 @@ public class BulletPool : MonoBehaviour
 	private const int iBulletCnt = 5;
 	public GameObject bullet;
 	private List<Bullet> bullets = new List<Bullet>();
-	private void Start()
+    private void Start()
 	{
 		ResizeBullet(iBulletCnt);
 	}
-	public void OnBullet(Vector3 target, Vector3 startpos)
+	public void OnBullet(Vector3 target, Vector3 startpos, eBulletType host)
 	{
 		for (int i = 0; i < bullets.Count; ++i)
 		{
 			if(bullets[i].gameObject.activeSelf == false)
 			{
-				bullets[i].SetBulletStart(target, startpos);
+				bullets[i].SetBulletStart(target, startpos, host);
 				return;
 			}
 		}
 		ResizeBullet(bullets.Count / 2);
-		OnBullet(target, startpos);
+		OnBullet(target, startpos, host);
 	}
     //TODO : 몬스터나 플레이어나 둘다 쓸수있게끔 수정해범 ㅇㅅㅇ
 

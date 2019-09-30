@@ -37,6 +37,6 @@ public class MonsterStateAttack : MonsterState
     public void Shotting()
     {
         bulletPattern.SettingPos(GameMng.Ins.player.transform.position, owner.transform.position);
-        bulletPattern.ShotGun(7);
+        bulletPattern.OneShot();
     }
 }

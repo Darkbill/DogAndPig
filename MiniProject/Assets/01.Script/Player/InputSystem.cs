@@ -12,7 +12,7 @@ public class InputSystem : MonoBehaviour
             //TODO : 원형탄 테스트 circleshot 매개변수 10은 탄환개수임!!
             bulletpattern.SettingPos(Camera.main.ScreenToWorldPoint(Input.mousePosition),
                                      GameMng.Ins.player.transform.position);
-            bulletpattern.CircleShot(10);
+            bulletpattern.OneShot();
 		}
 		if(Input.GetMouseButtonDown(1))
 		{

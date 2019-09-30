@@ -25,6 +25,7 @@ public class GameMng : MonoBehaviour
 	}
 	#endregion
 	public Player player;
+    public MonsterStateMachine monster;
 	public BulletPool bulletPool;
     public BulletPool bulletMonster;
 	public CameraMove cameraMove;

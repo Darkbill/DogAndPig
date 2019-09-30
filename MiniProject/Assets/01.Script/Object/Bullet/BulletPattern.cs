@@ -31,10 +31,10 @@ public class BulletPattern
             case eBulletType.None:
                 break;
             case eBulletType.Player:
-                GameMng.Ins.bulletPool.OnBullet(endpos, startpos);
+                GameMng.Ins.bulletPool.OnBullet(endpos, startpos, bulletType);
                 break;
             case eBulletType.Monster:
-                GameMng.Ins.bulletMonster.OnBullet(endpos, startpos);
+                GameMng.Ins.bulletMonster.OnBullet(endpos, startpos, bulletType);
                 break;
             case eBulletType.hostility:
                 break;
