@@ -4,41 +4,57 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UIMngInGame : MonoBehaviour
 {
+	#region SINGLETON
+	static UIMngInGame _instance = null;
+
+	public static UIMngInGame Ins
+	{
+		get
+		{
+			if (_instance == null)
+			{
+				_instance = FindObjectOfType(typeof(UIMngInGame)) as UIMngInGame;
+				if (_instance == null)
+				{
+					_instance = new GameObject("UIMngInGame", typeof(UIMngInGame)).GetComponent<UIMngInGame>();
+				}
+			}
+
+			return _instance;
+		}
+	}
+	#endregion
 	public Image stickImage;
-	private Vector3 stickPos;
-	private float stickRadius = 80;
-	private float heroSpeed = 0.25f; // TODO : HeroSpeed
-	private bool isMove;
+	public Vector3 stickPos;
+	public float stickRadius = 80;
 	private void Start()
 	{
 		stickPos = stickImage.gameObject.transform.position;
 	}
-	private void Update()
+
+	public void OnStrickDrag()
 	{
-		if (isMove)
-		{
-			MoveToJoyStick();
-		}
+		GameMng.Ins.player.isMove = true;
 	}
-	private void MoveToJoyStick()
+	public void OnStickDrop()
+	{
+		GameMng.Ins.player.isMove = false;
+		stickImage.gameObject.transform.position = stickPos;
+	}
+	public Vector3 GetJoyStickDirection()
 	{
 		stickImage.gameObject.transform.position = Input.mousePosition;
 		Vector3 dir = stickImage.gameObject.transform.position - stickPos;
 		float m = dir.magnitude;
 		dir.Normalize();
-		GameMng.Ins.player.gameObject.transform.position += new Vector3(dir.x, dir.y, 0) * heroSpeed * 0.1f;
 		if (m > stickRadius)
 		{
 			stickImage.gameObject.transform.position = stickPos + dir * stickRadius;
 		}
-	}
-	public void OnStrickDrag()
-	{
-		isMove = true;
-	}
-	public void OnStickDrop()
-	{
-		isMove = false;
-		stickImage.gameObject.transform.position = stickPos;
+		else
+		{
+			stickImage.gameObject.transform.position = Input.mousePosition;
+		}
+		return dir;
 	}
 }

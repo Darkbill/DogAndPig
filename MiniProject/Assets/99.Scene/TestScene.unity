@@ -143,6 +143,7 @@ Transform:
   - {fileID: 4320182001875081456}
   - {fileID: 1013146328466210923}
   - {fileID: 104991204}
+  - {fileID: 412418312}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -239,7 +240,7 @@ GameObject:
   - component: {fileID: 104991204}
   - component: {fileID: 104991205}
   m_Layer: 0
-  m_Name: UIMng
+  m_Name: UIMngInGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -268,10 +269,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 104991203}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 876b37dd2318e344ebe707cea5a4291a, type: 3}
+  m_Script: {fileID: 11500000, guid: fe0096d3ef77f6e41a376866efa4959c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemInventory: {fileID: 0}
+  stickImage: {fileID: 662357830}
+  stickPos: {x: 0, y: 0, z: 0}
+  stickRadius: 80
 --- !u!1 &143116400
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,6 +375,50 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &412418311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 412418312}
+  - component: {fileID: 412418313}
+  m_Layer: 0
+  m_Name: MonsterBullet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &412418312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412418311}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 49394214}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &412418313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412418311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d2d2a448e0e2b648a865084f8a8f3b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 1370301318005025864, guid: 4cff34051ff1a544d9cdf935e05a0863, type: 3}
 --- !u!1 &521962499
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,7 +505,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521962499}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.166, y: 2.87, z: -1}
+  m_LocalPosition: {x: 0.166, y: 2.87, z: -3}
   m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -498,7 +545,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -790, y: -378}
+  m_AnchoredPosition: {x: -800, y: -380}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &662357830
@@ -573,8 +620,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -790, y: -378}
-  m_SizeDelta: {x: 250, y: 250}
+  m_AnchoredPosition: {x: -800, y: -380}
+  m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &667472711
 MonoBehaviour:
@@ -626,40 +673,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 5
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 104991205}
-          m_MethodName: OnStrickDrag
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 6
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 104991205}
-          m_MethodName: OnStickDrop
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 2
     callback:
       m_PersistentCalls:
@@ -792,6 +805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 5036140960448799548}
   bulletPool: {fileID: 4320182001875081457}
+  bulletMonster: {fileID: 412418313}
 --- !u!4 &1792762826
 Transform:
   m_ObjectHideFlags: 0
@@ -6940,6 +6954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6700fcf88f318f1409c1cc0be12e3255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMove: 0
   Mov: {fileID: 5036140960448799551}
 --- !u!4 &5036140960448799549
 Transform:
