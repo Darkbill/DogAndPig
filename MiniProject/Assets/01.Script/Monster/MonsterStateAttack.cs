@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿using GlobalDefine;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterStateAttack : MonsterState
 {
+    private BulletPattern bulletPattern = new BulletPattern(eBulletType.Monster);
+
 	public MonsterStateAttack(MonsterStateMachine o) : base(o)
 	{
 
@@ -15,12 +19,10 @@ public class MonsterStateAttack : MonsterState
 
 	public override bool OnTransition()
 	{
-		return true;
-		//if ()
-		//{
-		//	return true;
-		//}
-		//return false;
+        Shotting();
+        owner.ChangeState(eMonsterState.Chase);
+
+        return true;
 	}
 
 	public override void Tick()
@@ -31,4 +33,10 @@ public class MonsterStateAttack : MonsterState
 	{
 
 	}
+
+    public void Shotting()
+    {
+        bulletPattern.SettingPos(GameMng.Ins.player.transform.position, owner.transform.position);
+        bulletPattern.ShotGun(7);
+    }
 }

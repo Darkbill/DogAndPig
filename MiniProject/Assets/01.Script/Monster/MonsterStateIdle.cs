@@ -22,16 +22,12 @@ public class MonsterStateIdle : MonsterState
         delaytime += Time.deltaTime;
         if(delaytime > 1.0f)
         {
+            delaytime = 0.0f;
             owner.ChangeState(eMonsterState.Chase);
             return true;
         }
 
         return false;
-		//if ()
-		//{
-		//	return true;
-		//}
-		//return false;
 	}
 
 	public override void Tick()

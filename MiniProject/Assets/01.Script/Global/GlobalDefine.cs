@@ -4,6 +4,13 @@ using UnityEngine;
 
 namespace GlobalDefine
 {
+    public enum eBulletType
+    {
+        None = 0,
+        Player,
+        Monster,
+        hostility,
+    }
 	public enum eMonsterState
 	{
 		None = 0,
