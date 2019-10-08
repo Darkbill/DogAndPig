@@ -28,34 +28,60 @@ public class UIMngInGame : MonoBehaviour
 	public GameObject joyStick;
 	public Vector3 stickPos;
 	public float stickRadius = 60;
-
-	public void OnStrickDrag()
+	public int moveTouchID;
+	public void OnStrickDrag(Touch touch)
 	{
 		GameMng.Ins.player.isMove = true;
 		joyStick.gameObject.SetActive(true);
-		joyStick.gameObject.transform.position = Input.mousePosition;
+		moveTouchID = touch.fingerId;
+		joyStick.gameObject.transform.position = touch.position;
 		stickPos = stickImage.gameObject.transform.position;
 	}
 	public void OnStickDrop()
 	{
 		GameMng.Ins.player.isMove = false;
 		joyStick.gameObject.SetActive(false);
-		stickImage.gameObject.transform.position = stickPos;
+		moveTouchID = -1;
 	}
 	public Vector3 GetJoyStickDirection()
 	{
-		stickImage.gameObject.transform.position = Input.mousePosition;
-		Vector3 dir = stickImage.gameObject.transform.position - stickPos;
-		float m = dir.magnitude;
-		dir.Normalize();
-		if (m > stickRadius)
+		/* 컴퓨터 빌드 */
+		//stickImage.gameObject.transform.position = Input.mousePosition;
+		//Vector3 dir = stickImage.gameObject.transform.position - stickPos;
+		//float m = dir.magnitude;
+		//dir.Normalize();
+		//if (m > stickRadius)
+		//{
+		//	stickImage.gameObject.transform.position = stickPos + dir * stickRadius;
+		//}
+		//else
+		//{
+		//	stickImage.gameObject.transform.position = Input.mousePosition;
+		//}
+		//return dir;
+
+		/* 모바일 빌드 */
+		for (int i = 0; i < Input.touchCount; i++)
 		{
-			stickImage.gameObject.transform.position = stickPos + dir * stickRadius;
+			Touch tempTouchs = Input.GetTouch(i);
+
+			if (tempTouchs.fingerId == moveTouchID)
+			{
+				stickImage.gameObject.transform.position = tempTouchs.position;
+				Vector3 dir = stickImage.gameObject.transform.position - stickPos;
+				float m = dir.magnitude;
+				dir.Normalize();
+				if (m > stickRadius)
+				{
+					stickImage.gameObject.transform.position = stickPos + dir * stickRadius;
+				}
+				else
+				{
+					stickImage.gameObject.transform.position = tempTouchs.position;
+				}
+				return dir;
+			}
 		}
-		else
-		{
-			stickImage.gameObject.transform.position = Input.mousePosition;
-		}
-		return dir;
+		return Vector3.zero;
 	}
 }
