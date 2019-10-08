@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1899078245}
+  monster: {fileID: 1714938729}
   bulletPool: {fileID: 113422138}
   bulletMonster: {fileID: 1355690109}
   cameraMove: {fileID: 1563380632}

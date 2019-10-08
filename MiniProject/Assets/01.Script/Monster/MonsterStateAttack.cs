@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class MonsterStateAttack : MonsterState
 {
-    private BulletPattern bulletPattern = new BulletPattern(eBulletType.Monster);
 
 	public MonsterStateAttack(MonsterStateMachine o) : base(o)
 	{
@@ -36,7 +35,13 @@ public class MonsterStateAttack : MonsterState
 
     public void Shotting()
     {
-        bulletPattern.SettingPos(GameMng.Ins.player.transform.position, owner.transform.position);
-        bulletPattern.OneShot();
+        //TODO : 데코레이션패턴 테스트
+        BulletPattern monsterpat = new BulletMonster();
+        monsterpat.SettingPos(GameMng.Ins.player.transform.position, owner.transform.position, eBulletType.Monster);
+        CircleShot Att01 = new CircleShot(monsterpat, 10);
+        Att01.BulletShot();
+
+        //bulletPattern.SettingPos(GameMng.Ins.player.transform.position, owner.transform.position);
+        //bulletPattern.OneShot();
     }
 }
