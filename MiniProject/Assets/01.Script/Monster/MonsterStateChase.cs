@@ -14,6 +14,8 @@ public class MonsterStateChase : MonsterState
 
     private float delaytime = 0.0f;
 
+	private float rotateSpeed = 100f;
+
 	public MonsterStateChase(MonsterStateMachine o) : base(o)
 	{
 
@@ -46,11 +48,28 @@ public class MonsterStateChase : MonsterState
 	}
 	public void ChaseToPlayer()
 	{
-        //TODO : 일반적으로 따라오는 몬스터
-		Vector3 direction = GameMng.Ins.player.transform.position - owner.transform.position;
-		//owner.gameObject.transform.LookAt(direction);//2d엔 조금 수정해야할듯
-		owner.gameObject.transform.Translate(new Vector3(direction.x * Time.deltaTime * speed, 
-                                             direction.y * Time.deltaTime * speed),
-                                             0);
+		Vector3 ownerDirection = owner.gameObject.transform.right;
+		Vector3 goalDirection = GameMng.Ins.player.transform.position - owner.gameObject.transform.position;
+		float ownerDegree = Mathf.Atan2(ownerDirection.y, ownerDirection.x);
+		float goalDegree = Mathf.Atan2(goalDirection.y, goalDirection.x);
+		float degree = (ownerDegree - goalDegree) * Mathf.Rad2Deg;
+
+		if (degree > 180) degree -= 360;
+		if (degree < -180) degree += 360;
+		if (degree < 0)
+		{
+			owner.transform.eulerAngles += new Vector3(0, 0, Time.deltaTime * rotateSpeed);
+		}
+		else
+		{
+			owner.transform.eulerAngles -= new Vector3(0, 0, Time.deltaTime * rotateSpeed);
+		}
+		owner.gameObject.transform.position += owner.gameObject.transform.right * Time.deltaTime * speed;
 	}
+	private float GetAngle(Vector3 owner, Vector3 target)
+	{
+		float rad = Mathf.Atan2(target.x - owner.x, target.y - owner.y);
+		return -(rad * Mathf.Rad2Deg) + 90;
+	}
+
 }
