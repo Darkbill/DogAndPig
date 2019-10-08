@@ -9,15 +9,15 @@ public class InputSystem : MonoBehaviour
 		{
             //TODO : 원형탄 테스트 circleshot 매개변수 10은 탄환개수임!!
             BulletPattern monsterpat = new BulletPlayer();
-            monsterpat.SettingPos(Camera.main.ScreenToWorldPoint(Input.mousePosition),
+            monsterpat.SettingPos(Camera.main.ScreenToViewportPoint(Input.mousePosition),
                                      GameMng.Ins.player.transform.position, eBulletType.Player);
             CircleShot Att01 = new CircleShot(monsterpat, 10);
             Att01.BulletShot();
-            
+			UIMngInGame.Ins.OnStickDrop();
 		}
-		if(Input.GetMouseButtonDown(1))
+		if(Input.GetMouseButtonDown(0))
 		{
-			GameMng.Ins.DamagePlayer();
+			UIMngInGame.Ins.OnStrickDrag();
 		}
 	}
 }

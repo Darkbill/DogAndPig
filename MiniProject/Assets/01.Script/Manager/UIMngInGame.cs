@@ -25,20 +25,21 @@ public class UIMngInGame : MonoBehaviour
 	}
 	#endregion
 	public Image stickImage;
+	public GameObject joyStick;
 	public Vector3 stickPos;
-	public float stickRadius = 80;
-	private void Start()
-	{
-		stickPos = stickImage.gameObject.transform.position;
-	}
+	public float stickRadius = 60;
 
 	public void OnStrickDrag()
 	{
 		GameMng.Ins.player.isMove = true;
+		joyStick.gameObject.SetActive(true);
+		joyStick.gameObject.transform.position = Input.mousePosition;
+		stickPos = stickImage.gameObject.transform.position;
 	}
 	public void OnStickDrop()
 	{
 		GameMng.Ins.player.isMove = false;
+		joyStick.gameObject.SetActive(false);
 		stickImage.gameObject.transform.position = stickPos;
 	}
 	public Vector3 GetJoyStickDirection()
