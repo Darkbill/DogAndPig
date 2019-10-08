@@ -7,25 +7,28 @@ public class InputSystem : MonoBehaviour
 	private bool isMove = false;
 	private void Update()
 	{
+#if UNITY_EDITOR_WIN
 		/* 컴퓨터 빌드 */
-		//if (Input.GetMouseButtonUp(0))
-		//{
-		//	//TODO : 원형탄 테스트 circleshot 매개변수 10은 탄환개수임!!
+		if (Input.GetMouseButtonUp(0))
+		{
+			//TODO : 원형탄 테스트 circleshot 매개변수 10은 탄환개수임!!
 
-		//	BulletPattern monsterpat = new BulletPlayer();
-		//	monsterpat.SettingPos(Camera.main.ScreenToViewportPoint(Input.mousePosition),
-		//								GameMng.Ins.player.transform.position, eBulletType.Player);
-		//	CircleShot Att01 = new CircleShot(monsterpat, 10);
-		//	Att01.BulletShot();
+			BulletPattern monsterpat = new BulletPlayer();
+			monsterpat.SettingPos(Camera.main.ScreenToViewportPoint(Input.mousePosition),
+										GameMng.Ins.player.transform.position, eBulletType.Player);
+			CircleShot Att01 = new CircleShot(monsterpat, 10);
+			Att01.BulletShot();
 
 
-		//	UIMngInGame.Ins.OnStickDrop();
+			UIMngInGame.Ins.OnStickDrop();
 
-		//}
-		//if(Input.GetMouseButtonDown(0))
-		//{
-		//	UIMngInGame.Ins.OnStrickDrag();
-		//}
+		}
+		if (Input.GetMouseButtonDown(0))
+		{
+			UIMngInGame.Ins.OnStrickDrag();
+		}
+#else
+
 		/* 모바일 빌드 */
 		if (Input.touchCount > 0)
 		{    //터치가 1개 이상이면.
@@ -54,7 +57,7 @@ public class InputSystem : MonoBehaviour
 				}
 			}
 		}
-
+#endif
 	}
 	private void FixedUpdate()
 	{

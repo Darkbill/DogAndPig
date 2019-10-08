@@ -29,6 +29,13 @@ public class UIMngInGame : MonoBehaviour
 	public Vector3 stickPos;
 	public float stickRadius = 60;
 	public int moveTouchID;
+	public void OnStrickDrag()
+	{
+		GameMng.Ins.player.isMove = true;
+		joyStick.gameObject.SetActive(true);
+		joyStick.gameObject.transform.position = Input.mousePosition;
+		stickPos = stickImage.gameObject.transform.position;
+	}
 	public void OnStrickDrag(Touch touch)
 	{
 		GameMng.Ins.player.isMove = true;
@@ -46,20 +53,21 @@ public class UIMngInGame : MonoBehaviour
 	public Vector3 GetJoyStickDirection()
 	{
 		/* 컴퓨터 빌드 */
-		//stickImage.gameObject.transform.position = Input.mousePosition;
-		//Vector3 dir = stickImage.gameObject.transform.position - stickPos;
-		//float m = dir.magnitude;
-		//dir.Normalize();
-		//if (m > stickRadius)
-		//{
-		//	stickImage.gameObject.transform.position = stickPos + dir * stickRadius;
-		//}
-		//else
-		//{
-		//	stickImage.gameObject.transform.position = Input.mousePosition;
-		//}
-		//return dir;
-
+#if UNITY_EDITOR_WIN
+		stickImage.gameObject.transform.position = Input.mousePosition;
+		Vector3 dir = stickImage.gameObject.transform.position - stickPos;
+		float m = dir.magnitude;
+		dir.Normalize();
+		if (m > stickRadius)
+		{
+			stickImage.gameObject.transform.position = stickPos + dir * stickRadius;
+		}
+		else
+		{
+			stickImage.gameObject.transform.position = Input.mousePosition;
+		}
+		return dir;
+#else
 		/* 모바일 빌드 */
 		for (int i = 0; i < Input.touchCount; i++)
 		{
@@ -83,5 +91,6 @@ public class UIMngInGame : MonoBehaviour
 			}
 		}
 		return Vector3.zero;
+#endif
 	}
 }
