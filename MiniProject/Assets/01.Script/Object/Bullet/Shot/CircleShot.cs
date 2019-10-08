@@ -17,7 +17,7 @@ public class CircleShot : BulletTypeSet
         float radian = 0;
         for (int i = 0; i < ShotCount; ++i, radian += radianstep)
         {
-            EndPos = EndPos + new Vector3(
+            EndPos = bp.EndPos + new Vector3(
             Mathf.Cos(radian) * ShotCount,
             Mathf.Sin(radian) * ShotCount,
             0);

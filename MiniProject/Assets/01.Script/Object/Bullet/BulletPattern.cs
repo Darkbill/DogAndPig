@@ -6,10 +6,10 @@ using UnityEngine;
 
 public abstract class BulletPattern
 {
-    protected Vector3 StartPos;
-    protected Vector3 EndPos;
+    public Vector3 StartPos;
+    public Vector3 EndPos;
 
-    protected Vector3 Target;
+    public Vector3 Target;
 
     protected eBulletType bulletType = eBulletType.None;
 
