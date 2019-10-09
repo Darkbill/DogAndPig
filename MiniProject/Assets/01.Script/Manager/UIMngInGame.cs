@@ -129,7 +129,6 @@ public class UIMngInGame : MonoBehaviour
 			saveDamage -= saveDamage * (Time.deltaTime / duration);
 			//현채 fill에서 추가로 깎는다 ~초 까지
 			healthGageImage.fillAmount -= minus * (Time.deltaTime / duration);
-			Debug.Log(healthGageImage.fillAmount);
 			if (healthGageImage.fillAmount < GameMng.Ins.player.nowHealthPoint / GameMng.Ins.player.playerData.healthPoint) break;
 			yield return null;
 		}

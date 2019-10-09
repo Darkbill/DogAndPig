@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     //Gara;
     public GameObject localRotation;
     public GameObject AttImg;
+	public SpriteRenderer playerSprite;
 
     //TODO : Att 범위랑 반지름 길이
     const float AttDegree = 30;
@@ -54,9 +55,12 @@ public class Player : MonoBehaviour
 			MoveToJoyStick();
 		}
 		else PlayerMove();
+
+		if(Input.GetMouseButtonDown(0))
+		{
+
+		}
 	}
-
-
 	void PlayerMove()
 	{
 		fHorizontal = Input.GetAxis("Horizontal");
