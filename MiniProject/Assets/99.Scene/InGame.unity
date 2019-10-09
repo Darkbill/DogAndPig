@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141fafb5ced72994494fcef822f11d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1684886706}
   monster: {fileID: 0}
   bulletPool: {fileID: 113422138}
   bulletMonster: {fileID: 1355690109}
@@ -665,7 +665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMove: 0
-  Mov: {fileID: 0}
+  Mov: {fileID: 1684886707}
 --- !u!114 &1684886707
 MonoBehaviour:
   m_ObjectHideFlags: 0
