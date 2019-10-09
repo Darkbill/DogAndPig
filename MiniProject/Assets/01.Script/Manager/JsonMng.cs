@@ -35,9 +35,9 @@ public class JsonMng : MonoBehaviour
 	}
 	private void LoadAll()
 	{
-		//LoadMonsterData();
+		LoadMonsterData();
 		LoadStageData();
-		//LoadPlayerData();
+		LoadPlayerData();
 	}
 	public void LoadPlayerData()
 	{
@@ -60,5 +60,11 @@ public class JsonMng : MonoBehaviour
 			T save = JsonMapper.ToObject<T>(jsonData[i].ToJson());
 			table.Add(save.GetTableID(), save);
 		}
+	}
+
+	/* 테스트코드 */
+	public void GameStart()
+	{
+		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame - 복사본");
 	}
 }

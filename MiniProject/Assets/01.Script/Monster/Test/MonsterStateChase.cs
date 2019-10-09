@@ -6,14 +6,9 @@ using GlobalDefine;
 
 public class MonsterStateChase : MonsterState
 {
-
-    private const float speed = 0.3f;
-
     private const float bullettime = 2.0f;
 
     private float delaytime = 0.0f;
-
-	private float rotateSpeed = 100f;
 
 	public MonsterStateChase(MonsterStateMachine o) : base(o)
 	{
@@ -56,10 +51,10 @@ public class MonsterStateChase : MonsterState
 		if (degree > 180) degree -= 360;
 		else if (degree < -180) degree += 360;
 
-		if (degree < 0) owner.transform.eulerAngles += new Vector3(0, 0, Time.deltaTime * rotateSpeed);
-		else			owner.transform.eulerAngles -= new Vector3(0, 0, Time.deltaTime * rotateSpeed);
+		if (degree < 0) owner.transform.eulerAngles += new Vector3(0, 0, Time.deltaTime * owner.monsterData.rotationSpeed);
+		else			owner.transform.eulerAngles -= new Vector3(0, 0, Time.deltaTime * owner.monsterData.rotationSpeed);
 
-		owner.gameObject.transform.position += owner.gameObject.transform.right * Time.deltaTime * speed;
+		owner.gameObject.transform.position += owner.gameObject.transform.right * Time.deltaTime * owner.monsterData.moveSpeed;
 	}
 
 }

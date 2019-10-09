@@ -5,13 +5,16 @@ using GlobalDefine;
 public class MonsterStateMachine : MonoBehaviour
 {
 	public Dictionary<eMonsterState, MonsterState> stateDict = new Dictionary<eMonsterState, MonsterState>();
+	private int monsterID = 1;
+	public MonsterData monsterData;
 	public MonsterState cState;
 	private void Awake()
 	{
-		StateSetting();
+		Setting();
 	}
-	private void StateSetting()
+	private void Setting()
 	{
+		monsterData = JsonMng.Ins.monsterDataTable[monsterID];
 		stateDict.Add(eMonsterState.Idle, new MonsterStateIdle(this));
 		stateDict.Add(eMonsterState.Chase, new MonsterStateChase(this));
 		stateDict.Add(eMonsterState.Attack, new MonsterStateAttack(this));

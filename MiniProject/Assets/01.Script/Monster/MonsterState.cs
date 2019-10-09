@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class MonsterState
 {
-	MonsterData monsterData;
 	public MonsterStateMachine owner;
 	public MonsterState(MonsterStateMachine o)
 	{
