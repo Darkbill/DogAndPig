@@ -44,4 +44,8 @@ public class MonsterStateMachine : MonoBehaviour
 		yield return new WaitForSeconds(1);
 		ChangeState(eMonsterState.Chase);
 	}
+    public void Hit()
+    {
+        Debug.Log("몬스터가 공격을 당했습니다.");
+    }
 }
