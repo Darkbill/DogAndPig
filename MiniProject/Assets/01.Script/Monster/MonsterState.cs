@@ -4,10 +4,7 @@ using UnityEngine;
 
 public abstract class MonsterState
 {
-    //
-    private int Hp;
-    private int Dmage;
-
+	MonsterData monsterData;
 	public MonsterStateMachine owner;
 	public MonsterState(MonsterStateMachine o)
 	{

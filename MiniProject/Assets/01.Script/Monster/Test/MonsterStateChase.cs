@@ -54,21 +54,12 @@ public class MonsterStateChase : MonsterState
 		float degree = (ownerDegree - goalDegree) * Mathf.Rad2Deg;
 
 		if (degree > 180) degree -= 360;
-		if (degree < -180) degree += 360;
-		if (degree < 0)
-		{
-			owner.transform.eulerAngles += new Vector3(0, 0, Time.deltaTime * rotateSpeed);
-		}
-		else
-		{
-			owner.transform.eulerAngles -= new Vector3(0, 0, Time.deltaTime * rotateSpeed);
-		}
+		else if (degree < -180) degree += 360;
+
+		if (degree < 0) owner.transform.eulerAngles += new Vector3(0, 0, Time.deltaTime * rotateSpeed);
+		else			owner.transform.eulerAngles -= new Vector3(0, 0, Time.deltaTime * rotateSpeed);
+
 		owner.gameObject.transform.position += owner.gameObject.transform.right * Time.deltaTime * speed;
-	}
-	private float GetAngle(Vector3 owner, Vector3 target)
-	{
-		float rad = Mathf.Atan2(target.x - owner.x, target.y - owner.y);
-		return -(rad * Mathf.Rad2Deg) + 90;
 	}
 
 }
