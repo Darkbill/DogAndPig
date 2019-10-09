@@ -8,7 +8,7 @@
     "rotationSpeed": 100,
     "attackType": 1,
     "attackSpeed": 1,
-    "attackRange": 15,
+    "attackRange": 2,
     "attackAngle": 20,
     "healthPoint": 10,
     "damage": 3,

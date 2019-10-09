@@ -6,6 +6,6 @@ public class BulletMonster : BulletPattern
 {
     public override void SelectBullet(Vector3 target)
     {
-        GameMng.Ins.bulletMonster.OnBullet(target, StartPos, bulletType);
+        //GameMng.Ins.bulletMonster.OnBullet(target, StartPos, bulletType);
     }
 }

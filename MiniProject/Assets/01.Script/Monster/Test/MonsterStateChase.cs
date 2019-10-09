@@ -6,10 +6,10 @@ using GlobalDefine;
 
 public class MonsterStateChase : MonsterState
 {
-    private const float bullettime = 2.0f;
 
     private float delaytime = 0.0f;
-
+	Vector2 directionToPlayer;
+	float degreeToPlayer;
 	public MonsterStateChase(MonsterStateMachine o) : base(o)
 	{
 
@@ -22,12 +22,17 @@ public class MonsterStateChase : MonsterState
 	public override bool OnTransition()
 	{
         delaytime += Time.deltaTime;
-        if (delaytime > bullettime)
-        {
-            delaytime = 0.0f;
-            owner.ChangeState(eMonsterState.Attack);
-            return true;
-        }
+		Debug.DrawRay(owner.gameObject.transform.position, owner.gameObject.transform.right * 2);
+		if (Mathf.Abs(degreeToPlayer) <= owner.monsterData.attackAngle && directionToPlayer.magnitude <= owner.monsterData.attackRange)
+		{
+			if (delaytime > owner.monsterData.attackSpeed)
+			{
+				delaytime = 0.0f;
+				owner.Attack();
+				owner.ChangeState(eMonsterState.Idle);
+				return true;
+			}
+		}
         return false;
 	}
 
@@ -43,18 +48,21 @@ public class MonsterStateChase : MonsterState
 	public void ChaseToPlayer()
 	{
 		Vector3 ownerDirection = owner.gameObject.transform.right;
-		Vector3 goalDirection = GameMng.Ins.player.transform.position - owner.gameObject.transform.position;
+		directionToPlayer = GameMng.Ins.player.transform.position - owner.gameObject.transform.position;
 		float ownerDegree = Mathf.Atan2(ownerDirection.y, ownerDirection.x);
-		float goalDegree = Mathf.Atan2(goalDirection.y, goalDirection.x);
-		float degree = (ownerDegree - goalDegree) * Mathf.Rad2Deg;
+		float goalDegree = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x);
+		degreeToPlayer = (ownerDegree - goalDegree) * Mathf.Rad2Deg;
 
-		if (degree > 180) degree -= 360;
-		else if (degree < -180) degree += 360;
+		if (degreeToPlayer > 180)		degreeToPlayer -= 360;
+		else if (degreeToPlayer < -180) degreeToPlayer += 360;
 
-		if (degree < 0) owner.transform.eulerAngles += new Vector3(0, 0, Time.deltaTime * owner.monsterData.rotationSpeed);
-		else			owner.transform.eulerAngles -= new Vector3(0, 0, Time.deltaTime * owner.monsterData.rotationSpeed);
+		if (degreeToPlayer < 0) owner.transform.eulerAngles += new Vector3(0, 0, Time.deltaTime * owner.monsterData.rotationSpeed);
+		else					owner.transform.eulerAngles -= new Vector3(0, 0, Time.deltaTime * owner.monsterData.rotationSpeed);
 
-		owner.gameObject.transform.position += owner.gameObject.transform.right * Time.deltaTime * owner.monsterData.moveSpeed;
+		if (directionToPlayer.magnitude > owner.monsterData.attackRange)
+		{
+			owner.gameObject.transform.position += owner.gameObject.transform.right * Time.deltaTime * owner.monsterData.moveSpeed;
+		}
 	}
 
 }

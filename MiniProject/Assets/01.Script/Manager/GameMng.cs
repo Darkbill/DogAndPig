@@ -27,7 +27,6 @@ public class GameMng : MonoBehaviour
 	public Player player;
     public MonsterStateMachine monster;
 	public BulletPool bulletPool;
-    public BulletPool bulletMonster;
 	public CameraMove cameraMove;
 	public void DamagePlayer()
 	{

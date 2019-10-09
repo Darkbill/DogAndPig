@@ -33,5 +33,15 @@ public class MonsterStateMachine : MonoBehaviour
 	{
 		cState.Tick();
 	}
-	
+	/* 테스트코드 */
+	public void Attack()
+	{
+		StartCoroutine(AttackAnimationDelay());
+	}
+	IEnumerator AttackAnimationDelay()
+	{
+		Debug.Log("몬스터 공격");
+		yield return new WaitForSeconds(1);
+		ChangeState(eMonsterState.Chase);
+	}
 }
