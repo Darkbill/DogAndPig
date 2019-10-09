@@ -26,7 +26,8 @@ public class JsonMng : MonoBehaviour
 	}
 	#endregion
 	public Dictionary<int, MonsterData> monsterDataTable { get; private set; } = new Dictionary<int, MonsterData>();
-	public Dictionary<int, StageData> StageDataTable { get; private set; } = new Dictionary<int, StageData>();
+	public Dictionary<int, StageData> stageDataTable { get; private set; } = new Dictionary<int, StageData>();
+	public Dictionary<int, PlayerData> playerDataTable { get; private set; } = new Dictionary<int, PlayerData>(); 
 	private void Awake()
 	{
 		DontDestroyOnLoad(this);
@@ -34,8 +35,13 @@ public class JsonMng : MonoBehaviour
 	}
 	private void LoadAll()
 	{
-		LoadMonsterData();
+		//LoadMonsterData();
 		LoadStageData();
+		//LoadPlayerData();
+	}
+	public void LoadPlayerData()
+	{
+		LoadData("PlayerDataTable", playerDataTable);
 	}
 	public void LoadMonsterData()
 	{
@@ -43,7 +49,7 @@ public class JsonMng : MonoBehaviour
 	}
 	public void LoadStageData()
 	{
-		LoadData("StageDataTable", StageDataTable);
+		LoadData("StageDataTable", stageDataTable);
 	}
 	public void LoadData<T>(string fileName,Dictionary<int,T> table) where T : TableBase
 	{
@@ -52,16 +58,7 @@ public class JsonMng : MonoBehaviour
 		for (int i = 0; i < jsonData.Count; ++i)
 		{
 			T save = JsonMapper.ToObject<T>(jsonData[i].ToJson());
-			table.Add(save.tableID, save);
+			table.Add(save.GetTableID(), save);
 		}
 	}
-	//public string FindNameToID<T>(int id, List<T> list) where T : DataBase
-	//{
-	//	var i = list.GetEnumerator();
-	//	while (i.MoveNext())
-	//	{
-	//		if (i.Current.id == id) return i.Current.name;
-	//	}
-	//	return string.Empty;
-	//}
 }

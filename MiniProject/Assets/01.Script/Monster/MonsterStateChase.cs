@@ -6,7 +6,6 @@ using GlobalDefine;
 
 public class MonsterStateChase : MonsterState
 {
-    private bool attackcheck = false;
 
     private const float speed = 0.3f;
 

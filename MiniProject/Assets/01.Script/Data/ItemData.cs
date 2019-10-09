@@ -11,4 +11,8 @@ public class ItemData : TableBase
 		itemID = i;
 		itemName = n;
 	}
+	public override int GetTableID()
+	{
+		return itemID;
+	}
 }

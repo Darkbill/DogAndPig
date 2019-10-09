@@ -1,0 +1,47 @@
+[
+  {
+    "level": 1,
+    "healthPoint": 10,
+    "damage": 1,
+    "moveSpeed": 5,
+    "critacalCance": 20,
+    "criticalDamage": 2,
+    "armor": 2
+  },
+  {
+    "level": 2,
+    "healthPoint": 15,
+    "damage": 2,
+    "moveSpeed": 5,
+    "critacalCance": 20,
+    "criticalDamage": 2,
+    "armor": 2
+  },
+  {
+    "level": 3,
+    "healthPoint": 20,
+    "damage": 3,
+    "moveSpeed": 5,
+    "critacalCance": 20,
+    "criticalDamage": 2,
+    "armor": 2
+  },
+  {
+    "level": 4,
+    "healthPoint": 25,
+    "damage": 4,
+    "moveSpeed": 5,
+    "critacalCance": 20,
+    "criticalDamage": 2,
+    "armor": 2
+  },
+  {
+    "level": 5,
+    "healthPoint": 30,
+    "damage": 5,
+    "moveSpeed": 5,
+    "critacalCance": 20,
+    "criticalDamage": 2,
+    "armor": 2
+  }
+]

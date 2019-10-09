@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class InputSystem : MonoBehaviour
 {
 	private Touch tempTouchs;
-	private bool isMove = false;
 	private void Update()
 	{
 #if UNITY_EDITOR_WIN

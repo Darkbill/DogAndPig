@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TableBase
+public abstract class TableBase
 {
-	public int tableID;
+	public abstract int GetTableID();
 }
