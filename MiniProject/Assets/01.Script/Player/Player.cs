@@ -9,16 +9,20 @@ public class Player : MonoBehaviour
 	// * protected * //
 	protected int iHp;
 	protected int iAtt;
+	protected int iSpeed;
 
 	// * public * //
 	public float fHorizontal { get; set; }
 	public float fVertical { get; set; }
 	public bool isMove;
 	public Movement Mov;
+	public int nowHealthPoint;
+	public PlayerData playerData;
 
 	// * private * //
 	private const int iBulletCnt = 20;
-	protected int iSpeed;
+	private int level = 1;
+
 
     //Gara;
     public GameObject localRotation;
@@ -40,6 +44,8 @@ public class Player : MonoBehaviour
 	private void PlayerSetting()
 	{
 		iSpeed = 2;
+		playerData = JsonMng.Ins.playerDataTable[level];
+		nowHealthPoint = playerData.healthPoint;
 	}
 	private void Update()
 	{
@@ -94,9 +100,9 @@ public class Player : MonoBehaviour
 		Vector3 direction = UIMngInGame.Ins.GetJoyStickDirection();
 		gameObject.transform.position += new Vector3(direction.x, direction.y, 0) * iSpeed * Time.deltaTime;
 	}
-	//TODO : 벽 부딪히면 넘어가지않게
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
 
+	public void Damage(int damage)
+	{
+		nowHealthPoint -= damage;
 	}
 }

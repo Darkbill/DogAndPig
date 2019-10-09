@@ -28,10 +28,12 @@ public class GameMng : MonoBehaviour
     public MonsterStateMachine monster;
 	public BulletPool bulletPool;
 	public CameraMove cameraMove;
-	public void DamagePlayer()
+	//TODO : Event는 옵저버패턴 일괄처리
+	public void DamageToPlayer(int damage)
 	{
-		//TODO : 플레이어 HP 감소 등등 추가
 		cameraMove.OnStart();
+		player.Damage(damage);
+		UIMngInGame.Ins.DamageToPlayer(damage);
 	}
 }
 	

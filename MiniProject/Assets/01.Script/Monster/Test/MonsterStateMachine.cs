@@ -41,6 +41,8 @@ public class MonsterStateMachine : MonoBehaviour
 	IEnumerator AttackAnimationDelay()
 	{
 		Debug.Log("몬스터 공격");
+		//TODO : 데미지 계산함수
+		GameMng.Ins.DamageToPlayer(2);
 		yield return new WaitForSeconds(1);
 		ChangeState(eMonsterState.Chase);
 	}
