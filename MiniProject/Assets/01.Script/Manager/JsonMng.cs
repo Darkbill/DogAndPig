@@ -61,10 +61,4 @@ public class JsonMng : MonoBehaviour
 			table.Add(save.GetTableID(), save);
 		}
 	}
-
-	/* 테스트코드 */
-	public void GameStart()
-	{
-		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame - 복사본");
-	}
 }

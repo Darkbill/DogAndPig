@@ -42,7 +42,7 @@ public class UIMng : MonoBehaviour
 
 	public void ClickGameStart()
 	{
-
+		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
 	}
 	public void ClickGameOption()
 	{
