@@ -14,14 +14,12 @@ public class GunShot : BulletTypeSet
     }
     public override void BulletShot()
     {
-        float radianstep = Mathf.PI / 180 * 15;
-        float radian = Convert.ToBoolean(ShotCount % 2) ? -ShotCount / 2 * radianstep : ShotCount / 2 * radianstep;
-        for (int i = 0; i < ShotCount; ++i, radian += radianstep)
+        float degreestep = 10;
+        float degree = Convert.ToBoolean(ShotCount % 2) ? -ShotCount / 2 * degreestep : ShotCount / 2 * degreestep;
+        for (int i = 0; i < ShotCount; ++i, degree += degreestep)
         {
-            EndPos = Target + new Vector3(
-            (Mathf.Cos(radian) - Mathf.Sin(radian)),
-            (Mathf.Sin(radian) + Mathf.Cos(radian)),
-            0);
+            var quater = Quaternion.Euler(0, 0, degree);
+            EndPos = quater * bp.Target;
             SelectBullet(EndPos);
         }
     }

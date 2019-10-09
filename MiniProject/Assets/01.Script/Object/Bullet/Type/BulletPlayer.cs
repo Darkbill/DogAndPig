@@ -6,6 +6,6 @@ public class BulletPlayer : BulletPattern
 {
     public override void SelectBullet(Vector3 target)
     {
-        GameMng.Ins.bulletPool.OnBullet(target, StartPos, bulletType);
+        GameMng.Ins.bulletPool.OnBullet(target, StartPos, bulletType, bulletStyle);
     }
 }

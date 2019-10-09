@@ -4,18 +4,18 @@ using UnityEngine.UI;
 public class InputSystem : MonoBehaviour
 {
 	private Touch tempTouchs;
-	private void Update()
+    private BulletPattern monsterpat = new BulletPlayer();
+
+    private void Update()
 	{
 #if UNITY_EDITOR_WIN
 		/* 컴퓨터 빌드 */
 		if (Input.GetMouseButtonUp(0))
 		{
 			//TODO : 원형탄 테스트 circleshot 매개변수 10은 탄환개수임!!
-
-			BulletPattern monsterpat = new BulletPlayer();
 			monsterpat.SettingPos(Camera.main.ScreenToWorldPoint(Input.mousePosition),
 										GameMng.Ins.player.transform.position, eBulletType.Player);
-			CircleShot Att01 = new CircleShot(monsterpat, 10);
+			BoomerangShot Att01 = new BoomerangShot(monsterpat, 5);
 			Att01.BulletShot();
 
 

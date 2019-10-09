@@ -4,7 +4,16 @@ using UnityEngine;
 
 namespace GlobalDefine
 {
-	static public class Define
+    public enum eBulletStyle
+    {
+        NONE = 0,
+        NORMAL,
+        BOOMERANG,
+        PARABOLALEFT,
+        PARABOLARIGHT,
+        BORN,
+    }
+    static public class Define
 	{
 		public const int nRANDOM_POOL = 1024;
 	}
