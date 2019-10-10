@@ -22,7 +22,6 @@ public class Player : MonoBehaviour
     private void Awake()
 	{
 		PlayerSetting();
-        dummy.Setting(5, 5);
 	}
 	private void PlayerSetting()
 	{
@@ -30,7 +29,7 @@ public class Player : MonoBehaviour
 	}
 	private void Update()
 	{
-        dummy.ObjectUpdate(transform.position);
+        //dummy.ObjectUpdate(transform.position);
 		if (isMove)
 		{
 			MoveToJoyStick();

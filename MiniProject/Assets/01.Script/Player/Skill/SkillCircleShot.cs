@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class SkillCircleShot : MonoBehaviour
 {
-    public GameObject Bullet;
-    private int Count = 0;
+    public FireBall Bullet;
+    private int Count = 5;
     private float Speed = 5;
 
     const int Angle180 = 180;
@@ -16,15 +16,15 @@ public class SkillCircleShot : MonoBehaviour
 
     private float timer = 0.0f;
     
-    private List<SkillBullet> BulletLst = new List<SkillBullet>();
+    private List<FireBall> BulletLst = new List<FireBall>();
+
+    private Vector3 moveDirection;
 
     // Start is called before the first frame update
 
-    
-    public void Setting(int bulletcnt, float bulletSpeed)
+
+    private void Awake()
     {
-        Count = bulletcnt;
-        Speed = bulletSpeed;
         BulletSetting();
     }
 
@@ -34,30 +34,30 @@ public class SkillCircleShot : MonoBehaviour
         Vector3 bulletstartvec = new Vector3(0, Radius, 0);
         for(int i = 0;i<Count;++i)
         {
-            SkillBullet bullet = new SkillBullet();
-            bullet.BulletObject = Instantiate<GameObject>(Bullet);
+            GameObject o = Instantiate(Bullet.gameObject, gameObject.transform);
             Quaternion radian = Quaternion.Euler(0, 0, Angle180 * 2 / Count * i);
-            bullet.BulletObject.transform.position = radian * bulletstartpos + new Vector3(0, 0, -3);
-            bullet.BulletMovVec = radian * bulletstartvec;
-            bullet.AwakeSet();
-            BulletLst.Add(bullet);
+            o.transform.position = radian * bulletstartpos + new Vector3(0, 0, -3);
+            o.GetComponent<FireBall>().BulletMovVec = radian * bulletstartvec;
+            BulletLst.Add(o.GetComponent<FireBall>());
         }
     }
 
-    public void ObjectUpdate(Vector3 hostpos)
+    private void Update()
     {
-        Moving(hostpos);
+        Moving();
         timer += Time.deltaTime;
         if (timer > 0.1)
             CircleShotting();
     }
 
-    private void Moving(Vector3 hostpos)
+    private void Moving()
     {
         for(int i = 0;i<Count;++i)
         {
-            BulletLst[i].UpdateTarget(BulletLst[i].BulletMovVec + hostpos);
-            BulletLst[i].BulletUpdate();
+            //BulletLst[i].UpdateTarget(BulletLst[i].BulletMovVec + hostpos);
+            //moveDirection = target - BulletLst[i].gameObject.transform.position;
+            //BulletLst[i].BulletUpdate();
+            BulletLst[i].gameObject.transform.position += BulletLst[i].BulletMovVec * Time.deltaTime * Speed;
         }
     }
 
@@ -67,7 +67,6 @@ public class SkillCircleShot : MonoBehaviour
         {
             Quaternion radian = Quaternion.Euler(0, 0, BulletRotationAngle);
             BulletLst[i].BulletMovVec = radian * (BulletLst[i].BulletMovVec);
-            BulletLst[i].BulletMovVec.z = -3;
         }
         timer = 0.0f;
     }
