@@ -4,7 +4,11 @@ using UnityEngine;
 
 namespace GlobalDefine
 {
-    public enum eBulletStyle
+	static public class Define
+	{
+		public const int nRANDOM_POOL = 1024;
+	}
+	public enum eBulletStyle
     {
         NONE = 0,
         NORMAL,
@@ -12,17 +16,15 @@ namespace GlobalDefine
         PARABOLALEFT,
         PARABOLARIGHT,
         BORN,
+		Max,
     }
-    static public class Define
-	{
-		public const int nRANDOM_POOL = 1024;
-	}
 	public enum eBulletType
     {
         None = 0,
         Player,
         Monster,
         hostility,
+		Max,
     }
 	public enum eMilliMonsterState
 	{
@@ -33,6 +35,19 @@ namespace GlobalDefine
 		SkillAttack,
 		Dash,
 		Dead,
+		Max,
+	}
+	public enum eMonsterMoveType
+	{
+		None = 0,
+		Move,
+		NotMove,
+	}
+	public enum eMonsterAttackType
+	{
+		None = 0,
+		Milli,
+		Range,
 	}
 	public enum eRangeMonsterState
 	{
@@ -44,6 +59,7 @@ namespace GlobalDefine
 		SkillAttack,
 		Dash,
 		Dead,
+		Max,
 	}
 	public enum ePlayerState
 	{
@@ -53,15 +69,7 @@ namespace GlobalDefine
 		Dash,
 		Stun,
 		Dead,
-	}
-	public enum eSpawnWay
-	{
-		None = 0,
-		Top,
-		Bottom,
-		Right,
-		Left,
-		All,
+		Max,
 	}
 	static public class Rand // 만분율 기준 0~9999까지 저장
 	{

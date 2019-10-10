@@ -12,11 +12,12 @@ public class PlayerStateMachine : MonoBehaviour
 	}
 	public void Setting()
 	{
-		stateDict.Add(ePlayerState.Idle, new PlayerStateIdle(gameObject.GetComponent<Player>()));
-		stateDict.Add(ePlayerState.Move, new PlayerStateMove(gameObject.GetComponent<Player>()));
-		stateDict.Add(ePlayerState.Dash, new PlayerStateDash(gameObject.GetComponent<Player>()));
-		stateDict.Add(ePlayerState.Stun, new PlayerStateStun(gameObject.GetComponent<Player>()));
-		stateDict.Add(ePlayerState.Dead, new PlayerStateDead(gameObject.GetComponent<Player>()));
+		Player o = gameObject.GetComponent<Player>();
+		stateDict.Add(ePlayerState.Idle, new PlayerStateIdle(o));
+		stateDict.Add(ePlayerState.Move, new PlayerStateMove(o));
+		stateDict.Add(ePlayerState.Dash, new PlayerStateDash(o));
+		stateDict.Add(ePlayerState.Stun, new PlayerStateStun(o));
+		stateDict.Add(ePlayerState.Dead, new PlayerStateDead(o));
 		cState = stateDict[ePlayerState.Idle];
 		cState.OnStart();
 	}

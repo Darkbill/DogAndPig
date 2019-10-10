@@ -1078,11 +1078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMove: 0
-  Mov: {fileID: 1684886707}
-  nowHealthPoint: 0
   playerStateMachine: {fileID: 1684886708}
-  localRotation: {fileID: 4967270028517834069}
-  AttImg: {fileID: 4967270028725527010}
   playerSprite: {fileID: 1899078247}
 --- !u!114 &1684886707
 MonoBehaviour:
@@ -7382,9 +7378,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3851160857572563632}
-  - component: {fileID: 3851160857572563637}
   - component: {fileID: 3851160857572563634}
   - component: {fileID: 3851160857572563635}
+  - component: {fileID: 3851160857572563637}
+  - component: {fileID: 3851160857572563636}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Untagged
@@ -7429,6 +7426,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3851160857572563636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3851160857572563633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62ddf69626ec22948988cd117f7eb0b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3851160857572563637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7438,9 +7447,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3851160857572563633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62710acbd9a8da24abba695a629f65e4, type: 3}
+  m_Script: {fileID: 11500000, guid: ce475e88dd94bf843af530a6e8e3e583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterStateMachine: {fileID: 3851160857572563636}
 --- !u!4 &3851160857850294113
 Transform:
   m_ObjectHideFlags: 0

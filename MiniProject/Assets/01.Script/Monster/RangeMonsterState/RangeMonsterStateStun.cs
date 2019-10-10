@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RangeMonsterStateStun : RangeMonsterState
 {
-	public RangeMonsterStateStun(RangeMonsterStateMachine o) : base(o)
+	public RangeMonsterStateStun(RangeMonster o) : base(o)
 	{
 
 	}

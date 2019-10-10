@@ -1,7 +1,7 @@
-﻿public abstract class RangeMonsterState
+﻿public abstract class MilliMonsterState
 {
-	public RangeMonster monsterObject;
-	public RangeMonsterState(RangeMonster o)
+	public MilliMonster monsterObject;
+	public MilliMonsterState(MilliMonster o)
 	{
 		monsterObject = o;
 	}

@@ -25,9 +25,10 @@ public class JsonMng : MonoBehaviour
 		}
 	}
 	#endregion
+	public Dictionary<int, PlayerData> playerDataTable { get; private set; } = new Dictionary<int, PlayerData>();
+	public Dictionary<int, PlayerSkillData> playerSkillDataTable { get; private set; } = new Dictionary<int, PlayerSkillData>();
 	public Dictionary<int, MonsterData> monsterDataTable { get; private set; } = new Dictionary<int, MonsterData>();
-	public Dictionary<int, StageData> stageDataTable { get; private set; } = new Dictionary<int, StageData>();
-	public Dictionary<int, PlayerData> playerDataTable { get; private set; } = new Dictionary<int, PlayerData>(); 
+	public Dictionary<int, MonsterSkillData> monsterSkillDataTable { get; private set; } = new Dictionary<int, MonsterSkillData>();
 	private void Awake()
 	{
 		DontDestroyOnLoad(this);
@@ -35,9 +36,10 @@ public class JsonMng : MonoBehaviour
 	}
 	private void LoadAll()
 	{
-		LoadMonsterData();
-		LoadStageData();
 		LoadPlayerData();
+		LoadPlayerSkillData();
+		LoadMonsterData();
+		LoadMonsterSkillData();
 	}
 	public void LoadPlayerData()
 	{
@@ -47,9 +49,13 @@ public class JsonMng : MonoBehaviour
 	{
 		LoadData("MonsterDataTable", monsterDataTable);
 	}
-	public void LoadStageData()
+	public void LoadPlayerSkillData()
 	{
-		LoadData("StageDataTable", stageDataTable);
+		LoadData("PlayerSkillDataTable", playerSkillDataTable);
+	}
+	public void LoadMonsterSkillData()
+	{
+		LoadData("MonsterSkillDataTable", monsterSkillDataTable);
 	}
 	public void LoadData<T>(string fileName,Dictionary<int,T> table) where T : TableBase
 	{

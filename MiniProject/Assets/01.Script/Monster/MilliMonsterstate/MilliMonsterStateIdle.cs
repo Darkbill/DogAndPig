@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MilliMonsterStateIdle : MonsterState
+public class MilliMonsterStateIdle : MilliMonsterState
 {
 	private float delaytime;
 
-	public MilliMonsterStateIdle(MonsterStateMachine o) : base(o)
+	public MilliMonsterStateIdle(MilliMonster o) : base(o)
 	{
 	}
 
@@ -23,7 +23,7 @@ public class MilliMonsterStateIdle : MonsterState
 		if (delaytime > 1.0f)
 		{
 			delaytime = 0.0f;
-			owner.ChangeState(eMilliMonsterState.Move);
+			monsterObject.monsterStateMachine.ChangeState(eMilliMonsterState.Move);
 			return true;
 		}
 

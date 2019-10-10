@@ -25,7 +25,7 @@ public class GameMng : MonoBehaviour
 	}
 	#endregion
 	public Player player;
-    public MonsterStateMachine monster;
+    public MilliMonster monster;
 	public BulletPool bulletPool;
 	public CameraMove cameraMove;
 	//TODO : Event는 옵저버패턴 일괄처리

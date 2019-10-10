@@ -8,11 +8,16 @@
     "rotationSpeed": 100,
     "attackType": 1,
     "attackSpeed": 1,
-    "attackRange": 2,
+    "attackRange": 1,
     "attackAngle": 20,
     "healthPoint": 10,
     "damage": 3,
     "armor": 2,
+    "physicsResist": 500,
+    "fireResist": 500,
+    "waterResist": 500,
+    "windResist": 500,
+    "lightningResist": 500,
     "skillIndex": 0
   },
   {
@@ -29,6 +34,11 @@
     "healthPoint": 10,
     "damage": 3,
     "armor": 1,
+    "physicsResist": 500,
+    "fireResist": 500,
+    "waterResist": 500,
+    "windResist": 500,
+    "lightningResist": 500,
     "skillIndex": 0
   },
   {
@@ -45,6 +55,11 @@
     "healthPoint": 10,
     "damage": 3,
     "armor": 0,
+    "physicsResist": 500,
+    "fireResist": 500,
+    "waterResist": 500,
+    "windResist": 500,
+    "lightningResist": 500,
     "skillIndex": 0
   },
   {
@@ -61,6 +76,11 @@
     "healthPoint": 10,
     "damage": 3,
     "armor": 2,
+    "physicsResist": 500,
+    "fireResist": 500,
+    "waterResist": 500,
+    "windResist": 500,
+    "lightningResist": 500,
     "skillIndex": 0
   },
   {
@@ -77,6 +97,11 @@
     "healthPoint": 10,
     "damage": 3,
     "armor": 2,
+    "physicsResist": 500,
+    "fireResist": 500,
+    "waterResist": 500,
+    "windResist": 500,
+    "lightningResist": 500,
     "skillIndex": 0
   },
   {
@@ -93,6 +118,11 @@
     "healthPoint": 10,
     "damage": 3,
     "armor": 2,
+    "physicsResist": 500,
+    "fireResist": 500,
+    "waterResist": 500,
+    "windResist": 500,
+    "lightningResist": 500,
     "skillIndex": 0
   },
   {
@@ -109,6 +139,11 @@
     "healthPoint": 10,
     "damage": 3,
     "armor": 2,
+    "physicsResist": 500,
+    "fireResist": 500,
+    "waterResist": 500,
+    "windResist": 500,
+    "lightningResist": 500,
     "skillIndex": 0
   },
   {
@@ -125,6 +160,11 @@
     "healthPoint": 10,
     "damage": 3,
     "armor": 2,
+    "physicsResist": 500,
+    "fireResist": 500,
+    "waterResist": 500,
+    "windResist": 500,
+    "lightningResist": 500,
     "skillIndex": 0
   }
 ]

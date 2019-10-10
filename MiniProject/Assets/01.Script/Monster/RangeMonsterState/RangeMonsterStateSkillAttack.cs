@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RangeMonsterStateSkillAttack : RangeMonsterState
 {
-	public RangeMonsterStateSkillAttack(RangeMonsterStateMachine o) : base(o)
+	public RangeMonsterStateSkillAttack(RangeMonster o) : base(o)
 	{
 
 	}

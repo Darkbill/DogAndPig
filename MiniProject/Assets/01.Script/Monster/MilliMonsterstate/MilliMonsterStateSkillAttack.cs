@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MilliMonsterStateSkillAttack : MonsterState
+public class MilliMonsterStateSkillAttack : MilliMonsterState
 {
-	public MilliMonsterStateSkillAttack(MonsterStateMachine o) : base(o)
+	public MilliMonsterStateSkillAttack(MilliMonster o) : base(o)
 	{
 
 	}

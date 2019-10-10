@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MilliMonsterStateDash : MonsterState
+public class MilliMonsterStateDash : MilliMonsterState
 {
-	public MilliMonsterStateDash(MonsterStateMachine o) : base(o)
+	public MilliMonsterStateDash(MilliMonster o) : base(o)
 	{
 
 	}

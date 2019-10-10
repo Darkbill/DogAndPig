@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RangeMonsterStateDead : RangeMonsterState
 {
-	public RangeMonsterStateDead(RangeMonsterStateMachine o) : base(o)
+	public RangeMonsterStateDead(RangeMonster o) : base(o)
 	{
 
 	}

@@ -1,0 +1,47 @@
+[
+  {
+    "skillID": 1,
+    "skillType": 2,
+    "option": [
+      2,
+      2,
+      2
+    ]
+  },
+  {
+    "skillID": 2,
+    "skillType": 2,
+    "option": [
+      2,
+      2,
+      2
+    ]
+  },
+  {
+    "skillID": 3,
+    "skillType": 2,
+    "option": [
+      2,
+      2,
+      2
+    ]
+  },
+  {
+    "skillID": 4,
+    "skillType": 2,
+    "option": [
+      2,
+      2,
+      2
+    ]
+  },
+  {
+    "skillID": 5,
+    "skillType": 2,
+    "option": [
+      2,
+      2,
+      2
+    ]
+  }
+]

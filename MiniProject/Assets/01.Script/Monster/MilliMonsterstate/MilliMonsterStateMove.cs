@@ -4,13 +4,13 @@ using UnityEngine;
 using System;
 using GlobalDefine;
 
-public class MilliMonsterStateMove : MonsterState
+public class MilliMonsterStateMove : MilliMonsterState
 {
 
 	private float delaytime = 0.0f;
 	Vector2 directionToPlayer;
 	float degreeToPlayer;
-	public MilliMonsterStateMove(MonsterStateMachine o) : base(o)
+	public MilliMonsterStateMove(MilliMonster o) : base(o)
 	{
 
 	}
@@ -22,14 +22,14 @@ public class MilliMonsterStateMove : MonsterState
 	public override bool OnTransition()
 	{
 		delaytime += Time.deltaTime;
-		Debug.DrawRay(owner.gameObject.transform.position, owner.gameObject.transform.right * 2);
-		if (Mathf.Abs(degreeToPlayer) <= owner.monsterData.attackAngle && directionToPlayer.magnitude <= owner.monsterData.attackRange)
+		Debug.DrawRay(monsterObject.gameObject.transform.position, monsterObject.gameObject.transform.right);
+		if (Mathf.Abs(degreeToPlayer) <= monsterObject.monsterData.attackAngle && directionToPlayer.magnitude <= monsterObject.monsterData.attackRange)
 		{
-			if (delaytime > owner.monsterData.attackSpeed)
+			if (delaytime > monsterObject.monsterData.attackSpeed)
 			{
 				delaytime = 0.0f;
-				owner.Attack();
-				owner.ChangeState(eMilliMonsterState.Idle);
+				monsterObject.Attack();
+				monsterObject.monsterStateMachine.ChangeState(eMilliMonsterState.Idle);
 				return true;
 			}
 		}
@@ -47,8 +47,8 @@ public class MilliMonsterStateMove : MonsterState
 	}
 	public void ChaseToPlayer()
 	{
-		Vector3 ownerDirection = owner.gameObject.transform.right;
-		directionToPlayer = GameMng.Ins.player.transform.position - owner.gameObject.transform.position;
+		Vector3 ownerDirection = monsterObject.gameObject.transform.right;
+		directionToPlayer = GameMng.Ins.player.transform.position - monsterObject.gameObject.transform.position;
 		float ownerDegree = Mathf.Atan2(ownerDirection.y, ownerDirection.x);
 		float goalDegree = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x);
 		degreeToPlayer = (ownerDegree - goalDegree) * Mathf.Rad2Deg;
@@ -56,12 +56,12 @@ public class MilliMonsterStateMove : MonsterState
 		if (degreeToPlayer > 180) degreeToPlayer -= 360;
 		else if (degreeToPlayer < -180) degreeToPlayer += 360;
 
-		if (degreeToPlayer < 0) owner.transform.eulerAngles += new Vector3(0, 0, Time.deltaTime * owner.monsterData.rotationSpeed);
-		else owner.transform.eulerAngles -= new Vector3(0, 0, Time.deltaTime * owner.monsterData.rotationSpeed);
+		if (degreeToPlayer < 0) monsterObject.transform.eulerAngles += new Vector3(0, 0, Time.deltaTime * monsterObject.monsterData.rotationSpeed);
+		else monsterObject.transform.eulerAngles -= new Vector3(0, 0, Time.deltaTime * monsterObject.monsterData.rotationSpeed);
 
-		if (directionToPlayer.magnitude > owner.monsterData.attackRange)
+		if (directionToPlayer.magnitude > monsterObject.monsterData.attackRange)
 		{
-			owner.gameObject.transform.position += owner.gameObject.transform.right * Time.deltaTime * owner.monsterData.moveSpeed;
+			monsterObject.gameObject.transform.position += monsterObject.gameObject.transform.right * Time.deltaTime * monsterObject.monsterData.moveSpeed;
 		}
 	}
 
