@@ -2,16 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangeMonster : MonoBehaviour
+public class RangeMonster : Monster
 {
 	public MilliMonsterStateMachine monsterStateMachine;
-	public MonsterData monsterData;
-	public void Start()
-	{
-		MonsterSetting();
-	}
-	public void MonsterSetting()
-	{
-
-	}
 }

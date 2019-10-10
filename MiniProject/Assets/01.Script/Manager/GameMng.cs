@@ -31,6 +31,5 @@ public class GameMng : MonoBehaviour
 	{
 		cameraMove.OnStart();
 		player.Damage(attackType, damage);
-		
 	}
 }
