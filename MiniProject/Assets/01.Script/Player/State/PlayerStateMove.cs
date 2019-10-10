@@ -56,6 +56,7 @@ public class PlayerStateMove : PlayerState
 
 		Mov.iSpeed = playerObject.calStat.moveSpeed;
 		playerObject.transform.position += Mov.Move(fHorizontal, fVertical);
+        playerObject.MoveVec = new Vector3(fHorizontal, fVertical, -3.0f);
 	}
 
 }
