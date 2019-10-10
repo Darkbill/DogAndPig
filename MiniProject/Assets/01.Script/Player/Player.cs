@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
 	public PlayerData skillStat = new PlayerData();
 	public PlayerStateMachine playerStateMachine;
 
+    public SkillCircleShot dummy;
+
 	// * private * //
 	private int level = 1;
 
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour
     private void Awake()
 	{
 		PlayerSetting();
+        dummy.Setting(5, 5);
 	}
 	private void PlayerSetting()
 	{
@@ -27,6 +30,7 @@ public class Player : MonoBehaviour
 	}
 	private void Update()
 	{
+        dummy.ObjectUpdate(transform.position);
 		if (isMove)
 		{
 			MoveToJoyStick();

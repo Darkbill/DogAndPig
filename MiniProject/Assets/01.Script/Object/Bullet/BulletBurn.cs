@@ -39,7 +39,7 @@ public class BulletHostPlayer : BulletBase
 {
     public override bool BulletCheck(Vector3 pos)
     {
-        if (Vector3.Distance(GameMng.Ins.monster.transform.position, pos) < 0.2f)
+        if (Vector3.Distance(GameMng.Ins.monster.transform.position, pos) < 0.5f)
         {
             return true;
         }
@@ -50,7 +50,7 @@ public class BulletHostMonster : BulletBase
 {
     public override bool BulletCheck(Vector3 pos)
     {
-        if (Vector3.Distance(GameMng.Ins.player.transform.position, pos) < 0.2f)
+        if (Vector3.Distance(GameMng.Ins.player.transform.position, pos) < 0.5f)
         {
             return true;
         }
