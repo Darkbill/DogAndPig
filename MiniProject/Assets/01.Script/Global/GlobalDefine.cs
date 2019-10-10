@@ -33,6 +33,16 @@ namespace GlobalDefine
 		Dodge,
 		Dead,
 	}
+	public enum ePlayerState
+	{
+		None = 0,
+		Idle,
+		Move,
+		Attack,
+		SkillAttack,
+		Stun,
+		Dead,
+	}
 	public enum eSpawnWay
 	{
 		None = 0,
