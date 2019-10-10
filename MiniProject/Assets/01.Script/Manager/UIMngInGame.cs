@@ -30,6 +30,7 @@ public class UIMngInGame : MonoBehaviour
 	public Vector3 stickPos;
 	public float stickRadius = 60;
 	public int moveTouchID;
+	public DamageTextPool damageTextPool;
 
 	/* Player Infomation UI*/
 	public Image healthGageImage;
@@ -111,12 +112,17 @@ public class UIMngInGame : MonoBehaviour
 	}
 	public void DamageToPlayer(int damage)
 	{
+		ShowDamage(damage, Camera.main.WorldToScreenPoint(GameMng.Ins.player.transform.position));
 		if (fillCoroutine != null)
 		{
 			StopCoroutine(fillCoroutine);
 		}
 		fillCoroutine = StartCoroutine(IEDamageToPlayer(damage, saveDamage, 0.5f));
 		healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.calStat.healthPoint, GameMng.Ins.player.GetFullHP());
+	}
+	public void ShowDamage(int damage,Vector3 pos)
+	{
+		damageTextPool.ActiveDamageText(damage, pos);
 	}
 	IEnumerator IEDamageToPlayer(int damage, float save, float duration)
 	{
