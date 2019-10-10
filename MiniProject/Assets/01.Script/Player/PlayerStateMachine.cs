@@ -6,6 +6,10 @@ public class PlayerStateMachine : MonoBehaviour
 {
 	public Dictionary<ePlayerState, PlayerState> stateDict = new Dictionary<ePlayerState, PlayerState>();
 	public PlayerState cState;
+	public int level = 1;
+	public float nowHealthPoint;
+	public PlayerData playerData;
+
 	private void Awake()
 	{
 		Setting();
@@ -18,6 +22,8 @@ public class PlayerStateMachine : MonoBehaviour
 		stateDict.Add(ePlayerState.Stun, new PlayerStateStun(this));
 		stateDict.Add(ePlayerState.Dead, new PlayerStateDead(this));
 		cState = stateDict[ePlayerState.Idle];
+		playerData = JsonMng.Ins.playerDataTable[level];
+		nowHealthPoint = playerData.healthPoint;
 		cState.OnStart();
 	}
 	public void ChangeState(ePlayerState stateType)

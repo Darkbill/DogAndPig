@@ -14,6 +14,10 @@ public class PlayerStateIdle : PlayerState
 
 	public override bool OnTransition()
 	{
+		if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+		{
+			playerObject.ChangeState(GlobalDefine.ePlayerState.Move);
+		}
 		return true;
 	}
 

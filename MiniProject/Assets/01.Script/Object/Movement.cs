@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public int iSpeed;
+    public float iSpeed;
     public Vector3 Move(float Hor, float Ver)
     {
         Vector3 vMovement = new Vector3(Hor, Ver, 0);
