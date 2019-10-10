@@ -42,7 +42,8 @@ public class UIMngInGame : MonoBehaviour
 	}
 	public void UISetting()
 	{
-		healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.nowHealthPoint, GameMng.Ins.player.playerData.healthPoint);
+		healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.calStat.healthPoint, 
+			GameMng.Ins.player.GetFullHP());
 	}
 	public void OnStrickDrag()
 	{
@@ -115,24 +116,24 @@ public class UIMngInGame : MonoBehaviour
 			StopCoroutine(fillCoroutine);
 		}
 		fillCoroutine = StartCoroutine(IEDamageToPlayer(damage, saveDamage, 0.5f));
-		healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.nowHealthPoint, GameMng.Ins.player.playerData.healthPoint);
+		healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.calStat.healthPoint, GameMng.Ins.player.GetFullHP());
 	}
 	IEnumerator IEDamageToPlayer(int damage, float save, float duration)
 	{
 		saveDamage = damage + save;
 		double cTime = 0;
 		//전체 체력대비 깍아야하는 체력의 비율
-		double minus = saveDamage / GameMng.Ins.player.playerData.healthPoint;
+		double minus = saveDamage / GameMng.Ins.player.calStat.healthPoint;
 		while (cTime < duration)
 		{
 			cTime += Time.deltaTime;
 			saveDamage -= saveDamage * (Time.deltaTime / duration);
 			//현채 fill에서 추가로 깎는다 ~초 까지
 			healthGageImage.fillAmount -= (float)minus * (Time.deltaTime / duration);
-			if (healthGageImage.fillAmount < GameMng.Ins.player.nowHealthPoint / GameMng.Ins.player.playerData.healthPoint) break;
+			if (healthGageImage.fillAmount < GameMng.Ins.player.calStat.healthPoint / GameMng.Ins.player.GetFullHP()) break;
 			yield return null;
 		}
-		healthGageImage.fillAmount = (float)GameMng.Ins.player.nowHealthPoint / (float)GameMng.Ins.player.playerData.healthPoint;
+		healthGageImage.fillAmount = GameMng.Ins.player.calStat.healthPoint / GameMng.Ins.player.GetFullHP();
 		saveDamage = 0;
 		fillCoroutine = null;
 	}

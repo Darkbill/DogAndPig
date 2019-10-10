@@ -60,7 +60,7 @@ public class PlayerStateMove : PlayerState
 		fHorizontal = Input.GetAxis("Horizontal");
 		fVertical = Input.GetAxis("Vertical");
 
-		Mov.iSpeed = playerObject.playerData.moveSpeed;
+		Mov.iSpeed = playerObject.calStat.moveSpeed;
 		playerObject.transform.position += Mov.Move(fHorizontal, fVertical);
 
 		//TODO : 플레이어의 방향이랑 공격유무 시각적으로 표현하기위해 추가한 코드.

@@ -8,8 +8,8 @@ public class Player : MonoBehaviour
 {
 	// * public * //
 	public bool isMove;
-	public int nowHealthPoint;
-	public PlayerData playerData;
+	public PlayerData calStat;
+	public PlayerData skillStat = new PlayerData();
 	public PlayerStateMachine playerStateMachine;
 
 	// * private * //
@@ -23,8 +23,7 @@ public class Player : MonoBehaviour
 	}
 	private void PlayerSetting()
 	{
-		playerData = JsonMng.Ins.playerDataTable[level];
-		nowHealthPoint = (int)playerData.healthPoint;
+		CalculatorStat();
 	}
 	private void Update()
 	{
@@ -38,11 +37,21 @@ public class Player : MonoBehaviour
 	{
 		Vector3 direction = UIMngInGame.Ins.GetJoyStickDirection();
 		//TODO : speed X GetSpeed( stat + skillStat )
-		gameObject.transform.position += new Vector3(direction.x, direction.y, 0) * playerData.moveSpeed * Time.deltaTime;
+		gameObject.transform.position += new Vector3(direction.x, direction.y, 0) * calStat.moveSpeed * Time.deltaTime;
 	}
 
 	public void Damage(int damage)
 	{
-		nowHealthPoint -= damage;
+		calStat.healthPoint -= damage;
+	}
+
+	public void CalculatorStat()
+	{
+		calStat = JsonMng.Ins.playerDataTable[level].AddStat(skillStat);
+	}
+	
+	public float GetFullHP()
+	{
+		return skillStat.healthPoint + JsonMng.Ins.playerDataTable[level].healthPoint;
 	}
 }
