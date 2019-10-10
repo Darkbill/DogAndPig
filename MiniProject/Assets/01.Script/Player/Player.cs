@@ -30,8 +30,8 @@ public class Player : MonoBehaviour
 	public SpriteRenderer playerSprite;
 
     //TODO : Att 범위랑 반지름 길이
-    const float AttDegree = 30;
-    const float AttRange = 0.7f;
+    const float AttDegree = 15;
+    const float AttRange = 1.5f;
 
     //360도
     const int Angle360 = 360;
@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
         //TODO : 플레이어의 방향이랑 공격유무 시각적으로 표현하기위해 추가한 코드.
         //InGameCopy Scene에다가 확인가능.//AttDegree, AttRange
         Vector3 vMovement = new Vector3(0, 0, (Mathf.Atan2(fHorizontal, fVertical)) * Mathf.Rad2Deg * -1 - Angle360 / 4);
-        //localRotation.transform.eulerAngles = vMovement;
+        localRotation.transform.eulerAngles = vMovement;
 
         StartCoroutine(PlayerAtt());
     }
@@ -90,12 +90,12 @@ public class Player : MonoBehaviour
             if (Rand.Percent(CriticalPers))
                 Debug.Log("Critical Hit");
             GameMng.Ins.monster.Hit();
-            //AttImg.SetActive(true);
-            yield return new WaitForSeconds(1);
+            AttImg.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
         }
         else
         {
-            //AttImg.SetActive(false);
+            AttImg.SetActive(false);
         }
     }
 
