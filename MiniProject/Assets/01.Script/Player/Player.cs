@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
 	public bool isMove;
 	public Movement Mov;
 	public int nowHealthPoint;
+
+
 	public PlayerData playerData;
 
 	// * private * //
@@ -46,7 +48,7 @@ public class Player : MonoBehaviour
 	{
 		iSpeed = 2;
 		playerData = JsonMng.Ins.playerDataTable[level];
-		nowHealthPoint = playerData.healthPoint;
+		nowHealthPoint = (int)playerData.healthPoint;
 	}
 	private void Update()
 	{

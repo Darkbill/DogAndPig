@@ -340,8 +340,11 @@ namespace LitJson
                 if (value_type.IsAssignableFrom (json_type))
                     return reader.Value;
 
-                // If there's a custom importer that fits, use it
-                if (custom_importers_table.ContainsKey (json_type) &&
+				if (value_type.FullName == "System.Single" && json_type.FullName == "System.Double")
+					return float.Parse(reader.Value.ToString());
+
+				// If there's a custom importer that fits, use it
+				if (custom_importers_table.ContainsKey (json_type) &&
                     custom_importers_table[json_type].ContainsKey (
                         value_type)) {
 
@@ -604,16 +607,11 @@ namespace LitJson
                     writer.Write ((ulong) obj);
                 };
 
-			base_exporters_table[typeof(float)] =
-				delegate (object obj, JsonWriter writer) {
-					writer.Write(Convert.ToDouble((float)obj));
-				};
-
-			base_exporters_table[typeof(Int64)] =
-			delegate (object obj, JsonWriter writer) {
-				writer.Write((Int64)obj);
-				};
-		}
+            base_exporters_table[typeof(DateTimeOffset)] =
+                delegate (object obj, JsonWriter writer) {
+                    writer.Write(((DateTimeOffset)obj).ToString("yyyy-MM-ddTHH:mm:ss.fffffffzzz", datetime_format));
+                };
+        }
 
         private static void RegisterBaseImporters ()
         {
@@ -625,7 +623,9 @@ namespace LitJson
             RegisterImporter (base_importers_table, typeof (int),
                               typeof (byte), importer);
 
-            importer = delegate (object input) {
+
+
+			importer = delegate (object input) {
                 return Convert.ToUInt64 ((int) input);
             };
             RegisterImporter (base_importers_table, typeof (int),
@@ -679,8 +679,7 @@ namespace LitJson
             RegisterImporter (base_importers_table, typeof (double),
                               typeof (decimal), importer);
 
-
-            importer = delegate (object input) {
+			importer = delegate (object input) {
                 return Convert.ToUInt32 ((long) input);
             };
             RegisterImporter (base_importers_table, typeof (long),

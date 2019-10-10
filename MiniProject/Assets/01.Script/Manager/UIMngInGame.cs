@@ -120,19 +120,19 @@ public class UIMngInGame : MonoBehaviour
 	IEnumerator IEDamageToPlayer(int damage, float save, float duration)
 	{
 		saveDamage = damage + save;
-		float cTime = 0;
+		double cTime = 0;
 		//전체 체력대비 깍아야하는 체력의 비율
-		float minus = saveDamage / GameMng.Ins.player.playerData.healthPoint;
+		double minus = saveDamage / GameMng.Ins.player.playerData.healthPoint;
 		while (cTime < duration)
 		{
 			cTime += Time.deltaTime;
 			saveDamage -= saveDamage * (Time.deltaTime / duration);
 			//현채 fill에서 추가로 깎는다 ~초 까지
-			healthGageImage.fillAmount -= minus * (Time.deltaTime / duration);
+			healthGageImage.fillAmount -= (float)minus * (Time.deltaTime / duration);
 			if (healthGageImage.fillAmount < GameMng.Ins.player.nowHealthPoint / GameMng.Ins.player.playerData.healthPoint) break;
 			yield return null;
 		}
-		healthGageImage.fillAmount = (float)GameMng.Ins.player.nowHealthPoint / GameMng.Ins.player.playerData.healthPoint;
+		healthGageImage.fillAmount = (float)GameMng.Ins.player.nowHealthPoint / (float)GameMng.Ins.player.playerData.healthPoint;
 		saveDamage = 0;
 		fillCoroutine = null;
 	}

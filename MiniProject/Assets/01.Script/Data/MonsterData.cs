@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class MonsterData : TableBase
 {
-	public int monsterID;
+	public float monsterID;
 	public string monsterName;
-	public int size;
-	public int moveType;
-	public int moveSpeed;
-	public int rotationSpeed;
-	public int attackType;
-	public int attackSpeed;
-	public int attackRange;
-	public int attackAngle;
-	public int healthPoint;
-	public int damage;
-	public int armor;
-	public int skillIndex;
+	public float size;
+	public float moveType;
+	public float moveSpeed;
+	public float rotationSpeed;
+	public float attackType;
+	public float attackSpeed;
+	public float attackRange;
+	public float attackAngle;
+	public float healthPoint;
+	public float damage;
+	public float armor;
+	public float skillIndex;
 
 	public MonsterData(int i,string n,int s, int mT,int mS,int rS,int aT, int aS,int aR, int aA,int hP,int d,int a,int sI)
 	{
@@ -40,8 +40,8 @@ public class MonsterData : TableBase
 	{
 
 	}
-	public override int GetTableID()
+	public override float GetTableID()
 	{
-		return monsterID;
+		return (float)monsterID;
 	}
 }

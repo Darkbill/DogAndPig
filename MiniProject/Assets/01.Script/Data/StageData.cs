@@ -4,12 +4,12 @@ using UnityEngine;
 using GlobalDefine;
 public class StageData : TableBase
 {
-	public int stageID;
-	public int monsterCount;
+	public float stageID;
+	public float monsterCount;
 	public float limitTime;
 	public eSpawnWay spawnWayType;
-	public int[] monsterIDArr;
-	public StageData(int i,int c,float l,int w,int[] ml)
+	public float[] monsterIDArr;
+	public StageData(int i,int c,float l,int w, float[] ml)
 	{
 		stageID = i;
 		monsterCount = c;
@@ -21,7 +21,7 @@ public class StageData : TableBase
 	{
 
 	}
-	public override int GetTableID()
+	public override float GetTableID()
 	{
 		return stageID;
 	}

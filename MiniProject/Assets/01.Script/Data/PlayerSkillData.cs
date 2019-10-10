@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerSkillData : TableBase
 {
-	public int skillID;
+	public float skillID;
 	public string skillName;
-	public int coolTime;
+	public float coolTime;
 	public PlayerSkillData()
 	{
 
@@ -17,7 +17,7 @@ public class PlayerSkillData : TableBase
 		skillName = sN;
 		coolTime = cT;
 	}
-	public override int GetTableID()
+	public override float GetTableID()
 	{
 		return skillID;
 	}

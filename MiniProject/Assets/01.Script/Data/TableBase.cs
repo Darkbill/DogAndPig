@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class TableBase
 {
-	public abstract int GetTableID();
+	public abstract float GetTableID();
 }

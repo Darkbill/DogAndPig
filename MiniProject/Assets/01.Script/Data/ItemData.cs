@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ItemData : TableBase
 {
-	public int itemID;
+	public float itemID;
 	public string itemName;
 	public ItemData(int i, string n)
 	{
 		itemID = i;
 		itemName = n;
 	}
-	public override int GetTableID()
+	public override float GetTableID()
 	{
 		return itemID;
 	}

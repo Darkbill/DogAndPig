@@ -58,7 +58,7 @@ public class JsonMng : MonoBehaviour
 		for (int i = 0; i < jsonData.Count; ++i)
 		{
 			T save = JsonMapper.ToObject<T>(jsonData[i].ToJson());
-			table.Add(save.GetTableID(), save);
+			table.Add((int)save.GetTableID(), save);
 		}
 	}
 }
