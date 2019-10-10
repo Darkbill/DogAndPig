@@ -67,7 +67,6 @@ public class Player : MonoBehaviour
 				break;
 		}
 		if (d < 1) d = 1;
-		//TODO : DamageText
 		calStat.healthPoint -= (int)d;
 		UIMngInGame.Ins.DamageToPlayer((int)d);
 	}

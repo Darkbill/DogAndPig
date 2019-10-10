@@ -9,12 +9,6 @@ public class PlayerStateMove : PlayerState
 	public bool isMove;
 	public Movement Mov = new Movement();
 
-	//TODO : Att 범위랑 반지름 길이
-	const float AttDegree = 15;
-	const float AttRange = 1.5f;
-
-	const int Angle90 = 90;
-
 	public PlayerStateMove(Player o) : base(o)
 	{
 	}
@@ -45,8 +39,8 @@ public class PlayerStateMove : PlayerState
 		ObjectSetAttack att = new ObjectSetAttack();
 		if (att.BaseAttack(new Vector3(fHorizontal, fVertical, 0),
 					   GameMng.Ins.monster.transform.position - playerObject.transform.position,
-					   AttRange,
-					   AttDegree))
+					   playerObject.calStat.attackAngle,
+					   playerObject.calStat.attackRange))
 		{
 			Debug.Log("플레이어 공격");
 			//if (Rand.Percent(playerData.criticalChange))
@@ -62,12 +56,6 @@ public class PlayerStateMove : PlayerState
 
 		Mov.iSpeed = playerObject.calStat.moveSpeed;
 		playerObject.transform.position += Mov.Move(fHorizontal, fVertical);
-
-		//TODO : 플레이어의 방향이랑 공격유무 시각적으로 표현하기위해 추가한 코드.
-		//Vector3 vMovement = new Vector3(
-		//    0,
-		//    0,
-		//    (Mathf.Atan2(fHorizontal, fVertical)) * Mathf.Rad2Deg * -1 - Angle90);
 	}
 
 }

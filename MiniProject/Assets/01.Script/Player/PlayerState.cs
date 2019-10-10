@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public abstract class PlayerState
+﻿public abstract class PlayerState
 {
 	public Player playerObject;
 	public PlayerState(Player o)
