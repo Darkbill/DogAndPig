@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class PlayerState
 {
-	public PlayerStateMachine playerObject;
-	public PlayerState(PlayerStateMachine o)
+	public Player playerObject;
+	public PlayerState(Player o)
 	{
 		playerObject = o;
 	}

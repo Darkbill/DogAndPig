@@ -6,24 +6,18 @@ public class PlayerStateMachine : MonoBehaviour
 {
 	public Dictionary<ePlayerState, PlayerState> stateDict = new Dictionary<ePlayerState, PlayerState>();
 	public PlayerState cState;
-	public int level = 1;
-	public float nowHealthPoint;
-	public PlayerData playerData;
-
 	private void Awake()
 	{
 		Setting();
 	}
-	private void Setting()
+	public void Setting()
 	{
-		stateDict.Add(ePlayerState.Idle, new PlayerStateIdle(this));
-		stateDict.Add(ePlayerState.Move, new PlayerStateMove(this));
-		stateDict.Add(ePlayerState.Dash, new PlayerStateDash(this));
-		stateDict.Add(ePlayerState.Stun, new PlayerStateStun(this));
-		stateDict.Add(ePlayerState.Dead, new PlayerStateDead(this));
+		stateDict.Add(ePlayerState.Idle, new PlayerStateIdle(gameObject.GetComponent<Player>()));
+		stateDict.Add(ePlayerState.Move, new PlayerStateMove(gameObject.GetComponent<Player>()));
+		stateDict.Add(ePlayerState.Dash, new PlayerStateDash(gameObject.GetComponent<Player>()));
+		stateDict.Add(ePlayerState.Stun, new PlayerStateStun(gameObject.GetComponent<Player>()));
+		stateDict.Add(ePlayerState.Dead, new PlayerStateDead(gameObject.GetComponent<Player>()));
 		cState = stateDict[ePlayerState.Idle];
-		playerData = JsonMng.Ins.playerDataTable[level];
-		nowHealthPoint = playerData.healthPoint;
 		cState.OnStart();
 	}
 	public void ChangeState(ePlayerState stateType)

@@ -15,7 +15,7 @@ public class PlayerStateMove : PlayerState
 
 	const int Angle90 = 90;
 
-	public PlayerStateMove(PlayerStateMachine o) : base(o)
+	public PlayerStateMove(Player o) : base(o)
 	{
 	}
 
@@ -28,7 +28,7 @@ public class PlayerStateMove : PlayerState
 		Moving();
 		Attack();
 		if (fVertical == 0 && fHorizontal == 0)
-			playerObject.ChangeState(ePlayerState.Idle);
+			playerObject.playerStateMachine.ChangeState(ePlayerState.Idle);
 		return true;
 	}
 

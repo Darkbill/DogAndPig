@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStateStun : PlayerState
 {
-	public PlayerStateStun(PlayerStateMachine o) : base(o)
+	public PlayerStateStun(Player o) : base(o)
 	{
 	}
 

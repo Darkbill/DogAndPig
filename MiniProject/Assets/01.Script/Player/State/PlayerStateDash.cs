@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStateDash : PlayerState
 {
-	public PlayerStateDash(PlayerStateMachine o) : base(o)
+	public PlayerStateDash(Player o) : base(o)
 	{
 	}
 

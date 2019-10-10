@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStateIdle : PlayerState
 {
-	public PlayerStateIdle(PlayerStateMachine o) : base(o)
+	public PlayerStateIdle(Player o) : base(o)
 	{
 	}
 
@@ -16,7 +16,7 @@ public class PlayerStateIdle : PlayerState
 	{
 		if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
 		{
-			playerObject.ChangeState(GlobalDefine.ePlayerState.Move);
+			playerObject.playerStateMachine.ChangeState(GlobalDefine.ePlayerState.Move);
 		}
 		return true;
 	}
