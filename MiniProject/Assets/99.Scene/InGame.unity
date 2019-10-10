@@ -529,15 +529,15 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 4967270027978458455, guid: 35256f7a9c901ba4baa701524ccfec83,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 4967270027760375300, guid: 35256f7a9c901ba4baa701524ccfec83,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4967270027978458455, guid: 35256f7a9c901ba4baa701524ccfec83,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35256f7a9c901ba4baa701524ccfec83, type: 3}
@@ -1112,6 +1112,7 @@ GameObject:
   - component: {fileID: 1684886706}
   - component: {fileID: 1684886705}
   - component: {fileID: 1684886704}
+  - component: {fileID: 1684886708}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1178,7 +1179,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1684886702}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6700fcf88f318f1409c1cc0be12e3255, type: 3}
   m_Name: 
@@ -1188,7 +1189,7 @@ MonoBehaviour:
   nowHealthPoint: 0
   localRotation: {fileID: 750563928}
   AttImg: {fileID: 860308765}
-  playerSprite: {fileID: 0}
+  playerSprite: {fileID: 1899078247}
 --- !u!114 &1684886707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1202,6 +1203,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iSpeed: 0
+--- !u!114 &1684886708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684886702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bc4c54b59cc82b4997fc198e7cade62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  nowHealthPoint: 0
 --- !u!1 &1899078243
 GameObject:
   m_ObjectHideFlags: 0
