@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141fafb5ced72994494fcef822f11d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1684886706}
+  player: {fileID: 0}
   monster: {fileID: 3851160857572563637}
   bulletPool: {fileID: 113422138}
   cameraMove: {fileID: 1563380632}
@@ -361,12 +361,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &750563928 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4967270027834477235, guid: 35256f7a9c901ba4baa701524ccfec83,
-    type: 3}
-  m_PrefabInstance: {fileID: 968570854}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &750563929 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4967270027834477232, guid: 35256f7a9c901ba4baa701524ccfec83,
@@ -446,12 +440,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782641153}
   m_CullTransparentMesh: 0
---- !u!1 &860308765 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4967270027760375300, guid: 35256f7a9c901ba4baa701524ccfec83,
-    type: 3}
-  m_PrefabInstance: {fileID: 968570854}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &968570854
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1109,7 +1097,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1684886703}
   - component: {fileID: 1684886707}
-  - component: {fileID: 1684886706}
+  - component: {fileID: 1684886708}
   - component: {fileID: 1684886705}
   - component: {fileID: 1684886704}
   m_Layer: 0
@@ -1171,24 +1159,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1684886706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1684886702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6700fcf88f318f1409c1cc0be12e3255, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMove: 0
-  Mov: {fileID: 1684886707}
-  nowHealthPoint: 0
-  localRotation: {fileID: 750563928}
-  AttImg: {fileID: 860308765}
-  playerSprite: {fileID: 0}
 --- !u!114 &1684886707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1202,6 +1172,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iSpeed: 0
+--- !u!114 &1684886708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684886702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bc4c54b59cc82b4997fc198e7cade62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1899078243
 GameObject:
   m_ObjectHideFlags: 0
