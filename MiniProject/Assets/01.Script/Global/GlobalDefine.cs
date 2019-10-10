@@ -24,13 +24,25 @@ namespace GlobalDefine
         Monster,
         hostility,
     }
-	public enum eMonsterState
+	public enum eMilliMonsterState
 	{
 		None = 0,
 		Idle,
-		Chase,
+		Move,
+		Stun,
+		SkillAttack,
+		Dash,
+		Dead,
+	}
+	public enum eRangeMonsterState
+	{
+		None = 0,
+		Idle,
+		Move,
 		Attack,
-		Dodge,
+		Stun,
+		SkillAttack,
+		Dash,
 		Dead,
 	}
 	public enum ePlayerState
@@ -38,8 +50,7 @@ namespace GlobalDefine
 		None = 0,
 		Idle,
 		Move,
-		Attack,
-		SkillAttack,
+		Dash,
 		Stun,
 		Dead,
 	}

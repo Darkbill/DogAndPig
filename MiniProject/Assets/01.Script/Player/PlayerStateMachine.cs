@@ -14,8 +14,8 @@ public class PlayerStateMachine : MonoBehaviour
 	{
 		stateDict.Add(ePlayerState.Idle, new PlayerStateIdle(this));
 		stateDict.Add(ePlayerState.Move, new PlayerStateMove(this));
-		stateDict.Add(ePlayerState.Attack, new PlayerStateAttack(this));
-		stateDict.Add(ePlayerState.SkillAttack, new PlayerStateSkillAttack(this));
+		stateDict.Add(ePlayerState.Dash, new PlayerStateDash(this));
+		stateDict.Add(ePlayerState.Stun, new PlayerStateStun(this));
 		stateDict.Add(ePlayerState.Dead, new PlayerStateDead(this));
 		cState = stateDict[ePlayerState.Idle];
 		cState.OnStart();

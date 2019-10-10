@@ -4,13 +4,13 @@ using UnityEngine;
 using System;
 using GlobalDefine;
 
-public class MonsterStateChase : MonsterState
+public class MilliMonsterStateMove : MonsterState
 {
 
-    private float delaytime = 0.0f;
+	private float delaytime = 0.0f;
 	Vector2 directionToPlayer;
 	float degreeToPlayer;
-	public MonsterStateChase(MonsterStateMachine o) : base(o)
+	public MilliMonsterStateMove(MonsterStateMachine o) : base(o)
 	{
 
 	}
@@ -21,7 +21,7 @@ public class MonsterStateChase : MonsterState
 
 	public override bool OnTransition()
 	{
-        delaytime += Time.deltaTime;
+		delaytime += Time.deltaTime;
 		Debug.DrawRay(owner.gameObject.transform.position, owner.gameObject.transform.right * 2);
 		if (Mathf.Abs(degreeToPlayer) <= owner.monsterData.attackAngle && directionToPlayer.magnitude <= owner.monsterData.attackRange)
 		{
@@ -33,13 +33,13 @@ public class MonsterStateChase : MonsterState
 				return true;
 			}
 		}
-        return false;
+		return false;
 	}
 
 	public override void Tick()
 	{
 		if (OnTransition() == true) return;
-        ChaseToPlayer();
+		ChaseToPlayer();
 	}
 	public override void OnEnd()
 	{
@@ -53,11 +53,11 @@ public class MonsterStateChase : MonsterState
 		float goalDegree = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x);
 		degreeToPlayer = (ownerDegree - goalDegree) * Mathf.Rad2Deg;
 
-		if (degreeToPlayer > 180)		degreeToPlayer -= 360;
+		if (degreeToPlayer > 180) degreeToPlayer -= 360;
 		else if (degreeToPlayer < -180) degreeToPlayer += 360;
 
 		if (degreeToPlayer < 0) owner.transform.eulerAngles += new Vector3(0, 0, Time.deltaTime * owner.monsterData.rotationSpeed);
-		else					owner.transform.eulerAngles -= new Vector3(0, 0, Time.deltaTime * owner.monsterData.rotationSpeed);
+		else owner.transform.eulerAngles -= new Vector3(0, 0, Time.deltaTime * owner.monsterData.rotationSpeed);
 
 		if (directionToPlayer.magnitude > owner.monsterData.attackRange)
 		{

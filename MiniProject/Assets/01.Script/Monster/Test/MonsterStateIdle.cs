@@ -23,7 +23,7 @@ public class MonsterStateIdle : MonsterState
         if(delaytime > 1.0f)
         {
             delaytime = 0.0f;
-            owner.ChangeState(eMonsterState.Chase);
+            owner.ChangeState(eMilliMonsterState.Move);
             return true;
         }
 

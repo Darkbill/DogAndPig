@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateSkillAttack : PlayerState
+public class MilliMonsterStateDash : MonsterState
 {
-	public PlayerStateSkillAttack(PlayerStateMachine o) : base(o)
+	public MilliMonsterStateDash(MonsterStateMachine o) : base(o)
 	{
-	}
 
+	}
 	public override void OnStart()
 	{
+
 	}
 
 	public override bool OnTransition()

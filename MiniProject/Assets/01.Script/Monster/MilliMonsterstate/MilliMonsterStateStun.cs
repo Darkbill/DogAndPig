@@ -1,27 +1,21 @@
-﻿using GlobalDefine;
-using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterStateAttack : MonsterState
+public class MilliMonsterStateStun : MonsterState
 {
-
-	public MonsterStateAttack(MonsterStateMachine o) : base(o)
+	public MilliMonsterStateStun(MonsterStateMachine o) : base(o)
 	{
 
 	}
-
 	public override void OnStart()
 	{
+
 	}
 
 	public override bool OnTransition()
 	{
-		
-        owner.ChangeState(eMilliMonsterState.Move);
-
-        return true;
+		return true;
 	}
 
 	public override void Tick()
@@ -32,6 +26,4 @@ public class MonsterStateAttack : MonsterState
 	{
 
 	}
-
-
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using GlobalDefine;
 public class MonsterStateMachine : MonoBehaviour
 {
-	public Dictionary<eMonsterState, MonsterState> stateDict = new Dictionary<eMonsterState, MonsterState>();
+	public Dictionary<eMilliMonsterState, MonsterState> stateDict = new Dictionary<eMilliMonsterState, MonsterState>();
 	private int monsterID = 1;
 	public MonsterData monsterData;
 	public MonsterState cState;
@@ -15,15 +15,16 @@ public class MonsterStateMachine : MonoBehaviour
 	private void Setting()
 	{
 		monsterData = JsonMng.Ins.monsterDataTable[monsterID];
-		stateDict.Add(eMonsterState.Idle, new MonsterStateIdle(this));
-		stateDict.Add(eMonsterState.Chase, new MonsterStateChase(this));
-		stateDict.Add(eMonsterState.Attack, new MonsterStateAttack(this));
-		stateDict.Add(eMonsterState.Dead, new MonsterStateDead(this));
-		stateDict.Add(eMonsterState.Dodge, new MonsterStateDodge(this));
-		cState = stateDict[eMonsterState.Idle];
+		stateDict.Add(eMilliMonsterState.Idle, new MilliMonsterStateIdle(this));
+		stateDict.Add(eMilliMonsterState.Move, new MilliMonsterStateMove(this));
+		stateDict.Add(eMilliMonsterState.Stun, new MilliMonsterStateStun(this));
+		stateDict.Add(eMilliMonsterState.SkillAttack, new MilliMonsterStateSkillAttack(this));
+		stateDict.Add(eMilliMonsterState.Dash, new MilliMonsterStateDash(this));
+		stateDict.Add(eMilliMonsterState.Dead, new MilliMonsterStateDead(this));
+		cState = stateDict[eMilliMonsterState.Idle];
 		cState.OnStart();
 	}
-	public void ChangeState(eMonsterState stateType)
+	public void ChangeState(eMilliMonsterState stateType)
 	{
 		cState.OnEnd();
 		cState = stateDict[stateType];
@@ -44,7 +45,7 @@ public class MonsterStateMachine : MonoBehaviour
 		//TODO : 데미지 계산함수
 		GameMng.Ins.DamageToPlayer(2);
 		yield return new WaitForSeconds(1);
-		ChangeState(eMonsterState.Chase);
+		ChangeState(eMilliMonsterState.Move);
 	}
     public void Hit()
     {
