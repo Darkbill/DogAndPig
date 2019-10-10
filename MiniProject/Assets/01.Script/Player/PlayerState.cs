@@ -5,11 +5,23 @@ using UnityEngine;
 public abstract class PlayerState
 {
 	public PlayerStateMachine playerObject;
-	public PlayerState(PlayerStateMachine o)
+
+    public int level = 1;
+    public int nowHealthPoint;
+    public PlayerData playerData;
+
+    public PlayerState(PlayerStateMachine o)
 	{
 		playerObject = o;
+        PlayerSetting();
 	}
-	public abstract void OnStart();
+    private void PlayerSetting()
+    {
+        playerData = JsonMng.Ins.playerDataTable[level];
+        nowHealthPoint = playerData.healthPoint;
+    }
+
+    public abstract void OnStart();
 	public abstract void Tick();
 	public abstract void OnEnd();
 	public abstract bool OnTransition();

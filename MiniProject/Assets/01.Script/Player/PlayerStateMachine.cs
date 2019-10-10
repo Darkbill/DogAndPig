@@ -8,9 +8,10 @@ public class PlayerStateMachine : MonoBehaviour
 	public PlayerState cState;
 	private void Awake()
 	{
-		Setting();
+        Setting();
 	}
-	private void Setting()
+
+    private void Setting()
 	{
 		stateDict.Add(ePlayerState.Idle, new PlayerStateIdle(this));
 		stateDict.Add(ePlayerState.Move, new PlayerStateMove(this));
