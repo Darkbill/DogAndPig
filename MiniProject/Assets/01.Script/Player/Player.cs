@@ -40,11 +40,33 @@ public class Player : MonoBehaviour
 		gameObject.transform.position += new Vector3(direction.x, direction.y, 0) * calStat.moveSpeed * Time.deltaTime;
 	}
 
-	public void Damage(int damage)
+	public void Damage(eAttackType attackType, float damage)
 	{
-		calStat.healthPoint -= damage;
-	}
+		float d = (damage - calStat.armor);
 
+		switch (attackType)
+		{
+			case eAttackType.Physics:
+				d -= (int)(((1000 - calStat.physicsResist) * 0.001) + 0.5);
+				break;
+			case eAttackType.Fire:
+				d -= (int)(((1000 - calStat.fireResist) * 0.001) + 0.5);
+				break;
+			case eAttackType.Water:
+				d -= (int)(((1000 - calStat.waterResist) * 0.001) + 0.5);
+				break;
+			case eAttackType.Wind:
+				d -= (int)(((1000 - calStat.windResist) * 0.001) + 0.5);
+				break;
+			case eAttackType.Lightning:
+				d -= (int)(((1000 - calStat.lightningResist) * 0.001) + 0.5);
+				break;
+		}
+		if (d < 1) d = 1;
+		//TODO : DamageText
+		calStat.healthPoint -= (int)d;
+		UIMngInGame.Ins.DamageToPlayer((int)d);
+	}
 	public void CalculatorStat()
 	{
 		calStat = JsonMng.Ins.playerDataTable[level].AddStat(skillStat);

@@ -71,6 +71,16 @@ namespace GlobalDefine
 		Dead,
 		Max,
 	}
+	public enum eAttackType
+	{
+		None = 0,
+		Physics,
+		Fire,
+		Water,
+		Wind,
+		Lightning,
+		Max,
+	}
 	static public class Rand // 만분율 기준 0~9999까지 저장
 	{
 		private static int Index = 0;
@@ -112,5 +122,10 @@ namespace GlobalDefine
 
 			return (Random() % (a_nEnd - a_nStart)) + a_nStart;
 		}
+	}
+	public interface IBattle
+	{
+		void Attack(eAttackType attackType, float damage);
+		void Damage(eAttackType attackType, float damage);
 	}
 }

@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+using GlobalDefine;
 public class GameMng : MonoBehaviour
 {
 	#region SINGLETON
@@ -29,11 +27,10 @@ public class GameMng : MonoBehaviour
 	public BulletPool bulletPool;
 	public CameraMove cameraMove;
 	//TODO : Event는 옵저버패턴 일괄처리
-	public void DamageToPlayer(int damage)
+	public void DamageToPlayer(eAttackType attackType, float damage)
 	{
 		cameraMove.OnStart();
-		player.Damage(damage);
-		UIMngInGame.Ins.DamageToPlayer(damage);
+		player.Damage(attackType, damage);
+		
 	}
 }
-	
