@@ -19,7 +19,6 @@ public class Player : MonoBehaviour
 
 	public SpriteRenderer playerSprite;
 
-    public Vector3 MoveVec { get; set; }
 
     private void Awake()
 	{
@@ -41,6 +40,9 @@ public class Player : MonoBehaviour
 	{
 		Vector3 direction = UIMngInGame.Ins.GetJoyStickDirection();
 		gameObject.transform.position += new Vector3(direction.x, direction.y, 0) * calStat.moveSpeed * Time.deltaTime;
+
+        float Degree = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.eulerAngles = new Vector3(0, 0, Degree);
 	}
 
 	public void Damage(eAttackType attackType, float damage)

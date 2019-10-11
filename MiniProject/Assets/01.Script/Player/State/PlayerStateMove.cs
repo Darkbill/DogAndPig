@@ -56,7 +56,9 @@ public class PlayerStateMove : PlayerState
 
 		Mov.iSpeed = playerObject.calStat.moveSpeed;
 		playerObject.transform.position += Mov.Move(fHorizontal, fVertical);
-        playerObject.MoveVec = new Vector3(fHorizontal, fVertical, -3.0f);
+
+        float Degree = Mathf.Atan2(fVertical, fHorizontal) * Mathf.Rad2Deg;
+        playerObject.transform.eulerAngles = new Vector3(0, 0, Degree);
 	}
 
 }

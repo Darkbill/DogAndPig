@@ -28,6 +28,7 @@ public class SkillCircleShot : MonoBehaviour
     {
         BulletSetting();
     }
+    
 
     private void BulletSetting()
     {
@@ -45,6 +46,7 @@ public class SkillCircleShot : MonoBehaviour
 
     private void Update()
     {
+        gameObject.transform.position = GameMng.Ins.player.transform.position;
         Moving();
         
         timer += Time.deltaTime;
