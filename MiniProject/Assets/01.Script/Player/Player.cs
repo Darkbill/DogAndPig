@@ -19,8 +19,6 @@ public class Player : MonoBehaviour
 
 	public SpriteRenderer playerSprite;
 
-    public Vector3 MoveVec { get; set; }
-
     private void Awake()
 	{
 		PlayerSetting();
