@@ -6,7 +6,7 @@ public class SkillDash : MonoBehaviour
 {
     public Alter Bullet;
 
-    public float Range = 2f;
+    private float Range = 2f;
     const int Count = 10;
 
     private float timer = 0.0f;
@@ -19,16 +19,17 @@ public class SkillDash : MonoBehaviour
         for (int i = 0; i < Count; ++i)
         {
             GameObject o = Instantiate(Bullet.gameObject, gameObject.transform);
-            o.GetComponent<Alter>().Speed = i + 3;
+            o.GetComponent<Alter>().Speed = i + 5;
             BulletLst.Add(o.GetComponent<Alter>());
         }
     }
 
     void Update()
     {
-        CheckMovVec();
+        //CheckMovVec();
         if (Input.GetKeyDown("q"))
         {
+            CheckMovVec();
             //플레이어가 바라보는 방향으로 뛰쳐나가도록    
             GameMng.Ins.player.playerStateMachine.ChangeState(GlobalDefine.ePlayerState.Dash);
             for (int i = 0; i < Count; ++i)
@@ -39,7 +40,7 @@ public class SkillDash : MonoBehaviour
     }
     void CheckMovVec()
     {
-        Vector3.Angle(GameMng.Ins.player.transform.right, new Vector3());
+        Vector3.Angle(GameMng.Ins.player.transform.right, new Vector3(0, 0, GameMng.Ins.player.transform.eulerAngles.z));
         for(int i = 0;i<Count;++i)
         {
             BulletLst[i].TargetPos = GameMng.Ins.player.transform.position + GameMng.Ins.player.transform.right * Range;
