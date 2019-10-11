@@ -32,20 +32,17 @@ public class PlayerStateMove : PlayerState
 	}
 	public override void OnEnd()
 	{
-
+        
 	}
     private void Attack()
 	{
 		ObjectSetAttack att = new ObjectSetAttack();
-		if (att.BaseAttack(new Vector3(fHorizontal, fVertical, 0),
+		if (att.BaseAttack(playerObject.transform.right,
 					   GameMng.Ins.monster.transform.position - playerObject.transform.position,
 					   playerObject.calStat.attackAngle,
 					   playerObject.calStat.attackRange))
 		{
 			Debug.Log("플레이어 공격");
-			//if (Rand.Percent(playerData.criticalChange))
-			//    Debug.Log("Critical Hit");
-			//GameMng.Ins.monster.Hit();
 		}
 	}
 

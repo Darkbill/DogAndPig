@@ -21,8 +21,9 @@ public class Alter : MonoBehaviour
         if(StartMove)
         {
             Vector3 movement = TargetPos - gameObject.transform.position;
-            movement.z = -3;
-            if(Vector3.Distance(transform.position, TargetPos) < 0.2f)
+            movement.z = 0;
+            if(Vector3.Distance(transform.position, TargetPos) < 0.2f ||
+                Vector3.Distance(transform.position, GameMng.Ins.player.transform.position) < 0.2f)
             {
                 gameObject.SetActive(false);
                 StartMove = false;
