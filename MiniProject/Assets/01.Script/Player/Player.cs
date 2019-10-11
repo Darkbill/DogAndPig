@@ -31,7 +31,6 @@ public class Player : MonoBehaviour
 	}
 	private void Update()
 	{
-        //dummy.ObjectUpdate(transform.position);
 		if (isMove)
 		{
 			MoveToJoyStick();
@@ -41,7 +40,6 @@ public class Player : MonoBehaviour
     public void MoveToJoyStick()
 	{
 		Vector3 direction = UIMngInGame.Ins.GetJoyStickDirection();
-		//TODO : speed X GetSpeed( stat + skillStat )
 		gameObject.transform.position += new Vector3(direction.x, direction.y, 0) * calStat.moveSpeed * Time.deltaTime;
 	}
 
@@ -73,11 +71,16 @@ public class Player : MonoBehaviour
 	}
 	public void CalculatorStat()
 	{
-		calStat = JsonMng.Ins.playerDataTable[level].AddStat(skillStat);
+		//TODO : 레벨에 의한 스탯계산
+		calStat = JsonMng.Ins.playerDataTable[1].AddStat(skillStat);
 	}
 	
 	public float GetFullHP()
 	{
 		return skillStat.healthPoint + JsonMng.Ins.playerDataTable[level].healthPoint;
+	}
+	private void LevelUP()
+	{
+		CalculatorStat();
 	}
 }
