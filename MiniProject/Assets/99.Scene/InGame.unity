@@ -906,7 +906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 853fa46e119ac0c4da89a1148c9e6304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullet: {fileID: 1214289467011856518, guid: 915bc6ccd8e6d0e4ea1088d4f4566259, type: 3}
+  Bullet: {fileID: 244059013656196954, guid: 915bc6ccd8e6d0e4ea1088d4f4566259, type: 3}
 --- !u!4 &1105805831
 Transform:
   m_ObjectHideFlags: 0
