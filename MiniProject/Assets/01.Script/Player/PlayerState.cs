@@ -1,6 +1,7 @@
 ﻿public abstract class PlayerState
 {
 	public Player playerObject;
+	public bool isDash;
 	public PlayerState(Player o)
 	{
 		playerObject = o;

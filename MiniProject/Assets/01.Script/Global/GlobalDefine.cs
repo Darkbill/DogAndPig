@@ -81,6 +81,15 @@ namespace GlobalDefine
 		Lightning,
 		Max,
 	}
+	public enum eWallType
+	{
+		None = 0,
+		Up,
+		Down,
+		Right,
+		Left,
+		Max,
+	}
 	static public class Rand // 만분율 기준 0~9999까지 저장
 	{
 		private static int Index = 0;
