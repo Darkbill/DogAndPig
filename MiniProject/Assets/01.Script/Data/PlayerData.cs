@@ -12,7 +12,7 @@ public class PlayerData : TableBase
 	public float attackAngle;
 	public float attackSpeed;
 	public float moveSpeed;
-	public float criticalChange;
+	public float criticalChance;
 	public float criticalDamage;
 	public float armor;
 	public float physicsResist;

@@ -4,10 +4,10 @@ using UnityEngine;
 using GlobalDefine;
 public class PlayerStateMove : PlayerState
 {
-	public float fHorizontal { get; set; }
-	public float fVertical { get; set; }
-	public bool isMove;
-
+	public float fHorizontal;
+	public float fVertical;
+	public bool attackFlag = false;
+	float delayTime;
 	public Movement Mov = new Movement();
 
 	public PlayerStateMove(Player o) : base(o)
@@ -16,23 +16,28 @@ public class PlayerStateMove : PlayerState
 
 	public override void OnStart()
 	{
+
 	}
 
 	public override bool OnTransition()
 	{
-        
-		Moving();
-        Debug.Log(Mathf.Acos(Mathf.Cos(playerObject.transform.eulerAngles.z * Mathf.Deg2Rad)) * Mathf.Rad2Deg);
-
-        Attack();
-		if (fVertical == 0 && fHorizontal == 0)
-			playerObject.playerStateMachine.ChangeState(ePlayerState.Idle);
-		return true;
+		//if (fVertical == 0 && fHorizontal == 0)
+		//{
+		//	return true;
+		//}
+		//return false;
+		return false;
 	}
 
 	public override void Tick()
 	{
-		if (OnTransition() == true) return;
+		if (OnTransition() == true)
+		{
+			playerObject.playerStateMachine.ChangeState(ePlayerState.Idle);
+			return;
+		}
+		Moving();
+		Attack();
 	}
 	public override void OnEnd()
 	{
@@ -40,29 +45,32 @@ public class PlayerStateMove : PlayerState
 	}
     private void Attack()
 	{
-		//TODO : 반경있으면 공격하기로 
-		ObjectSetAttack att = new ObjectSetAttack();
-		var monsterPool = GameMng.Ins.monsterPool.monsterList;
-		for(int i = 0; i < monsterPool.Count; ++i)
+		delayTime += Time.deltaTime;
+		if (delayTime >= playerObject.calStat.attackSpeed)
 		{
-			if (att.BaseAttack(playerObject.transform.right,
-			   monsterPool[i].gameObject.transform.position - playerObject.transform.position,
-			   playerObject.calStat.attackRange,
-			   playerObject.calStat.attackAngle
-			   ))
+			ObjectSetAttack att = new ObjectSetAttack();
+			var monsterPool = GameMng.Ins.monsterPool.monsterList;
+			for (int i = 0; i < monsterPool.Count; ++i)
 			{
-				if (Rand.Percent(playerObject.calStat.criticalChange))
+				if (att.BaseAttack(playerObject.transform.right,
+					monsterPool[i].gameObject.transform.position - playerObject.transform.position,
+					playerObject.calStat.attackRange,
+					playerObject.calStat.attackAngle))
 				{
-					monsterPool[i].Damage(eAttackType.Physics, playerObject.calStat.damage * playerObject.calStat.criticalDamage);
-				}
-				else
-				{
-					monsterPool[i].Damage(eAttackType.Physics, playerObject.calStat.damage);
+					delayTime = 0;
+					if (Rand.Percent(playerObject.calStat.criticalChance))
+					{
+						monsterPool[i].Damage(eAttackType.Physics, playerObject.calStat.damage * playerObject.calStat.criticalDamage);
+					}
+					else
+					{
+						monsterPool[i].Damage(eAttackType.Physics, playerObject.calStat.damage);
+					}
 				}
 			}
 		}
-
 	}
+	
 
 	private void Moving()
 	{

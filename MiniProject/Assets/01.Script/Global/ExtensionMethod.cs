@@ -16,7 +16,7 @@ public static class ExtensionMethod
 		stat.attackAngle = levelStat.attackAngle + skillStat.attackRange;
 		stat.attackSpeed = levelStat.attackSpeed + skillStat.attackSpeed;
 		stat.moveSpeed = levelStat.moveSpeed + skillStat.moveSpeed;
-		stat.criticalChange = levelStat.criticalChange + skillStat.criticalChange;
+		stat.criticalChance = levelStat.criticalChance + skillStat.criticalChance;
 		stat.criticalDamage = levelStat.criticalDamage + skillStat.criticalDamage;
 		stat.armor = levelStat.armor + skillStat.armor;
 		stat.physicsResist = levelStat.physicsResist + skillStat.physicsResist;

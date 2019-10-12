@@ -31,5 +31,12 @@ public class PlayerStateMachine : MonoBehaviour
 	{
 		cState.Tick();
 	}
-
+	public void AttackDelay()
+	{
+		StartCoroutine(IEAttackDelay());
+	}
+	private IEnumerator IEAttackDelay()
+	{
+		yield return new WaitForSeconds(cState.playerObject.calStat.attackSpeed);
+	}
 }
