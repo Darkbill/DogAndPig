@@ -25,23 +25,28 @@ public abstract class Monster : MonoBehaviour
 	public virtual void Damage(eAttackType attackType, float damage)
 	{
 		float d = (damage - monsterData.armor);
-
+		float resist;
 		switch (attackType)
 		{
 			case eAttackType.Physics:
-				d -= (int)(((1000 - monsterData.physicsResist) * 0.001) + 0.5);
+				resist = monsterData.physicsResist;
+				GetDamage(resist);
 				break;
 			case eAttackType.Fire:
-				d -= (int)(((1000 - monsterData.fireResist) * 0.001) + 0.5);
+				resist = monsterData.fireResist;
+				GetDamage(resist);
 				break;
 			case eAttackType.Water:
-				d -= (int)(((1000 - monsterData.waterResist) * 0.001) + 0.5);
+				resist = monsterData.waterResist;
+				GetDamage(resist);
 				break;
 			case eAttackType.Wind:
-				d -= (int)(((1000 - monsterData.windResist) * 0.001) + 0.5);
+				resist = monsterData.windResist;
+				GetDamage(resist);
 				break;
 			case eAttackType.Lightning:
-				d -= (int)(((1000 - monsterData.lightningResist) * 0.001) + 0.5);
+				resist = monsterData.lightningResist;
+				GetDamage(resist);
 				break;
 		}
 		if (d < 1) d = 1;
@@ -50,9 +55,22 @@ public abstract class Monster : MonoBehaviour
 		UIMngInGame.Ins.ShowDamage((int)d, Camera.main.WorldToScreenPoint(gameObject.transform.position));
 		if (monsterData.healthPoint <= 0) Dead();
 	}
+	public int GetDamage(float resist)
+	{
+		if (resist >= 500)
+		{
+			return (int)(((1500 - monsterData.physicsResist) * 0.001) * 1.6f - 0.6f);
+		}
+		else
+		{
+			return (int)(((500 - monsterData.physicsResist) * 0.001) * 8 - 1);
+		}
+	}
+
 	public virtual void Dead()
 	{
 		Debug.Log("죽었다");
 		//TODO : 경험치 추가
 	}
+
 }

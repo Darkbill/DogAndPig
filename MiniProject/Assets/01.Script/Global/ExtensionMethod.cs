@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using GlobalDefine;
 public static class ExtensionMethod
 {
 	public static PlayerData AddStat(this PlayerData levelStat,PlayerData skillStat)

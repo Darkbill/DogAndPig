@@ -47,28 +47,45 @@ public class Player : MonoBehaviour
 	public void Damage(eAttackType attackType, float damage)
 	{
 		float d = (damage - calStat.armor);
-
+		float resist;
 		switch (attackType)
 		{
 			case eAttackType.Physics:
-				d -= (int)(((1000 - calStat.physicsResist) * 0.001) + 0.5);
+				resist = calStat.physicsResist;
+				GetDamage(resist);
 				break;
 			case eAttackType.Fire:
-				d -= (int)(((1000 - calStat.fireResist) * 0.001) + 0.5);
+				resist = calStat.fireResist;
+				GetDamage(resist);
 				break;
 			case eAttackType.Water:
-				d -= (int)(((1000 - calStat.waterResist) * 0.001) + 0.5);
+				resist = calStat.waterResist;
+				GetDamage(resist);
 				break;
 			case eAttackType.Wind:
-				d -= (int)(((1000 - calStat.windResist) * 0.001) + 0.5);
+				resist = calStat.windResist;
+				GetDamage(resist);
 				break;
 			case eAttackType.Lightning:
-				d -= (int)(((1000 - calStat.lightningResist) * 0.001) + 0.5);
+				resist = calStat.lightningResist;
+				GetDamage(resist);
 				break;
 		}
 		if (d < 1) d = 1;
 		calStat.healthPoint -= (int)d;
 		UIMngInGame.Ins.DamageToPlayer((int)d);
+		if (calStat.healthPoint <= 0) GameMng.Ins.GameOver();
+	}
+	public int GetDamage(float resist)
+	{
+		if (resist >= 500)
+		{
+			return (int)(((1500 - calStat.physicsResist) * 0.001) * 1.6f - 0.6f);
+		}
+		else
+		{
+			return (int)(((500 - calStat.physicsResist) * 0.001) * 8 - 1);
+		}
 	}
 	public void CalculatorStat()
 	{
