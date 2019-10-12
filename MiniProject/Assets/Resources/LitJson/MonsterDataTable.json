@@ -10,7 +10,7 @@
     "attackSpeed": 1,
     "attackRange": 1,
     "attackAngle": 20,
-    "healthPoint": 10,
+    "healthPoint": 2,
     "damage": 3,
     "armor": 2,
     "physicsResist": 500,

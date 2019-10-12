@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GlobalDefine;
-public class Monster : MonoBehaviour
+public abstract class Monster : MonoBehaviour
 {
 	public MonsterData monsterData;
 
@@ -48,6 +48,11 @@ public class Monster : MonoBehaviour
 		//TODO : 몬스터체력
 		monsterData.healthPoint -= (int)d;
 		UIMngInGame.Ins.ShowDamage((int)d, Camera.main.WorldToScreenPoint(gameObject.transform.position));
+		if (monsterData.healthPoint <= 0) Dead();
 	}
-
+	public virtual void Dead()
+	{
+		Debug.Log("죽었다");
+		//TODO : 경험치 추가
+	}
 }
