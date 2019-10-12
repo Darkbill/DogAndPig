@@ -40,10 +40,10 @@ public class BulletHostPlayer : BulletBase
     public override bool BulletCheck(Vector3 pos)
     {
         //테스트코드
-        if (Vector3.Distance(GameMng.Ins.monster.transform.position, pos) < 0.5f)
-        {
-            return true;
-        }
+        //if (Vector3.Distance(GameMng.Ins.monster.transform.position, pos) < 0.5f)
+        //{
+        //    return true;
+        //}
         return false;
     }
 }

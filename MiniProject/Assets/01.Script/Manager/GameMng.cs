@@ -23,9 +23,9 @@ public class GameMng : MonoBehaviour
 	}
 	#endregion
 	public Player player;
-    public MilliMonster monster;
 	public BulletPool bulletPool;
 	public CameraMove cameraMove;
+	public MonsterPool monsterPool;
 	//TODO : Event는 옵저버패턴 일괄처리
 	public void DamageToPlayer(eAttackType attackType, float damage)
 	{

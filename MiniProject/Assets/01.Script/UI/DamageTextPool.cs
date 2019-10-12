@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamageTextPool : MonoBehaviour
 {
-	DamageText damageText;
+	public DamageText damageText;
 	public List<DamageText> damageTextList = new List<DamageText>();
 	public void ActiveDamageText(int damage,Vector3 pos)
 	{

@@ -37,14 +37,28 @@ public class PlayerStateMove : PlayerState
 	}
     private void Attack()
 	{
+		//TODO : 반경있으면 공격하기로 
 		ObjectSetAttack att = new ObjectSetAttack();
-		if (att.BaseAttack(playerObject.transform.right,
-					   GameMng.Ins.monster.transform.position - playerObject.transform.position,
-					   playerObject.calStat.attackAngle,
-					   playerObject.calStat.attackRange))
+		var monsterPool = GameMng.Ins.monsterPool.monsterList;
+		for(int i = 0; i < monsterPool.Count; ++i)
 		{
-			Debug.Log("플레이어 공격");
+			if (att.BaseAttack(playerObject.transform.right,
+			   monsterPool[i].gameObject.transform.position - playerObject.transform.position,
+			   playerObject.calStat.attackRange,
+			   playerObject.calStat.attackAngle
+			   ))
+			{
+				if (Rand.Percent(playerObject.calStat.criticalChange))
+				{
+					monsterPool[i].Damage(eAttackType.Physics, playerObject.calStat.damage * playerObject.calStat.criticalDamage);
+				}
+				else
+				{
+					monsterPool[i].Damage(eAttackType.Physics, playerObject.calStat.damage);
+				}
+			}
 		}
+
 	}
 
 	private void Moving()
@@ -53,45 +67,6 @@ public class PlayerStateMove : PlayerState
 		fVertical = Input.GetAxis("Vertical");
 
 		Mov.iSpeed = playerObject.calStat.moveSpeed;
-		/////////////
-		//Ray2D rayUp = new Ray2D(playerObject.gameObject.transform.position, new Vector2(0,1));
-		//Ray2D rayDown = new Ray2D(playerObject.gameObject.transform.position, new Vector2(0, -1));
-		//Ray2D rayRight = new Ray2D(playerObject.gameObject.transform.position, new Vector2(1, 0));
-		//Ray2D rayLeft = new Ray2D(playerObject.gameObject.transform.position, new Vector2(-1, 0));
-		//RaycastHit2D hitUp;
-		//hitUp = Physics2D.Raycast(rayUp.origin, rayUp.direction, 0.15f, 1 << LayerMask.NameToLayer("Wall"));
-		//RaycastHit2D hitDown = Physics2D.Raycast(rayDown.origin, rayDown.direction, 0.1f, 1 << LayerMask.NameToLayer("Wall"));
-		//RaycastHit2D hitRight = Physics2D.Raycast(rayRight.origin, rayRight.direction, 0.1f, 1 << LayerMask.NameToLayer("Wall"));
-		//RaycastHit2D hitLeft = Physics2D.Raycast(rayLeft.origin, rayLeft.direction, 0.1f, 1 << LayerMask.NameToLayer("Wall"));
-		//if(hitUp.collider != null)
-		//{
-		//	if (hitUp.collider.CompareTag("Wall"))
-		//	{
-		//		if(fVertical > 0) fVertical = 0;
-		//	}
-		//}
-		//if (hitDown.collider != null)
-		//{
-		//	if (hitDown.collider.CompareTag("Wall"))
-		//	{
-		//		fVertical = 0;
-		//	}
-		//}
-		//if (hitRight.collider != null)
-		//{
-		//	if (hitRight.collider.CompareTag("Wall"))
-		//	{
-		//		fHorizontal = 0;
-		//	}
-		//}
-		//if (hitLeft.collider != null)
-		//{
-		//	if (hitLeft.collider.CompareTag("Wall"))
-		//	{
-		//		fHorizontal = 0;
-		//	}
-		//}
-		/////////////
 		playerObject.transform.position += Mov.Move(fHorizontal, fVertical);
 
 		float Degree = Mathf.Atan2(fVertical, fHorizontal) * Mathf.Rad2Deg;

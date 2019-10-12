@@ -12,8 +12,6 @@ public class Player : MonoBehaviour
 	public PlayerData skillStat = new PlayerData();
 	public PlayerStateMachine playerStateMachine;
 
-    public SkillCircleShot dummy;
-
 	// * private * //
 	private int level = 1;
 
