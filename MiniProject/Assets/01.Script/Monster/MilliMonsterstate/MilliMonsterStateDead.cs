@@ -10,7 +10,7 @@ public class MilliMonsterStateDead : MilliMonsterState
 	}
 	public override void OnStart()
 	{
-
+		monsterObject.gameObject.SetActive(false);
 	}
 
 	public override bool OnTransition()
