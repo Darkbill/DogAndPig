@@ -1,35 +1,45 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-
-public class SkillCircleShot : MonoBehaviour
+using GlobalDefine;
+public class SkillCircleShot : Skill
 {
-    public FireBall Bullet;
-    private int Count = 5;
-    private float Speed = 5;
+	enum eCircleShotOption
+	{
+		Damage,
+		EndTimer,
+		CoolTime
+	}
+	private float damage = 0;//Damage
+	private float endTime = 0;//AllTimer
+	private float coolTime = 0;//Time 
+	public override void SkillSetting()
+	{
+		skillID = 2;
+		PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
+		skillType = skillData.skillType;
+		target = skillData.target;
+		damage = skillData.optionArr[(int)eCircleShotOption.Damage];
+		endTime = skillData.optionArr[(int)eCircleShotOption.EndTimer];
+		coolTime = skillData.optionArr[(int)eCircleShotOption.CoolTime];
+	}
 
-    const int Angle180 = 180;
-    const int BulletRotationAngle = 30;
-    const float Radius = 2;
-    const float settime = 4.0f;
-
-    private float timer = 0.0f;
-    private float AllTimer = 0.0f;
-
-    private List<FireBall> BulletLst = new List<FireBall>();
-
-    private Vector3 moveDirection;
-
-    private float Option01 = 0;//Damage
-    private float Option02 = 0;//AllTimer
-    private float Option03 = 0;//Time
+	const int Angle180 = 180;
+	const int BulletRotationAngle = 30;
+	const float Radius = 2;
+	const float settime = 4.0f;
 
 
-    private void Awake()
-    {
-        BulletSetting();
-    }
+	public FireBall Bullet;
+	private int Count = 5;
+	private float Speed = 5;
+	private List<FireBall> BulletLst = new List<FireBall>();
+
+
+
+	private void OnEnable()
+	{
+		BulletSetting();
+	}
     
 
     private void BulletSetting()
@@ -51,10 +61,10 @@ public class SkillCircleShot : MonoBehaviour
         gameObject.transform.position = GameMng.Ins.player.transform.position;
         Moving();
         
-        timer += Time.deltaTime;
-        AllTimer += Time.deltaTime;
+        coolTime += Time.deltaTime;
+        endTime += Time.deltaTime;
 
-        if (timer > 0.1 && AllTimer < 3.0f)
+        if (coolTime > 0.1 && endTime < 3.0f)
             CircleShotting();
     }
 
@@ -73,6 +83,6 @@ public class SkillCircleShot : MonoBehaviour
             Quaternion radian = Quaternion.Euler(0, 0, BulletRotationAngle);
             BulletLst[i].BulletMovVec = radian * (BulletLst[i].BulletMovVec);
         }
-        timer = 0.0f;
+        coolTime = 0.0f;
     }
 }

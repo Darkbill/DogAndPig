@@ -3,8 +3,8 @@ public class MonsterSkillData : TableBase
 {
 	public float skillID;
 	public eAttackType skillType;
-	public float target;
-	public float[] optionArr;
+	public eSkillType target;
+	public int[] optionArr;
 	public override float GetTableID()
 	{
 		return skillID;

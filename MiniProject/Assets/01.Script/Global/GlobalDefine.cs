@@ -98,6 +98,13 @@ namespace GlobalDefine
 		Left,
 		Max,
 	}
+	public enum eSkillType
+	{
+		None = 0,
+		Other,
+		Self,
+	}
+
 	static public class Rand // 만분율 기준 0~9999까지 저장
 	{
 		private static int Index = 0;

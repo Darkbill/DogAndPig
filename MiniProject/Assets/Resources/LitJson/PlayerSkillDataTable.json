@@ -3,7 +3,7 @@
     "skillID": 1,
     "skillType": 4,
     "target": 1,
-    "option": [
+    "optionArr": [
       1,
       5
     ]
@@ -12,7 +12,7 @@
     "skillID": 2,
     "skillType": 2,
     "target": 1,
-    "option": [
+    "optionArr": [
       2,
       2,
       5
@@ -22,7 +22,7 @@
     "skillID": 3,
     "skillType": 3,
     "target": 1,
-    "option": [
+    "optionArr": [
       1,
       2,
       4,
@@ -37,7 +37,7 @@
     "skillID": 4,
     "skillType": 1,
     "target": 2,
-    "option": [
+    "optionArr": [
       3,
       4,
       3,
@@ -50,7 +50,7 @@
     "skillID": 5,
     "skillType": 0,
     "target": 1,
-    "option": [
+    "optionArr": [
       0
     ]
   },
@@ -58,7 +58,7 @@
     "skillID": 6,
     "skillType": 0,
     "target": 0,
-    "option": [
+    "optionArr": [
       0
     ]
   },
@@ -66,7 +66,7 @@
     "skillID": 7,
     "skillType": 0,
     "target": 0,
-    "option": [
+    "optionArr": [
       0
     ]
   },
@@ -74,7 +74,7 @@
     "skillID": 8,
     "skillType": 0,
     "target": 0,
-    "option": [
+    "optionArr": [
       0
     ]
   },
@@ -82,7 +82,7 @@
     "skillID": 9,
     "skillType": 0,
     "target": 0,
-    "option": [
+    "optionArr": [
       0
     ]
   },
@@ -90,7 +90,7 @@
     "skillID": 10,
     "skillType": 0,
     "target": 0,
-    "option": [
+    "optionArr": [
       0
     ]
   }
