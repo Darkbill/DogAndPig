@@ -20,8 +20,11 @@ public class PlayerStateMove : PlayerState
 
 	public override bool OnTransition()
 	{
+        
 		Moving();
-		Attack();
+        Debug.Log(Mathf.Acos(Mathf.Cos(playerObject.transform.eulerAngles.z * Mathf.Deg2Rad)) * Mathf.Rad2Deg);
+
+        Attack();
 		if (fVertical == 0 && fHorizontal == 0)
 			playerObject.playerStateMachine.ChangeState(ePlayerState.Idle);
 		return true;

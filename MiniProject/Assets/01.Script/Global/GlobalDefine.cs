@@ -8,6 +8,14 @@ namespace GlobalDefine
 	{
 		public const int nRANDOM_POOL = 1024;
 	}
+    public enum eUnitStateShift
+    {
+        NONE = 0,
+        BURN,
+        FREEZEING,
+        Max,
+    }
+
 	public enum eBulletStyle
     {
         NONE = 0,
