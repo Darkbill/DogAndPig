@@ -26,20 +26,25 @@ public class SkillDash : MonoBehaviour
 
     void Update()
     {
-        //CheckMovVec();
         if (Input.GetKeyDown("q"))
         {
             CheckMovVec();
-            //플레이어가 바라보는 방향으로 뛰쳐나가도록    
-            GameMng.Ins.player.playerStateMachine.ChangeState(GlobalDefine.ePlayerState.Dash);
-			GameMng.Ins.player.playerStateMachine.cState.isDash = true;
-
-			for (int i = 0; i < Count; ++i)
-            {
-                BulletLst[i].Setting(GameMng.Ins.player.transform.position);
-            }
+            ChangeSet();
         }
     }
+
+    public void ChangeSet()
+    {
+        //플레이어가 바라보는 방향으로 뛰쳐나가도록    
+        GameMng.Ins.player.playerStateMachine.ChangeState(GlobalDefine.ePlayerState.Dash);
+        GameMng.Ins.player.playerStateMachine.cState.isDash = true;
+
+        for (int i = 0; i < Count; ++i)
+        {
+            BulletLst[i].Setting(GameMng.Ins.player.transform.position);
+        }
+    }
+
     void CheckMovVec()
     {
         Vector3.Angle(GameMng.Ins.player.transform.right, new Vector3(0, 0, GameMng.Ins.player.transform.eulerAngles.z));

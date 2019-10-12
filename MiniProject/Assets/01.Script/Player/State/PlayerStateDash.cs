@@ -23,21 +23,34 @@ public class PlayerStateDash : PlayerState
 
     public override bool OnTransition()
     {
-        return true;
+        Ray2D ray = new Ray2D(playerObject.transform.position, playerObject.transform.right);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 0.5f, 1 << LayerMask.NameToLayer("Wall"));
+        if (hit.collider == null) return false;
+        if (hit.collider.CompareTag("Wall"))
+        {
+            return true;
+        }
+        return false;
     }
 
     public override void Tick()
     {
-        Dash();
-        if (OnTransition() == true) return;
 
+        if (OnTransition() == true)
+        {
+            playerObject.playerStateMachine.ChangeState(ePlayerState.Move);
+            return;
+        }
+        Dash();
     }
     public override void OnEnd()
     {
 
     }
+    
     public void Dash()
     {
+
         if (Vector3.Distance(playerObject.transform.position, target) > 0.5f)
         {
             playerObject.transform.position += movVec * Time.deltaTime * fSpeed;

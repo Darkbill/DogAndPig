@@ -15,13 +15,15 @@ public class SkillCircleShot : MonoBehaviour
     const float settime = 4.0f;
 
     private float timer = 0.0f;
-    private float alltimer = 0.0f;
+    private float AllTimer = 0.0f;
 
     private List<FireBall> BulletLst = new List<FireBall>();
 
     private Vector3 moveDirection;
 
-    // Start is called before the first frame update
+    private float Option01 = 0;//Damage
+    private float Option02 = 0;//AllTimer
+    private float Option03 = 0;//Time
 
 
     private void Awake()
@@ -50,9 +52,9 @@ public class SkillCircleShot : MonoBehaviour
         Moving();
         
         timer += Time.deltaTime;
-        alltimer += Time.deltaTime;
+        AllTimer += Time.deltaTime;
 
-        if (timer > 0.1 && alltimer < 3.0f)
+        if (timer > 0.1 && AllTimer < 3.0f)
             CircleShotting();
     }
 
@@ -61,8 +63,6 @@ public class SkillCircleShot : MonoBehaviour
         for(int i = 0;i<Count;++i)
         {
             BulletLst[i].gameObject.transform.position += BulletLst[i].BulletMovVec * Time.deltaTime * Speed;
-            if (alltimer > 3.0f)
-                BulletLst[i].colliderCrash = true;
         }
     }
 

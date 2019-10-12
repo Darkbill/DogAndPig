@@ -30,6 +30,6 @@ public class PlayerStateMachine : MonoBehaviour
 	private void FixedUpdate()
 	{
 		cState.Tick();
-		Debug.Log(Time.deltaTime);
 	}
+
 }

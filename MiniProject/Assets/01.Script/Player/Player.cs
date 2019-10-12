@@ -30,7 +30,8 @@ public class Player : MonoBehaviour
 	}
 	private void Update()
 	{
-		if (isMove)
+
+        if (isMove)
 		{
 			MoveToJoyStick();
 		}
