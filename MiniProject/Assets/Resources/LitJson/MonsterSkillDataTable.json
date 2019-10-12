@@ -2,6 +2,7 @@
   {
     "skillID": 1,
     "skillType": 2,
+    "target": 1,
     "option": [
       2,
       1,
@@ -11,6 +12,7 @@
   {
     "skillID": 2,
     "skillType": 3,
+    "target": 1,
     "option": [
       3,
       2,
@@ -20,6 +22,7 @@
   {
     "skillID": 3,
     "skillType": 4,
+    "target": 1,
     "option": [
       4,
       3,
@@ -29,6 +32,7 @@
   {
     "skillID": 4,
     "skillType": 5,
+    "target": 1,
     "option": [
       5,
       4,
@@ -38,6 +42,7 @@
   {
     "skillID": 5,
     "skillType": 6,
+    "target": 1,
     "option": [
       6,
       1,

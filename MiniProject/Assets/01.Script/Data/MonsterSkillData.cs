@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using GlobalDefine;
 public class MonsterSkillData : TableBase
 {
 	public float skillID;
-	public string skillName;
+	public eAttackType skillType;
+	public float target;
 	public float[] optionArr;
 	public override float GetTableID()
 	{
