@@ -31,7 +31,7 @@ public class SkillDash : MonoBehaviour
         {
             CheckMovVec();
             //플레이어가 바라보는 방향으로 뛰쳐나가도록    
-            GameMng.Ins.player.playerStateMachine.ChangeState(GlobalDefine.ePlayerState.Move);
+            GameMng.Ins.player.playerStateMachine.ChangeState(GlobalDefine.ePlayerState.Dash);
 			GameMng.Ins.player.playerStateMachine.cState.isDash = true;
 
 			for (int i = 0; i < Count; ++i)

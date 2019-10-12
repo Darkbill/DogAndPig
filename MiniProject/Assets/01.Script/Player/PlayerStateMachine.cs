@@ -27,8 +27,9 @@ public class PlayerStateMachine : MonoBehaviour
 		cState = stateDict[stateType];
 		cState.OnStart();
 	}
-	private void Update()
+	private void FixedUpdate()
 	{
 		cState.Tick();
+		Debug.Log(Time.deltaTime);
 	}
 }

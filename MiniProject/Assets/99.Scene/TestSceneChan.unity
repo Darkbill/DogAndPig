@@ -130,14 +130,13 @@ GameObject:
   m_Component:
   - component: {fileID: 43467521}
   - component: {fileID: 43467522}
-  - component: {fileID: 43467523}
   m_Layer: 8
   m_Name: UpEdge
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &43467521
 Transform:
   m_ObjectHideFlags: 0
@@ -165,7 +164,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0000019073486, y: 2.850097}
+  m_Offset: {x: 0.0000019073486, y: 2.9042454}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -176,21 +175,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10.677664, y: 0.46798277}
+  m_Size: {x: 10.677664, y: 0.42182064}
   m_EdgeRadius: 0
---- !u!114 &43467523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 43467520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b391f5b6a27f8ee43b3e7726e302d67b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wallType: 1
 --- !u!1 &113422137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,9 +1728,9 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &1684886706
 MonoBehaviour:
@@ -3378,32 +3364,32 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 3498460947645451388}
     m_ColliderPaths:
-    - - X: 53550000
+    - - X: 53549971
+        Y: -30450000
+      - X: 53549971
         Y: 30450000
       - X: -53550000
-        Y: 30450000
-      - X: -53550000
+        Y: 30449971
+      - X: -53549971
         Y: -30450000
-      - X: 53550000
-        Y: -30450000
-    - - X: -48750004
-        Y: -25650000
+    - - X: 48750004
+        Y: -25649971
       - X: -48750004
+        Y: -25649971
+      - X: -48749975
         Y: 25650000
       - X: 48750004
-        Y: 25650000
-      - X: 48750004
-        Y: -25650000
+        Y: 25649971
   m_CompositePaths:
     m_Paths:
-    - - {x: 5.354997, y: -3.045}
-      - {x: 5.354997, y: 3.045}
-      - {x: -5.355, y: 3.0449972}
-      - {x: -5.354997, y: -3.045}
-    - - {x: 4.8750005, y: -2.5649972}
-      - {x: -4.8750005, y: -2.5649972}
-      - {x: -4.8749976, y: 2.565}
-      - {x: 4.8750005, y: 2.5649972}
+    - - {x: 5.3549943, y: -3.045}
+      - {x: 5.3549943, y: 3.045}
+      - {x: -5.355, y: 3.0449944}
+      - {x: -5.3549943, y: -3.045}
+    - - {x: 4.8750005, y: -2.5649943}
+      - {x: -4.8750005, y: -2.5649943}
+      - {x: -4.8749943, y: 2.565}
+      - {x: 4.8750005, y: 2.5649943}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.000005
 --- !u!50 &3498460947645451393
