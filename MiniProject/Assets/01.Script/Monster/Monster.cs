@@ -5,10 +5,10 @@ using GlobalDefine;
 public abstract class Monster : MonoBehaviour
 {
 	public MonsterData monsterData;
-    public UnitState state = new UnitState();
+	public Condition condition;
 
-    /* 테스트코드 */
-    private int MonsterID = 1;
+	/* 테스트코드 */
+	private int MonsterID = 1;
 	public void Start()
 	{
 		MonsterSetting();

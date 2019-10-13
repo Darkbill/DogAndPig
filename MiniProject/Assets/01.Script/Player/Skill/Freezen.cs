@@ -21,7 +21,7 @@ public class Freezen : MonoBehaviour
         {
 			//TODO 속성
             collision.GetComponent<Monster>().Damage(eAttackType.Water, 1);
-            collision.GetComponent<Monster>().state.SkillBufDebuf(
+            collision.GetComponent<Monster>().condition.SkillBufDebuf(
                 new State(eAttackType.Water, Id, MaxTimer, new Vector3(slow / 1000, 0, 0)));
         }
     }

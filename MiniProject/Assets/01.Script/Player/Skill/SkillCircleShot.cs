@@ -55,7 +55,6 @@ public class SkillCircleShot : Skill
 	private void FixedUpdate()
 	{
 		delayTime += Time.deltaTime;
-		Debug.Log(delayTime);
 		if (delayTime >= endTime)
 		{
 			MovingDirection();

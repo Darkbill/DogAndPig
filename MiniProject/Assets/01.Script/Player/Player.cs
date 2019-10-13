@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
 	public PlayerData calStat;
 	public PlayerData skillStat = new PlayerData();
 	public PlayerStateMachine playerStateMachine;
+	public Condition condition;
 
 	// * private * //
 	private int level = 1;

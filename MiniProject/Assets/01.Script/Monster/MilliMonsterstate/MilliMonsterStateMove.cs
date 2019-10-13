@@ -65,11 +65,11 @@ public class MilliMonsterStateMove : MilliMonsterState
 
 		if (directionToPlayer.magnitude > monsterObject.monsterData.attackRange)
 		{
-            monsterObject.gameObject.transform.position +=
-                monsterObject.gameObject.transform.right *
-                Time.deltaTime *
-                monsterObject.monsterData.moveSpeed * 
-                monsterObject.state.BufDebufUpdate().Speed;
+			monsterObject.gameObject.transform.position +=
+				monsterObject.gameObject.transform.right *
+				Time.deltaTime *
+				monsterObject.monsterData.moveSpeed; 
+                //monsterObject.condition.BufDebufUpdate().Speed;
 		}
 	}
 
