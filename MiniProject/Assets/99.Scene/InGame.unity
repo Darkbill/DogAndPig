@@ -825,7 +825,6 @@ GameObject:
   - component: {fileID: 775381935}
   - component: {fileID: 775381937}
   - component: {fileID: 775381938}
-  - component: {fileID: 775381939}
   m_Layer: 0
   m_Name: Ice
   m_TagString: Untagged
@@ -871,7 +870,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2112487740573502474, guid: 24f3278fd6ca4384d9d600f8274973f7,
+  m_Sprite: {fileID: -7235282874783887361, guid: 24f3278fd6ca4384d9d600f8274973f7,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -892,7 +891,7 @@ Transform:
   m_GameObject: {fileID: 775381934}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: -3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1655606950}
   m_RootOrder: 0
@@ -910,7 +909,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.02112788, y: 0.010098577}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -921,7 +920,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.09, y: 0.27}
+  m_Size: {x: 1.8224782, y: 3.9465683}
   m_EdgeRadius: 0
 --- !u!114 &775381938
 MonoBehaviour:
@@ -938,23 +937,6 @@ MonoBehaviour:
   Id: 0
   MaxTimer: 0
   slow: 0
---- !u!111 &775381939
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 775381934}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 21638e909d98d084e8db121e3ddf9228, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 21638e909d98d084e8db121e3ddf9228, type: 2}
-  - {fileID: 7400000, guid: 7e33b81570e003e4c85bc7ca35b0d891, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &782641153
 GameObject:
   m_ObjectHideFlags: 0
@@ -2955,6 +2937,7 @@ Animation:
   m_Animation: {fileID: 7400000, guid: c44a517e37bea4349805fd0875f911f4, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 21638e909d98d084e8db121e3ddf9228, type: 2}
+  - {fileID: 7400000, guid: c44a517e37bea4349805fd0875f911f4, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
