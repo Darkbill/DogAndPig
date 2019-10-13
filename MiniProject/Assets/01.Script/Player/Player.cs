@@ -24,17 +24,18 @@ public class Player : MonoBehaviour
 		{
 			conditionArr[i] = new ConditionData();
 		}
+		AddBuff(new ConditionData(eBuffType.PhysicsStrong, 1, 100000));
 		PlayerSetting();
 	}
 	private void PlayerSetting()
 	{
 		CalculatorStat();
+
 	}
 	private void Update()
 	{
 		UpdateBuff(Time.deltaTime);
-		//테스트코드
-		AddBuff(new ConditionData(eBuffType.PhysicsStrong, 100, 100000));
+
 		if (isMove)
 		{
 			MoveToJoyStick();
@@ -49,7 +50,7 @@ public class Player : MonoBehaviour
 				conditionArr[i].currentTime -= delayTime;
 				if(conditionArr[i].currentTime <= 0)
 				{
-					conditionArr[i].activeFlag = false;
+					conditionArr[i].SetOff();
 					CalculatorStat();
 				}
 			}
