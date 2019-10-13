@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using GlobalDefine;
 public class UIMngInGame : MonoBehaviour
 {
 	#region SINGLETON
@@ -40,6 +41,7 @@ public class UIMngInGame : MonoBehaviour
 
 	/* Skill UI */
 	public Image[] skillImageArr;
+	bool isCool = false;
 	private void Start()
 	{
 		UISetting();
@@ -75,9 +77,43 @@ public class UIMngInGame : MonoBehaviour
 		joyStick.gameObject.SetActive(false);
 		moveTouchID = -1;
 	}
+	/* Skill */
 	public void ActiveSkill(int slotNumber)
 	{
-		GameMng.Ins.ActiveSkill(slotNumber);
+		if (skillImageArr[slotNumber].fillAmount == 1)
+		{
+			GameMng.Ins.ActiveSkill(GameMng.Ins.player.skillArr[slotNumber]);
+			CoolDownAllSkill();
+		}
+	}
+	public void CoolDownAllSkill()
+	{
+		isCool = true;
+		StartCoroutine(IECoolDownAllSkill());
+	}
+	private IEnumerator IECoolDownAllSkill()
+	{
+		float timer = 0;
+		while (true)
+		{
+			timer += Time.deltaTime;
+			if(timer >= Define.coolDownTimeAll)
+			{
+				for (int i = 0; i < GameMng.Ins.player.skillArr.Length; ++i)
+				{
+					float t = GameMng.Ins.skillMng.skillDict[GameMng.Ins.player.skillArr[i]].delayTime / GameMng.Ins.skillMng.skillDict[GameMng.Ins.player.skillArr[i]].cooldownTime;
+					if (t > 1) t = 1;
+					skillImageArr[i].fillAmount = t;
+				}
+				isCool = false;
+				break;
+			}
+			for (int i = 0; i < GameMng.Ins.player.skillArr.Length; ++i)
+			{
+				skillImageArr[i].fillAmount = (timer / Define.coolDownTimeAll);
+			}
+			yield return null;
+		}
 	}
 	public Vector3 GetJoyStickDirection()
 	{
@@ -155,5 +191,18 @@ public class UIMngInGame : MonoBehaviour
 		healthGageImage.fillAmount = GameMng.Ins.player.calStat.healthPoint / GameMng.Ins.player.GetFullHP();
 		saveDamage = 0;
 		fillCoroutine = null;
+	}
+	private void Update()
+	{
+		//TODO : 이건아닌데..
+		if (isCool == false)
+		{
+			for (int i = 0; i < GameMng.Ins.player.skillArr.Length; ++i)
+			{
+				float t = GameMng.Ins.skillMng.skillDict[GameMng.Ins.player.skillArr[i]].delayTime / GameMng.Ins.skillMng.skillDict[GameMng.Ins.player.skillArr[i]].cooldownTime;
+				if (t > 1) t = 1;
+				skillImageArr[i].fillAmount = t;
+			}
+		}
 	}
 }

@@ -7,6 +7,7 @@ namespace GlobalDefine
 	static public class Define
 	{
 		public const int nRANDOM_POOL = 1024;
+		public const float coolDownTimeAll = 0.3f;
 	}
 
 	public enum eBulletStyle

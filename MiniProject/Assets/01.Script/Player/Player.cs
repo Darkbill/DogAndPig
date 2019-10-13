@@ -17,10 +17,13 @@ public class Player : MonoBehaviour
 
 	public SpriteRenderer playerSprite;
 	/* 테스트 코드 */
-	public int[] skillArr = new int[2] { 0, 1 };
+	public int[] skillArr = new int[3];
     private void Awake()
 	{
 		PlayerSetting();
+		skillArr[0] = 1;
+		skillArr[1] = 2;
+		skillArr[2] = 3;
 	}
 	private void PlayerSetting()
 	{

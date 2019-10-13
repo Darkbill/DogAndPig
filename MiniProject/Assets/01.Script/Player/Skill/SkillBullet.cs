@@ -14,15 +14,12 @@ public class SkillBullet
     private Vector3 moveDirection;
 
     private BulletBurn bulletCheck = new BulletBurn();
-    private eBulletType bullettype = eBulletType.Player;
 
-    // Start is called before the first frame update
     public void AwakeSet()
     {
         bulletCheck.Start();
     }
 
-    // Update is called once per frame
     public void BulletUpdate()
     {
         BulletObject.transform.position += moveDirection * Time.deltaTime * Speed;

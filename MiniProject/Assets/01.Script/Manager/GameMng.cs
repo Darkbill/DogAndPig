@@ -37,8 +37,9 @@ public class GameMng : MonoBehaviour
 	{
 
 	}
-	public void ActiveSkill(int slotNumber)
+	public bool ActiveSkill(int slotNumber)
 	{
 		skillMng.skillDict[slotNumber].ActiveSkill();
+		return true;
 	}
 }

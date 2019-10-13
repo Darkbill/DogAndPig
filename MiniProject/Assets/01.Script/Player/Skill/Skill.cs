@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using GlobalDefine;
 public abstract class Skill : MonoBehaviour
 {
@@ -8,6 +6,17 @@ public abstract class Skill : MonoBehaviour
 	public string skillName;
 	protected eAttackType skillType;
 	protected eSkillType target;
+	public float cooldownTime;
+	public float delayTime;
 	abstract public void SkillSetting();
-	abstract public void ActiveSkill();
+	public virtual void ActiveSkill()
+	{
+		gameObject.SetActive(true);
+		delayTime = 0;
+	}
+	private void Update()
+	{
+		//TODO : 이건아닌데..
+		delayTime += Time.deltaTime;
+	}
 }

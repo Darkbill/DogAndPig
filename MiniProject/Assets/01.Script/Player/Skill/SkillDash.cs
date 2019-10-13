@@ -10,7 +10,6 @@ public class SkillDash : Skill
 		coolTime,
 	}
 	private float damage;
-	private float coolTime;
 	public override void SkillSetting()
 	{
 		skillID = 1;
@@ -18,7 +17,9 @@ public class SkillDash : Skill
 		skillType = skillData.skillType;
 		target = skillData.target;
 		damage = skillData.optionArr[(int)eDashOption.Damage];
-		damage = skillData.optionArr[(int)eDashOption.Damage];
+		cooldownTime = skillData.optionArr[(int)eDashOption.coolTime];
+		delayTime = cooldownTime;
+		gameObject.SetActive(false);
 	}
 
 
@@ -30,7 +31,7 @@ public class SkillDash : Skill
 
 	public override void ActiveSkill()
 	{
-		gameObject.SetActive(true);
+		base.ActiveSkill();
 		GameMng.Ins.player.playerStateMachine.ChangeState(GlobalDefine.ePlayerState.Dash);
 		GameMng.Ins.player.playerStateMachine.cState.isDash = true;
 		for (int i = 0; i < Count; ++i)

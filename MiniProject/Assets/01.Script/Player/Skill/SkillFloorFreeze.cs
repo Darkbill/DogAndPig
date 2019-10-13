@@ -9,20 +9,22 @@ public class SkillFloorFreeze : Skill
     enum eFloorFreezeOption
     {
         Damage,
-        DebufPer,
-        DebufMinus,
-        DebufTime,
-        Width,
-        Height,
-        Times
+		Width,
+		Height,
+		CoolTime,
+		DebufIndex,
+		DebufActivePer,
+		DebugEffectPer,
+		DebufTime,
     }
-    private float damage = 1;
-    private float debufPer = 100;
-    private float debufMinus = 0;
-    private float debufTime = 0;
-    private float width = 1;
-    private float height = 2;
-    private float times = 2;
+	private float damage;
+	private float width;
+	private float height;
+	private float DebufIndex;
+	private float DebufActivePer;
+	private float DebufEffectPer;
+	private float DebufTime;
+	
 
     //TODO : SpriteDummy
     public GameObject dummy;
@@ -35,20 +37,21 @@ public class SkillFloorFreeze : Skill
         skillType = skillData.skillType;
         target = skillData.target;
         damage = skillData.optionArr[(int)eFloorFreezeOption.Damage];
-        debufPer = skillData.optionArr[(int)eFloorFreezeOption.DebufPer];
-        debufMinus = skillData.optionArr[(int)eFloorFreezeOption.DebufMinus];
-        debufTime = skillData.optionArr[(int)eFloorFreezeOption.DebufTime];
+		DebufIndex = skillData.optionArr[(int)eFloorFreezeOption.DebufIndex];
+		DebufActivePer = skillData.optionArr[(int)eFloorFreezeOption.DebufActivePer];
+		DebufTime = skillData.optionArr[(int)eFloorFreezeOption.DebufTime];
         width = skillData.optionArr[(int)eFloorFreezeOption.Width];
         height = skillData.optionArr[(int)eFloorFreezeOption.Height];
-        times = skillData.optionArr[(int)eFloorFreezeOption.Times];
-        //dummy.GetComponentInChildren<Freezen>().transform.localScale = new Vector3(10 * width, height * 3.0f / 75, 0);
-        //dummy.GetComponentInChildren<Freezen>().transform.position = new Vector3(0, -height / 2 / 75, 0);
-    }
+		cooldownTime = skillData.optionArr[(int)eFloorFreezeOption.CoolTime];
+		DebufEffectPer = skillData.optionArr[(int)eFloorFreezeOption.DebugEffectPer];
+		delayTime = cooldownTime;
+		gameObject.SetActive(false);
+	}
 
     public override void ActiveSkill()
     {
-        gameObject.SetActive(true);
-        dummy.GetComponentInChildren<Freezen>().Id = 3;
+		base.ActiveSkill();
+		dummy.GetComponentInChildren<Freezen>().Id = 3;
         dummy.GetComponentInChildren<Freezen>().MaxTimer = 3.0f;
         dummy.GetComponentInChildren<Freezen>().slow = 500f;
 
@@ -58,15 +61,10 @@ public class SkillFloorFreeze : Skill
         testTimer = 0.0f;
     }
 
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if (dummy.activeSelf)
+		delayTime += Time.deltaTime;
+		if (dummy.activeSelf)
         {
             testTimer += Time.deltaTime;
             if(testTimer >= 0.5f)

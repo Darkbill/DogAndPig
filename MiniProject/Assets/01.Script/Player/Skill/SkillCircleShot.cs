@@ -11,7 +11,6 @@ public class SkillCircleShot : Skill
 	}
 	private float damage = 0;//Damage
 	private float endTime = 0;//AllTimer
-	private float coolTime = 0;//Time 
 	public override void SkillSetting()
 	{
 		skillID = 2;
@@ -20,9 +19,11 @@ public class SkillCircleShot : Skill
 		target = skillData.target;
 		damage = skillData.optionArr[(int)eCircleShotOption.Damage];
 		endTime = skillData.optionArr[(int)eCircleShotOption.EndTimer];
-		coolTime = skillData.optionArr[(int)eCircleShotOption.CoolTime];
+		cooldownTime = skillData.optionArr[(int)eCircleShotOption.CoolTime];
         BulletSetting();
-    }
+		delayTime = cooldownTime;
+		gameObject.SetActive(false);
+	}
 
 	const int Angle180 = 180;
 	const int BulletRotationAngle = 30;
@@ -36,29 +37,27 @@ public class SkillCircleShot : Skill
 	private List<FireBall> BulletLst = new List<FireBall>();
 
 
+	private void BulletSetting()
+	{
+		Vector3 bulletstartpos = new Vector3(Radius, 0, 0);
+		Vector3 bulletstartvec = new Vector3(0, Radius, 0);
+		for (int i = 0; i < Count; ++i)
+		{
+			GameObject o = Instantiate(Bullet.gameObject, gameObject.transform);
+			Quaternion radian = Quaternion.Euler(0, 0, Angle180 * 2 / Count * i);
+			o.transform.position = radian * bulletstartpos + new Vector3(0, 0, -3);
+			o.GetComponent<FireBall>().BulletMovVec = radian * bulletstartvec;
+			BulletLst.Add(o.GetComponent<FireBall>());
+		}
+	}
 
 	public override void ActiveSkill()
 	{
+		base.ActiveSkill();
         gameObject.transform.position = Vector3.zero;
-        gameObject.SetActive(true);
         ReSizBullet();
         endTime = 0.0f;
 	}
-
-
-	private void BulletSetting()
-    {
-        Vector3 bulletstartpos = new Vector3(Radius, 0, 0);
-        Vector3 bulletstartvec = new Vector3(0, Radius, 0);
-        for(int i = 0;i<Count;++i)
-        {
-            GameObject o = Instantiate(Bullet.gameObject, gameObject.transform);
-            Quaternion radian = Quaternion.Euler(0, 0, Angle180 * 2 / Count * i);
-            o.transform.position = radian * bulletstartpos + new Vector3(0, 0, -3);
-            o.GetComponent<FireBall>().BulletMovVec = radian * bulletstartvec;
-            BulletLst.Add(o.GetComponent<FireBall>());
-        }
-    }
 
     private void ReSizBullet()
     {
@@ -101,12 +100,11 @@ public class SkillCircleShot : Skill
 
     private void Update()
     {
-        gameObject.transform.position = GameMng.Ins.player.transform.position;
+		delayTime += Time.deltaTime;
+		gameObject.transform.position = GameMng.Ins.player.transform.position;
         Moving();
-        
-        coolTime += Time.deltaTime;
-
-        if (coolTime > 0.1)
+		endTime += endTime;
+        if (endTime > 0.1)
             CircleShotting();
     }
 
@@ -128,6 +126,6 @@ public class SkillCircleShot : Skill
                 BulletLst[i].BulletMovVec = radian * (BulletLst[i].BulletMovVec);
             }
         }
-        coolTime = 0.0f;
+		endTime = 0.0f;
     }
 }
