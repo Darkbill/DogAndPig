@@ -27,7 +27,7 @@ public class SkillDash : Skill
 	public Alter Bullet;
 
     private const int Count = 10;
-    private List<Alter> alterList = new List<Alter>();
+    public List<Alter> alterList = new List<Alter>();
 
 
 	public override void ActiveSkill()
@@ -37,8 +37,6 @@ public class SkillDash : Skill
 		GameMng.Ins.player.playerStateMachine.cState.isDash = true;
 		for (int i = 0; i < Count; ++i)
 		{
-			GameObject o = Instantiate(Bullet.gameObject, gameObject.transform);
-			alterList.Add(o.GetComponent<Alter>());
 			alterList[i].Setting(GameMng.Ins.player.transform.position,GameMng.Ins.player.transform.right,i+5);
 		}
 	}

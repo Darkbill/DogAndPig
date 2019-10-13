@@ -77,5 +77,11 @@ public class SkillCircleShot : Skill
     private void MovingCircle()
     {
 		gameObject.transform.eulerAngles += new Vector3(0, 0, Speed * 50) * Time.deltaTime;
-	}
+        for (int i = 0; i < BulletLst.Count; ++i)
+        {
+            BulletLst[i].BulletMovVec = 
+                BulletLst[i].transform.position - 
+                GameMng.Ins.player.transform.position;
+        }
+    }
 }
