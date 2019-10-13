@@ -53,8 +53,9 @@ public class SkillFloorFreeze : Skill
     {
 		base.ActiveSkill();
         dummy.gameObject.SetActive(true);
-        dummy.transform.position = GameMng.Ins.player.transform.position;
         dummy.transform.eulerAngles = GameMng.Ins.player.transform.eulerAngles + new Vector3(0, 0, 90);
+        dummy.transform.position = GameMng.Ins.player.transform.position +
+            GameMng.Ins.player.transform.right * height / 2;
     }
 
     void Update()
