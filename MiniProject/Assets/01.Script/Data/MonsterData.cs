@@ -29,4 +29,20 @@ public class MonsterData : TableBase
 	{
 		return monsterID;
 	}
+	public float GetResist(eAttackType attackType)
+	{
+		switch (attackType)
+		{
+			case eAttackType.Physics:
+				return physicsResist;
+			case eAttackType.Fire:
+				return fireResist;
+			case eAttackType.Water:
+				return waterResist;
+			case eAttackType.Lightning:
+				return lightningResist;
+			default:
+				return 0;
+		}
+	}
 }

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using GlobalDefine;
 public class PlayerData : TableBase
 {
 	public float level;
@@ -27,5 +24,21 @@ public class PlayerData : TableBase
 	public override float GetTableID()
 	{
 		return level;
+	}
+	public float GetResist(eAttackType attackType)
+	{
+		switch(attackType)
+		{
+			case eAttackType.Physics:
+				return physicsResist;
+			case eAttackType.Fire:
+				return fireResist;
+			case eAttackType.Water:
+				return waterResist;
+			case eAttackType.Lightning:
+				return lightningResist;
+			default:
+				return 0;
+		}
 	}
 }

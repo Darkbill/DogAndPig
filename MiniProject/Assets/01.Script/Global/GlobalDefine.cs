@@ -92,13 +92,22 @@ namespace GlobalDefine
 		Left,
 		Max,
 	}
+	public enum eBuffType
+	{
+		None = 0,
+		MoveFast,
+		MoveSlow,
+		PhysicsStrong,
+		PhysicsWeek,
+		Stun,
+		Max,
+	}
 	public enum eSkillType
 	{
 		None = 0,
 		Other,
 		Self,
 	}
-
 	static public class Rand // 만분율 기준 0~9999까지 저장
 	{
 		private static int Index = 0;
@@ -140,10 +149,5 @@ namespace GlobalDefine
 
 			return (Random() % (a_nEnd - a_nStart)) + a_nStart;
 		}
-	}
-	public interface IBattle
-	{
-		void Attack(eAttackType attackType, float damage);
-		void Damage(eAttackType attackType, float damage);
 	}
 }

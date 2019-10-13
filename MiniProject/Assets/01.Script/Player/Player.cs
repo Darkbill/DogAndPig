@@ -1,9 +1,5 @@
 ﻿using GlobalDefine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 public class Player : MonoBehaviour
 {
 	// * public * //
@@ -11,20 +7,24 @@ public class Player : MonoBehaviour
 	public PlayerData calStat;
 	public PlayerData skillStat = new PlayerData();
 	public PlayerStateMachine playerStateMachine;
-	public Condition condition;
-
+	public SpriteRenderer playerSprite;
 	// * private * //
 	private int level = 1;
 
-	public SpriteRenderer playerSprite;
+	private ConditionData[] conditionArr = new ConditionData[(int)eBuffType.Max];
+
 	/* 테스트 코드 */
 	public int[] skillArr = new int[3];
     private void Awake()
 	{
-		PlayerSetting();
 		skillArr[0] = 1;
 		skillArr[1] = 2;
 		skillArr[2] = 3;
+		for(int i = 0; i < conditionArr.Length; ++i)
+		{
+			conditionArr[i] = new ConditionData();
+		}
+		PlayerSetting();
 	}
 	private void PlayerSetting()
 	{
@@ -32,13 +32,29 @@ public class Player : MonoBehaviour
 	}
 	private void Update()
 	{
-
-        if (isMove)
+		UpdateBuff(Time.deltaTime);
+		//테스트코드
+		AddBuff(new ConditionData(eBuffType.PhysicsStrong, 100, 100000));
+		if (isMove)
 		{
 			MoveToJoyStick();
 		}
 	}
-
+	private void UpdateBuff(float delayTime)
+	{
+		for(int i = 0; i < conditionArr.Length; ++i)
+		{
+			if(conditionArr[i].activeFlag)
+			{
+				conditionArr[i].currentTime -= delayTime;
+				if(conditionArr[i].currentTime <= 0)
+				{
+					conditionArr[i].activeFlag = false;
+					CalculatorStat();
+				}
+			}
+		}
+	}
     public void MoveToJoyStick()
 	{
 		Vector3 direction = UIMngInGame.Ins.GetJoyStickDirection();
@@ -47,56 +63,40 @@ public class Player : MonoBehaviour
         float Degree = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3(0, 0, Degree);
 	}
-
 	public void Damage(eAttackType attackType, float damage)
 	{
-		float d = (damage - calStat.armor);
-		float resist;
-		switch (attackType)
+		float d = (damage - calStat.armor) * calStat.GetResist(attackType).CalculatorDamage();
+		DamageResult((int)d);
+	}
+	public void Damage(eAttackType attackType, float damage, ConditionData condition)
+	{
+		float d = (damage - calStat.armor) * calStat.GetResist(attackType).CalculatorDamage();
+		bool isBuff = calStat.GetResist(attackType).GetBuff();
+		if(isBuff)
 		{
-			case eAttackType.Physics:
-				resist = calStat.physicsResist;
-				GetDamage(resist);
-				break;
-			case eAttackType.Fire:
-				resist = calStat.fireResist;
-				GetDamage(resist);
-				break;
-			case eAttackType.Water:
-				resist = calStat.waterResist;
-				GetDamage(resist);
-				break;
-			case eAttackType.Wind:
-				resist = calStat.windResist;
-				GetDamage(resist);
-				break;
-			case eAttackType.Lightning:
-				resist = calStat.lightningResist;
-				GetDamage(resist);
-				break;
+			conditionArr[(int)condition.buffType].SetBuff(condition.SustainmentTime, condition.changeValue);
+			CalculatorStat();
 		}
+		DamageResult((int)d);
+	}
+	public void DamageResult(int d)
+	{
 		if (d < 1) d = 1;
-		calStat.healthPoint -= (int)d;
-		UIMngInGame.Ins.DamageToPlayer((int)d);
+		calStat.healthPoint -= d;
+		UIMngInGame.Ins.DamageToPlayer(d);
 		if (calStat.healthPoint <= 0) GameMng.Ins.GameOver();
 	}
-	public int GetDamage(float resist)
+	public void AddBuff(ConditionData condition)
 	{
-		if (resist >= 500)
-		{
-			return (int)(((1500 - calStat.physicsResist) * 0.001) * 1.6f - 0.6f);
-		}
-		else
-		{
-			return (int)(((500 - calStat.physicsResist) * 0.001) * 8 - 1);
-		}
+		conditionArr[(int)condition.buffType].SetBuff(condition.SustainmentTime, condition.changeValue);
+		CalculatorStat();
 	}
-	public void CalculatorStat()
+	private void CalculatorStat()
 	{
 		//TODO : 레벨에 의한 스탯계산
-		calStat = JsonMng.Ins.playerDataTable[1].AddStat(skillStat);
+		calStat = JsonMng.Ins.playerDataTable[1].AddStat(skillStat,conditionArr);
 	}
-	
+
 	public float GetFullHP()
 	{
 		return skillStat.healthPoint + JsonMng.Ins.playerDataTable[level].healthPoint;
