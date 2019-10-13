@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SkillDash : Skill
 {
+	#region SkillSetting
 	enum eDashOption
 	{
 		Damage,
@@ -21,7 +22,7 @@ public class SkillDash : Skill
 		delayTime = cooldownTime;
 		gameObject.SetActive(false);
 	}
-
+	#endregion
 
 	public Alter Bullet;
 
@@ -40,5 +41,10 @@ public class SkillDash : Skill
 			alterList.Add(o.GetComponent<Alter>());
 			alterList[i].Setting(GameMng.Ins.player.transform.position,GameMng.Ins.player.transform.right,i+5);
 		}
+	}
+
+	private void Update()
+	{
+		delayTime += Time.deltaTime;
 	}
 }

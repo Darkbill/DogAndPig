@@ -5,7 +5,6 @@ using UnityEngine;
 public class Alter : MonoBehaviour
 {
     public float Speed;
-    float Damage = 1;
 	private const float Range = 2f;
 	public Vector3 TargetPos = new Vector3();
 

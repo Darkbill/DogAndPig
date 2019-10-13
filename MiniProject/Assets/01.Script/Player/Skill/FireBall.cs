@@ -10,20 +10,7 @@ public class FireBall : MonoBehaviour
     eAttackType attackType = eAttackType.Fire;
 
     public Vector3 BulletMovVec;
-    public float SetTimer = 0.0f;
-    public float falseTimer = 5.0f;
 
-    public void SetFireBall()
-    {
-
-    }
-
-    public void Update()
-    {
-        SetTimer += Time.deltaTime;
-        if (SetTimer >= falseTimer)
-            gameObject.SetActive(false);
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

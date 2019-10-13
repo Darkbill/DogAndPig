@@ -14,9 +14,15 @@ public abstract class Skill : MonoBehaviour
 		gameObject.SetActive(true);
 		delayTime = 0;
 	}
-	private void Update()
+	public float GetDelay()
 	{
-		//TODO : 이건아닌데..
-		delayTime += Time.deltaTime;
+		float t = delayTime / cooldownTime;
+		if(t >= 1)
+		{
+			gameObject.SetActive(false);
+			return 1;
+		}
+		return delayTime / cooldownTime;
 	}
+
 }

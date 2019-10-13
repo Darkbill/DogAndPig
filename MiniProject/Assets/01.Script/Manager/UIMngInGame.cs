@@ -99,12 +99,6 @@ public class UIMngInGame : MonoBehaviour
 			timer += Time.deltaTime;
 			if(timer >= Define.coolDownTimeAll)
 			{
-				for (int i = 0; i < GameMng.Ins.player.skillArr.Length; ++i)
-				{
-					float t = GameMng.Ins.skillMng.skillDict[GameMng.Ins.player.skillArr[i]].delayTime / GameMng.Ins.skillMng.skillDict[GameMng.Ins.player.skillArr[i]].cooldownTime;
-					if (t > 1) t = 1;
-					skillImageArr[i].fillAmount = t;
-				}
 				isCool = false;
 				break;
 			}
@@ -199,9 +193,7 @@ public class UIMngInGame : MonoBehaviour
 		{
 			for (int i = 0; i < GameMng.Ins.player.skillArr.Length; ++i)
 			{
-				float t = GameMng.Ins.skillMng.skillDict[GameMng.Ins.player.skillArr[i]].delayTime / GameMng.Ins.skillMng.skillDict[GameMng.Ins.player.skillArr[i]].cooldownTime;
-				if (t > 1) t = 1;
-				skillImageArr[i].fillAmount = t;
+				skillImageArr[i].fillAmount = GameMng.Ins.skillMng.skillDict[GameMng.Ins.player.skillArr[i]].GetDelay(); ;
 			}
 		}
 	}
