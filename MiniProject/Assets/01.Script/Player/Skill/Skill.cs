@@ -9,4 +9,5 @@ public abstract class Skill : MonoBehaviour
 	protected eAttackType skillType;
 	protected eSkillType target;
 	abstract public void SkillSetting();
+	abstract public void ActiveSkill();
 }

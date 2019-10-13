@@ -29,4 +29,5 @@ public class SpriteMng : MonoBehaviour
 		DontDestroyOnLoad(this);
 	}
 	public SpriteAtlas itemAtlas;
+	public SpriteAtlas skillAtlas;
 }

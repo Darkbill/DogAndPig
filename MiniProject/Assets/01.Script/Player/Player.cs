@@ -16,8 +16,8 @@ public class Player : MonoBehaviour
 	private int level = 1;
 
 	public SpriteRenderer playerSprite;
-
-
+	/* 테스트 코드 */
+	public int[] skillArr = new int[2] { 0, 1 };
     private void Awake()
 	{
 		PlayerSetting();

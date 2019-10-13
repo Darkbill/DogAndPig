@@ -6,15 +6,17 @@ public class Alter : MonoBehaviour
 {
     public float Speed;
     float Damage = 1;
-
-    public Vector3 TargetPos = new Vector3();
+	private const float Range = 2f;
+	public Vector3 TargetPos = new Vector3();
 
     public bool StartMove;
-    public void Setting(Vector3 startPos)
+    public void Setting(Vector3 startPos,Vector3 direction, float speed)
     {
         gameObject.SetActive(true);
         StartMove = true;
         gameObject.transform.position = startPos;
+		TargetPos = startPos + direction * Range;
+		Speed = speed;
     }
     void Update()
     {

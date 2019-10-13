@@ -12,14 +12,14 @@ public class InputSystem : MonoBehaviour
 		/* 컴퓨터 빌드 */
 		if (Input.GetMouseButtonUp(0))
 		{
-			//TODO : 원형탄 테스트 circleshot 매개변수 10은 탄환개수임!!
-			monsterpat.SettingPos(Camera.main.ScreenToWorldPoint(Input.mousePosition),
-										GameMng.Ins.player.transform.position, eBulletType.Player);
-			BoomerangShot Att01 = new BoomerangShot(monsterpat, 5);
-			Att01.BulletShot();
+			////TODO : 원형탄 테스트 circleshot 매개변수 10은 탄환개수임!!
+			//monsterpat.SettingPos(Camera.main.ScreenToWorldPoint(Input.mousePosition),
+			//							GameMng.Ins.player.transform.position, eBulletType.Player);
+			//BoomerangShot Att01 = new BoomerangShot(monsterpat, 5);
+			//Att01.BulletShot();
 
 
-			UIMngInGame.Ins.OnStickDrop();
+			//UIMngInGame.Ins.OnStickDrop();
 
 		}
 		if (Input.GetMouseButtonDown(0))
@@ -42,11 +42,7 @@ public class InputSystem : MonoBehaviour
 					}
 					else
 					{
-						BulletPattern monsterpat = new BulletPlayer();
-						monsterpat.SettingPos(Camera.main.ScreenToViewportPoint(Input.mousePosition),
-													GameMng.Ins.player.transform.position, eBulletType.Player);
-						CircleShot Att01 = new CircleShot(monsterpat, 10);
-						Att01.BulletShot();
+						
 					}
 				}
 				else if (tempTouchs.phase == TouchPhase.Moved)

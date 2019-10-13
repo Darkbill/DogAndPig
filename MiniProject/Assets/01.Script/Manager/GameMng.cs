@@ -26,6 +26,7 @@ public class GameMng : MonoBehaviour
 	public BulletPool bulletPool;
 	public CameraMove cameraMove;
 	public MonsterPool monsterPool;
+	public SkillMng skillMng;
 	//TODO : Event는 옵저버패턴 일괄처리
 	public void DamageToPlayer(eAttackType attackType, float damage)
 	{
@@ -35,5 +36,9 @@ public class GameMng : MonoBehaviour
 	public void GameOver()
 	{
 
+	}
+	public void ActiveSkill(int slotNumber)
+	{
+		skillMng.skillDict[slotNumber].ActiveSkill();
 	}
 }

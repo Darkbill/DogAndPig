@@ -11,7 +11,6 @@ public class SkillMng : MonoBehaviour
 		for(int i = 0; i < skills.Length; ++i)
 		{
 			skills[i].SkillSetting();
-			skills[i].gameObject.SetActive(false);
 			skillDict.Add(skills[i].skillID, skills[i]);
 		}
 	}

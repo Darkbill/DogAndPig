@@ -36,13 +36,14 @@ public class SkillCircleShot : Skill
 
 
 
-	private void OnEnable()
+	public override void ActiveSkill()
 	{
+		gameObject.SetActive(true);
 		BulletSetting();
 	}
-    
 
-    private void BulletSetting()
+
+	private void BulletSetting()
     {
         Vector3 bulletstartpos = new Vector3(Radius, 0, 0);
         Vector3 bulletstartvec = new Vector3(0, Radius, 0);

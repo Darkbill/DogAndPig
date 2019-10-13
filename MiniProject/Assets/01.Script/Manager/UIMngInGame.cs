@@ -37,6 +37,9 @@ public class UIMngInGame : MonoBehaviour
 	public Text healthText;
 	public Coroutine fillCoroutine;
 	public float saveDamage = 0;
+
+	/* Skill UI */
+	public Image[] skillImageArr;
 	private void Start()
 	{
 		UISetting();
@@ -45,6 +48,11 @@ public class UIMngInGame : MonoBehaviour
 	{
 		healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.calStat.healthPoint, 
 			GameMng.Ins.player.GetFullHP());
+		//테스트코드
+		//for(int i = 0; i < GameMng.Ins.player.skillArr.Length;++i)
+		//{
+		//	skillImageArr[i].sprite = SpriteMng.Ins.skillAtlas.GetSprite(string.Format("Skill_{0}", GameMng.Ins.player.skillArr[i]));
+		//}
 	}
 	public void OnStrickDrag()
 	{
@@ -66,6 +74,10 @@ public class UIMngInGame : MonoBehaviour
 		GameMng.Ins.player.isMove = false;
 		joyStick.gameObject.SetActive(false);
 		moveTouchID = -1;
+	}
+	public void ActiveSkill(int slotNumber)
+	{
+		GameMng.Ins.ActiveSkill(slotNumber);
 	}
 	public Vector3 GetJoyStickDirection()
 	{
