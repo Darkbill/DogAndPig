@@ -1179,8 +1179,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775381934}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: -3}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1655606950}
   m_RootOrder: 0
@@ -1223,6 +1223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66eb292109430034682e5a901a61b168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
   Id: 0
   MaxTimer: 0
   slow: 0
@@ -3845,7 +3846,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMove: 0
   playerStateMachine: {fileID: 1684886708}
-  condition: {fileID: 0}
   playerSprite: {fileID: 1899078247}
   skillArr: 010000000200000003000000
 --- !u!114 &1684886707

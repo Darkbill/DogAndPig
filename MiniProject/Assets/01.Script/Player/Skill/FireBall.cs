@@ -6,7 +6,7 @@ using System;
 
 public class FireBall : MonoBehaviour
 {
-    public float damage = 2;
+    public float damage = 0;
     eAttackType attackType = eAttackType.Fire;
 
     public Vector3 BulletMovVec;
@@ -14,6 +14,8 @@ public class FireBall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Wall"))
+            gameObject.SetActive(false);
         collision.GetComponent<MilliMonster>().Damage(attackType, damage);
         gameObject.SetActive(false);
     }
