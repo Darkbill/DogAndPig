@@ -35,7 +35,7 @@ public class SkillCircleShot : Skill
 	public override void ActiveSkill()
 	{
 		base.ActiveSkill();
-		gameObject.transform.position = Vector3.zero;
+		gameObject.transform.position = GameMng.Ins.player.transform.position;
 		gameObject.transform.eulerAngles = Vector3.zero;
 		BulletSetting();
 	}
@@ -45,8 +45,9 @@ public class SkillCircleShot : Skill
 		Vector3 bulletstartvec = new Vector3(0, Radius, 0);
 		for (int i = 0; i < BulletLst.Count; ++i)
 		{
-			Quaternion radian = Quaternion.Euler(0, 0, Angle180 * 2 / BulletLst.Count * i);
-			BulletLst[i].transform.position = radian * bulletstartpos + new Vector3(0, 0, -3);
+            Quaternion radian = Quaternion.Euler(0, 0, Angle180 * 2 / BulletLst.Count * i);
+			BulletLst[i].transform.position = radian * bulletstartpos + new Vector3(0, 0, -3) +
+                gameObject.transform.position;
 			BulletLst[i].BulletMovVec = radian * bulletstartvec;
 			BulletLst[i].gameObject.SetActive(true);
 		}
