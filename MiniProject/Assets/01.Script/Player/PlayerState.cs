@@ -2,7 +2,8 @@
 {
 	public Player playerObject;
 	public bool isDash;
-	public PlayerState(Player o)
+    public UnitState state;
+    public PlayerState(Player o)
 	{
 		playerObject = o;
 	}

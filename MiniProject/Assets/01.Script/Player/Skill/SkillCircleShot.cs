@@ -21,7 +21,8 @@ public class SkillCircleShot : Skill
 		damage = skillData.optionArr[(int)eCircleShotOption.Damage];
 		endTime = skillData.optionArr[(int)eCircleShotOption.EndTimer];
 		coolTime = skillData.optionArr[(int)eCircleShotOption.CoolTime];
-	}
+        BulletSetting();
+    }
 
 	const int Angle180 = 180;
 	const int BulletRotationAngle = 30;
@@ -38,8 +39,10 @@ public class SkillCircleShot : Skill
 
 	public override void ActiveSkill()
 	{
-		gameObject.SetActive(true);
-		BulletSetting();
+        gameObject.transform.position = Vector3.zero;
+        gameObject.SetActive(true);
+        ReSizBullet();
+        endTime = 0.0f;
 	}
 
 
@@ -57,21 +60,59 @@ public class SkillCircleShot : Skill
         }
     }
 
+    private void ReSizBullet()
+    {
+        Vector3 bulletstartpos = new Vector3(Radius, 0, 0);
+        Vector3 bulletstartvec = new Vector3(0, Radius, 0);
+
+        int count = 0;
+        for (int i = 0; i < BulletLst.Count; ++i)
+        {
+            if (count < 5 && i + 1 == BulletLst.Count)
+            {
+                CreateBullet(count, bulletstartpos, bulletstartvec);
+                ++count;
+            }
+            if (count < 5 && !BulletLst[i].gameObject.activeSelf)
+            {
+                BulletLst[i].transform.position =
+                    Quaternion.Euler(0, 0, Angle180 * 2 / Count * count) *
+                    bulletstartpos +
+                    new Vector3(0, 0, -3);
+                BulletLst[i].BulletMovVec =
+                    Quaternion.Euler(0, 0, Angle180 * 2 / Count * count) *
+                    bulletstartvec;
+                BulletLst[i].gameObject.SetActive(true);
+                ++count;
+                BulletLst[i].SetTimer = 0.0f;
+            }
+            
+        }
+    }
+
+    private void CreateBullet(int radnum, Vector3 startpos, Vector3 startvec)
+    {
+        GameObject o = Instantiate(Bullet.gameObject, gameObject.transform);
+        Quaternion radian = Quaternion.Euler(0, 0, Angle180 * 2 / Count * radnum);
+        o.transform.position = radian * startpos + new Vector3(0, 0, -3);
+        o.GetComponent<FireBall>().BulletMovVec = radian * startvec;
+        BulletLst.Add(o.GetComponent<FireBall>());
+    }
+
     private void Update()
     {
         gameObject.transform.position = GameMng.Ins.player.transform.position;
         Moving();
         
         coolTime += Time.deltaTime;
-        endTime += Time.deltaTime;
 
-        if (coolTime > 0.1 && endTime < 3.0f)
+        if (coolTime > 0.1)
             CircleShotting();
     }
 
     private void Moving()
     {
-        for(int i = 0;i<Count;++i)
+        for(int i = 0;i<BulletLst.Count;++i)
         {
             BulletLst[i].gameObject.transform.position += BulletLst[i].BulletMovVec * Time.deltaTime * Speed;
         }
@@ -79,10 +120,13 @@ public class SkillCircleShot : Skill
 
     private void CircleShotting()
     {
-        for(int i = 0;i<Count;++i)
+        for(int i = 0;i<BulletLst.Count;++i)
         {
-            Quaternion radian = Quaternion.Euler(0, 0, BulletRotationAngle);
-            BulletLst[i].BulletMovVec = radian * (BulletLst[i].BulletMovVec);
+            if (BulletLst[i].SetTimer <= 2.0f)
+            {
+                Quaternion radian = Quaternion.Euler(0, 0, BulletRotationAngle);
+                BulletLst[i].BulletMovVec = radian * (BulletLst[i].BulletMovVec);
+            }
         }
         coolTime = 0.0f;
     }

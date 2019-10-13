@@ -56,12 +56,20 @@ public class MilliMonsterStateMove : MilliMonsterState
 		if (degreeToPlayer > 180) degreeToPlayer -= 360;
 		else if (degreeToPlayer < -180) degreeToPlayer += 360;
 
-		if (degreeToPlayer < 0) monsterObject.transform.eulerAngles += new Vector3(0, 0, Time.deltaTime * monsterObject.monsterData.rotationSpeed);
-		else monsterObject.transform.eulerAngles -= new Vector3(0, 0, Time.deltaTime * monsterObject.monsterData.rotationSpeed);
+		if (degreeToPlayer < 0) 
+            monsterObject.transform.eulerAngles += 
+                new Vector3(0, 0, Time.deltaTime * monsterObject.monsterData.rotationSpeed);
+		else 
+            monsterObject.transform.eulerAngles -= 
+                new Vector3(0, 0, Time.deltaTime * monsterObject.monsterData.rotationSpeed);
 
 		if (directionToPlayer.magnitude > monsterObject.monsterData.attackRange)
 		{
-			monsterObject.gameObject.transform.position += monsterObject.gameObject.transform.right * Time.deltaTime * monsterObject.monsterData.moveSpeed;
+            monsterObject.gameObject.transform.position +=
+                monsterObject.gameObject.transform.right *
+                Time.deltaTime *
+                monsterObject.monsterData.moveSpeed * 
+                monsterObject.state.BufDebufUpdate().Speed;
 		}
 	}
 

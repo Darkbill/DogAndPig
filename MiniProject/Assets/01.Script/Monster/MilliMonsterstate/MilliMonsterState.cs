@@ -1,7 +1,7 @@
 ﻿public abstract class MilliMonsterState
 {
 	public MilliMonster monsterObject;
-	public MilliMonsterState(MilliMonster o)
+    public MilliMonsterState(MilliMonster o)
 	{
 		monsterObject = o;
 	}
