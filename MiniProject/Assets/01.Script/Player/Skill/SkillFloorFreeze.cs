@@ -48,7 +48,6 @@ public class SkillFloorFreeze : Skill
 
 	//TODO : SpriteDummy
 	public Freezen dummy;
-    private float testTimer = 0.0f;
 
     public override void ActiveSkill()
     {
