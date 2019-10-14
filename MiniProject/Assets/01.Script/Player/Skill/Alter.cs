@@ -8,12 +8,14 @@ public class Alter : MonoBehaviour
     public float Speed;
 	private const float Range = 2f;
 	public Vector3 TargetPos = new Vector3();
-    public float damage = 0;
-    eAttackType attackType = eAttackType.Wind;
+    
+
+    public List<Collider2D> Attack = new List<Collider2D>();
 
     public bool StartMove;
     public void Setting(Vector3 startPos,Vector3 direction, float speed)
     {
+        Attack.Clear();
         gameObject.SetActive(true);
         StartMove = true;
         gameObject.transform.position = startPos;
@@ -36,6 +38,19 @@ public class Alter : MonoBehaviour
             {
                 gameObject.transform.position += movement * Time.deltaTime * Speed;
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Monster"))
+        {
+            for(int i = 0;i<Attack.Count;++i)
+            {
+                if (Attack[i] == collision)
+                    break;
+            }
+            Attack.Add(collision);
         }
     }
 }
