@@ -24,11 +24,7 @@ public class Freezen : MonoBehaviour
     {
         if(collision.CompareTag("Monster"))
         {
-			if (Rand.Percent(per))
-			{
-				collision.GetComponent<MilliMonster>().Damage(eAttackType.Water, damage,new ConditionData(buffType, Id,MaxTimer,slow));
-			}
-			else collision.GetComponent<MilliMonster>().Damage(eAttackType.Water, damage);
+			collision.GetComponent<MilliMonster>().Damage(eAttackType.Water, damage,new ConditionData(buffType, Id,MaxTimer,slow),per);
 		}
     }
 }

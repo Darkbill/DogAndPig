@@ -56,10 +56,10 @@ public class Player : MonoBehaviour
 		float d = (damage - calStat.armor) * calStat.GetResist(attackType).CalculatorDamage();
 		DamageResult((int)d);
 	}
-	public void Damage(eAttackType attackType, float damage, ConditionData condition)
+	public void Damage(eAttackType attackType, float damage, ConditionData condition,float activePer)
 	{
 		float d = (damage - calStat.armor) * calStat.GetResist(attackType).CalculatorDamage();
-		bool isBuff = calStat.GetResist(attackType).GetBuff();
+		bool isBuff = calStat.GetResist(attackType).GetBuff(activePer);
 		if(isBuff)
 		{
 			AddBuff(condition);

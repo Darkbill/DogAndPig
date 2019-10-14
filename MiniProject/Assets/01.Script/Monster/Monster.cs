@@ -12,7 +12,6 @@ public class Monster : MonoBehaviour
 	public void Start()
 	{
 		MonsterSetting();
-		AddBuff(new ConditionData(eBuffType.MoveSlow, 1, 2, 0.5f));
 	}
 	private void Update()
 	{
@@ -36,13 +35,14 @@ public class Monster : MonoBehaviour
         float d = (damage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
 		DamageResult((int)d);
 	}
-	public void Damage(eAttackType attackType, float damage, ConditionData condition)
+	public void Damage(eAttackType attackType, float damage, ConditionData condition,float activePer)
 	{
 		float d = (damage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
-		bool isBuff = monsterData.GetResist(attackType).GetBuff();
+		bool isBuff = monsterData.GetResist(attackType).GetBuff(activePer);
 		if (isBuff)
 		{
 			AddBuff(condition);
+			Debug.Log("얼었다");
 			CalculatorStat();
 		}
 		DamageResult((int)d);

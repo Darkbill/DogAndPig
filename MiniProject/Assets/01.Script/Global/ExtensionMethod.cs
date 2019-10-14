@@ -52,17 +52,17 @@ public static class ExtensionMethod
 			return ((500 - resist) * 0.001f) * 8f - 1f;
 		}
 	}
-	public static bool GetBuff(this float resist)
+	public static bool GetBuff(this float resist,float activePer)
 	{
 		if (resist >= 500)
 		{
 			float pro = ((1500 - resist) * 0.001f) * 1.6f - 0.6f;
-			return Rand.Percent(pro);
+			return Rand.Percent((activePer*pro)/10);
 		}
 		else
 		{
 			float pro = ((500 - resist) * 0.001f) * 8f - 1f;
-			return Rand.Percent(pro);
+			return Rand.Percent((activePer * pro) / 10);
 		}
 	}
 	public static int FindID(this List<ConditionData> conditionDataList,int id)

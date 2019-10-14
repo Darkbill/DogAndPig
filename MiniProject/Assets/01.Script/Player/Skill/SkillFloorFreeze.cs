@@ -41,7 +41,7 @@ public class SkillFloorFreeze : Skill
 		cooldownTime = skillData.optionArr[(int)eFloorFreezeOption.CoolTime];
 		DebufEffectPer = skillData.optionArr[(int)eFloorFreezeOption.DebugEffectPer];
 		delayTime = cooldownTime;
-		dummy.Setting(skillID, DebufTime, 10, 100);
+		dummy.Setting(skillID, DebufTime, 0.5f, DebufActivePer);
 		gameObject.SetActive(false);
 	}
 	#endregion
