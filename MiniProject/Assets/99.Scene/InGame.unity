@@ -1404,8 +1404,9 @@ GameObject:
   - component: {fileID: 384992498}
   - component: {fileID: 384992499}
   - component: {fileID: 384992500}
+  - component: {fileID: 384992501}
   m_Layer: 0
-  m_Name: ExampleSprite
+  m_Name: ExampleSprite00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1488,8 +1489,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   TargetPos: {x: 0, y: 0, z: 0}
-  damage: 0
+  Attack: []
   StartMove: 0
+--- !u!58 &384992501
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384992497}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.42
 --- !u!1 &401762034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1761,8 +1778,9 @@ GameObject:
   - component: {fileID: 463687274}
   - component: {fileID: 463687276}
   - component: {fileID: 463687275}
+  - component: {fileID: 463687277}
   m_Layer: 0
-  m_Name: ExampleSprite (2)
+  m_Name: ExampleSprite02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1796,7 +1814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   TargetPos: {x: 0, y: 0, z: 0}
-  damage: 0
+  Attack: []
   StartMove: 0
 --- !u!212 &463687276
 SpriteRenderer:
@@ -1847,6 +1865,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &463687277
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463687273}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.42
 --- !u!1 &470099468
 GameObject:
   m_ObjectHideFlags: 0
@@ -2166,8 +2200,9 @@ GameObject:
   - component: {fileID: 556269380}
   - component: {fileID: 556269382}
   - component: {fileID: 556269381}
+  - component: {fileID: 556269383}
   m_Layer: 0
-  m_Name: ExampleSprite (1)
+  m_Name: ExampleSprite01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2201,7 +2236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   TargetPos: {x: 0, y: 0, z: 0}
-  damage: 0
+  Attack: []
   StartMove: 0
 --- !u!212 &556269382
 SpriteRenderer:
@@ -2252,6 +2287,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &556269383
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556269379}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.42
 --- !u!1 &580724727
 GameObject:
   m_ObjectHideFlags: 0
@@ -2263,8 +2314,9 @@ GameObject:
   - component: {fileID: 580724728}
   - component: {fileID: 580724730}
   - component: {fileID: 580724729}
+  - component: {fileID: 580724731}
   m_Layer: 0
-  m_Name: ExampleSprite (9)
+  m_Name: ExampleSprite09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2298,7 +2350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   TargetPos: {x: 0, y: 0, z: 0}
-  damage: 0
+  Attack: []
   StartMove: 0
 --- !u!212 &580724730
 SpriteRenderer:
@@ -2349,6 +2401,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &580724731
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580724727}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.42
 --- !u!1 &597350640
 GameObject:
   m_ObjectHideFlags: 0
@@ -4906,8 +4974,9 @@ GameObject:
   - component: {fileID: 1213163964}
   - component: {fileID: 1213163966}
   - component: {fileID: 1213163965}
+  - component: {fileID: 1213163967}
   m_Layer: 0
-  m_Name: ExampleSprite (7)
+  m_Name: ExampleSprite07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4941,7 +5010,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   TargetPos: {x: 0, y: 0, z: 0}
-  damage: 0
+  Attack: []
   StartMove: 0
 --- !u!212 &1213163966
 SpriteRenderer:
@@ -4992,6 +5061,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1213163967
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213163963}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.42
 --- !u!1 &1224940374
 GameObject:
   m_ObjectHideFlags: 0
@@ -5791,8 +5876,9 @@ GameObject:
   - component: {fileID: 1426915871}
   - component: {fileID: 1426915873}
   - component: {fileID: 1426915872}
+  - component: {fileID: 1426915874}
   m_Layer: 0
-  m_Name: ExampleSprite (5)
+  m_Name: ExampleSprite05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5826,7 +5912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   TargetPos: {x: 0, y: 0, z: 0}
-  damage: 0
+  Attack: []
   StartMove: 0
 --- !u!212 &1426915873
 SpriteRenderer:
@@ -5877,6 +5963,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1426915874
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426915870}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.42
 --- !u!1 &1447494021
 GameObject:
   m_ObjectHideFlags: 0
@@ -5979,8 +6081,9 @@ GameObject:
   - component: {fileID: 1460590714}
   - component: {fileID: 1460590716}
   - component: {fileID: 1460590715}
+  - component: {fileID: 1460590717}
   m_Layer: 0
-  m_Name: ExampleSprite (6)
+  m_Name: ExampleSprite06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6014,7 +6117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   TargetPos: {x: 0, y: 0, z: 0}
-  damage: 0
+  Attack: []
   StartMove: 0
 --- !u!212 &1460590716
 SpriteRenderer:
@@ -6065,6 +6168,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1460590717
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460590713}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.42
 --- !u!1 &1464931428
 GameObject:
   m_ObjectHideFlags: 0
@@ -6169,8 +6288,9 @@ GameObject:
   - component: {fileID: 1468724615}
   - component: {fileID: 1468724617}
   - component: {fileID: 1468724616}
+  - component: {fileID: 1468724618}
   m_Layer: 0
-  m_Name: ExampleSprite (8)
+  m_Name: ExampleSprite08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6204,7 +6324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   TargetPos: {x: 0, y: 0, z: 0}
-  damage: 0
+  Attack: []
   StartMove: 0
 --- !u!212 &1468724617
 SpriteRenderer:
@@ -6255,6 +6375,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1468724618
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468724614}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.42
 --- !u!1 &1547597143
 GameObject:
   m_ObjectHideFlags: 0
@@ -6304,8 +6440,9 @@ GameObject:
   - component: {fileID: 1554004696}
   - component: {fileID: 1554004698}
   - component: {fileID: 1554004697}
+  - component: {fileID: 1554004699}
   m_Layer: 0
-  m_Name: ExampleSprite (3)
+  m_Name: ExampleSprite03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6339,7 +6476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   TargetPos: {x: 0, y: 0, z: 0}
-  damage: 0
+  Attack: []
   StartMove: 0
 --- !u!212 &1554004698
 SpriteRenderer:
@@ -6390,6 +6527,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1554004699
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554004695}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.42
 --- !u!1 &1559641106
 GameObject:
   m_ObjectHideFlags: 0
@@ -6782,8 +6935,9 @@ GameObject:
   - component: {fileID: 1649521208}
   - component: {fileID: 1649521210}
   - component: {fileID: 1649521209}
+  - component: {fileID: 1649521211}
   m_Layer: 0
-  m_Name: ExampleSprite (4)
+  m_Name: ExampleSprite04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6817,7 +6971,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   TargetPos: {x: 0, y: 0, z: 0}
-  damage: 0
+  Attack: []
   StartMove: 0
 --- !u!212 &1649521210
 SpriteRenderer:
@@ -6868,6 +7022,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1649521211
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649521207}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.42
 --- !u!1 &1655606949
 GameObject:
   m_ObjectHideFlags: 0
@@ -8835,7 +9005,7 @@ GameObject:
   - component: {fileID: 2595626625723033362}
   - component: {fileID: 1496711209339724022}
   m_Layer: 0
-  m_Name: FireBall (4)
+  m_Name: FireBall04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15429,7 +15599,7 @@ GameObject:
   - component: {fileID: 1456996967782217344}
   - component: {fileID: 6539188117862353804}
   m_Layer: 0
-  m_Name: FireBall
+  m_Name: FireBall00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15464,7 +15634,7 @@ GameObject:
   - component: {fileID: 6009714501121100627}
   - component: {fileID: 6544598556648977927}
   m_Layer: 0
-  m_Name: FireBall (1)
+  m_Name: FireBall01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15628,7 +15798,7 @@ GameObject:
   - component: {fileID: 2334881401122083066}
   - component: {fileID: 8506857201854723745}
   m_Layer: 0
-  m_Name: FireBall (3)
+  m_Name: FireBall03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15794,7 +15964,7 @@ GameObject:
   - component: {fileID: 6109709844756494529}
   - component: {fileID: 9073718299978381375}
   m_Layer: 0
-  m_Name: FireBall (2)
+  m_Name: FireBall02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Freezen : MonoBehaviour
 {
     public float damage = 0;
-    eAttackType attackType = eAttackType.Fire;
+    eAttackType attackType = eAttackType.Water;
 
     public int Id = 0;
     public float MaxTimer = 10.0f;
