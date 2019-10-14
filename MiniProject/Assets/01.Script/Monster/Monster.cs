@@ -2,25 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GlobalDefine;
-public abstract class Monster : MonoBehaviour
+public class Monster : MonoBehaviour
 {
 	public MonsterData monsterData;
-	public Condition condition;
 
 	/* 테스트코드 */
 	private int MonsterID = 1;
-	private ConditionData[] conditionArr = new ConditionData[(int)eBuffType.Max];
+	private List<ConditionData> conditionList = new List<ConditionData>();
 	public void Start()
 	{
 		MonsterSetting();
+		AddBuff(new ConditionData(eBuffType.MoveSlow, 1, 2, 0.5f));
+	}
+	private void Update()
+	{
+		UpdateBuff(Time.deltaTime);
 	}
 	public void MonsterSetting()
 	{
-		monsterData = JsonMng.Ins.monsterDataTable[MonsterID];
-		for (int i = 0; i < conditionArr.Length; ++i)
-		{
-			conditionArr[i] = new ConditionData();
-		}
+		monsterData = JsonMng.Ins.monsterDataTable[MonsterID].Copy();
 	}
 
 	/* 테스트코드 */
@@ -39,7 +39,7 @@ public abstract class Monster : MonoBehaviour
 		bool isBuff = monsterData.GetResist(attackType).GetBuff();
 		if (isBuff)
 		{
-			conditionArr[(int)condition.buffType].SetBuff(condition.SustainmentTime, condition.changeValue);
+			AddBuff(condition);
 		}
 		DamageResult((int)d);
 	}
@@ -51,6 +51,47 @@ public abstract class Monster : MonoBehaviour
 		if (monsterData.healthPoint <= 0) Dead();
 	}
 
+	private void UpdateBuff(float delayTime)
+	{
+		for (int i = 0; i < conditionList.Count; ++i)
+		{
+			conditionList[i].currentTime -= delayTime;
+			if (conditionList[i].currentTime <= 0)
+			{
+				conditionList.Remove(conditionList[i]);
+				CalculatorStat();
+			}
+		}
+	}
+	public void AddBuff(ConditionData condition)
+	{
+		int index = conditionList.FindID(condition.skillIndex);
+		if (index != -1) conditionList[index].Set(condition);
+		else conditionList.Add(condition);
+		CalculatorStat();
+	}
+	private void CalculatorStat()
+	{
+		MonsterSetting();
+		for (int i = 0; i < conditionList.Count; ++i)
+		{
+			switch (conditionList[i].buffType)
+			{
+				case eBuffType.MoveFast:
+					monsterData.moveSpeed += conditionList[i].changeValue;
+					break;
+				case eBuffType.MoveSlow:
+					monsterData.moveSpeed -= conditionList[i].changeValue;
+					break;
+				case eBuffType.PhysicsStrong:
+					monsterData.damage += conditionList[i].changeValue;
+					break;
+				case eBuffType.PhysicsWeek:
+					monsterData.damage -= conditionList[i].changeValue;
+					break;
+			}
+		}
+	}
 	public virtual void Dead()
 	{
 		Debug.Log("죽었다");

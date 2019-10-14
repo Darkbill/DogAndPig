@@ -1,5 +1,6 @@
 ﻿using GlobalDefine;
 using UnityEngine;
+using System.Collections.Generic;
 public class Player : MonoBehaviour
 {
 	// * public * //
@@ -11,7 +12,7 @@ public class Player : MonoBehaviour
 	// * private * //
 	private int level = 1;
 
-	private ConditionData[] conditionArr = new ConditionData[(int)eBuffType.Max];
+	private List<ConditionData> conditionList = new List<ConditionData>();
 
 	/* 테스트 코드 */
 	public int[] skillArr = new int[3];
@@ -20,11 +21,8 @@ public class Player : MonoBehaviour
 		skillArr[0] = 1;
 		skillArr[1] = 2;
 		skillArr[2] = 3;
-		for(int i = 0; i < conditionArr.Length; ++i)
-		{
-			conditionArr[i] = new ConditionData();
-		}
-		AddBuff(new ConditionData(eBuffType.PhysicsStrong, 1, 100000));
+		AddBuff(new ConditionData(eBuffType.PhysicsStrong, 1,3, 100000));
+		AddBuff(new ConditionData(eBuffType.PhysicsStrong, 1, 3, 100000));
 		PlayerSetting();
 	}
 	private void PlayerSetting()
@@ -41,21 +39,6 @@ public class Player : MonoBehaviour
 			MoveToJoyStick();
 		}
 	}
-	private void UpdateBuff(float delayTime)
-	{
-		for(int i = 0; i < conditionArr.Length; ++i)
-		{
-			if(conditionArr[i].activeFlag)
-			{
-				conditionArr[i].currentTime -= delayTime;
-				if(conditionArr[i].currentTime <= 0)
-				{
-					conditionArr[i].SetOff();
-					CalculatorStat();
-				}
-			}
-		}
-	}
     public void MoveToJoyStick()
 	{
 		Vector3 direction = UIMngInGame.Ins.GetJoyStickDirection();
@@ -64,6 +47,8 @@ public class Player : MonoBehaviour
         float Degree = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3(0, 0, Degree);
 	}
+
+	/* Damage */
 	public void Damage(eAttackType attackType, float damage)
 	{
 		float d = (damage - calStat.armor) * calStat.GetResist(attackType).CalculatorDamage();
@@ -75,8 +60,7 @@ public class Player : MonoBehaviour
 		bool isBuff = calStat.GetResist(attackType).GetBuff();
 		if(isBuff)
 		{
-			conditionArr[(int)condition.buffType].SetBuff(condition.SustainmentTime, condition.changeValue);
-			CalculatorStat();
+			AddBuff(condition);
 		}
 		DamageResult((int)d);
 	}
@@ -87,15 +71,34 @@ public class Player : MonoBehaviour
 		UIMngInGame.Ins.DamageToPlayer(d);
 		if (calStat.healthPoint <= 0) GameMng.Ins.GameOver();
 	}
+	/* Damage */
+
+	/* Buff */
+	private void UpdateBuff(float delayTime)
+	{
+		for (int i = 0; i < conditionList.Count; ++i)
+		{
+			conditionList[i].currentTime -= delayTime;
+			if (conditionList[i].currentTime <= 0)
+			{
+				conditionList.Remove(conditionList[i]);
+				CalculatorStat();
+			}
+		}
+	}
 	public void AddBuff(ConditionData condition)
 	{
-		conditionArr[(int)condition.buffType].SetBuff(condition.SustainmentTime, condition.changeValue);
+		int index = conditionList.FindID(condition.skillIndex);
+		if (index != -1) conditionList[index].Set(condition);
+		else conditionList.Add(condition);
 		CalculatorStat();
 	}
+	/* Buff */
+
 	private void CalculatorStat()
 	{
 		//TODO : 레벨에 의한 스탯계산
-		calStat = JsonMng.Ins.playerDataTable[1].AddStat(skillStat,conditionArr);
+		calStat = JsonMng.Ins.playerDataTable[1].AddStat(skillStat,conditionList);
 	}
 
 	public float GetFullHP()

@@ -51,7 +51,8 @@ public class PlayerStateMove : PlayerState
 			ObjectSetAttack att = new ObjectSetAttack();
 			var monsterPool = GameMng.Ins.monsterPool.monsterList;
 			for (int i = 0; i < monsterPool.Count; ++i)
-			{
+			{ 
+				if (monsterPool[i].gameObject.activeSelf == false) continue;
 				if (att.BaseAttack(playerObject.transform.right,
 					monsterPool[i].gameObject.transform.position - playerObject.transform.position,
 					playerObject.calStat.attackRange,
