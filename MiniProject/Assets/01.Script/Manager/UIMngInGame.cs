@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using GlobalDefine;
+using System;
+
 public class UIMngInGame : MonoBehaviour
 {
 	#region SINGLETON
@@ -25,6 +27,8 @@ public class UIMngInGame : MonoBehaviour
 		}
 	}
 	#endregion
+	/* UI List */
+	public GameObject gameOverUI;
 	/* Player Controller UI */
 	public Image stickImage;
 	public GameObject joyStick;
@@ -202,5 +206,22 @@ public class UIMngInGame : MonoBehaviour
 				skillImageArr[i].fillAmount = GameMng.Ins.skillMng.skillDict[GameMng.Ins.player.skillArr[i]].GetDelay(); ;
 			}
 		}
+	}
+	public void GameOver()
+	{
+		gameOverUI.gameObject.SetActive(true);
+	}
+	public void OnClickReStart()
+	{
+		//테스트코드
+		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
+	}
+	public void OnClickContinue()
+	{
+
+	}
+	public void OnClickShop()
+	{
+
 	}
 }
