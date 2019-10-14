@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using GlobalDefine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class Alter : MonoBehaviour
     public float Speed;
 	private const float Range = 2f;
 	public Vector3 TargetPos = new Vector3();
+    public float damage = 0;
+    eAttackType attackType = eAttackType.Wind;
 
     public bool StartMove;
     public void Setting(Vector3 startPos,Vector3 direction, float speed)

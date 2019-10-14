@@ -21,7 +21,9 @@ public class SkillDash : Skill
 		cooldownTime = skillData.optionArr[(int)eDashOption.coolTime];
 		delayTime = cooldownTime;
 		gameObject.SetActive(false);
-	}
+        for (int i = 0; i < Count; ++i)
+            alterList[i].damage = damage;
+    }
 	#endregion
 
 	public Alter Bullet;

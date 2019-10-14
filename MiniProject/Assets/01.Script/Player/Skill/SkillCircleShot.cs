@@ -24,7 +24,11 @@ public class SkillCircleShot : Skill
         BulletSetting();
 		delayTime = cooldownTime;
 		gameObject.SetActive(false);
-	}
+        for (int i = 0; i < BulletLst.Count; ++i)
+        {
+            BulletLst[i].damage = damage;
+        }
+    }
 	#endregion
 	const int Angle180 = 180;
 	const int BulletRotationAngle = 30;
@@ -83,6 +87,7 @@ public class SkillCircleShot : Skill
             BulletLst[i].BulletMovVec = 
                 BulletLst[i].transform.position - 
                 GameMng.Ins.player.transform.position;
+            BulletLst[i].BulletMovVec.z = 0;
         }
     }
 }
