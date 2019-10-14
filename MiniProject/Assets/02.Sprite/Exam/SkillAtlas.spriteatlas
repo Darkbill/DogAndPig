@@ -29,14 +29,11 @@ SpriteAtlas:
       enableRotation: 1
       enableTightPacking: 1
     variantMultiplier: 1
-    packables:
-    - {fileID: 2800000, guid: 6091644c64146b846b20eff55730c98c, type: 3}
-    totalSpriteSurfaceArea: 16384
+    packables: []
+    totalSpriteSurfaceArea: 0
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: 21300000, guid: 6091644c64146b846b20eff55730c98c, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - Skill_1
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
   m_Tag: SkillAtlas
   m_IsVariant: 0
