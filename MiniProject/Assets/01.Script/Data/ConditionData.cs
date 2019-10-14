@@ -2,28 +2,29 @@
 public class ConditionData
 {
 	public eBuffType buffType;
-	public float SustainmentTime;
+	public int skillIndex;
+	public float sustainmentTime;
 	public float currentTime;
 	public float changeValue;
-	public bool activeFlag;
 	public ConditionData()
 	{
-		SustainmentTime = 0;
+		sustainmentTime = 0;
 		changeValue = 0;
 	}
-	public ConditionData(eBuffType bT, float s,float c)
+	public ConditionData(eBuffType bT, int sI, float s,float c)
 	{
 		buffType = bT;
-		SustainmentTime = s;
+		skillIndex = sI;
+		sustainmentTime = s;
 		currentTime = s;
 		changeValue = c;
-		activeFlag = true;
 	}
-	public void SetBuff(float s,float c)
+	public void Set(ConditionData conditionData)
 	{
-		SustainmentTime = s;
-		currentTime = s;
-		changeValue = c;
-		activeFlag = true;
+		buffType = conditionData.buffType;
+		skillIndex = conditionData.skillIndex;
+		sustainmentTime = conditionData.sustainmentTime;
+		currentTime = sustainmentTime;
+		changeValue = conditionData.changeValue;
 	}
 }
