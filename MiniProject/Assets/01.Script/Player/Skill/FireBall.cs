@@ -15,8 +15,11 @@ public class FireBall : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Wall"))
+        {
             gameObject.SetActive(false);
-        collision.GetComponent<MilliMonster>().Damage(attackType, damage);
+            return;
+        }
+        collision.GetComponent<Monster>().Damage(attackType, damage);
         gameObject.SetActive(false);
     }
 }

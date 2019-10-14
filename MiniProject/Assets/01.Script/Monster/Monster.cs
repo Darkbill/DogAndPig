@@ -30,7 +30,10 @@ public class Monster : MonoBehaviour
 	}
 	public void Damage(eAttackType attackType, float damage)
 	{
-		float d = (damage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
+        //TODO : Test KnockBack
+        gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.KnockBack);
+        //
+        float d = (damage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
 		DamageResult((int)d);
 	}
 	public void Damage(eAttackType attackType, float damage, ConditionData condition)
@@ -97,5 +100,23 @@ public class Monster : MonoBehaviour
 		Debug.Log("죽었다");
 		//TODO : 경험치 추가
 	}
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.CompareTag("Wall"))
+        {
+            gameObject.GetComponent<MilliMonsterStateMachine>().
+                ChangeState(eMilliMonsterState.Idle);
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Wall"))
+        {
+            gameObject.GetComponent<MilliMonsterStateMachine>().
+                ChangeState(eMilliMonsterState.Idle);
+        }
+    }
 
 }

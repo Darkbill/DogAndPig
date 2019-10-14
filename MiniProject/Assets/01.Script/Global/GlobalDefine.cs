@@ -37,6 +37,7 @@ namespace GlobalDefine
 		SkillAttack,
 		Dash,
 		Dead,
+        KnockBack,
 		Max,
 	}
 	public enum eMonsterMoveType

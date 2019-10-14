@@ -19,7 +19,8 @@ public class MilliMonsterStateMachine : MonoBehaviour
 		stateDict.Add(eMilliMonsterState.SkillAttack, new MilliMonsterStateSkillAttack(o));
 		stateDict.Add(eMilliMonsterState.Dash, new MilliMonsterStateDash(o));
 		stateDict.Add(eMilliMonsterState.Dead, new MilliMonsterStateDead(o));
-		cState = stateDict[eMilliMonsterState.Idle];
+		stateDict.Add(eMilliMonsterState.KnockBack, new MilliMonsterStateKnockBack(o));
+        cState = stateDict[eMilliMonsterState.Idle];
 		cState.OnStart();
 	}
 	public void ChangeState(eMilliMonsterState stateType)
@@ -28,7 +29,7 @@ public class MilliMonsterStateMachine : MonoBehaviour
 		cState = stateDict[stateType];
 		cState.OnStart();
 	}
-	private void Update()
+	private void FixedUpdate()
 	{
 		cState.Tick();
 	}
