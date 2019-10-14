@@ -23,9 +23,10 @@ public class Player : MonoBehaviour
 		skillArr[2] = 3;
 		PlayerSetting();
 	}
-	public int GetTime(int skillIndex)
+	/* 테스트 코드 */
+	public float GetTime(int skillIndex)
 	{
-		return (int)conditionList[conditionList.FindID(skillIndex)].currentTime;
+		return conditionList[conditionList.FindID(skillIndex)].currentTime;
 	}
 	private void PlayerSetting()
 	{
@@ -93,6 +94,7 @@ public class Player : MonoBehaviour
 		if (index != -1) conditionList[index].Set(condition);
 		else conditionList.Add(condition);
 		CalculatorStat();
+		UIMngInGame.Ins.ActiveBuff(condition.skillIndex);
 	}
 	/* Buff */
 

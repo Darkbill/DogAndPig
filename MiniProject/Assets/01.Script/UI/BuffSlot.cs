@@ -4,18 +4,24 @@ public class BuffSlot : MonoBehaviour
 {
 	public Image buffImage;
 	public Text timerText;
-	int skillIndex;
+	public int skillIndex;
 	public void SetBuff(int sI)
 	{
 		gameObject.SetActive(true);
-		buffImage.sprite = SpriteMng.Ins.skillAtlas.GetSprite(string.Format("Skill_{0}", skillIndex));
 		skillIndex = sI;
+		buffImage.sprite = SpriteMng.Ins.skillAtlas.GetSprite(string.Format("Skill_{0}", skillIndex));
 	}
 	private void Update()
 	{
-		int t = GameMng.Ins.player.GetTime(skillIndex);
-		if (t == 0) gameObject.SetActive(false);
-		timerText.text = t.ToString();
+		float t = GameMng.Ins.player.GetTime(skillIndex);
+		//TODO : ;;
+		if (t <= 0.1f)
+		{
+			gameObject.SetActive(false);
+			UIMngInGame.Ins.buffUI.Sort();
+			return;
+		}
+		timerText.text = ((int)t).ToString();
 		
 	}
 }

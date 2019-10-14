@@ -35,6 +35,8 @@ public class SkillDash : Skill
 	public override void ActiveSkill()
 	{
 		base.ActiveSkill();
+		//테스트 코드
+		GameMng.Ins.player.AddBuff(new ConditionData(GlobalDefine.eBuffType.MoveFast, 1, 3, 2));
 		GameMng.Ins.player.playerStateMachine.ChangeState(GlobalDefine.ePlayerState.Dash);
 		GameMng.Ins.player.playerStateMachine.cState.isDash = true;
 		for (int i = 0; i < Count; ++i)

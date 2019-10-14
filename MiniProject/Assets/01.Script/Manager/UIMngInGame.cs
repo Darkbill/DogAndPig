@@ -37,6 +37,7 @@ public class UIMngInGame : MonoBehaviour
 	public Image healthGageImage;
 	public Text healthText;
 	public Coroutine fillCoroutine;
+	public BuffUI buffUI;
 	public float saveDamage = 0;
 
 	/* Skill UI */
@@ -45,6 +46,11 @@ public class UIMngInGame : MonoBehaviour
 	private void Start()
 	{
 		UISetting();
+	}
+	public void ActiveBuff(int skillIndex)
+	{
+		
+		buffUI.ActiveBuff(skillIndex);
 	}
 	public void UISetting()
 	{
