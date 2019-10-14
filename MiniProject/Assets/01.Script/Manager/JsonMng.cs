@@ -59,7 +59,11 @@ public class JsonMng : MonoBehaviour
 	}
 	public void LoadData<T>(string fileName,Dictionary<int,T> table) where T : TableBase
 	{
+#if UNITY_EDITOR_WIN
 		string JsonString = File.ReadAllText(string.Format("{0}/Resources/LitJson/{1}.json", Application.dataPath, fileName));
+#else
+		string JsonString = File.ReadAllText(string.Format("{0}/Resources/LitJson/{1}.json", Application.persistentDataPath, fileName));
+#endif
 		JsonData jsonData = JsonMapper.ToObject(JsonString);
 		for (int i = 0; i < jsonData.Count; ++i)
 		{
