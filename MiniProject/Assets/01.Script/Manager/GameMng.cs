@@ -27,7 +27,11 @@ public class GameMng : MonoBehaviour
 	public CameraMove cameraMove;
 	public MonsterPool monsterPool;
 	public SkillMng skillMng;
-	//TODO : Event는 옵저버패턴 일괄처리
+	private void Awake()
+	{
+		//테스트 코드
+		Time.timeScale = 1;
+	}
 	public void DamageToPlayer(eAttackType attackType, float damage)
 	{
 		cameraMove.OnStart();
@@ -35,7 +39,10 @@ public class GameMng : MonoBehaviour
 	}
 	public void GameOver()
 	{
-
+		//TODO : 옵저버
+		cameraMove.GameOver();
+		Time.timeScale = 0;
+		UIMngInGame.Ins.GameOver();
 	}
 	public bool ActiveSkill(int slotNumber)
 	{

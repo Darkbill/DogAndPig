@@ -16,7 +16,8 @@ public class CameraMove : MonoBehaviour
 
 	public void OnStart()
 	{
-		startPos = gameObject.transform.position;
+		//테스트코드
+		startPos = new Vector3(0, 0, -10);
 		//현위치대비 이동할 랜덤위치 -> 도달시 첫위치
 		goalPos = Vector3.zero;
 		//랜덤위치 도달시 돌아가게 할 플래그
@@ -45,7 +46,7 @@ public class CameraMove : MonoBehaviour
 			else yield return null;
 		}
 	}
-	private bool OnEnd()
+	public bool OnEnd()
 	{
 		if (currentTime >= endTime)
 		{
@@ -85,5 +86,9 @@ public class CameraMove : MonoBehaviour
 	{
 		goalPos = startPos;
 		dir = (goalPos - gameObject.transform.position).normalized * 0.2f;
+	}
+	public void GameOver()
+	{
+		currentTime = endTime;
 	}
 }
