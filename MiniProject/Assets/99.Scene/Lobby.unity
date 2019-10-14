@@ -674,6 +674,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemAtlas: {fileID: 4343727234628468602, guid: 857beb7e7c634c649a24543f446e8deb,
     type: 2}
+  skillAtlas: {fileID: 4343727234628468602, guid: 82f13fbe0dd4eec44b5ab01203611a6d,
+    type: 2}
 --- !u!4 &235099799
 Transform:
   m_ObjectHideFlags: 0

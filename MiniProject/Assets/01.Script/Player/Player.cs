@@ -21,14 +21,15 @@ public class Player : MonoBehaviour
 		skillArr[0] = 1;
 		skillArr[1] = 2;
 		skillArr[2] = 3;
-		AddBuff(new ConditionData(eBuffType.PhysicsStrong, 1,3, 100000));
-		AddBuff(new ConditionData(eBuffType.PhysicsStrong, 1, 3, 100000));
 		PlayerSetting();
+	}
+	public int GetTime(int skillIndex)
+	{
+		return (int)conditionList[conditionList.FindID(skillIndex)].currentTime;
 	}
 	private void PlayerSetting()
 	{
 		CalculatorStat();
-
 	}
 	private void Update()
 	{
