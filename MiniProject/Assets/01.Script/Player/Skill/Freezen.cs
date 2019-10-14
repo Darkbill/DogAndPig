@@ -6,25 +6,29 @@ using UnityEngine;
 public class Freezen : MonoBehaviour
 {
     public float damage = 0;
-    eAttackType attackType = eAttackType.Fire;
+    eBuffType buffType = eBuffType.MoveSlow;
 
-    public int Id = 0;
-    public float MaxTimer = 10.0f;
-    public float slow = 0.0f;
+    private int Id = 0;
+    private float MaxTimer = 10.0f;
+    private float slow = 0.0f;
+	private float per;
 
-	public void Setting(int id,float mT,float s)
+	public void Setting(int id,float mT,float s,float p)
 	{
 		Id = id;
 		MaxTimer = mT;
 		slow = s;
+		per = p;
 	}
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Monster"))
         {
-			//TODO 속성
-            //collision.GetComponent<Monster>().Damage(eAttackType.Water, 1);
-            collision.GetComponent<MilliMonster>().Damage(attackType, damage);
-        }
+			if (Rand.Percent(per))
+			{
+				collision.GetComponent<MilliMonster>().Damage(eAttackType.Water, damage,new ConditionData(buffType, Id,MaxTimer,slow));
+			}
+			else collision.GetComponent<MilliMonster>().Damage(eAttackType.Water, damage);
+		}
     }
 }

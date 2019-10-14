@@ -43,6 +43,7 @@ public class Monster : MonoBehaviour
 		if (isBuff)
 		{
 			AddBuff(condition);
+			CalculatorStat();
 		}
 		DamageResult((int)d);
 	}
