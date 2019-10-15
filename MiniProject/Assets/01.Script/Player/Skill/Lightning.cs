@@ -7,6 +7,7 @@ public class Lightning : MonoBehaviour
 {
     public float damage = 0;
     eAttackType Attacktype = eAttackType.Lightning;
+    eBuffType bufftype = eBuffType.Stun;
 
     private int Id = 0;
     private float MaxTimer = 0.0f;
@@ -44,6 +45,9 @@ public class Lightning : MonoBehaviour
         if (collision.CompareTag("Monster") && SetTimer > 0.3f)
         {
             collision.GetComponent<MilliMonster>().Damage(Attacktype, damage);
+            //collision.GetComponent<MilliMonster>().Damage(bufftype, damage);
+            collision.GetComponent<MilliMonster>().Damage(Attacktype, 0,
+                new ConditionData(bufftype, Id, 1.0f, 1000), 1000);
             EndPos = collision.transform.position;
             SplitCheck = true;
             gameObject.SetActive(false);

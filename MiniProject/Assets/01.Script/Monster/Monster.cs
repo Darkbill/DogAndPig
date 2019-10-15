@@ -39,11 +39,21 @@ public class Monster : MonoBehaviour
 		if (isBuff)
 		{
 			AddBuff(condition);
-			Debug.Log("얼었다");
+            if(attackType == eAttackType.Water)
+    			Debug.Log("얼었다");
+            if(attackType == eAttackType.Lightning)
+            {
+                Debug.Log("몬스터스턴");
+                gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.Stun);
+            }
 			CalculatorStat();
 		}
 		DamageResult((int)d);
 	}
+    public void ConditionUpdate()
+    {
+
+    }
     public void KnockBackAttack()
     {
         //TODO : Test KnockBack
