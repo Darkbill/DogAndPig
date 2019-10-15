@@ -59,7 +59,9 @@ public class PlayerStateMove : PlayerState
 					playerObject.calStat.attackAngle))
 				{
 					delayTime = 0;
-					if (Rand.Percent(playerObject.calStat.criticalChance))
+                    if (playerObject.specialAttack[1])
+                        monsterPool[i].KnockBackAttack();
+                    if (Rand.Percent(playerObject.calStat.criticalChance))
 					{
 						monsterPool[i].Damage(eAttackType.Physics, playerObject.calStat.damage * playerObject.calStat.criticalDamage);
 					}
@@ -67,7 +69,7 @@ public class PlayerStateMove : PlayerState
 					{
 						monsterPool[i].Damage(eAttackType.Physics, playerObject.calStat.damage);
 					}
-				}
+                }
 			}
 		}
 	}

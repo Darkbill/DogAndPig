@@ -29,9 +29,6 @@ public class Monster : MonoBehaviour
 	}
 	public void Damage(eAttackType attackType, float damage)
 	{
-        //TODO : Test KnockBack
-        gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.KnockBack);
-        //
         float d = (damage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
 		DamageResult((int)d);
 	}
@@ -47,6 +44,11 @@ public class Monster : MonoBehaviour
 		}
 		DamageResult((int)d);
 	}
+    public void KnockBackAttack()
+    {
+        //TODO : Test KnockBack
+        gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.KnockBack);
+    }
 	public void DamageResult(int d)
 	{
 		if (d < 1) d = 1;

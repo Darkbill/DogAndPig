@@ -17,6 +17,9 @@ public class PlayerData : TableBase
 	public float waterResist;
 	public float windResist;
 	public float lightningResist;
+
+    public float knockback = 0;
+    public float sturn = 0;
 	public PlayerData()
 	{
 
@@ -41,4 +44,9 @@ public class PlayerData : TableBase
 				return 0;
 		}
 	}
+    public void ResetStateBase()
+    {
+        knockback = 0;
+        sturn = 0;
+    }
 }

@@ -100,6 +100,7 @@ namespace GlobalDefine
 		MoveSlow,
 		PhysicsStrong,
 		PhysicsWeek,
+        NockBack,
 		Stun,
 		Max,
 	}

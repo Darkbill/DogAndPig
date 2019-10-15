@@ -37,6 +37,12 @@ public static class ExtensionMethod
 				case eBuffType.PhysicsWeek:
 					stat.damage -= conditionList[i].changeValue;
 					break;
+                case eBuffType.NockBack:
+                    stat.knockback += conditionList[i].changeValue;
+                    break;
+                case eBuffType.Stun:
+                    stat.sturn += conditionList[i].changeValue;
+                    break;
 			}
 		}
 		return stat;

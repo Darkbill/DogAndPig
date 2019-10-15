@@ -1,6 +1,8 @@
 ﻿using GlobalDefine;
 using UnityEngine;
 using System.Collections.Generic;
+using System;
+
 public class Player : MonoBehaviour
 {
 	// * public * //
@@ -16,12 +18,15 @@ public class Player : MonoBehaviour
 
     /* 테스트 코드 */
     public int[] skillArr;
+
+    public bool[] specialAttack = new bool[2];
+
     private void Awake()
 	{
 		skillArr[0] = 1;
 		skillArr[1] = 2;
 		skillArr[2] = 3;
-//        skillArr[3] = 4;
+        skillArr[3] = 4;
 		PlayerSetting();
 	}
 	/* 테스트 코드 */
@@ -88,12 +93,42 @@ public class Player : MonoBehaviour
 				CalculatorStat();
 			}
 		}
+        StateBuffUpdate();
 	}
-	public void AddBuff(ConditionData condition)
+
+    private void StateBuffUpdate()
+    {
+        if(calStat.sturn > Rand.Random() % 1000)
+        {
+            //몬스터 기절시켜용
+            specialAttack[0] = true;
+            return;
+            //기절 선 후 넉백 판정
+        }
+        specialAttack[0] = false;
+        if (calStat.knockback > Rand.Random() % 1000)
+        {
+            specialAttack[1] = true;
+            return;
+        }
+        specialAttack[1] = false;
+    }
+
+    public void AddBuff(ConditionData condition)
 	{
-		int index = conditionList.FindID(condition.skillIndex);
-		if (index != -1) conditionList[index].Set(condition);
-		else conditionList.Add(condition);
+        for (int i = 0; i < conditionList.Count; ++i)
+        {
+            if (conditionList[i].skillIndex == condition.skillIndex &&
+                conditionList[i].buffType == condition.buffType)
+            {
+                conditionList[i].currentTime = condition.currentTime;
+                return;
+            }
+        }
+        conditionList.Add(condition);
+        //int index = conditionList.FindID(condition.skillIndex);
+		//if (index != -1) conditionList[index].Set(condition);
+		//else conditionList.Add(condition);
 		CalculatorStat();
 		UIMngInGame.Ins.ActiveBuff(condition.skillIndex);
 	}
