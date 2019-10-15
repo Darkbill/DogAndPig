@@ -106,4 +106,14 @@ public static class ExtensionMethod
 		m.skillIndex = original.skillIndex;
 		return m;
 	}
+	public static List<T> ToList<T>(this Dictionary<int, T> dict)
+	{
+		List<T> list = new List<T>();
+		var i = dict.GetEnumerator();
+		while (i.MoveNext())
+		{
+			list.Add(i.Current.Value);
+		}
+		return list;
+	}
 }
