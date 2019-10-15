@@ -14,13 +14,14 @@ public class Player : MonoBehaviour
 
 	private List<ConditionData> conditionList = new List<ConditionData>();
 
-	/* 테스트 코드 */
-	public int[] skillArr = new int[3];
+    /* 테스트 코드 */
+    public int[] skillArr;
     private void Awake()
 	{
 		skillArr[0] = 1;
 		skillArr[1] = 2;
 		skillArr[2] = 3;
+//        skillArr[3] = 4;
 		PlayerSetting();
 	}
 	/* 테스트 코드 */
