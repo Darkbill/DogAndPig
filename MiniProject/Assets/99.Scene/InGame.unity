@@ -5854,10 +5854,13 @@ MonoBehaviour:
   stickRadius: 80
   moveTouchID: 0
   damageTextPool: {fileID: 1420551329}
+  healthPack: {fileID: 1547597143}
   healthGageImage: {fileID: 474134876}
   healthText: {fileID: 1080409366}
   buffUI: {fileID: 99556337}
   saveDamage: 0
+  coinImage: {fileID: 521794436}
+  coinText: {fileID: 341309561}
   skillImageArr:
   - {fileID: 885315114}
   - {fileID: 260206935}

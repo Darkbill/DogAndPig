@@ -99,6 +99,7 @@ public class Monster : MonoBehaviour
 	public virtual void Dead()
 	{
 		Debug.Log("죽었다");
+        UIMngInGame.Ins.OnCoinSelectInGame(2);
 		//TODO : 경험치 추가
 	}
 
