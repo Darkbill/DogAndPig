@@ -19,7 +19,7 @@ public class InfinityScroll : MonoBehaviour
 	int showCount;
 
 	private Rect itemSize;
-	Rect viewSize;
+	Rect scrolViewSize;
 	Vector3 changePos;
 	int headContent;
 	int tailContent;
@@ -35,15 +35,13 @@ public class InfinityScroll : MonoBehaviour
 	{
 		itemList = JsonMng.Ins.playerSkillDataTable.ToList();
 		itemSize = itemExam.GetComponent<RectTransform>().rect;
-		viewSize = scrollView.GetComponent<RectTransform>().rect;
+		scrolViewSize = scrollView.GetComponent<RectTransform>().rect;
 		//스크롤뷰의 크기를 기준으로 화면에 보여줄 content의 갯수를 지정
-		horCount = (int)Mathf.Floor(viewSize.width / (itemSize.width + leftPadding));
-		verCount = (int)Mathf.Floor(viewSize.height / (itemSize.height + upPadding));
+		horCount = (int)Mathf.Floor(scrolViewSize.width / (itemSize.width + leftPadding));
+		verCount = (int)Mathf.Floor(scrolViewSize.height / (itemSize.height + upPadding));
 		showCount = horCount * verCount;
 		//스크롤뷰 전체 크기 설정
-		float y = (itemSize.height + upPadding);
-		int co = Mathf.CeilToInt(((float)itemList.Count / (float)horCount));
-		gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(0,y * co);
+		gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (itemSize.height + upPadding) * Mathf.CeilToInt(((float)itemList.Count / (float)horCount)));
 		float c = 0;
 		if (horCount != 0)
 		{
@@ -130,7 +128,7 @@ public class InfinityScroll : MonoBehaviour
 			{
 				GameObject o = Instantiate(itemExam.gameObject, gameObject.transform);
 				contentList.Add(o.GetComponent<ContentItem>());
-				Vector2 pos = new Vector2(-(viewSize.width / 2) + itemSize.width * j + (leftPadding * (j + 1)) + (itemSize.width / 2),-itemSize.height * i - (upPadding * (i + 1)) - (itemSize.height / 2));
+				Vector2 pos = new Vector2(-(scrolViewSize.width / 2) + itemSize.width * j + (leftPadding * (j + 1)) + (itemSize.width / 2),-itemSize.height * i - (upPadding * (i + 1)) - (itemSize.height / 2));
 				o.GetComponent<RectTransform>().localPosition = pos;
 				itemCount--;
 				if (itemCount == 0) return;
@@ -151,8 +149,7 @@ public class InfinityScroll : MonoBehaviour
 			GameObject o = Instantiate(itemExam.gameObject, gameObject.transform);
 			contentList.Add(o.GetComponent<ContentItem>());
 			Rect r = o.GetComponent<RectTransform>().rect;
-			//Vector2 pos = new Vector2(leftPadding, r.height * -i - (upPadding * i) + (r.height / 2));
-			Vector2 pos = new Vector2(-(viewSize.width / 2) + r.width * i + (leftPadding * (i + 1)) + (r.width / 2),
+			Vector2 pos = new Vector2(-(scrolViewSize.width / 2) + r.width * i + (leftPadding * (i + 1)) + (r.width / 2),
 									  r.height / 2);
 			o.GetComponent<RectTransform>().localPosition = pos;
 			o.gameObject.SetActive(false);
