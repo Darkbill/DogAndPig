@@ -80,9 +80,7 @@ public class InfinityScroll : MonoBehaviour
 					contentList[headContent].gameObject.SetActive(false);
 				}
 				tailContent = headContent;
-
 				headContent++;
-				
 			}
 		}
 		//else if (topValue < Mathf.FloorToInt((float)firstItem / (float)horCount))
