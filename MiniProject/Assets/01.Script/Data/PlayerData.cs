@@ -19,8 +19,12 @@ public class PlayerData : TableBase
 	public float lightningResist;
 
     public float knockback = 0;
-    public float sturn = 0;
-	public PlayerData()
+    public float stun = 0;
+
+    public bool knockbackAtt = false;
+    public bool stunAtt = false;
+
+    public PlayerData()
 	{
 
 	}
@@ -44,9 +48,9 @@ public class PlayerData : TableBase
 				return 0;
 		}
 	}
-    public void ResetStateBase()
+    public void ResetAttackType()
     {
-        knockback = 0;
-        sturn = 0;
+        knockbackAtt = false;
+        stunAtt = false;
     }
 }

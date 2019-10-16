@@ -4,7 +4,8 @@ public static class ExtensionMethod
 {
 	public static PlayerData AddStat(this PlayerData levelStat,PlayerData skillStat,List<ConditionData> conditionList)
 	{
-		PlayerData stat = new PlayerData();
+        #region PlayerDataSetting
+        PlayerData stat = new PlayerData();
 		stat.level = levelStat.level;
 		stat.size = levelStat.size;
 		stat.healthPoint = levelStat.healthPoint + skillStat.healthPoint;
@@ -21,7 +22,11 @@ public static class ExtensionMethod
 		stat.windResist = levelStat.windResist + skillStat.windResist;
 		stat.waterResist = levelStat.waterResist + skillStat.waterResist;
 		stat.lightningResist = levelStat.lightningResist + skillStat.lightningResist;
-		for(int i = 0; i < conditionList.Count; ++i)
+        #endregion
+
+        float stunMaxtime = 0;
+
+        for (int i = 0; i < conditionList.Count; ++i)
 		{
 			switch(conditionList[i].buffType)
 			{
@@ -38,10 +43,14 @@ public static class ExtensionMethod
 					stat.damage -= conditionList[i].changeValue;
 					break;
                 case eBuffType.NockBack:
-                    stat.knockback += conditionList[i].changeValue;
+                    stat.knockback = conditionList[i].changeValue;
                     break;
                 case eBuffType.Stun:
-                    stat.sturn += conditionList[i].changeValue;
+                    if (stunMaxtime < conditionList[i].currentTime)
+                    {
+                        stunMaxtime = conditionList[i].currentTime;
+                        stat.stun = conditionList[i].changeValue;
+                    }
                     break;
 			}
 		}
@@ -71,11 +80,23 @@ public static class ExtensionMethod
 			return Rand.Percent((activePer * pro) / 10);
 		}
 	}
-	public static int FindID(this List<ConditionData> conditionDataList,int id)
+	public static int FindID(this List<ConditionData> conditionDataList,int id, eBuffType type = eBuffType.None)
 	{
+        if(type == eBuffType.None)
+        {
+            for (int i = 0; i < conditionDataList.Count; ++i)
+            {
+                if (conditionDataList[i].skillIndex == id)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
 		for (int i = 0; i < conditionDataList.Count; ++i)
 		{
-			if (conditionDataList[i].skillIndex == id)
+			if (conditionDataList[i].skillIndex == id &&
+                conditionDataList[i].buffType == type)
 			{
 				return i;
 			}

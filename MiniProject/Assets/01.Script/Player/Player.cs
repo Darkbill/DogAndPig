@@ -96,40 +96,29 @@ public class Player : MonoBehaviour
         StateBuffUpdate();
 	}
 
+    //TODO : 현재 적용된 상태이상 버프에 대한 확률 값.
     private void StateBuffUpdate()
     {
-        if(calStat.sturn > Rand.Random() % 1000)
+        if(calStat.stun > Rand.Random() % 1000)
         {
-            //몬스터 기절시켜용
-            specialAttack[0] = true;
+            calStat.stunAtt = true;
             return;
-            //기절 선 후 넉백 판정
         }
-        specialAttack[0] = false;
+        //기절이 걸린 상태이면 다음 상태인 넉백으로 넘어 갈 필요가 없다.
         if (calStat.knockback > Rand.Random() % 1000)
         {
-            specialAttack[1] = true;
+            calStat.knockbackAtt = true;
             return;
         }
-        specialAttack[1] = false;
+        calStat.ResetAttackType();
     }
 
     public void AddBuff(ConditionData condition)
 	{
-        for (int i = 0; i < conditionList.Count; ++i)
-        {
-            if (conditionList[i].skillIndex == condition.skillIndex &&
-                conditionList[i].buffType == condition.buffType)
-            {
-                conditionList[i].currentTime = condition.currentTime;
-                return;
-            }
-        }
-        conditionList.Add(condition);
-        //int index = conditionList.FindID(condition.skillIndex);
-		//if (index != -1) conditionList[index].Set(condition);
-		//else conditionList.Add(condition);
-		CalculatorStat();
+        int index = conditionList.FindID(condition.skillIndex, condition.buffType);
+        if (index != -1) { conditionList[index].Set(condition); return; }
+        else conditionList.Add(condition);
+        CalculatorStat();
 		UIMngInGame.Ins.ActiveBuff(condition.skillIndex);
 	}
 	/* Buff */

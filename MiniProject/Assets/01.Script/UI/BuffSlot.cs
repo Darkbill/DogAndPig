@@ -14,7 +14,7 @@ public class BuffSlot : MonoBehaviour
 	private void Update()
 	{
 		float t = GameMng.Ins.player.GetTime(skillIndex);
-		//TODO : ;;
+		//TODO : ㅋㅋ;;
 		if (t <= 0.1f)
 		{
 			gameObject.SetActive(false);

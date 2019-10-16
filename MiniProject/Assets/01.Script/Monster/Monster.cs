@@ -27,7 +27,9 @@ public class Monster : MonoBehaviour
 	{
 		GameMng.Ins.DamageToPlayer(eAttackType.Physics, monsterData.damage);
 	}
-	public void Damage(eAttackType attackType, float damage)
+
+    #region MonsterDamageSet
+    public void Damage(eAttackType attackType, float damage)
 	{
         float d = (damage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
 		DamageResult((int)d);
@@ -39,26 +41,32 @@ public class Monster : MonoBehaviour
 		if (isBuff)
 		{
 			AddBuff(condition);
-            if(attackType == eAttackType.Water)
-    			Debug.Log("얼었다");
-            if(attackType == eAttackType.Lightning)
+            if (condition.buffType == eBuffType.MoveSlow)
             {
-                Debug.Log("몬스터스턴");
-                gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.Stun);
+                //condition.changeValue;//감소값
+            }
+            if(condition.buffType == eBuffType.Stun)
+            {
+                //condition.currentTime;//기절시간.
+                if(condition.changeValue < Rand.Random() % 1000)//확률값
+                    gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.Stun);
             }
 			CalculatorStat();
 		}
 		DamageResult((int)d);
 	}
+    #endregion
     public void ConditionUpdate()
     {
 
     }
-    public void KnockBackAttack()
+    public void KnockBackAttack(float Range)
     {
         //TODO : Test KnockBack
+        //Range는 뒤로 밀려나는 거리
         gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.KnockBack);
     }
+
 	public void DamageResult(int d)
 	{
 		if (d < 1) d = 1;
@@ -81,9 +89,13 @@ public class Monster : MonoBehaviour
 	}
 	public void AddBuff(ConditionData condition)
 	{
-		int index = conditionList.FindID(condition.skillIndex);
-		if (index != -1) conditionList[index].Set(condition);
-		else conditionList.Add(condition);
+		int index = conditionList.FindID(condition.skillIndex, condition.buffType);
+        if (index != -1)
+        {
+            conditionList[index].Set(condition);
+            return;
+        }
+        else conditionList.Add(condition);
 		CalculatorStat();
 	}
 	private void CalculatorStat()
