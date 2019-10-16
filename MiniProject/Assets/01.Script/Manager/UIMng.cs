@@ -26,18 +26,15 @@ public class UIMng : MonoBehaviour
 		}
 	}
 	#endregion
-	public Inventory ItemInventory;
-	public GameObject MainLobby;
-	public GameObject UserInfomation;
-	public GameObject Store;
-	public GameObject Ranking;
-	public GameObject Option;
-
-	List<GameObject> ItemList = new List<GameObject>();
-
-	void Update()
+	public ShopUI shopUI;
+	public Text goldText;
+	public Text diamondText;
+	private void Start()
 	{
-
+		//TODO : 로딩 후 실행
+		shopUI.Setting();
+		goldText.text = JsonMng.Ins.playerInfoDataTable.gold.ToString();
+		diamondText.text = JsonMng.Ins.playerInfoDataTable.diamond.ToString();
 	}
 
 	public void ClickGameStart()

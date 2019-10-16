@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using LitJson;
+using System;
+
 public class JsonMng : MonoBehaviour
 {
 	#region SINGLETON
@@ -29,6 +31,8 @@ public class JsonMng : MonoBehaviour
 	public Dictionary<int, PlayerSkillData> playerSkillDataTable { get; private set; } = new Dictionary<int, PlayerSkillData>();
 	public Dictionary<int, MonsterData> monsterDataTable { get; private set; } = new Dictionary<int, MonsterData>();
 	public Dictionary<int, MonsterSkillData> monsterSkillDataTable { get; private set; } = new Dictionary<int, MonsterSkillData>();
+	public PlayerInfoData playerInfoDataTable { get; private set; } = new PlayerInfoData();
+	//테스트 코드
 	private void Awake()
 	{
 		DontDestroyOnLoad(this);
@@ -36,10 +40,23 @@ public class JsonMng : MonoBehaviour
 	}
 	private void LoadAll()
 	{
+		LoadPlayerInfoData();
 		LoadPlayerData();
 		LoadPlayerSkillData();
 		LoadMonsterData();
 		LoadMonsterSkillData();
+	}
+
+	private void LoadPlayerInfoData()
+	{
+#if UNITY_EDITOR_WIN
+		string JsonString = File.ReadAllText(string.Format("{0}/Resources/LitJson/{1}.json", Application.dataPath, "PlayerInfoDataTable"));
+#else
+		string JsonString = File.ReadAllText(string.Format("{0}/Resources/LitJson/{1}.json", Application.persistentDataPath, fileName));
+#endif
+		JsonData jsonData = JsonMapper.ToObject(JsonString);
+		playerInfoDataTable = JsonMapper.ToObject<PlayerInfoData>(jsonData.ToJson());
+	
 	}
 	public void LoadPlayerData()
 	{
@@ -71,4 +88,5 @@ public class JsonMng : MonoBehaviour
 			table.Add((int)save.GetTableID(), save);
 		}
 	}
+
 }

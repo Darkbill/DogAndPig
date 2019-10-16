@@ -26,12 +26,7 @@ public class InfinityScroll : MonoBehaviour
 	int firstItem;
 	int lastItem;
 
-
-	private void Start()
-	{
-		Setting();
-	}
-	private void Setting()
+	public void Setting()
 	{
 		itemList = JsonMng.Ins.playerSkillDataTable.ToList();
 		itemSize = itemExam.GetComponent<RectTransform>().rect;
@@ -52,6 +47,8 @@ public class InfinityScroll : MonoBehaviour
 
 		if (showCount >= itemList.Count) SetBasicScroll(itemList.Count);
 		else SetInfinityScroll(itemList.Count);
+
+
 		itemExam.gameObject.SetActive(false);
 		SetItemList();
 	}
@@ -61,17 +58,17 @@ public class InfinityScroll : MonoBehaviour
 		//TODO : horCount를 한번에 갱신!
 		float cPos = gameObject.transform.localPosition.y;
 		float topValue = Mathf.Ceil(cPos / (itemSize.size.y + upPadding));
-		if (topValue > horCount/firstItem)
+		if (topValue > firstItem/horCount)
 		{
-			firstItem++;
-			lastItem++;
 			Vector3 nextStartPos = contentList[tailContent].gameObject.transform.localPosition;
 			nextStartPos.x = contentList[headContent].transform.localPosition.x;
 			for (int i = 0; i < horCount; ++i)
 			{
+				firstItem++;
+				lastItem++;
 				contentList[headContent].gameObject.transform.localPosition =
 					nextStartPos + new Vector3(changePos.x * i,-changePos.y,0);
-				if (lastItem < itemList.Count-1)
+				if (lastItem < itemList.Count)
 				{
 					contentList[headContent].Setting(itemList[lastItem].skillID);
 				}
@@ -83,41 +80,43 @@ public class InfinityScroll : MonoBehaviour
 				headContent++;
 			}
 		}
-		//else if (topValue < Mathf.FloorToInt((float)firstItem / (float)horCount))
-		//{
-		//	Debug.Log(Mathf.FloorToInt((float)horCount / (float)firstItem));
-		//	if (firstItem == 0) return;
-		//	firstItem--;
-		//	lastItem--;
-		//	Vector3 nextStartPos = contentList[headContent].gameObject.transform.localPosition;
-		//	nextStartPos.x = contentList[headContent].transform.localPosition.x;
-		//	//int saveHead = headContent;
-		//	int saveTail = tailContent;
-		//	tailContent -= horCount - 1;
-		//	//lastItem--;
-		//	for (int i = 0; i < horCount; ++i)
-		//	{
-		//		headContent--;
-		//		contentList[tailContent].gameObject.transform.localPosition =
-		//			nextStartPos + new Vector3(changePos.x * i, +changePos.y, 0);
-
-		//		if (lastItem >= 0)
-		//		{
-		//			contentList[tailContent].Setting(itemList[firstItem].skillID);
-		//		}
-		//		else
-		//		{
-		//			contentList[tailContent].gameObject.SetActive(false);
-		//		}
-
-		//		tailContent++;
-				
-		//	}
-		//	tailContent = saveTail - horCount;
-		//	if (tailContent == -1) tailContent = contentList.Count-1;
-		//}
+		else if (topValue < firstItem / horCount)
+		{
+			Vector3 nextStartPos = contentList[headContent].gameObject.transform.localPosition;
+			int saveTail = tailContent - horCount;
+			if (saveTail < 0) saveTail = contentList.Count - 1;
+			int saveHead = tailContent - horCount + 1;
+			int savefirst = firstItem - horCount * 2;
+			firstItem = savefirst;
+			tailContent = saveHead;
+			for (int i = 0; i < horCount; ++i)
+			{
+				contentList[tailContent].gameObject.transform.localPosition =
+					nextStartPos + new Vector3(changePos.x * i, +changePos.y, 0);
+				if (firstItem < 0)
+				{
+					contentList[tailContent].gameObject.SetActive(false);
+				}
+				else
+				{
+					contentList[tailContent].Setting(itemList[firstItem].skillID);
+				}
+				tailContent++;
+				firstItem++;
+				lastItem--;
+			}
+			headContent = saveHead;
+			tailContent = saveTail;
+			firstItem = savefirst + horCount;
+		}
 	}
 
+
+	private void SetInfinityScroll(int itemCount)
+	{
+		CreateUpSpace();
+		SetBasicScroll(itemCount);
+	}
 	private void SetBasicScroll(int itemCount)
 	{
 		for (int i = 0; i < verCount; ++i)
@@ -126,19 +125,17 @@ public class InfinityScroll : MonoBehaviour
 			{
 				GameObject o = Instantiate(itemExam.gameObject, gameObject.transform);
 				contentList.Add(o.GetComponent<ContentItem>());
-				Vector2 pos = new Vector2(-(scrolViewSize.width / 2) + itemSize.width * j + (leftPadding * (j + 1)) + (itemSize.width / 2),-itemSize.height * i - (upPadding * (i + 1)) - (itemSize.height / 2));
+				Vector2 pos = new Vector2(-(scrolViewSize.width / 2) + itemSize.width * j + (leftPadding * (j + 1)) + (itemSize.width / 2), -itemSize.height * i - (upPadding * (i + 1)) - (itemSize.height / 2));
 				o.GetComponent<RectTransform>().localPosition = pos;
 				itemCount--;
-				if (itemCount == 0) return;
+				if (itemCount == 0)
+				{
+					return;
+				}
 			}
 		}
-	}
-	private void SetInfinityScroll(int itemCount)
-	{
-		CreateUpSpace();
-		SetBasicScroll(itemCount);
-	}
 
+	}
 	private void CreateUpSpace()
 	{
 		//크기에 맞는 content를 미리 생성
@@ -152,6 +149,7 @@ public class InfinityScroll : MonoBehaviour
 			o.GetComponent<RectTransform>().localPosition = pos;
 			o.gameObject.SetActive(false);
 		}
+
 	}
 
 	private void SetItemList()
@@ -162,21 +160,17 @@ public class InfinityScroll : MonoBehaviour
 			{
 				contentList[i].Setting(itemList[i].skillID);
 			}
-			for (int i = itemList.Count; i < showCount; ++i)
-			{
-				contentList[i].gameObject.SetActive(false);
-			}
 		}
 		else
 		{
 			for (int i = horCount; i < contentList.Count; ++i)
 			{
-				contentList[i].Setting(itemList[i].skillID);
+				contentList[i].Setting(itemList[i - horCount].skillID);
 			}
 		}
 		headContent = 0;
 		tailContent = contentList.Count - 1;
-		firstItem = 1;
+		firstItem = 0;
 		lastItem = contentList.Count - 1 - horCount;
 	}
 }

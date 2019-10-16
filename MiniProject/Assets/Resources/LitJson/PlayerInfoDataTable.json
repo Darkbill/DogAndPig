@@ -1,0 +1,17 @@
+{
+  "gold": 10000,
+  "diamond" : 100,
+  "setSkillList": [
+    1,
+    2,
+    3,
+    0
+  ],
+  "haveSkillList": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ]
+}
