@@ -40,7 +40,6 @@ public class MilliMonsterStateKnockBack : MilliMonsterState
     {
         monsterObject.transform.position += range * Time.deltaTime * setspeed;
         --setspeed;
-        
     }
 
     public override void OnEnd()

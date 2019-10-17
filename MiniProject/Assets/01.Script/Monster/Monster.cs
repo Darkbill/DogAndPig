@@ -20,6 +20,7 @@ public class Monster : MonoBehaviour
 	private int MonsterID = 1;
 	private List<ConditionData> conditionList = new List<ConditionData>();
     private List<ConditionData> conditionMainList = new List<ConditionData>();
+    //private ConditionData conditionMain = new ConditionData();
 	public void Start()
 	{
 		MonsterSetting();
@@ -61,6 +62,18 @@ public class Monster : MonoBehaviour
     //add에서 상태이상 비교하여 삽입.
     public void OutStateAdd(ConditionData condition, float activePer)
     {  
+        //TODO : condition이 하나일때
+        //if(conditionMain.buffType == condition.buffType)
+        //{
+        //    if(conditionMain.currentTime < condition.currentTime)
+        //    {
+        //        conditionMain = condition;
+        //        AddConditionlist(conditionMain);
+        //    }
+        //    return;
+        //}
+        //conditionMain = condition;
+        //AddConditionlist(conditionMain);
         for(int i = 0;i<conditionMainList.Count;++i)
         {
             //요기에 수준값을 비교해서 기존 삭제하면됨. 수준값은 일단 시간으로 설정.(남은 시간 기준)
@@ -101,6 +114,14 @@ public class Monster : MonoBehaviour
     //아 힐링하고싶다
     public void OutStateUpdate(float delayTime)
     {
+        //conditionMain.currentTime -= delayTime;
+        //if (conditionMain.currentTime <= 0 && conditionMain != null)
+        //{
+        //    Debug.Log("상태이상이 풀렸습니다.");
+        //    conditionMain = null;
+        //    gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.Move);
+        //}
+
         bool RemoveCheck = false;
         for (int i = 0;i<conditionMainList.Count;++i)
         {
