@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using GlobalDefine;
 public class UIMng : MonoBehaviour
 {
 	#region SINGLETON
@@ -26,57 +25,86 @@ public class UIMng : MonoBehaviour
 		}
 	}
 	#endregion
+
 	public ShopUI shopUI;
 	public Text goldText;
 	public Text diamondText;
+	public SkillInfoUI skillInfoUI;
+	public SkillBuyUI skillBuyUI;
+	public GameObject[] boxArr;
 
-	public GameObject buyCheckBox;
-	public GameObject setCheckBox;
-	public GameObject removeCheckBox;
-
+	public int selectSkillID;
 	private void Start()
 	{
 		//TODO : 로딩 후 실행
+		Setting();
+	}
+	private void Setting()
+	{
 		shopUI.Setting();
+		SetBaseUI();
+	}
+	private void SetBaseUI()
+	{
 		goldText.text = JsonMng.Ins.playerInfoDataTable.gold.ToString();
 		diamondText.text = JsonMng.Ins.playerInfoDataTable.diamond.ToString();
 	}
-
+	private void Renew()
+	{
+		shopUI.ReNew();
+		SetBaseUI();
+	}
 	public void ClickGameStart()
 	{
 		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
 	}
-	public void ClickGameOption()
+	public void OnClickSkill(int sI,eBoxType type)
 	{
-
-	}
-	public void ClickGameStore()
-	{
-
-	}
-	public void ClickGameRanking()
-	{
-
-	}
-	public void ClickUserInfomation()
-	{
-
-	}
-	public void ClickBack()
-	{
-
-	}
-	public void OnClickSkill(bool buyFlag)
-	{
-		if(buyFlag)
+		selectSkillID = sI;
+		for (int i = 0; i < boxArr.Length; ++i)
 		{
-			setCheckBox.gameObject.SetActive(true);
-			setCheckBox.gameObject.transform.position = Input.mousePosition;
+			if (i == (int)type)
+			{
+				boxArr[i].gameObject.SetActive(true);
+				boxArr[i].gameObject.transform.position = Input.mousePosition;
+			}
+			else boxArr[i].gameObject.SetActive(false);
 		}
-		else
+	}
+	public void OffSelectBox()
+	{
+		for (int i = 0; i < boxArr.Length; ++i)
 		{
-			buyCheckBox.gameObject.SetActive(true);
-			buyCheckBox.gameObject.transform.position = Input.mousePosition;
+			boxArr[i].gameObject.SetActive(false);
 		}
+	}
+	public void OnClickSkillInfo()
+	{
+		OffSelectBox();
+		skillInfoUI.ShowSkillInfo(selectSkillID);
+	}
+	public void OnClickSkillBuyUI()
+	{
+		OffSelectBox();
+		skillBuyUI.ShowSkillInfo(selectSkillID);
+	}
+	public void OnClickBuySkill()
+	{
+		//TODO : 스킬 가격
+		JsonMng.Ins.playerInfoDataTable.haveSkillList.Add(selectSkillID);
+		JsonMng.Ins.playerInfoDataTable.gold -= 10;
+		shopUI.infinityScoll.BuySkill(selectSkillID);
+		selectSkillID = 0;
+	}
+	public void OnClickRemoveSkill()
+	{
+		JsonMng.Ins.playerInfoDataTable.RemoveSkill(selectSkillID);
+		shopUI.ReNew();
+		OffSelectBox();
+	}
+	public void OnClickSetSkill()
+	{
+		OffSelectBox();
+		shopUI.ChangeSelectFlag(true);
 	}
 }

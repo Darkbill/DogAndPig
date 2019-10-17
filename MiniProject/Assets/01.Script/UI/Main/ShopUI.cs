@@ -14,13 +14,20 @@ public class ShopUI : MonoBehaviour
 			skillSlotArr[i].Setting(p.setSkillList[i]);
 		}
 	}
-
-	public void BuySkill()
+	public void ReNew()
 	{
-
+		PlayerInfoData p = JsonMng.Ins.playerInfoDataTable;
+		for (int i = 0; i < skillSlotArr.Length; ++i)
+		{
+			skillSlotArr[i].Setting(p.setSkillList[i]);
+		}
+		ChangeSelectFlag(false);
 	}
-	public void SetSkill()
+	public void ChangeSelectFlag(bool flag)
 	{
-
+		for (int i = 0; i < skillSlotArr.Length; ++i)
+		{
+			skillSlotArr[i].changeFlag = flag;
+		}
 	}
 }

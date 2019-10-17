@@ -95,7 +95,7 @@
     ]
   },
   {
-    "skillID": 41,
+    "skillID": 11,
     "skillType": 1,
     "target": 2,
     "optionArr": [
@@ -108,7 +108,7 @@
     ]
   },
   {
-    "skillID": 51,
+    "skillID": 12,
     "skillType": 0,
     "target": 1,
     "optionArr": [
@@ -116,7 +116,7 @@
     ]
   },
   {
-    "skillID": 61,
+    "skillID": 13,
     "skillType": 0,
     "target": 0,
     "optionArr": [
@@ -124,7 +124,31 @@
     ]
   },
   {
-    "skillID": 71,
+    "skillID": 14,
+    "skillType": 0,
+    "target": 0,
+    "optionArr": [
+      0
+    ]
+  },
+  {
+    "skillID": 15,
+    "skillType": 0,
+    "target": 0,
+    "optionArr": [
+      0
+    ]
+  },
+  {
+    "skillID": 16,
+    "skillType": 0,
+    "target": 0,
+    "optionArr": [
+      0
+    ]
+  },
+  {
+    "skillID": 17,
     "skillType": 0,
     "target": 0,
     "optionArr": [
@@ -133,6 +157,42 @@
   },
   {
     "skillID": 18,
+    "skillType": 3,
+    "target": 1,
+    "optionArr": [
+      1,
+      2,
+      4,
+      6,
+      1,
+      500,
+      100,
+      3
+    ]
+  },
+  {
+    "skillID": 19,
+    "skillType": 1,
+    "target": 2,
+    "optionArr": [
+      3,
+      4,
+      3,
+      100,
+      1,
+      5
+    ]
+  },
+  {
+    "skillID": 20,
+    "skillType": 0,
+    "target": 1,
+    "optionArr": [
+      0
+    ]
+  },
+  {
+    "skillID": 21,
     "skillType": 0,
     "target": 0,
     "optionArr": [
@@ -140,7 +200,7 @@
     ]
   },
   {
-    "skillID": 91,
+    "skillID": 22,
     "skillType": 0,
     "target": 0,
     "optionArr": [
@@ -148,7 +208,84 @@
     ]
   },
   {
-    "skillID": 101,
+    "skillID": 23,
+    "skillType": 0,
+    "target": 0,
+    "optionArr": [
+      0
+    ]
+  },
+  {
+    "skillID": 24,
+    "skillType": 0,
+    "target": 0,
+    "optionArr": [
+      0
+    ]
+  },
+  {
+    "skillID": 25,
+    "skillType": 0,
+    "target": 0,
+    "optionArr": [
+      0
+    ]
+  },
+  {
+    "skillID": 26,
+    "skillType": 1,
+    "target": 2,
+    "optionArr": [
+      3,
+      4,
+      3,
+      100,
+      1,
+      5
+    ]
+  },
+  {
+    "skillID": 27,
+    "skillType": 0,
+    "target": 1,
+    "optionArr": [
+      0
+    ]
+  },
+  {
+    "skillID": 28,
+    "skillType": 0,
+    "target": 0,
+    "optionArr": [
+      0
+    ]
+  },
+  {
+    "skillID": 29,
+    "skillType": 0,
+    "target": 0,
+    "optionArr": [
+      0
+    ]
+  },
+  {
+    "skillID": 30,
+    "skillType": 0,
+    "target": 0,
+    "optionArr": [
+      0
+    ]
+  },
+  {
+    "skillID": 31,
+    "skillType": 0,
+    "target": 0,
+    "optionArr": [
+      0
+    ]
+  },
+  {
+    "skillID": 32,
     "skillType": 0,
     "target": 0,
     "optionArr": [

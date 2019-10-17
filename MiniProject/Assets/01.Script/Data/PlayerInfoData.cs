@@ -10,4 +10,24 @@ public class PlayerInfoData
 	public PlayerInfoData()
 	{
 	}
+	public void RemoveSkill(int skillID)
+	{
+		for (int i = 0; i < setSkillList.Count; ++i)
+		{
+			if (setSkillList[i] == skillID)
+			{
+				setSkillList[i] = 0;
+				break;
+			}
+		}
+	}
+	public void SetSkill(int newSkillID,int setSkillListIndex)
+	{
+		if (newSkillID == setSkillList[setSkillListIndex]) return;
+		else if (setSkillList.Contains(newSkillID))
+		{
+			RemoveSkill(newSkillID);
+		}
+		setSkillList[setSkillListIndex] = newSkillID;
+	}
 }

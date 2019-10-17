@@ -51,6 +51,7 @@ public class UIMngInGame : MonoBehaviour
 
     /* Skill UI */
     public Image[] skillImageArr;
+	public Image[] skillImageBGArr;
     bool isCool = false;
     private void Start()
     {
@@ -58,18 +59,18 @@ public class UIMngInGame : MonoBehaviour
     }
     public void ActiveBuff(int skillIndex)
     {
-
         buffUI.ActiveBuff(skillIndex);
     }
     public void UISetting()
     {
         healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.calStat.healthPoint,
             GameMng.Ins.player.GetFullHP());
-        //테스트코드
-        //for(int i = 0; i < GameMng.Ins.player.skillArr.Length;++i)
-        //{
-        //	skillImageArr[i].sprite = SpriteMng.Ins.skillAtlas.GetSprite(string.Format("Skill_{0}", GameMng.Ins.player.skillArr[i]));
-        //}
+		for(int i = 0; i < JsonMng.Ins.playerInfoDataTable.setSkillList.Count; ++i)
+		{
+			Sprite sprite = SpriteMng.Ins.skillAtlas.GetSprite(string.Format("Skill_{0}", JsonMng.Ins.playerInfoDataTable.setSkillList[i]));
+			skillImageArr[i].sprite = sprite;
+			skillImageBGArr[i].sprite = sprite;
+		}
     }
     public void OnStrickDrag()
     {
@@ -97,7 +98,9 @@ public class UIMngInGame : MonoBehaviour
     {
         if (skillImageArr[slotNumber].fillAmount == 1)
         {
-            GameMng.Ins.ActiveSkill(GameMng.Ins.player.skillArr[slotNumber]);
+			int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[slotNumber];
+			if (skillID == 0) return;
+			GameMng.Ins.ActiveSkill(skillID);
             CoolDownAllSkill();
         }
     }
@@ -117,7 +120,7 @@ public class UIMngInGame : MonoBehaviour
                 isCool = false;
                 break;
             }
-            for (int i = 0; i < GameMng.Ins.player.skillArr.Length; ++i)
+            for (int i = 0; i < JsonMng.Ins.playerInfoDataTable.setSkillList.Count; ++i)
             {
                 skillImageArr[i].fillAmount = (timer / Define.coolDownTimeAll);
             }
@@ -207,9 +210,11 @@ public class UIMngInGame : MonoBehaviour
         //TODO : 이건아닌데..
         if (isCool == false)
         {
-            for (int i = 0; i < GameMng.Ins.player.skillArr.Length; ++i)
+            for (int i = 0; i < JsonMng.Ins.playerInfoDataTable.setSkillList.Count; ++i)
             {
-                skillImageArr[i].fillAmount = GameMng.Ins.skillMng.skillDict[GameMng.Ins.player.skillArr[i]].GetDelay(); ;
+				int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[i];
+				if (skillID == 0) continue;
+				skillImageArr[i].fillAmount = GameMng.Ins.skillMng.skillDict[skillID].GetDelay(); ;
             }
         }
     }

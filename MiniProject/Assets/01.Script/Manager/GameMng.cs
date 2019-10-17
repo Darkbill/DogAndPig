@@ -44,9 +44,9 @@ public class GameMng : MonoBehaviour
 		Time.timeScale = 0;
 		UIMngInGame.Ins.GameOver();
 	}
-	public bool ActiveSkill(int slotNumber)
+	public bool ActiveSkill(int skillID)
 	{
-		skillMng.skillDict[slotNumber].ActiveSkill();
+		skillMng.skillDict[skillID].ActiveSkill();
 		return true;
 	}
 }

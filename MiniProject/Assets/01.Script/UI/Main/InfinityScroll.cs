@@ -52,10 +52,18 @@ public class InfinityScroll : MonoBehaviour
 		itemExam.gameObject.SetActive(false);
 		SetItemList();
 	}
-
+	public void BuySkill(int sI)
+	{
+		for(int i = 0; i < contentList.Count; ++i)
+		{
+			if(contentList[i].skillID == sI)
+			{
+				contentList[i].Setting(sI);
+			}
+		}
+	}
 	private void Update()
 	{
-		//TODO : horCount를 한번에 갱신!
 		float cPos = gameObject.transform.localPosition.y;
 		float topValue = Mathf.Ceil(cPos / (itemSize.size.y + upPadding));
 		if (topValue > firstItem/horCount)
@@ -78,6 +86,7 @@ public class InfinityScroll : MonoBehaviour
 				}
 				tailContent = headContent;
 				headContent++;
+				if (headContent == contentList.Count) headContent = 0;
 			}
 		}
 		else if (topValue < firstItem / horCount)

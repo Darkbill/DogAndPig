@@ -110,6 +110,12 @@ namespace GlobalDefine
 		Other,
 		Self,
 	}
+	public enum eBoxType
+	{
+		Buy = 0,
+		Set,
+		Remove,
+	}
 	static public class Rand // 만분율 기준 0~9999까지 저장
 	{
 		private static int Index = 0;

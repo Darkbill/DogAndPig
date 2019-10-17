@@ -2620,7 +2620,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0a6a0877600344c2d9990ab00d83a218, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 283378bbf45dff240a24c8c4549507de, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3640,7 +3640,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0a6a0877600344c2d9990ab00d83a218, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 283378bbf45dff240a24c8c4549507de, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5615,6 +5615,11 @@ MonoBehaviour:
   - {fileID: 260206935}
   - {fileID: 401762035}
   - {fileID: 586401267}
+  skillImageBGArr:
+  - {fileID: 947024643}
+  - {fileID: 1577163399}
+  - {fileID: 2084329749}
+  - {fileID: 903382181}
 --- !u!1 &1355690107
 GameObject:
   m_ObjectHideFlags: 0
@@ -7492,7 +7497,6 @@ MonoBehaviour:
   isMove: 0
   playerStateMachine: {fileID: 1684886708}
   playerSprite: {fileID: 1899078247}
-  skillArr: 01000000020000000300000004000000
   specialAttack: 0000
 --- !u!114 &1684886707
 MonoBehaviour:
