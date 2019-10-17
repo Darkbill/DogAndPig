@@ -61,40 +61,39 @@ public class Monster : MonoBehaviour
     //TODO : State 따로관리 stun과 nockback
     //add에서 상태이상 비교하여 삽입.
     public void OutStateAdd(ConditionData condition, float activePer)
-    {  
-        //TODO : condition이 하나일때
-        //if(conditionMain.buffType == condition.buffType)
-        //{
-        //    if(conditionMain.currentTime < condition.currentTime)
-        //    {
-        //        conditionMain = condition;
-        //        AddConditionlist(conditionMain);
-        //    }
-        //    return;
-        //}
-        //conditionMain = condition;
-        //AddConditionlist(conditionMain);
-        for(int i = 0;i<conditionMainList.Count;++i)
-        {
-            //요기에 수준값을 비교해서 기존 삭제하면됨. 수준값은 일단 시간으로 설정.(남은 시간 기준)
-            if (conditionMainList[i].buffType == condition.buffType &&
-                conditionMainList[i].currentTime < condition.currentTime)
-            {
-                conditionMainList.Remove(conditionMainList[i]);
-                conditionMainList.Add(condition);
-                AddConditionlist(condition);
-                return;
-            }
-            else if (conditionMainList[i].buffType == condition.buffType &&
-                conditionMainList[i].currentTime >= condition.currentTime)
-                return;
-        }
-        AddConditionlist(condition);
+    {
+		//TODO : condition이 하나일때
+		//if(conditionMain.buffType == condition.buffType)
+		//{
+		//    if(conditionMain.currentTime < condition.currentTime)
+		//    {
+		//        conditionMain = condition;
+		//        AddConditionlist(conditionMain);
+		//    }
+		//    return;
+		//}
+		//conditionMain = condition;
+		//AddConditionlist(conditionMain);
+		bool isBuff = monsterData.GetResist(eAttackType.Physics).GetBuff(activePer);
+		if (isBuff)
+		{
+			for (int i = 0; i < conditionMainList.Count; ++i)
+			{
+				//요기에 수준값을 비교해서 기존 삭제하면됨. 수준값은 일단 시간으로 설정.(남은 시간 기준)
+				if (conditionMainList[i].buffType == condition.buffType &&
+					conditionMainList[i].currentTime < condition.currentTime)
+				{
+					conditionMainList[i] = condition;
+					return;
+				}
+			}
+			conditionList.Add(condition);
+			AddConditionlist(condition);
+		}
     }
 
     private void AddConditionlist(ConditionData condition)
     {
-        conditionMainList.Add(condition);
         switch (condition.buffType)
         {
             case eBuffType.Stun:
