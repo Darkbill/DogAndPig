@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class InputSystem : MonoBehaviour
 {
 	private Touch tempTouchs;
-    private BulletPattern monsterpat = new BulletPlayer();
 
     private void Update()
 	{
