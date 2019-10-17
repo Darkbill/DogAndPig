@@ -5518,7 +5518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 8197487863926010870}
   levelText: {fileID: 125265139}
-  expImage: {fileID: 0}
+  expImage: {fileID: 2076389431}
   stickImage: {fileID: 7573771754993154139}
   joyStick: {fileID: 277079577}
   damageTextPool: {fileID: 1420551329}
