@@ -5,7 +5,7 @@
     "size": 0.3,
     "moveType": 1,
     "moveSpeed": 0.7,
-    "rotationSpeed": 15,
+    "rotationSpeed": 80,
     "attackType": 1,
     "attackSpeed": 1,
     "attackRange": 0.6,

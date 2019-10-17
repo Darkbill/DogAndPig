@@ -52,8 +52,6 @@ public class SkillFloorFreeze : Skill
     public override void ActiveSkill()
     {
 		base.ActiveSkill();
-		//테스트코드
-		GameMng.Ins.player.AddBuff(new ConditionData(eBuffType.MoveSlow, 3, 3, 3));
 		dummy.gameObject.SetActive(true);
         dummy.transform.eulerAngles = GameMng.Ins.player.transform.eulerAngles + new Vector3(0, 0, 90);
         dummy.transform.position = GameMng.Ins.player.transform.position +
