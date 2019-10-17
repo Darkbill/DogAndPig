@@ -26,10 +26,12 @@ public class GameMng : MonoBehaviour
 	public CameraMove cameraMove;
 	public MonsterPool monsterPool;
 	public SkillMng skillMng;
+	public int stageLevel;
 	private void Awake()
 	{
 		//테스트 코드
 		Time.timeScale = 1;
+		stageLevel = 1;
 	}
 	public void DamageToPlayer(eAttackType attackType, float damage)
 	{
@@ -47,5 +49,13 @@ public class GameMng : MonoBehaviour
 	{
 		skillMng.skillDict[skillID].ActiveSkill();
 		return true;
+	}
+	public void AddGold()
+	{
+		UIMngInGame.Ins.OnCoinSelectInGame(2);
+	}
+	public void AddEXP()
+	{
+		//TODO exp fill
 	}
 }

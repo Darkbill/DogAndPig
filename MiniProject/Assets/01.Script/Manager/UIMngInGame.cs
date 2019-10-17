@@ -30,12 +30,15 @@ public class UIMngInGame : MonoBehaviour
     #endregion
     /* UI List */
     public GameObject gameOverUI;
+	public Text levelText;
+	public Image expImage;
     /* Player Controller UI */
     public Image stickImage;
     public GameObject joyStick;
-    public Vector3 stickPos;
-    public float stickRadius = 60;
-    public int moveTouchID;
+	[HideInInspector]
+	private Vector3 stickPos;
+    private float stickRadius = 60;
+    private int moveTouchID;
     public DamageTextPool damageTextPool;
 
     /* Player Infomation UI*/
@@ -65,14 +68,17 @@ public class UIMngInGame : MonoBehaviour
     {
         healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.calStat.healthPoint,
             GameMng.Ins.player.GetFullHP());
-		for(int i = 0; i < JsonMng.Ins.playerInfoDataTable.setSkillList.Count; ++i)
+		levelText.text = JsonMng.Ins.playerInfoDataTable.level.ToString();
+		coinText.text = JsonMng.Ins.playerInfoDataTable.gold.ToString();
+		for (int i = 0; i < JsonMng.Ins.playerInfoDataTable.setSkillList.Count; ++i)
 		{
 			Sprite sprite = SpriteMng.Ins.skillAtlas.GetSprite(string.Format("Skill_{0}", JsonMng.Ins.playerInfoDataTable.setSkillList[i]));
 			skillImageArr[i].sprite = sprite;
 			skillImageBGArr[i].sprite = sprite;
 		}
     }
-    public void OnStrickDrag()
+	#region MoveUI
+	public void OnStrickDrag()
     {
         GameMng.Ins.player.isMove = true;
         joyStick.gameObject.SetActive(true);
@@ -93,8 +99,52 @@ public class UIMngInGame : MonoBehaviour
         joyStick.gameObject.SetActive(false);
         moveTouchID = -1;
     }
-    /* Skill */
-    public void ActiveSkill(int slotNumber)
+	public Vector3 GetJoyStickDirection()
+	{
+		/* 컴퓨터 빌드 */
+#if UNITY_EDITOR_WIN
+		stickImage.gameObject.transform.position = Input.mousePosition;
+		Vector3 dir = stickImage.gameObject.transform.position - stickPos;
+		float m = dir.magnitude;
+		dir.Normalize();
+		if (m > stickRadius)
+		{
+			stickImage.gameObject.transform.position = stickPos + dir * stickRadius;
+		}
+		else
+		{
+			stickImage.gameObject.transform.position = Input.mousePosition;
+		}
+		return dir;
+#else
+		/* 모바일 빌드 */
+		for (int i = 0; i < Input.touchCount; i++)
+		{
+			Touch tempTouchs = Input.GetTouch(i);
+
+			if (tempTouchs.fingerId == moveTouchID)
+			{
+				stickImage.gameObject.transform.position = tempTouchs.position;
+				Vector3 dir = stickImage.gameObject.transform.position - stickPos;
+				float m = dir.magnitude;
+				dir.Normalize();
+				if (m > stickRadius)
+				{
+					stickImage.gameObject.transform.position = stickPos + dir * stickRadius;
+				}
+				else
+				{
+					stickImage.gameObject.transform.position = tempTouchs.position;
+				}
+				return dir;
+			}
+		}
+		return Vector3.zero;
+#endif
+	}
+	#endregion
+	/* Skill */
+	public void ActiveSkill(int slotNumber)
     {
         if (skillImageArr[slotNumber].fillAmount == 1)
         {
@@ -126,49 +176,6 @@ public class UIMngInGame : MonoBehaviour
             }
             yield return null;
         }
-    }
-    public Vector3 GetJoyStickDirection()
-    {
-        /* 컴퓨터 빌드 */
-#if UNITY_EDITOR_WIN
-        stickImage.gameObject.transform.position = Input.mousePosition;
-        Vector3 dir = stickImage.gameObject.transform.position - stickPos;
-        float m = dir.magnitude;
-        dir.Normalize();
-        if (m > stickRadius)
-        {
-            stickImage.gameObject.transform.position = stickPos + dir * stickRadius;
-        }
-        else
-        {
-            stickImage.gameObject.transform.position = Input.mousePosition;
-        }
-        return dir;
-#else
-		/* 모바일 빌드 */
-		for (int i = 0; i < Input.touchCount; i++)
-		{
-			Touch tempTouchs = Input.GetTouch(i);
-
-			if (tempTouchs.fingerId == moveTouchID)
-			{
-				stickImage.gameObject.transform.position = tempTouchs.position;
-				Vector3 dir = stickImage.gameObject.transform.position - stickPos;
-				float m = dir.magnitude;
-				dir.Normalize();
-				if (m > stickRadius)
-				{
-					stickImage.gameObject.transform.position = stickPos + dir * stickRadius;
-				}
-				else
-				{
-					stickImage.gameObject.transform.position = tempTouchs.position;
-				}
-				return dir;
-			}
-		}
-		return Vector3.zero;
-#endif
     }
     //TODO 제네릭^^ 몬스터스테이트까지 전부
     public void DamageToPlayer(int damage)
@@ -207,14 +214,13 @@ public class UIMngInGame : MonoBehaviour
     }
     private void Update()
     {
-        //TODO : 이건아닌데..
         if (isCool == false)
         {
             for (int i = 0; i < JsonMng.Ins.playerInfoDataTable.setSkillList.Count; ++i)
             {
 				int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[i];
 				if (skillID == 0) continue;
-				skillImageArr[i].fillAmount = GameMng.Ins.skillMng.skillDict[skillID].GetDelay(); ;
+				skillImageArr[i].fillAmount = GameMng.Ins.skillMng.skillDict[skillID].GetDelay();
             }
         }
     }
@@ -247,6 +253,6 @@ public class UIMngInGame : MonoBehaviour
 
     private void OnPlayerDamageHPShake()
     {
-        healthPack.transform.DOShakePosition(0.3f, 20.0f, 10, 90, false, true);
+		healthGageImage.transform.DOShakePosition(0.3f, 20.0f, 10, 90, false, true);
     }
 }

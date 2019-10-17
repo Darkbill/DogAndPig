@@ -170,7 +170,10 @@ public class Player : MonoBehaviour
 		//TODO : 레벨에 의한 스탯계산
 		calStat = JsonMng.Ins.playerDataTable[level].AddStat(skillStat,conditionList);
 	}
+	public void AddEXP()
+	{
 
+	}
 	public float GetFullHP()
 	{
 		return skillStat.healthPoint + JsonMng.Ins.playerDataTable[level].healthPoint;

@@ -164,8 +164,9 @@ public class Monster : MonoBehaviour
 	public virtual void Dead()
 	{
 		Debug.Log("죽었다");
-        UIMngInGame.Ins.OnCoinSelectInGame(2);
-		//TODO : 경험치 추가
+		//TODO : 테이블에서 골드 exp값으로 추가
+		GameMng.Ins.AddGold();
+		GameMng.Ins.AddEXP();
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)

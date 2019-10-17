@@ -32,6 +32,7 @@ public class JsonMng : MonoBehaviour
 	public Dictionary<int, MonsterData> monsterDataTable { get; private set; } = new Dictionary<int, MonsterData>();
 	public Dictionary<int, MonsterSkillData> monsterSkillDataTable { get; private set; } = new Dictionary<int, MonsterSkillData>();
 	public Dictionary<int, StageDataTable> stageDataTable { get; private set; } = new Dictionary<int, StageDataTable>();
+	public Dictionary<int, EXPData> expDataTable { get; private set; } = new Dictionary<int, EXPData>();
 	public PlayerInfoData playerInfoDataTable { get; private set; } = new PlayerInfoData();
 	//테스트 코드
 	private void Awake()
@@ -46,6 +47,7 @@ public class JsonMng : MonoBehaviour
 		LoadPlayerSkillData();
 		LoadMonsterData();
 		LoadMonsterSkillData();
+		LoadExpDataTable();
 		LoadStageData();
 	}
 
@@ -60,27 +62,31 @@ public class JsonMng : MonoBehaviour
 		playerInfoDataTable = JsonMapper.ToObject<PlayerInfoData>(jsonData.ToJson());
 	
 	}
-	public void LoadStageData()
+	private void LoadExpDataTable()
+	{
+		LoadData("EXPDataTable", expDataTable);
+	}
+	private void LoadStageData()
 	{
 		LoadData("StageDataTable", stageDataTable);
 	}
-	public void LoadPlayerData()
+	private void LoadPlayerData()
 	{
 		LoadData("PlayerDataTable", playerDataTable);
 	}
-	public void LoadMonsterData()
+	private void LoadMonsterData()
 	{
 		LoadData("MonsterDataTable", monsterDataTable);
 	}
-	public void LoadPlayerSkillData()
+	private void LoadPlayerSkillData()
 	{
 		LoadData("PlayerSkillDataTable", playerSkillDataTable);
 	}
-	public void LoadMonsterSkillData()
+	private void LoadMonsterSkillData()
 	{
 		LoadData("MonsterSkillDataTable", monsterSkillDataTable);
 	}
-	public void LoadData<T>(string fileName,Dictionary<int,T> table) where T : TableBase
+	private void LoadData<T>(string fileName,Dictionary<int,T> table) where T : TableBase
 	{
 #if UNITY_EDITOR_WIN
 		string JsonString = File.ReadAllText(string.Format("{0}/Resources/LitJson/{1}.json", Application.dataPath, fileName));

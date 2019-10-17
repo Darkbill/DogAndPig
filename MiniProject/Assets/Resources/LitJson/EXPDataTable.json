@@ -1,0 +1,102 @@
+[
+  {
+    "level": 1,
+    "requiredExp": 0,
+    "cumulativeExp": 0
+  },
+  {
+    "level": 2,
+    "requiredExp": 5,
+    "cumulativeExp": 5
+  },
+  {
+    "level": 3,
+    "requiredExp": 8,
+    "cumulativeExp": 13
+  },
+  {
+    "level": 4,
+    "requiredExp": 12,
+    "cumulativeExp": 25
+  },
+  {
+    "level": 5,
+    "requiredExp": 17,
+    "cumulativeExp": 42
+  },
+  {
+    "level": 6,
+    "requiredExp": 23,
+    "cumulativeExp": 65
+  },
+  {
+    "level": 7,
+    "requiredExp": 26,
+    "cumulativeExp": 91
+  },
+  {
+    "level": 8,
+    "requiredExp": 23,
+    "cumulativeExp": 114
+  },
+  {
+    "level": 9,
+    "requiredExp": 28,
+    "cumulativeExp": 142
+  },
+  {
+    "level": 10,
+    "requiredExp": 38,
+    "cumulativeExp": 180
+  },
+  {
+    "level": 11,
+    "requiredExp": 46,
+    "cumulativeExp": 226
+  },
+  {
+    "level": 12,
+    "requiredExp": 53,
+    "cumulativeExp": 279
+  },
+  {
+    "level": 13,
+    "requiredExp": 55,
+    "cumulativeExp": 334
+  },
+  {
+    "level": 14,
+    "requiredExp": 61,
+    "cumulativeExp": 395
+  },
+  {
+    "level": 15,
+    "requiredExp": 68,
+    "cumulativeExp": 463
+  },
+  {
+    "level": 16,
+    "requiredExp": 71,
+    "cumulativeExp": 534
+  },
+  {
+    "level": 17,
+    "requiredExp": 82,
+    "cumulativeExp": 616
+  },
+  {
+    "level": 18,
+    "requiredExp": 83,
+    "cumulativeExp": 699
+  },
+  {
+    "level": 19,
+    "requiredExp": 88,
+    "cumulativeExp": 787
+  },
+  {
+    "level": 20,
+    "requiredExp": 91,
+    "cumulativeExp": 878
+  }
+]

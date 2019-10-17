@@ -7,7 +7,7 @@
     "attackRange": 3,
     "attackAngle": 20,
     "attackSpeed": 1,
-    "moveSpeed": 0.2,
+    "moveSpeed": 1,
     "critacalCance": 20,
     "criticalDamage": 2,
     "armor": 2,

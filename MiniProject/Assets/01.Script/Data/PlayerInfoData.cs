@@ -2,6 +2,8 @@
 
 public class PlayerInfoData
 {
+	public int level;
+	public int exp;
 	public int gold;
 	public int diamond;
 	public List<int> setSkillList = new List<int>();
