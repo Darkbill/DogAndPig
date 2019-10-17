@@ -29,6 +29,11 @@ public class UIMng : MonoBehaviour
 	public ShopUI shopUI;
 	public Text goldText;
 	public Text diamondText;
+
+	public GameObject buyCheckBox;
+	public GameObject setCheckBox;
+	public GameObject removeCheckBox;
+
 	private void Start()
 	{
 		//TODO : 로딩 후 실행
@@ -57,9 +62,21 @@ public class UIMng : MonoBehaviour
 	{
 
 	}
-
 	public void ClickBack()
 	{
 
+	}
+	public void OnClickSkill(bool buyFlag)
+	{
+		if(buyFlag)
+		{
+			setCheckBox.gameObject.SetActive(true);
+			setCheckBox.gameObject.transform.position = Input.mousePosition;
+		}
+		else
+		{
+			buyCheckBox.gameObject.SetActive(true);
+			buyCheckBox.gameObject.transform.position = Input.mousePosition;
+		}
 	}
 }
