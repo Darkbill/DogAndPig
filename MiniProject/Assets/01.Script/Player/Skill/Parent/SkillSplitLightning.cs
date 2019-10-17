@@ -48,7 +48,6 @@ public class SkillSplitLightning : Skill
     {
         base.ActiveSkill();
         int randnum = Rand.Random() % 90;
-
         CreateAndPoolBullet(randnum);
         //for (int i = 0;i<MaxCount;++i)
         //{
@@ -89,11 +88,6 @@ public class SkillSplitLightning : Skill
                 ++Count;
             }
         }
-    }
-
-    private void Start()
-    {
-        //ActiveSkill();
     }
 
     void Update()

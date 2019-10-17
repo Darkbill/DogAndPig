@@ -1,0 +1,452 @@
+[
+  {
+    "stageID": 1,
+    "stageLevel": 1,
+    "enemyIndex": 1,
+    "enemyLevel": 1,
+    "enemyPosX": -5,
+    "enemyPosY": 2,
+    "boss": 0
+  },
+  {
+    "stageID": 2,
+    "stageLevel": 1,
+    "enemyIndex": 1,
+    "enemyLevel": 1,
+    "enemyPosX": 5,
+    "enemyPosY": 2,
+    "boss": 0
+  },
+  {
+    "stageID": 3,
+    "stageLevel": 2,
+    "enemyIndex": 2,
+    "enemyLevel": 1,
+    "enemyPosX": -5,
+    "enemyPosY": 2,
+    "boss": 0
+  },
+  {
+    "stageID": 4,
+    "stageLevel": 2,
+    "enemyIndex": 2,
+    "enemyLevel": 1,
+    "enemyPosX": 5,
+    "enemyPosY": 2,
+    "boss": 0
+  },
+  {
+    "stageID": 5,
+    "stageLevel": 3,
+    "enemyIndex": 1,
+    "enemyLevel": 1,
+    "enemyPosX": -5,
+    "enemyPosY": 3,
+    "boss": 0
+  },
+  {
+    "stageID": 6,
+    "stageLevel": 3,
+    "enemyIndex": 2,
+    "enemyLevel": 1,
+    "enemyPosX": -5.5,
+    "enemyPosY": 3.2,
+    "boss": 0
+  },
+  {
+    "stageID": 7,
+    "stageLevel": 3,
+    "enemyIndex": 2,
+    "enemyLevel": 1,
+    "enemyPosX": -4.6,
+    "enemyPosY": 3.3,
+    "boss": 0
+  },
+  {
+    "stageID": 8,
+    "stageLevel": 4,
+    "enemyIndex": 1,
+    "enemyLevel": 1,
+    "enemyPosX": -3,
+    "enemyPosY": 2,
+    "boss": 0
+  },
+  {
+    "stageID": 9,
+    "stageLevel": 4,
+    "enemyIndex": 1,
+    "enemyLevel": 1,
+    "enemyPosX": -3.1,
+    "enemyPosY": 1.7,
+    "boss": 0
+  },
+  {
+    "stageID": 10,
+    "stageLevel": 4,
+    "enemyIndex": 2,
+    "enemyLevel": 1,
+    "enemyPosX": -3.4,
+    "enemyPosY": 2.2,
+    "boss": 0
+  },
+  {
+    "stageID": 11,
+    "stageLevel": 4,
+    "enemyIndex": 2,
+    "enemyLevel": 1,
+    "enemyPosX": -3.4,
+    "enemyPosY": 2.6,
+    "boss": 0
+  },
+  {
+    "stageID": 12,
+    "stageLevel": 4,
+    "enemyIndex": 2,
+    "enemyLevel": 1,
+    "enemyPosX": -3.6,
+    "enemyPosY": 2.3,
+    "boss": 0
+  },
+  {
+    "stageID": 13,
+    "stageLevel": 5,
+    "enemyIndex": 1,
+    "enemyLevel": 1,
+    "enemyPosX": -4,
+    "enemyPosY": 2.5,
+    "boss": 0
+  },
+  {
+    "stageID": 14,
+    "stageLevel": 5,
+    "enemyIndex": 1,
+    "enemyLevel": 1,
+    "enemyPosX": -4.8,
+    "enemyPosY": 2.3,
+    "boss": 0
+  },
+  {
+    "stageID": 15,
+    "stageLevel": 5,
+    "enemyIndex": 1,
+    "enemyLevel": 1,
+    "enemyPosX": -4.6,
+    "enemyPosY": 2.7,
+    "boss": 0
+  },
+  {
+    "stageID": 16,
+    "stageLevel": 5,
+    "enemyIndex": 1,
+    "enemyLevel": 1,
+    "enemyPosX": 4,
+    "enemyPosY": 2.2,
+    "boss": 0
+  },
+  {
+    "stageID": 17,
+    "stageLevel": 5,
+    "enemyIndex": 1,
+    "enemyLevel": 1,
+    "enemyPosX": 4.8,
+    "enemyPosY": 1.9,
+    "boss": 0
+  },
+  {
+    "stageID": 18,
+    "stageLevel": 5,
+    "enemyIndex": 1,
+    "enemyLevel": 1,
+    "enemyPosX": 4.5,
+    "enemyPosY": 2.5,
+    "boss": 0
+  },
+  {
+    "stageID": 19,
+    "stageLevel": 6,
+    "enemyIndex": 1,
+    "enemyLevel": 1,
+    "enemyPosX": -3,
+    "enemyPosY": 2.5,
+    "boss": 0
+  },
+  {
+    "stageID": 20,
+    "stageLevel": 6,
+    "enemyIndex": 1,
+    "enemyLevel": 1,
+    "enemyPosX": -3.5,
+    "enemyPosY": 2.1,
+    "boss": 0
+  },
+  {
+    "stageID": 21,
+    "stageLevel": 6,
+    "enemyIndex": 1,
+    "enemyLevel": 1,
+    "enemyPosX": 3.2,
+    "enemyPosY": 3,
+    "boss": 0
+  },
+  {
+    "stageID": 22,
+    "stageLevel": 6,
+    "enemyIndex": 2,
+    "enemyLevel": 2,
+    "enemyPosX": 3.5,
+    "enemyPosY": 3.8,
+    "boss": 0
+  },
+  {
+    "stageID": 23,
+    "stageLevel": 6,
+    "enemyIndex": 2,
+    "enemyLevel": 2,
+    "enemyPosX": 3.3,
+    "enemyPosY": 3.3,
+    "boss": 0
+  },
+  {
+    "stageID": 24,
+    "stageLevel": 6,
+    "enemyIndex": 2,
+    "enemyLevel": 2,
+    "enemyPosX": 3.8,
+    "enemyPosY": 1.8,
+    "boss": 0
+  },
+  {
+    "stageID": 25,
+    "stageLevel": 6,
+    "enemyIndex": 2,
+    "enemyLevel": 2,
+    "enemyPosX": 3.4,
+    "enemyPosY": 1.1,
+    "boss": 0
+  },
+  {
+    "stageID": 26,
+    "stageLevel": 7,
+    "enemyIndex": 1,
+    "enemyLevel": 2,
+    "enemyPosX": 0,
+    "enemyPosY": 3.8,
+    "boss": 0
+  },
+  {
+    "stageID": 27,
+    "stageLevel": 7,
+    "enemyIndex": 1,
+    "enemyLevel": 2,
+    "enemyPosX": 0.5,
+    "enemyPosY": 4.2,
+    "boss": 0
+  },
+  {
+    "stageID": 28,
+    "stageLevel": 7,
+    "enemyIndex": 3,
+    "enemyLevel": 3,
+    "enemyPosX": -0.4,
+    "enemyPosY": 4.2,
+    "boss": 0
+  },
+  {
+    "stageID": 29,
+    "stageLevel": 7,
+    "enemyIndex": 3,
+    "enemyLevel": 3,
+    "enemyPosX": 0.3,
+    "enemyPosY": 3.6,
+    "boss": 0
+  },
+  {
+    "stageID": 30,
+    "stageLevel": 7,
+    "enemyIndex": 3,
+    "enemyLevel": 3,
+    "enemyPosX": -0.8,
+    "enemyPosY": 3.4,
+    "boss": 0
+  },
+  {
+    "stageID": 31,
+    "stageLevel": 8,
+    "enemyIndex": 1,
+    "enemyLevel": 2,
+    "enemyPosX": 2,
+    "enemyPosY": 1.5,
+    "boss": 0
+  },
+  {
+    "stageID": 32,
+    "stageLevel": 8,
+    "enemyIndex": 1,
+    "enemyLevel": 2,
+    "enemyPosX": 2.4,
+    "enemyPosY": 0.4,
+    "boss": 0
+  },
+  {
+    "stageID": 33,
+    "stageLevel": 8,
+    "enemyIndex": 2,
+    "enemyLevel": 3,
+    "enemyPosX": 2.7,
+    "enemyPosY": 2.3,
+    "boss": 0
+  },
+  {
+    "stageID": 34,
+    "stageLevel": 8,
+    "enemyIndex": 2,
+    "enemyLevel": 3,
+    "enemyPosX": 2.6,
+    "enemyPosY": 1.2,
+    "boss": 0
+  },
+  {
+    "stageID": 35,
+    "stageLevel": 8,
+    "enemyIndex": 3,
+    "enemyLevel": 3,
+    "enemyPosX": 2.8,
+    "enemyPosY": 0.1,
+    "boss": 0
+  },
+  {
+    "stageID": 36,
+    "stageLevel": 8,
+    "enemyIndex": 3,
+    "enemyLevel": 3,
+    "enemyPosX": -2.5,
+    "enemyPosY": 2.3,
+    "boss": 0
+  },
+  {
+    "stageID": 37,
+    "stageLevel": 8,
+    "enemyIndex": 3,
+    "enemyLevel": 3,
+    "enemyPosX": -2.4,
+    "enemyPosY": 1.8,
+    "boss": 0
+  },
+  {
+    "stageID": 38,
+    "stageLevel": 9,
+    "enemyIndex": 1,
+    "enemyLevel": 2,
+    "enemyPosX": 3,
+    "enemyPosY": 1.2,
+    "boss": 0
+  },
+  {
+    "stageID": 39,
+    "stageLevel": 9,
+    "enemyIndex": 1,
+    "enemyLevel": 2,
+    "enemyPosX": 3.4,
+    "enemyPosY": 1.8,
+    "boss": 0
+  },
+  {
+    "stageID": 40,
+    "stageLevel": 9,
+    "enemyIndex": 1,
+    "enemyLevel": 2,
+    "enemyPosX": 2.2,
+    "enemyPosY": 0.3,
+    "boss": 0
+  },
+  {
+    "stageID": 41,
+    "stageLevel": 9,
+    "enemyIndex": 2,
+    "enemyLevel": 3,
+    "enemyPosX": 3.6,
+    "enemyPosY": 1.6,
+    "boss": 0
+  },
+  {
+    "stageID": 42,
+    "stageLevel": 9,
+    "enemyIndex": 2,
+    "enemyLevel": 3,
+    "enemyPosX": 3.4,
+    "enemyPosY": 0.8,
+    "boss": 0
+  },
+  {
+    "stageID": 43,
+    "stageLevel": 9,
+    "enemyIndex": 2,
+    "enemyLevel": 3,
+    "enemyPosX": -3.6,
+    "enemyPosY": 0.8,
+    "boss": 0
+  },
+  {
+    "stageID": 44,
+    "stageLevel": 9,
+    "enemyIndex": 2,
+    "enemyLevel": 3,
+    "enemyPosX": -3.8,
+    "enemyPosY": 1.2,
+    "boss": 0
+  },
+  {
+    "stageID": 45,
+    "stageLevel": 9,
+    "enemyIndex": 3,
+    "enemyLevel": 3,
+    "enemyPosX": -3.5,
+    "enemyPosY": 0.4,
+    "boss": 0
+  },
+  {
+    "stageID": 46,
+    "stageLevel": 9,
+    "enemyIndex": 3,
+    "enemyLevel": 3,
+    "enemyPosX": -4.2,
+    "enemyPosY": -0.2,
+    "boss": 0
+  },
+  {
+    "stageID": 47,
+    "stageLevel": 9,
+    "enemyIndex": 3,
+    "enemyLevel": 3,
+    "enemyPosX": 2.3,
+    "enemyPosY": 1.2,
+    "boss": 0
+  },
+  {
+    "stageID": 48,
+    "stageLevel": 10,
+    "enemyIndex": 2,
+    "enemyLevel": 5,
+    "enemyPosX": 1.2,
+    "enemyPosY": 4.3,
+    "boss": 0
+  },
+  {
+    "stageID": 49,
+    "stageLevel": 10,
+    "enemyIndex": 2,
+    "enemyLevel": 5,
+    "enemyPosX": 6.6,
+    "enemyPosY": 4.6,
+    "boss": 0
+  },
+  {
+    "stageID": 50,
+    "stageLevel": 10,
+    "enemyIndex": 4,
+    "enemyLevel": 10,
+    "enemyPosX": 6.3,
+    "enemyPosY": 4.2,
+    "boss": 1
+  }
+]

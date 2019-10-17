@@ -51,6 +51,7 @@ public class UIMng : MonoBehaviour
 	}
 	private void Renew()
 	{
+		selectSkillID = 0;
 		shopUI.ReNew();
 		SetBaseUI();
 	}
@@ -90,11 +91,17 @@ public class UIMng : MonoBehaviour
 	}
 	public void OnClickBuySkill()
 	{
-		//TODO : 스킬 가격
 		JsonMng.Ins.playerInfoDataTable.haveSkillList.Add(selectSkillID);
-		JsonMng.Ins.playerInfoDataTable.gold -= 10;
-		shopUI.infinityScoll.BuySkill(selectSkillID);
-		selectSkillID = 0;
+		if (JsonMng.Ins.playerInfoDataTable.gold >= JsonMng.Ins.playerSkillDataTable[selectSkillID].price)
+		{
+			JsonMng.Ins.playerInfoDataTable.gold -= JsonMng.Ins.playerSkillDataTable[selectSkillID].price;
+			shopUI.infinityScoll.BuySkill(selectSkillID);
+			Renew();
+		}
+		else
+		{
+			//TODO : 돈부족
+		}
 	}
 	public void OnClickRemoveSkill()
 	{

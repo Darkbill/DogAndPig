@@ -3,6 +3,7 @@ using System.Collections.Generic;
 public class PlayerSkillData : TableBase
 {
 	public int skillID;
+	public int price;
 	public eAttackType skillType;
 	public eSkillType target;
 	public float[] optionArr;

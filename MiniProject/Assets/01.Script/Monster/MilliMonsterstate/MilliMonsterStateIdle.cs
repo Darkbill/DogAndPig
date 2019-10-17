@@ -18,11 +18,9 @@ public class MilliMonsterStateIdle : MilliMonsterState
 
 	public override bool OnTransition()
 	{
-		//TODO : 1초동안 멈춰있다가 Chase로 이동
 		delaytime += Time.deltaTime;
-		if (delaytime > 1.0f)
+		if (delaytime >= 1.0f)
 		{
-			delaytime = 0.0f;
 			monsterObject.monsterStateMachine.ChangeState(eMilliMonsterState.Move);
 			return true;
 		}

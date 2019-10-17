@@ -31,6 +31,7 @@ public class JsonMng : MonoBehaviour
 	public Dictionary<int, PlayerSkillData> playerSkillDataTable { get; private set; } = new Dictionary<int, PlayerSkillData>();
 	public Dictionary<int, MonsterData> monsterDataTable { get; private set; } = new Dictionary<int, MonsterData>();
 	public Dictionary<int, MonsterSkillData> monsterSkillDataTable { get; private set; } = new Dictionary<int, MonsterSkillData>();
+	public Dictionary<int, StageDataTable> stageDataTable { get; private set; } = new Dictionary<int, StageDataTable>();
 	public PlayerInfoData playerInfoDataTable { get; private set; } = new PlayerInfoData();
 	//테스트 코드
 	private void Awake()
@@ -45,6 +46,7 @@ public class JsonMng : MonoBehaviour
 		LoadPlayerSkillData();
 		LoadMonsterData();
 		LoadMonsterSkillData();
+		LoadStageData();
 	}
 
 	private void LoadPlayerInfoData()
@@ -57,6 +59,10 @@ public class JsonMng : MonoBehaviour
 		JsonData jsonData = JsonMapper.ToObject(JsonString);
 		playerInfoDataTable = JsonMapper.ToObject<PlayerInfoData>(jsonData.ToJson());
 	
+	}
+	public void LoadStageData()
+	{
+		LoadData("StageDataTable", stageDataTable);
 	}
 	public void LoadPlayerData()
 	{

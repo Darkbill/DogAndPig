@@ -27,7 +27,7 @@ public class ContentItem : MonoBehaviour
 			priceText.gameObject.SetActive(true);
 			lockImage.color = new Color(1, 1, 1, 0.75f);
 			skillText.text = "SkillName";
-			priceText.text = "";
+			priceText.text = JsonMng.Ins.playerSkillDataTable[skillID].price.ToString();
 		}	
 	}
 	public void OnClickHaveSkill()
