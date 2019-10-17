@@ -24,7 +24,7 @@ public class SkillSplitLightning : Skill
     const int Angle180 = 180;
     const int SplitCnt = 3;
 
-    List<Lightning> BulletLst = new List<Lightning>();
+    public List<Lightning> BulletLst = new List<Lightning>();
     public GameObject lightning;
 
     public override void SkillSetting()
@@ -49,17 +49,46 @@ public class SkillSplitLightning : Skill
         base.ActiveSkill();
         int randnum = Rand.Random() % 90;
 
-        for (int i = 0;i<MaxCount;++i)
-        {
-            GameObject light = Instantiate(
-                lightning, 
-                GameMng.Ins.player.transform.position,
-                Quaternion.Euler(0, 0, Angle180 * 2 / 4 * i + randnum));
-            light.transform.position += new Vector3(0, 0, -3);
-            light.GetComponent<Lightning>().Setting(skillID, SplitCnt, sturnper, damage);
-            BulletLst.Add(light.GetComponent<Lightning>());
-        }
+        CreateAndPoolBullet(randnum);
+        //for (int i = 0;i<MaxCount;++i)
+        //{
+        //    GameObject light = Instantiate(
+        //        lightning, 
+        //        GameMng.Ins.player.transform.position,
+        //        Quaternion.Euler(0, 0, Angle180 * 2 / 4 * i + randnum));
+        //    light.transform.position += new Vector3(0, 0, -3);
+        //    light.GetComponent<Lightning>().Setting(skillID, SplitCnt, sturnper, damage);
+        //    BulletLst.Add(light.GetComponent<Lightning>());
+        //}
+    }
 
+    private void CreateAndPoolBullet(int randnum)
+    {
+        int Count = 0;
+        for (int i = 0; Count < MaxCount; ++i)
+        {
+            if (Count >= MaxCount) break;
+            if (BulletLst.Count == i)
+            {
+                GameObject light = Instantiate(
+                    lightning,
+                    GameMng.Ins.player.transform.position,
+                    Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count + randnum),
+                    gameObject.transform);
+                light.transform.position += new Vector3(0, 0, -3);
+                light.GetComponent<Lightning>().Setting(skillID, SplitCnt, sturnper, damage);
+                BulletLst.Add(light.GetComponent<Lightning>());
+                ++Count;
+            }
+            if (!BulletLst[i].gameObject.activeSelf)
+            {
+                BulletLst[i].transform.position = GameMng.Ins.player.transform.position;
+                BulletLst[i].transform.rotation = Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count + randnum);
+                BulletLst[i].Setting(skillID, SplitCnt, sturnper, damage);
+                BulletLst[i].gameObject.SetActive(true);
+                ++Count;
+            }
+        }
     }
 
     private void Start()
@@ -69,12 +98,6 @@ public class SkillSplitLightning : Skill
 
     void Update()
     {
-
-        if(Input.GetKeyDown("q"))
-        {
-            ActiveSkill();
-        }
-
         for(int i = 0;i< BulletLst.Count; ++i)
         {
             int randnum = Rand.Range(-5, 5) * 5;
@@ -84,11 +107,13 @@ public class SkillSplitLightning : Skill
                 CreateBullet(BulletLst[i].EndPos, i);
                 continue;
             }
-            BulletLst[i].transform.position +=
-                BulletLst[i].transform.right *
-                Time.deltaTime * 
-                BulletLst[i].Speed;
-            BulletLst[i].transform.eulerAngles += new Vector3(0, 0, randnum);
+            if (BulletLst[i].gameObject.activeSelf)
+            {
+                BulletLst[i].transform.position +=
+                    BulletLst[i].transform.right *
+                    Time.deltaTime *
+                    BulletLst[i].Speed;
+                BulletLst[i].transform.eulerAngles += new Vector3(0, 0, randnum);
         }
     }
 
@@ -108,6 +133,19 @@ public class SkillSplitLightning : Skill
                 sturnper,
                 damage);
             BulletLst.Add(light.GetComponent<Lightning>());
+                    sturnper,
+                    damage);
+                BulletLst.Add(light.GetComponent<Lightning>());
+                ++Count;
+            }
+            if (!BulletLst[i].gameObject.activeSelf)
+            {
+                BulletLst[i].transform.position = endPos;
+                BulletLst[i].transform.rotation = Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count + randnum);
+                BulletLst[i].Setting(skillID, BulletLst[index].SplitCnt - 1, sturnper, damage);
+                BulletLst[i].gameObject.SetActive(true);
+                ++Count;
+            }
         }
     }
 }

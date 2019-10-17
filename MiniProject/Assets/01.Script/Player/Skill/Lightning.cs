@@ -11,7 +11,7 @@ public class Lightning : MonoBehaviour
 
     private int Id = 0;
     private float MaxTimer = 0.0f;
-    private float SetTimer = 0.0f;
+    public float SetTimer = 0.0f;
     private float per;
 
     public Vector3 MoveVec;
