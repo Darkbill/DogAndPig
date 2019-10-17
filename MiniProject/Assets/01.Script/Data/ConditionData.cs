@@ -23,7 +23,6 @@ public class ConditionData
         //MoveFast,MoveSlow : 속도증가 및 감소에 대한 확률 값
 		//PhysicsStrong, PhysicsWeek : 강화 및 약화에 대한 확률 값
         //NockBack, Stun : 넉백 및 스턴에 대한 확률 값
-        //                  음수의 경우에는 해로운 효과로 간주하여 넉백 - 밀려난 거리로 간주한다.
         //스턴의 경우 currenttime도 참조한다.
 	}
 	public void Set(ConditionData conditionData)

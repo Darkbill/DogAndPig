@@ -33,8 +33,6 @@ public class MilliMonsterStateKnockBack : MilliMonsterState
     {
         if (setspeed > 0)
             KnockBack();
-        else
-            monsterObject.monsterStateMachine.ChangeState(eMilliMonsterState.Move);
         if (OnTransition() == true) return;
     }
 

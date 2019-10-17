@@ -60,7 +60,7 @@ public class PlayerStateMove : PlayerState
 				{
 					delayTime = 0;
                     if (playerObject.calStat.knockbackAtt)
-                        monsterPool[i].KnockBackAttack(playerObject.calStat.knockback);
+                        monsterPool[i].OutStateAdd(new ConditionData(eBuffType.NockBack, 4, 1, 2), 300);
                     if (Rand.Percent(playerObject.calStat.criticalChance))
 					{
 						monsterPool[i].Damage(eAttackType.Physics, playerObject.calStat.damage * playerObject.calStat.criticalDamage);

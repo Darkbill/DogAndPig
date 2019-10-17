@@ -98,6 +98,11 @@ public class SkillSplitLightning : Skill
 
     void Update()
     {
+        if(Input.GetKeyDown("q"))
+        {
+            ActiveSkill();
+        }
+
         for(int i = 0;i< BulletLst.Count; ++i)
         {
             int randnum = Rand.Range(-5, 5) * 5;
@@ -114,6 +119,7 @@ public class SkillSplitLightning : Skill
                     Time.deltaTime *
                     BulletLst[i].Speed;
                 BulletLst[i].transform.eulerAngles += new Vector3(0, 0, randnum);
+            }
         }
     }
 
@@ -121,18 +127,21 @@ public class SkillSplitLightning : Skill
     {
         int randnum = Rand.Random() % 90;
 
-        for (int i = 0; i < MaxCount; ++i)
+        int Count = 0;
+
+        for (int i = 0; Count < MaxCount; ++i)
         {
-            GameObject light = Instantiate(
-                lightning,
-                endPos,
-                Quaternion.Euler(0, 0, Angle180 * 2 / 4 * i + randnum));
-            light.transform.position += new Vector3(0, 0, -3);
-            light.GetComponent<Lightning>().Setting(skillID, 
-                BulletLst[index].SplitCnt - 1, 
-                sturnper,
-                damage);
-            BulletLst.Add(light.GetComponent<Lightning>());
+            if (Count >= MaxCount) break;
+            if (BulletLst.Count == i)
+            {
+                GameObject light = Instantiate(
+                    lightning,
+                    endPos,
+                    Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count + randnum),
+                    gameObject.transform);
+                light.transform.position += new Vector3(0, 0, -3);
+                light.GetComponent<Lightning>().Setting(skillID,
+                    BulletLst[index].SplitCnt - 1,
                     sturnper,
                     damage);
                 BulletLst.Add(light.GetComponent<Lightning>());

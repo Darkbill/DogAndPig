@@ -45,8 +45,7 @@ public class Lightning : MonoBehaviour
         if (collision.CompareTag("Monster") && SetTimer > 0.3f)
         {
             collision.GetComponent<MilliMonster>().Damage(Attacktype, damage);
-            collision.GetComponent<MilliMonster>().Damage(Attacktype, 0,
-                new ConditionData(bufftype, Id, 1.0f, 500), 1000);
+            collision.GetComponent<MilliMonster>().OutStateAdd(new ConditionData(bufftype, Id, 10.0f, 500), 1000);
             EndPos = collision.transform.position;
             SplitCheck = true;
             gameObject.SetActive(false);

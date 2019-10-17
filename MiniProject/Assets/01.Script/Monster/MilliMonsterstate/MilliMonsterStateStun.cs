@@ -23,15 +23,9 @@ public class MilliMonsterStateStun : MilliMonsterState
 
 	public override void Tick()
 	{
-        StunTime();
 		if (OnTransition() == true) return;
 	}
 
-    private void StunTime()
-    {
-        if (SetTime >= 2.0f)
-            monsterObject.monsterStateMachine.ChangeState(GlobalDefine.eMilliMonsterState.Move);
-    }
 
     public override void OnEnd()
 	{
