@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 	private int level = 1;
 
 	private List<ConditionData> conditionList = new List<ConditionData>();
+    private ConditionData conditionMain = new ConditionData();
 
 
     public bool[] specialAttack = new bool[2];
@@ -115,9 +116,56 @@ public class Player : MonoBehaviour
         CalculatorStat();
 		UIMngInGame.Ins.ActiveBuff(condition.skillIndex);
 	}
-	/* Buff */
 
-	private void CalculatorStat()
+    public void OutStateAdd(ConditionData condition, float activePer)
+    {
+        if (conditionMain != null)
+        {
+            if (conditionMain.buffType == condition.buffType)
+            {
+                if (conditionMain.currentTime < condition.currentTime)
+                {
+                    conditionMain = condition;
+                    AddConditionlist(conditionMain);
+                }
+                return;
+            }
+        }
+        conditionMain = condition;
+        AddConditionlist(conditionMain);
+    }
+
+    private void AddConditionlist(ConditionData condition)
+    {
+        switch (condition.buffType)
+        {
+            case eBuffType.Stun:
+                gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.Stun);
+                break;
+            case eBuffType.NockBack:
+                gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.KnockBack);
+                break;
+        }
+        Debug.Log("상태이상에 걸렸습니다.");
+    }
+
+    public void OutStateUpdate(float delayTime)
+    {
+        if (conditionMain != null)
+        {
+            conditionMain.currentTime -= delayTime;
+            if (conditionMain.currentTime <= 0)
+            {
+                Debug.Log("상태이상이 풀렸습니다.");
+                conditionMain = null;
+                gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.Move);
+            }
+        }
+    }
+
+    /* Buff */
+
+    private void CalculatorStat()
 	{
 		//TODO : 레벨에 의한 스탯계산
 		calStat = JsonMng.Ins.playerDataTable[1].AddStat(skillStat,conditionList);

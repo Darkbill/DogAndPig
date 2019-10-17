@@ -652,7 +652,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d2d2a448e0e2b648a865084f8a8f3b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1370301318005025864, guid: 4cff34051ff1a544d9cdf935e05a0863, type: 3}
 --- !u!4 &113422139
 Transform:
   m_ObjectHideFlags: 0
@@ -2319,7 +2318,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1684886706}
-  bulletPool: {fileID: 113422138}
   cameraMove: {fileID: 1563380632}
   monsterPool: {fileID: 285599445}
   skillMng: {fileID: 912548249}
@@ -3690,6 +3688,7 @@ Transform:
   - {fileID: 882498439}
   - {fileID: 839758856}
   - {fileID: 281740051}
+  - {fileID: 1682492041}
   m_Father: {fileID: 2072180611}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5663,7 +5662,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d2d2a448e0e2b648a865084f8a8f3b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1370301318005025864, guid: 4cff34051ff1a544d9cdf935e05a0863, type: 3}
 --- !u!1 &1363786324
 GameObject:
   m_ObjectHideFlags: 0
@@ -7365,7 +7363,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1682492040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7396,7 +7394,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682492039}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7404,8 +7402,8 @@ Transform:
   - {fileID: 965309623}
   - {fileID: 1572736960}
   - {fileID: 132104124}
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 912548248}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1684886702
 GameObject:

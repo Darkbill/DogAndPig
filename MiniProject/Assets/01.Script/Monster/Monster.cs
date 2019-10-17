@@ -19,8 +19,8 @@ public class Monster : MonoBehaviour
 	/* 테스트코드 */
 	private int MonsterID = 1;
 	private List<ConditionData> conditionList = new List<ConditionData>();
-    private List<ConditionData> conditionMainList = new List<ConditionData>();
-    //private ConditionData conditionMain = new ConditionData();
+    //private List<ConditionData> conditionMainList = new List<ConditionData>();
+    private ConditionData conditionMain = new ConditionData();
 	public void Start()
 	{
 		MonsterSetting();
@@ -62,34 +62,20 @@ public class Monster : MonoBehaviour
     //add에서 상태이상 비교하여 삽입.
     public void OutStateAdd(ConditionData condition, float activePer)
     {
-		//TODO : condition이 하나일때
-		//if(conditionMain.buffType == condition.buffType)
-		//{
-		//    if(conditionMain.currentTime < condition.currentTime)
-		//    {
-		//        conditionMain = condition;
-		//        AddConditionlist(conditionMain);
-		//    }
-		//    return;
-		//}
-		//conditionMain = condition;
-		//AddConditionlist(conditionMain);
-		bool isBuff = monsterData.GetResist(eAttackType.Physics).GetBuff(activePer);
-		if (isBuff)
-		{
-			for (int i = 0; i < conditionMainList.Count; ++i)
-			{
-				//요기에 수준값을 비교해서 기존 삭제하면됨. 수준값은 일단 시간으로 설정.(남은 시간 기준)
-				if (conditionMainList[i].buffType == condition.buffType &&
-					conditionMainList[i].currentTime < condition.currentTime)
-				{
-					conditionMainList[i] = condition;
-					return;
-				}
-			}
-			conditionList.Add(condition);
-			AddConditionlist(condition);
-		}
+        if (conditionMain != null)
+        {
+            if (conditionMain.buffType == condition.buffType)
+            {
+                if (conditionMain.currentTime < condition.currentTime)
+                {
+                    conditionMain = condition;
+                    AddConditionlist(conditionMain);
+                }
+                return;
+            }
+        }
+        conditionMain = condition;
+        AddConditionlist(conditionMain);
     }
 
     private void AddConditionlist(ConditionData condition)
@@ -106,35 +92,20 @@ public class Monster : MonoBehaviour
         Debug.Log("상태이상에 걸렸습니다.");
     }
 
-    //TODO : 현재 상태이상에 대한 처리..일반버프랑 유사한 구조.
-    //전부 풀려야 가능한 구조.. 즉 최종으로 들어온 값에 따라 해제의 여부가 갈라진다.
-    //만약 스턴이 걸린상태에서 넉백으로 초기화되는 경우라면 리스트가 아닌 변수 하나로 퉁치고
-    //넉백이 걸린 상태에서 다시 넉백이 들어오는 경우 수준값을 비교하여 초기화 및 대입하면 될듯?
-    //아 힐링하고싶다
     public void OutStateUpdate(float delayTime)
     {
-        //conditionMain.currentTime -= delayTime;
-        //if (conditionMain.currentTime <= 0 && conditionMain != null)
-        //{
-        //    Debug.Log("상태이상이 풀렸습니다.");
-        //    conditionMain = null;
-        //    gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.Move);
-        //}
-
-        bool RemoveCheck = false;
-        for (int i = 0;i<conditionMainList.Count;++i)
+        if (conditionMain != null)
         {
-            conditionMainList[i].currentTime -= delayTime;
-            if (conditionMainList[i].currentTime <= 0)
+            conditionMain.currentTime -= delayTime;
+            if (conditionMain.currentTime <= 0)
             {
-                Debug.Log(i + "번째의 상태이상이 풀렸습니다.");
-                conditionMainList.Remove(conditionMainList[i]);
-                RemoveCheck = true;
+                Debug.Log("상태이상이 풀렸습니다.");
+                conditionMain = null;
+                gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.Move);
             }
         }
-        if(conditionMainList.Count == 0 && RemoveCheck)
-            gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.Move);
     }
+
     private void UpdateBuff(float delayTime)
     {
         for (int i = 0; i < conditionList.Count; ++i)
