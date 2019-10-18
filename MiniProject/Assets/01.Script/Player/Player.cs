@@ -140,10 +140,10 @@ public class Player : MonoBehaviour
         switch (condition.buffType)
         {
             case eBuffType.Stun:
-                gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.Stun);
+                gameObject.GetComponent<PlayerStateMachine>().ChangeState(ePlayerState.Stun);
                 break;
             case eBuffType.NockBack:
-                gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.KnockBack);
+                gameObject.GetComponent<PlayerStateMachine>().ChangeState(ePlayerState.KnockBack);
                 break;
         }
         Debug.Log("상태이상에 걸렸습니다.");
@@ -158,7 +158,7 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("상태이상이 풀렸습니다.");
                 conditionMain = null;
-                gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.Move);
+                gameObject.GetComponent<PlayerStateMachine>().ChangeState(ePlayerState.Move);
             }
         }
     }

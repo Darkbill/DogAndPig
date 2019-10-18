@@ -6,20 +6,11 @@ using System;
 
 public class Monster : MonoBehaviour
 {
-    enum ChangeMainCondition
-    {
-        None = 0,
-        Stun,
-        KnockBack,
-        Max,
-    }
-
 	public MonsterData monsterData;
 
 	/* 테스트코드 */
 	private int MonsterID = 1;
 	private List<ConditionData> conditionList = new List<ConditionData>();
-    //private List<ConditionData> conditionMainList = new List<ConditionData>();
     private ConditionData conditionMain = new ConditionData();
 	public void Start()
 	{
@@ -169,12 +160,14 @@ public class Monster : MonoBehaviour
 		GameMng.Ins.AddEXP();
 	}
 
+    //TODO : 넉백관련 몬스터 코드는 일단 주석처리..
+    /*
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.collider.CompareTag("Wall"))
         {
             gameObject.GetComponent<MilliMonsterStateMachine>().
-                ChangeState(eMilliMonsterState.Idle);
+                ChangeState(eMilliMonsterState.Move);
         }
     }
 
@@ -183,8 +176,8 @@ public class Monster : MonoBehaviour
         if (collision.collider.CompareTag("Wall"))
         {
             gameObject.GetComponent<MilliMonsterStateMachine>().
-                ChangeState(eMilliMonsterState.Idle);
+                ChangeState(eMilliMonsterState.Move);
         }
     }
-
+    //*/
 }

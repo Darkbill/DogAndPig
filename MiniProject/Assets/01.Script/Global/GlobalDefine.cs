@@ -28,7 +28,20 @@ namespace GlobalDefine
         hostility,
 		Max,
     }
-	public enum eMilliMonsterState
+    public enum eBossMonsterState
+    {
+        None = 0,
+        Idle,
+        Move,
+        Stun,
+        SkillAttack,
+        Dash,
+        Dead,
+        KnockBack,
+        Max,
+    }
+
+    public enum eMilliMonsterState
 	{
 		None = 0,
 		Idle,
@@ -70,6 +83,7 @@ namespace GlobalDefine
 		Idle,
 		Move,
 		Dash,
+        KnockBack,
 		Stun,
 		Dead,
 		Max,
