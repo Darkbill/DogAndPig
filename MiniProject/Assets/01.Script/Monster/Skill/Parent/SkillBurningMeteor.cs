@@ -1,4 +1,5 @@
 ﻿using GlobalDefine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,25 +29,18 @@ public class SkillBurningMeteor : Skill
 
     public Targetting Target;
 
-    private const int Count = 20;
-    public List<Targetting> alterList = new List<Targetting>();
+    private const int MaxCount = 30;
+    private const int Radius = 10;
+    private int Count = 0;
+    public List<Targetting> TargetList = new List<Targetting>();
 
+    bool skillbut = false;
 
-    bool AttackSet = false;
-
+    private float worldtargettimer = 0.0f;
 
     public override void ActiveSkill()
     {
         base.ActiveSkill();
-        //테스트 코드
-        GameMng.Ins.player.AddBuff(new ConditionData(GlobalDefine.eBuffType.MoveFast, 1, 3, 2));
-        GameMng.Ins.player.playerStateMachine.ChangeState(GlobalDefine.ePlayerState.Dash);
-        GameMng.Ins.player.playerStateMachine.cState.isDash = true;
-        for (int i = 0; i < Count; ++i)
-        {
-            //alterList[i].Setting(GameMng.Ins.player.transform.position, GameMng.Ins.player.transform.right, i + 5);
-        }
-        AttackSet = true;
     }
 
     private void FinishAttack()
@@ -54,8 +48,57 @@ public class SkillBurningMeteor : Skill
 
     }
 
+    private void Awake()
+    {
+        for(int i = 0;i<MaxCount;++i)
+        {
+            Targetting o = Instantiate(Target,
+                GameMng.Ins.player.transform.position,
+                Quaternion.Euler(0, 0, 0),
+                gameObject.transform);
+            o.gameObject.SetActive(false);
+            TargetList.Add(o);
+        }
+    }
+
     private void Update()
     {
+        if (Input.GetKeyDown("z"))
+            skillbut = true;
+        if (skillbut)
+            SkillStart();
+    }
 
+    void SkillStart()
+    {
+        worldtargettimer += Time.deltaTime;
+        if (worldtargettimer >= 3.0f)
+        {
+            RandomTargetting();
+            worldtargettimer = 0.0f;
+        }
+    }
+
+    private void RandomTargetting()
+    {
+        ++Count;
+        for (int i = 0; i < TargetList.Count; ++i)
+        {
+            TargetList[i].Setting();
+
+            Vector3 o = new Vector3((float)Rand.Range(-Radius, Radius) / 10, (float)Rand.Range(-Radius, Radius) / 10, 0);
+            if ((TargetList[i].transform.position + o).x < -DefineClass.MapSizX / 10 ||
+               (TargetList[i].transform.position + o).x > DefineClass.MapSizX / 10 ||
+               (TargetList[i].transform.position + o).y < -DefineClass.MapSizY / 10 ||
+               (TargetList[i].transform.position + o).y > DefineClass.MapSizY / 10)
+            {
+                --i;
+                continue;
+            }
+            TargetList[i].transform.position += o;
+            TargetList[i].gameObject.SetActive(true);
+            if (i == Count - 1)
+                break;
+        }
     }
 }

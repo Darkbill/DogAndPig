@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace GlobalDefine
 {
+    static class DefineClass
+    {
+        public const float MapSizX = 40;
+        public const float MapSizY = 20;
+    }
 	static public class Define
 	{
 		public const int nRANDOM_POOL = 1024;

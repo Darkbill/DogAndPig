@@ -12,6 +12,10 @@ public class Monster : MonoBehaviour
 	public int MonsterID = 1;
 	private List<ConditionData> conditionList = new List<ConditionData>();
     private ConditionData conditionMain = new ConditionData();
+
+    public float Angle = 0;
+    public Vector3 right = new Vector3(1, 0, 0);
+
 	private void Awake()
 	{
 		MonsterSetting();
@@ -24,6 +28,16 @@ public class Monster : MonoBehaviour
 	{
 		UpdateBuff(Time.deltaTime);
         OutStateUpdate(Time.deltaTime);
+
+        if (Angle > -90 && Angle <= 90)
+            gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
+        else
+            gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+    }
+
+    public void SetObject(float rect)
+    {
+        Angle = rect;
     }
 
 	/* 테스트코드 */
