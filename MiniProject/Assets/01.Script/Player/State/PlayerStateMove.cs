@@ -16,16 +16,17 @@ public class PlayerStateMove : PlayerState
 
 	public override void OnStart()
 	{
-
+		
 	}
 
 	public override bool OnTransition()
 	{
-		//if (fVertical == 0 && fHorizontal == 0)
-		//{
-		//	return true;
-		//}
-		//return false;
+		fHorizontal = Input.GetAxis("Horizontal");
+		fVertical = Input.GetAxis("Vertical");
+		if (fVertical == 0 && fHorizontal == 0)
+		{
+			return true;
+		}
 		return false;
 	}
 
@@ -34,6 +35,7 @@ public class PlayerStateMove : PlayerState
 		if (OnTransition() == true)
 		{
 			playerObject.playerStateMachine.ChangeState(ePlayerState.Idle);
+			playerObject.playerAnimator.SetInteger("Action", (int)ePlayerAnimation.Idle);
 			return;
 		}
 		Moving();
@@ -41,7 +43,7 @@ public class PlayerStateMove : PlayerState
 	}
 	public override void OnEnd()
 	{
-        
+
 	}
     private void Attack()
 	{
@@ -59,7 +61,8 @@ public class PlayerStateMove : PlayerState
 					playerObject.calStat.attackAngle))
 				{
 					delayTime = 0;
-                    if (playerObject.calStat.knockbackAtt)
+					playerObject.playerAnimator.SetInteger("Action", (int)ePlayerAnimation.Attack);
+					if (playerObject.calStat.knockbackAtt)
                         monsterPool[i].OutStateAdd(new ConditionData(eBuffType.NockBack, 4, 1, 2), 300);
                     if (Rand.Percent(playerObject.calStat.criticalChance))
 					{
@@ -77,9 +80,7 @@ public class PlayerStateMove : PlayerState
 
 	private void Moving()
 	{
-		fHorizontal = Input.GetAxis("Horizontal");
-		fVertical = Input.GetAxis("Vertical");
-
+		playerObject.playerAnimator.SetInteger("Action", (int)ePlayerAnimation.Run);
 		Mov.iSpeed = playerObject.calStat.moveSpeed;
 		playerObject.transform.position += Mov.Move(fHorizontal, fVertical);
 

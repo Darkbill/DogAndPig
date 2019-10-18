@@ -20,6 +20,7 @@ public class MonsterPool : MonoBehaviour
         GameObject o = Instantiate(Resources.Load(string.Format("Monster_{0}", stageData.enemyIndex), typeof(GameObject))) as GameObject;
         //TODO : 레벨값으로 스탯 계산
         o.transform.position = new Vector3(stageData.enemyPosX, stageData.enemyPosY,-3);
+		monsterList.Add(o.GetComponent<Monster>());
     }
     public void DeadMonster()
     {

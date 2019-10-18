@@ -18,7 +18,7 @@ public class ObjectSetAttack
             Vector3 target = dirbetween.normalized;
             dirVec += new Vector3(0, 0, target.z);
 
-            if (Vector3.Angle(dirVec, target) <= degree)
+            if (Mathf.Abs(Vector3.Angle(dirVec, target)) <= degree)
             {
                 return true;
             }

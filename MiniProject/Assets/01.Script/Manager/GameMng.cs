@@ -61,14 +61,6 @@ public class GameMng : MonoBehaviour
 		skillMng.skillDict[skillID].ActiveSkill();
 		return true;
 	}
-	private void Update()
-	{
-		if(Input.GetMouseButtonDown(0))
-		{
-			AddGold(1);
-			AddEXP(1);
-		}
-	}
 	public void AddGold(int gold)
 	{
 		JsonMng.Ins.playerInfoDataTable.AddGold(gold);

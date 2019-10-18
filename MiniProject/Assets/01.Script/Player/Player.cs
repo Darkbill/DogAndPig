@@ -9,7 +9,8 @@ public class Player : MonoBehaviour
 	public bool isMove;
 	public PlayerData calStat;
 	public PlayerStateMachine playerStateMachine;
-	public SpriteRenderer playerSprite;
+	public Sprite playerSprite;
+	public Animator playerAnimator;
 	// * private * //
 	private List<ConditionData> conditionList = new List<ConditionData>();
     private ConditionData conditionMain = new ConditionData();
@@ -65,6 +66,7 @@ public class Player : MonoBehaviour
 	}
 	public void DamageResult(int d)
 	{
+		playerAnimator.SetInteger("Action", (int)ePlayerAnimation.Damage);
 		if (d < 1) d = 1;
 		calStat.healthPoint -= d;
 		UIMngInGame.Ins.DamageToPlayer(d);
@@ -160,7 +162,6 @@ public class Player : MonoBehaviour
     }
 
     /* Buff */
-
     private void CalculatorStat()
 	{
 		//TODO : 레벨에 의한 스탯계산

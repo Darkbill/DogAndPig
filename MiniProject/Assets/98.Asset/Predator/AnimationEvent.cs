@@ -9,6 +9,14 @@ public class AnimationEvent : MonoBehaviour {
 
 	private int atkTimes = 0;
 
+	private void Update()
+	{
+		if(Input.GetMouseButton(0))
+		{
+			Animator enemyAnimator = enemy.GetComponent<Animator>();
+			enemyAnimator.SetTrigger("Walk");
+		}
+	}
 	public void AttackStart () {
 		Debug.Log ("Attack Start");
 

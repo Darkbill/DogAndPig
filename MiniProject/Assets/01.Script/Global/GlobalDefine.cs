@@ -90,6 +90,14 @@ namespace GlobalDefine
 		Dead,
 		Max,
 	}
+	public enum ePlayerAnimation
+	{
+		Idle = 0,
+		Run,
+		Damage,
+		Attack,
+		Dead,
+	}
 	public enum eAttackType
 	{
 		None = 0,

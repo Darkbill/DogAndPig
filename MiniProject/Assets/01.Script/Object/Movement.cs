@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class Movement
 {
     public float iSpeed;
     public Vector3 Move(float Hor, float Ver)
