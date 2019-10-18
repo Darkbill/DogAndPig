@@ -8,6 +8,7 @@ namespace GlobalDefine
 	{
 		public const int nRANDOM_POOL = 1024;
 		public const float coolDownTimeAll = 0.3f;
+		public const float upscaleDuration = 2f;
 	}
 
 	public enum eBulletStyle

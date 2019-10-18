@@ -8,14 +8,15 @@ public class Player : MonoBehaviour
 	// * public * //
 	public bool isMove;
 	public PlayerData calStat;
-	public PlayerData skillStat = new PlayerData();
 	public PlayerStateMachine playerStateMachine;
 	public SpriteRenderer playerSprite;
 	// * private * //
 	private List<ConditionData> conditionList = new List<ConditionData>();
     private ConditionData conditionMain = new ConditionData();
 	private int level = 1;
-    private void Awake()
+	private int exp = 0;
+	private PlayerData skillStat = new PlayerData();
+	private void Awake()
 	{
 		PlayerSetting();
 	}
@@ -165,16 +166,28 @@ public class Player : MonoBehaviour
 		//TODO : 레벨에 의한 스탯계산
 		calStat = JsonMng.Ins.playerDataTable[level].AddStat(skillStat,conditionList);
 	}
-	public void AddEXP()
+	public void AddEXP(int _exp)
 	{
-
+		exp += _exp;
+		if(exp >= JsonMng.Ins.expDataTable[level+1].requiredExp)
+		{
+			int saveEXP = JsonMng.Ins.expDataTable[level+1].requiredExp - exp;
+			LevelUP();
+			exp = saveEXP;
+		}
 	}
 	public float GetFullHP()
 	{
 		return skillStat.healthPoint + JsonMng.Ins.playerDataTable[level].healthPoint;
 	}
+	public float GetEXPFill()
+	{
+		return (float)exp / JsonMng.Ins.expDataTable[level+1].requiredExp;
+	}
 	private void LevelUP()
 	{
+		level++;
+		exp = 0;
 		CalculatorStat();
 	}
 }

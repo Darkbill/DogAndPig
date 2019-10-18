@@ -50,12 +50,22 @@ public class GameMng : MonoBehaviour
 		skillMng.skillDict[skillID].ActiveSkill();
 		return true;
 	}
-	public void AddGold()
+	private void Update()
 	{
-		UIMngInGame.Ins.OnCoinSelectInGame(2);
+		if(Input.GetMouseButtonDown(0))
+		{
+			AddGold(1);
+			AddEXP(1);
+		}
 	}
-	public void AddEXP()
+	public void AddGold(int gold)
 	{
-		//TODO exp fill
+		JsonMng.Ins.playerInfoDataTable.AddGold(gold);
+		UIMngInGame.Ins.AddGold(gold);
+	}
+	public void AddEXP(int exp)
+	{
+		player.AddEXP(exp);
+		UIMngInGame.Ins.AddEXP();
 	}
 }

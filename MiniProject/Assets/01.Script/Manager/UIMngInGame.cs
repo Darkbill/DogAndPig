@@ -30,32 +30,31 @@ public class UIMngInGame : MonoBehaviour
     #endregion
     /* UI List */
     public GameObject gameOverUI;
+	public GameObject joyStick;
+	public GameObject healthPack;
+	public BuffUI buffUI;
+	public DamageTextPool damageTextPool;
+
+	/* Image */
+	public Image stickImage;
 	public Image expImage;
-    /* Player Controller UI */
-    public Image stickImage;
-    public GameObject joyStick;
-	[HideInInspector]
-	private Vector3 stickPos;
-    private float stickRadius = 60;
-    private int moveTouchID;
-    public DamageTextPool damageTextPool;
-
-    /* Player Infomation UI*/
-    public GameObject healthPack;
-    public Image healthGageImage;
-    public Text healthText;
-    public Coroutine fillCoroutine;
-    public BuffUI buffUI;
-    public float saveDamage = 0;
-
-    public Image coinImage;
-    public Text coinText;
-
-    /* Skill UI */
-    public Image[] skillImageArr;
+	public Image healthGageImage;
+	public Image coinImage;
+	public Image[] skillImageArr;
 	public Image[] skillImageBGArr;
-    bool isCool = false;
-    private void Start()
+
+	/* Text */
+	public Text healthText;
+	public Text coinText;
+
+	private Vector3 stickPos;
+	private Coroutine fillCoroutine;
+	private float saveDamage = 0;
+	private float stickRadius = 60;
+	private int moveTouchID;
+	private bool isCool = false;
+
+	private void Start()
     {
         UISetting();
     }
@@ -179,11 +178,12 @@ public class UIMngInGame : MonoBehaviour
     public void DamageToPlayer(int damage)
     {
         ShowDamage(damage, Camera.main.WorldToScreenPoint(GameMng.Ins.player.transform.position));
-        if (fillCoroutine != null)
+		OnPlayerDamageHPShake();
+		if (fillCoroutine != null)
         {
             StopCoroutine(fillCoroutine);
         }
-        fillCoroutine = StartCoroutine(IEDamageToPlayer(damage, saveDamage, 0.5f));
+		fillCoroutine = StartCoroutine(IEDamageToPlayer(damage, saveDamage, 0.5f));
         healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.calStat.healthPoint, GameMng.Ins.player.GetFullHP());
     }
     public void ShowDamage(int damage, Vector3 pos)
@@ -192,7 +192,6 @@ public class UIMngInGame : MonoBehaviour
     }
     IEnumerator IEDamageToPlayer(int damage, float save, float duration)
     {
-        OnPlayerDamageHPShake();
         saveDamage = damage + save;
         double cTime = 0;
         //전체 체력대비 깍아야하는 체력의 비율
@@ -240,16 +239,19 @@ public class UIMngInGame : MonoBehaviour
 
     }
 
-    public void OnCoinSelectInGame(float upScaleDuration)
+    public void AddGold(int gold)
     {
         int c = int.Parse(coinText.text);
-        ++c;
+        c += gold;
         coinText.text = c.ToString();
-        coinImage.transform.DOScale(upScaleDuration, 0.1f).OnComplete(() => { 
+        coinImage.transform.DOScale(Define.upscaleDuration, 0.1f).OnComplete(() => { 
             coinImage.transform.DOScale(1, 0.3f); });
     }
-
-    private void OnPlayerDamageHPShake()
+	public void AddEXP()
+	{
+		expImage.fillAmount = GameMng.Ins.player.GetEXPFill();
+	}
+	private void OnPlayerDamageHPShake()
     {
 		healthGageImage.transform.DOShakePosition(0.3f, 20.0f, 10, 90, false, true);
     }

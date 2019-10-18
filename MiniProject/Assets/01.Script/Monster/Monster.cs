@@ -156,8 +156,8 @@ public class Monster : MonoBehaviour
 	{
 		Debug.Log("죽었다");
 		//TODO : 테이블에서 골드 exp값으로 추가
-		GameMng.Ins.AddGold();
-		GameMng.Ins.AddEXP();
+		GameMng.Ins.AddGold(GameMng.Ins.stageLevel);
+		GameMng.Ins.AddEXP(GameMng.Ins.stageLevel);
 	}
 
     //TODO : 넉백관련 몬스터 코드는 일단 주석처리..

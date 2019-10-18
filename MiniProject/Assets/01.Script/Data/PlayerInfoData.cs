@@ -2,7 +2,6 @@
 
 public class PlayerInfoData
 {
-	public int exp;
 	public int gold;
 	public int diamond;
 	public List<int> setSkillList = new List<int>();
@@ -30,5 +29,9 @@ public class PlayerInfoData
 			RemoveSkill(newSkillID);
 		}
 		setSkillList[setSkillListIndex] = newSkillID;
+	}
+	public void AddGold(int _gold)
+	{
+		gold += _gold;
 	}
 }

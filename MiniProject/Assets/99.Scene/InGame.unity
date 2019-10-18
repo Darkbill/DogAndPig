@@ -1557,7 +1557,7 @@ Transform:
   - {fileID: 1200113546}
   - {fileID: 171678931}
   m_Father: {fileID: 2072180611}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &290280807
 GameObject:
@@ -4374,7 +4374,7 @@ Transform:
   - {fileID: 281740051}
   - {fileID: 1682492041}
   m_Father: {fileID: 2072180611}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &912548249
 MonoBehaviour:
@@ -5414,7 +5414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &1055332647
 Rigidbody2D:
   serializedVersion: 4
@@ -6871,7 +6871,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 8197487863926010870}
-  levelText: {fileID: 125265139}
   expImage: {fileID: 2076389431}
   stickImage: {fileID: 7573771754993154139}
   joyStick: {fileID: 277079577}
@@ -6880,7 +6879,6 @@ MonoBehaviour:
   healthGageImage: {fileID: 474134876}
   healthText: {fileID: 1080409366}
   buffUI: {fileID: 99556337}
-  saveDamage: 0
   coinImage: {fileID: 521794436}
   coinText: {fileID: 341309561}
   skillImageArr:
@@ -6893,49 +6891,6 @@ MonoBehaviour:
   - {fileID: 1577163399}
   - {fileID: 2084329749}
   - {fileID: 903382181}
---- !u!1 &1355690107
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1355690108}
-  - component: {fileID: 1355690109}
-  m_Layer: 0
-  m_Name: BulletPoolMonster
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1355690108
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1355690107}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2072180611}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1355690109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1355690107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2d2a448e0e2b648a865084f8a8f3b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1363786324
 GameObject:
   m_ObjectHideFlags: 0
@@ -8849,7 +8804,6 @@ MonoBehaviour:
   isMove: 0
   playerStateMachine: {fileID: 1684886708}
   playerSprite: {fileID: 1899078247}
-  specialAttack: 0000
 --- !u!114 &1684886707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9910,7 +9864,6 @@ Transform:
   - {fileID: 979259866}
   - {fileID: 547203918}
   - {fileID: 1341116296}
-  - {fileID: 1355690108}
   - {fileID: 912548248}
   - {fileID: 285599446}
   m_Father: {fileID: 0}
@@ -9972,11 +9925,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 16563c496c17801438b5c2253c9f65b1, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
