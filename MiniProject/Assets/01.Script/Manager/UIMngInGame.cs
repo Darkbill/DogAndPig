@@ -30,7 +30,6 @@ public class UIMngInGame : MonoBehaviour
     #endregion
     /* UI List */
     public GameObject gameOverUI;
-	public Text levelText;
 	public Image expImage;
     /* Player Controller UI */
     public Image stickImage;
@@ -68,7 +67,6 @@ public class UIMngInGame : MonoBehaviour
     {
         healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.calStat.healthPoint,
             GameMng.Ins.player.GetFullHP());
-		levelText.text = JsonMng.Ins.playerInfoDataTable.level.ToString();
 		coinText.text = JsonMng.Ins.playerInfoDataTable.gold.ToString();
 		for (int i = 0; i < JsonMng.Ins.playerInfoDataTable.setSkillList.Count; ++i)
 		{

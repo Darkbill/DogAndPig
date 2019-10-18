@@ -12,14 +12,9 @@ public class Player : MonoBehaviour
 	public PlayerStateMachine playerStateMachine;
 	public SpriteRenderer playerSprite;
 	// * private * //
-	private int level = 1;
-
 	private List<ConditionData> conditionList = new List<ConditionData>();
     private ConditionData conditionMain = new ConditionData();
-
-
-    public bool[] specialAttack = new bool[2];
-
+	private int level = 1;
     private void Awake()
 	{
 		PlayerSetting();
