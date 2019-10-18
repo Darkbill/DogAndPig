@@ -101,4 +101,14 @@ public class JsonMng : MonoBehaviour
 		}
 	}
 
+    public List<StageDataTable> GetStageData(int stagelevel)
+    {
+        List<StageDataTable> lv = new List<StageDataTable>();
+        for(int i = 1;i<stageDataTable.Count;++i)
+        {
+            if (stageDataTable[i].stageLevel == stagelevel)
+                lv.Add(stageDataTable[i]);
+        }
+        return lv;
+    }
 }

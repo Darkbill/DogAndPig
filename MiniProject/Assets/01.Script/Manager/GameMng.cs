@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using GlobalDefine;
+using System.Collections.Generic;
 public class GameMng : MonoBehaviour
 {
 	#region SINGLETON
@@ -32,7 +33,17 @@ public class GameMng : MonoBehaviour
 		//테스트 코드
 		Time.timeScale = 1;
 		stageLevel = 1;
-	}
+        StartGame();
+    }
+    public void StartGame()
+    {
+        monsterPool.StartStage(stageLevel);
+    }
+    public void StageClear()
+    {
+        stageLevel++;
+        StartGame();
+    }
 	public void DamageToPlayer(eAttackType attackType, float damage)
 	{
 		cameraMove.OnStart();

@@ -26,10 +26,10 @@ public class SkillBurningMeteor : Skill
     }
     #endregion
 
-    public Alter Bullet;
+    public Targetting Target;
 
-    private const int Count = 10;
-    public List<Alter> alterList = new List<Alter>();
+    private const int Count = 20;
+    public List<Targetting> alterList = new List<Targetting>();
 
 
     bool AttackSet = false;
@@ -44,7 +44,7 @@ public class SkillBurningMeteor : Skill
         GameMng.Ins.player.playerStateMachine.cState.isDash = true;
         for (int i = 0; i < Count; ++i)
         {
-            alterList[i].Setting(GameMng.Ins.player.transform.position, GameMng.Ins.player.transform.right, i + 5);
+            //alterList[i].Setting(GameMng.Ins.player.transform.position, GameMng.Ins.player.transform.right, i + 5);
         }
         AttackSet = true;
     }

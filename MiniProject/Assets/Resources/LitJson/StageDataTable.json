@@ -4,7 +4,7 @@
     "stageLevel": 1,
     "enemyIndex": 1,
     "enemyLevel": 1,
-    "enemyPosX": -5,
+    "enemyPosX": -2,
     "enemyPosY": 2,
     "boss": 0
   },
@@ -13,7 +13,7 @@
     "stageLevel": 1,
     "enemyIndex": 1,
     "enemyLevel": 1,
-    "enemyPosX": 5,
+    "enemyPosX": 2,
     "enemyPosY": 2,
     "boss": 0
   },
