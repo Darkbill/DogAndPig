@@ -63,7 +63,7 @@ public class SkillDash : Skill
 
         for(int i = 0;i<Attack.Count;++i)
         {
-            Attack[i].GetComponent<MilliMonster>().Damage(attackType, damage);
+            Attack[i].GetComponent<Monster>().Damage(attackType, damage);
         }
     }
 

@@ -703,49 +703,6 @@ MonoBehaviour:
   - {fileID: 304741367}
   - {fileID: 916162277}
   - {fileID: 636674879}
---- !u!1 &113422137
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 113422139}
-  - component: {fileID: 113422138}
-  m_Layer: 0
-  m_Name: BulletPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &113422138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113422137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2d2a448e0e2b648a865084f8a8f3b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &113422139
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113422137}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2072180611}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &125265137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1600,7 +1557,7 @@ Transform:
   - {fileID: 1200113546}
   - {fileID: 171678931}
   m_Father: {fileID: 2072180611}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &290280807
 GameObject:
@@ -4417,7 +4374,7 @@ Transform:
   - {fileID: 281740051}
   - {fileID: 1682492041}
   m_Father: {fileID: 2072180611}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &912548249
 MonoBehaviour:
@@ -5516,9 +5473,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1055332646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b80ae76c30804d469524c3a6e43233d, type: 3}
+  m_Script: {fileID: 11500000, guid: 10bf1e1fe6079ec4f9a74b8ba3303c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterStateMachine: {fileID: 1055332651}
 --- !u!114 &1055332651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6964,7 +6922,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2072180611}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1355690109
 MonoBehaviour:
@@ -9952,7 +9910,6 @@ Transform:
   - {fileID: 979259866}
   - {fileID: 547203918}
   - {fileID: 1341116296}
-  - {fileID: 113422139}
   - {fileID: 1355690108}
   - {fileID: 912548248}
   - {fileID: 285599446}
