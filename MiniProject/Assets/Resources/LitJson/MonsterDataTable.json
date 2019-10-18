@@ -26,7 +26,7 @@
     "size": 0.25,
     "moveType": 1,
     "moveSpeed": 0.15,
-    "rotationSpeed": 15,
+    "rotationSpeed": 80,
     "attackType": 1,
     "attackSpeed": 1,
     "attackRange": 2.5,

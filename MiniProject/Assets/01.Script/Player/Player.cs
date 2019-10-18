@@ -33,8 +33,6 @@ public class Player : MonoBehaviour
 	}
 	private void Update()
 	{
-		Debug.Log(Mathf.Sign(90));
-		Debug.Log(Mathf.Cos(90 * Mathf.Deg2Rad));
 		UpdateBuff(Time.deltaTime);
 		if (degree > 90 || degree < -90)
 		{
