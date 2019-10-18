@@ -2,6 +2,7 @@
 {
 	public Player playerObject;
 	public bool isDash;
+	public float delayTime;
     public PlayerState(Player o)
 	{
 		playerObject = o;

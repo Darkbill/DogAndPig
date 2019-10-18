@@ -62,7 +62,6 @@ public class MilliMonsterStateMove : MonsterState
 		else 
             monsterObject.transform.eulerAngles -= 
                 new Vector3(0, 0, Time.deltaTime * monsterObject.monsterData.rotationSpeed);
-
 		if (directionToPlayer.magnitude > monsterObject.monsterData.attackRange)
 		{
 			monsterObject.gameObject.transform.position +=

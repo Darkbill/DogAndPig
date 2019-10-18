@@ -27,6 +27,13 @@ public class PlayerStateMachine : MonoBehaviour
 		cState = stateDict[stateType];
 		cState.OnStart();
 	}
+	//public void ChangeState(int stateType)
+	//{
+	//	Debug.Log("change");
+	//	cState.OnEnd();
+	//	cState = stateDict[(ePlayerState)stateType];
+	//	cState.OnStart();
+	//}
 	private void FixedUpdate()
 	{
 		cState.Tick();

@@ -6,8 +6,6 @@ public class PlayerStateMove : PlayerState
 {
 	public float fHorizontal;
 	public float fVertical;
-	public bool attackFlag = false;
-	float delayTime;
 	public Movement Mov = new Movement();
 
 	public PlayerStateMove(Player o) : base(o)
@@ -16,7 +14,6 @@ public class PlayerStateMove : PlayerState
 
 	public override void OnStart()
 	{
-		
 	}
 
 	public override bool OnTransition()
@@ -35,7 +32,7 @@ public class PlayerStateMove : PlayerState
 		if (OnTransition() == true)
 		{
 			playerObject.playerStateMachine.ChangeState(ePlayerState.Idle);
-			playerObject.playerAnimator.SetInteger("Action", (int)ePlayerAnimation.Idle);
+			playerObject.ChangeAnimation(ePlayerAnimation.Idle);
 			return;
 		}
 		Moving();
@@ -57,11 +54,11 @@ public class PlayerStateMove : PlayerState
 				if (monsterPool[i].gameObject.activeSelf == false) continue;
 				if (att.BaseAttack(playerObject.transform.right,
 					monsterPool[i].gameObject.transform.position - playerObject.transform.position,
-					playerObject.calStat.attackRange,
+					playerObject.calStat.attackRange,	
 					playerObject.calStat.attackAngle))
 				{
 					delayTime = 0;
-					playerObject.playerAnimator.SetInteger("Action", (int)ePlayerAnimation.Attack);
+					playerObject.ChangeAnimation(ePlayerAnimation.Attack);
 					if (playerObject.calStat.knockbackAtt)
                         monsterPool[i].OutStateAdd(new ConditionData(eBuffType.NockBack, 4, 1, 2), 300);
                     if (Rand.Percent(playerObject.calStat.criticalChance))
@@ -80,12 +77,9 @@ public class PlayerStateMove : PlayerState
 
 	private void Moving()
 	{
-		playerObject.playerAnimator.SetInteger("Action", (int)ePlayerAnimation.Run);
+		playerObject.ChangeAnimation(ePlayerAnimation.Run);
 		Mov.iSpeed = playerObject.calStat.moveSpeed;
 		playerObject.transform.position += Mov.Move(fHorizontal, fVertical);
-
-		float Degree = Mathf.Atan2(fVertical, fHorizontal) * Mathf.Rad2Deg;
-		playerObject.transform.eulerAngles = new Vector3(0, 0, Degree);
-		
+		playerObject.degree = Mathf.Atan2(fVertical, fHorizontal) * Mathf.Rad2Deg;
 	}
 }

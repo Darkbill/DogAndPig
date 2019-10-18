@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private ConditionData conditionMain = new ConditionData();
 	private int level = 1;
 	private int exp = 0;
+	public float degree;
 	private PlayerData skillStat = new PlayerData();
 	private void Awake()
 	{
@@ -32,7 +33,14 @@ public class Player : MonoBehaviour
 	}
 	private void Update()
 	{
+		Debug.Log(Mathf.Sign(90));
+		Debug.Log(Mathf.Cos(90 * Mathf.Deg2Rad));
 		UpdateBuff(Time.deltaTime);
+		if (degree > 90 || degree < -90)
+		{
+			transform.eulerAngles = new Vector3(0, 180, 0);
+		}
+		else transform.eulerAngles = new Vector3(0, 0, 0);
 
 		if (isMove)
 		{
@@ -66,7 +74,7 @@ public class Player : MonoBehaviour
 	}
 	public void DamageResult(int d)
 	{
-		playerAnimator.SetInteger("Action", (int)ePlayerAnimation.Damage);
+		ChangeAnimation(ePlayerAnimation.Damage);
 		if (d < 1) d = 1;
 		calStat.healthPoint -= d;
 		UIMngInGame.Ins.DamageToPlayer(d);
@@ -138,10 +146,10 @@ public class Player : MonoBehaviour
         switch (condition.buffType)
         {
             case eBuffType.Stun:
-                gameObject.GetComponent<PlayerStateMachine>().ChangeState(ePlayerState.Stun);
+				playerStateMachine.ChangeState(ePlayerState.Stun);
                 break;
             case eBuffType.NockBack:
-                gameObject.GetComponent<PlayerStateMachine>().ChangeState(ePlayerState.KnockBack);
+				playerStateMachine.ChangeState(ePlayerState.KnockBack);
                 break;
         }
         Debug.Log("상태이상에 걸렸습니다.");
@@ -156,7 +164,7 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("상태이상이 풀렸습니다.");
                 conditionMain = null;
-                gameObject.GetComponent<PlayerStateMachine>().ChangeState(ePlayerState.Move);
+                playerStateMachine.ChangeState(ePlayerState.Move);
             }
         }
     }
@@ -190,5 +198,9 @@ public class Player : MonoBehaviour
 		level++;
 		exp = 0;
 		CalculatorStat();
+	}
+	public void ChangeAnimation(ePlayerAnimation animationType)
+	{
+		playerAnimator.SetInteger("Action", (int)animationType);
 	}
 }
