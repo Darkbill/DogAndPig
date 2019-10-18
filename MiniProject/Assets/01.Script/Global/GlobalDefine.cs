@@ -72,6 +72,7 @@ namespace GlobalDefine
 		Idle,
 		Move,
 		Attack,
+		KnockBack,
 		Stun,
 		SkillAttack,
 		Dash,
