@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossMonsterStateDash : BossMonsterState
+public class BossMonsterStateDash : MonsterState
 {
     public BossMonsterStateDash(BossMonster o) : base(o)
     {

@@ -7,24 +7,24 @@ using System;
 public class Monster : MonoBehaviour
 {
 	public MonsterData monsterData;
-
+	public MonsterStateMachine monsterStateMachine;
 	/* 테스트코드 */
-	private int MonsterID = 1;
+	public int MonsterID = 1;
 	private List<ConditionData> conditionList = new List<ConditionData>();
     private ConditionData conditionMain = new ConditionData();
-	public void Start()
+	private void Awake()
 	{
 		MonsterSetting();
+	}
+	private void MonsterSetting()
+	{
+		monsterData = JsonMng.Ins.monsterDataTable[MonsterID].Copy();
 	}
 	private void Update()
 	{
 		UpdateBuff(Time.deltaTime);
         OutStateUpdate(Time.deltaTime);
     }
-	public void MonsterSetting()
-	{
-		monsterData = JsonMng.Ins.monsterDataTable[MonsterID].Copy();
-	}
 
 	/* 테스트코드 */
 	public virtual void Attack()

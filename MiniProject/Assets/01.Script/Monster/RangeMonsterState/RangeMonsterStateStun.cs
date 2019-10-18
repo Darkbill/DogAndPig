@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangeMonsterStateStun : RangeMonsterState
+public class RangeMonsterStateStun : MonsterState
 {
 	public RangeMonsterStateStun(RangeMonster o) : base(o)
 	{

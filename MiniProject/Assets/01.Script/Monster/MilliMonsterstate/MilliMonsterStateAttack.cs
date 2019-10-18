@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MilliMonsterStateAttack : MilliMonsterState
+public class MilliMonsterStateAttack : MonsterState
 {
 	public MilliMonsterStateAttack(MilliMonster o) : base(o)
 	{

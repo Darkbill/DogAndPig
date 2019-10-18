@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using GlobalDefine;
 
-public class MilliMonsterStateMove : MilliMonsterState
+public class MilliMonsterStateMove : MonsterState
 {
 
 	private float delaytime = 0.0f;
@@ -29,7 +29,7 @@ public class MilliMonsterStateMove : MilliMonsterState
 			{
 				delaytime = 0.0f;
 				monsterObject.Attack();
-				monsterObject.monsterStateMachine.ChangeState(eMilliMonsterState.Idle);
+				monsterObject.monsterStateMachine.ChangeStateIdle();
 				return true;
 			}
 		}

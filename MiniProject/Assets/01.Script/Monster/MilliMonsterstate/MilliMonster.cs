@@ -4,7 +4,6 @@ using UnityEngine;
 using GlobalDefine;
 public class MilliMonster : Monster
 {
-	public MilliMonsterStateMachine monsterStateMachine;
 	/* 테스트코드 */
 	public override void Attack()
 	{
@@ -15,11 +14,11 @@ public class MilliMonster : Monster
 	{
 		Debug.Log("몬스터 공격");
 		yield return new WaitForSeconds(1);
-		monsterStateMachine.ChangeState(eMilliMonsterState.Move);
+		monsterStateMachine.ChangeStateAttack();
 	}
 	public override void Dead()
 	{
 		base.Dead();
-		monsterStateMachine.ChangeState(eMilliMonsterState.Dead);
+		monsterStateMachine.ChangeStateDead();
 	}
 }

@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class MilliMonsterStateDash : MilliMonsterState
+﻿public class MilliMonsterStateDash : MonsterState
 {
 	public MilliMonsterStateDash(MilliMonster o) : base(o)
 	{

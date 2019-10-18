@@ -4,7 +4,6 @@ using UnityEngine;
 using GlobalDefine;
 public class BossMonster : Monster
 {
-    public BossMonsterStateMachine monsterStateMachine;
     public override void Attack()
     {
         base.Attack();
@@ -14,11 +13,11 @@ public class BossMonster : Monster
     {
         Debug.Log("몬스터 공격");
         yield return new WaitForSeconds(1);
-        monsterStateMachine.ChangeState(eBossMonsterState.Move);
+        monsterStateMachine.ChangeStateMove();
     }
     public override void Dead()
     {
         base.Dead();
-        monsterStateMachine.ChangeState(eBossMonsterState.Dead);
+        monsterStateMachine.ChangeStateDead();
     }
 }

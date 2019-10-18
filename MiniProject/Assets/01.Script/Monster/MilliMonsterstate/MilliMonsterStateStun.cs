@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MilliMonsterStateStun : MilliMonsterState
+public class MilliMonsterStateStun : MonsterState
 {
     private float SetTime = 0.0f;
 	public MilliMonsterStateStun(MilliMonster o) : base(o)

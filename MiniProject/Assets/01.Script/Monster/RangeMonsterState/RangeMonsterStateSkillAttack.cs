@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangeMonsterStateSkillAttack : RangeMonsterState
+public class RangeMonsterStateSkillAttack : MonsterState
 {
 	public RangeMonsterStateSkillAttack(RangeMonster o) : base(o)
 	{

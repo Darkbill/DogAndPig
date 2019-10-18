@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MilliMonsterStateIdle : MilliMonsterState
+public class MilliMonsterStateIdle : MonsterState
 {
 	private float delaytime;
 
@@ -21,7 +21,7 @@ public class MilliMonsterStateIdle : MilliMonsterState
 		delaytime += Time.deltaTime;
 		if (delaytime >= 1.0f)
 		{
-			monsterObject.monsterStateMachine.ChangeState(eMilliMonsterState.Move);
+			monsterObject.monsterStateMachine.ChangeStateMove();
 			return true;
 		}
 

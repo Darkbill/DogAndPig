@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangeMonsterStateDead : RangeMonsterState
+public class RangeMonsterStateDead : MonsterState
 {
 	public RangeMonsterStateDead(RangeMonster o) : base(o)
 	{

@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MilliMonsterStateKnockBack : MilliMonsterState
+public class MilliMonsterStateKnockBack : MonsterState
 {
     private float setspeed = 10;
 

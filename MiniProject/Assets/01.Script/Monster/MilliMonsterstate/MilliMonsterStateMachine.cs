@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GlobalDefine;
-public class MilliMonsterStateMachine : MonoBehaviour
+public class MilliMonsterStateMachine : MonsterStateMachine
 {
-	public Dictionary<eMilliMonsterState, MilliMonsterState> stateDict = new Dictionary<eMilliMonsterState, MilliMonsterState>();
-	public MilliMonsterState cState;
+	public Dictionary<eMilliMonsterState, MonsterState> stateDict = new Dictionary<eMilliMonsterState, MonsterState>();
+	public MonsterState cState;
 	private void Awake()
 	{
 		Setting();
@@ -32,5 +32,29 @@ public class MilliMonsterStateMachine : MonoBehaviour
 	private void FixedUpdate()
 	{
 		cState.Tick();
+	}
+	public override void ChangeStateKnockBack()
+	{
+		ChangeState(eMilliMonsterState.KnockBack);
+	}
+	public override void ChangeStateStun()
+	{
+		ChangeState(eMilliMonsterState.Stun);
+	}
+	public override void ChangeStateAttack()
+	{
+		//ChangeState(eMilliMonsterState.SkillAttack);
+	}
+	public override void ChangeStateDead()
+	{
+		ChangeState(eMilliMonsterState.Dead);
+	}
+	public override void ChangeStateIdle()
+	{
+		ChangeState(eMilliMonsterState.Idle);
+	}
+	public override void ChangeStateMove()
+	{
+		ChangeState(eMilliMonsterState.Move);
 	}
 }
