@@ -29,15 +29,15 @@ public class Monster : MonoBehaviour
 		UpdateBuff(Time.deltaTime);
         OutStateUpdate(Time.deltaTime);
 
-        if (Angle > -90 && Angle <= 90)
-            gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
-        else
-            gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
-    }
+        Debug.Log(Angle);
 
-    public void SetObject(float rect)
-    {
-        Angle = rect;
+        if (Angle > 180) { Angle -= 360; }
+        else if (Angle < -180) { Angle += 360; }
+
+        if (Angle > -90 && Angle <= 90)
+            gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+        else
+            gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
     }
 
 	/* 테스트코드 */

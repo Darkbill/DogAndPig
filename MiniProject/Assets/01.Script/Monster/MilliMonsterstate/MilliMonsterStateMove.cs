@@ -11,7 +11,7 @@ public class MilliMonsterStateMove : MonsterState
     Vector2 directionToPlayer;
     float degreeToPlayer;
 
-    //Vector3 ownerDirection = new Vector3(1, 0, 0);
+    Vector3 ownerDirection = new Vector3(1, 0, 0);
     float attackAngle = 0.0f;
 
     public MilliMonsterStateMove(MilliMonster o) : base(o)
@@ -26,7 +26,7 @@ public class MilliMonsterStateMove : MonsterState
     public override bool OnTransition()
     {
         delaytime += Time.deltaTime;
-        Debug.DrawRay(monsterObject.gameObject.transform.position, monsterObject.transform.right);
+        Debug.DrawRay(monsterObject.gameObject.transform.position, ownerDirection);
         if (Mathf.Abs(degreeToPlayer) <= attackAngle && directionToPlayer.magnitude <= monsterObject.monsterData.attackRange)
         {
             if (delaytime > monsterObject.monsterData.attackSpeed)
@@ -51,9 +51,8 @@ public class MilliMonsterStateMove : MonsterState
     }
     public void ChaseToPlayer()
     {
-        //Vector3 ownerDirection = monsterObject.transform.right;
         directionToPlayer = GameMng.Ins.player.transform.position - monsterObject.gameObject.transform.position;
-        float ownerDegree = Mathf.Atan2(monsterObject.right.y, monsterObject.right.x);
+        float ownerDegree = Mathf.Atan2(ownerDirection.y, ownerDirection.x);
         float goalDegree = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x);
         degreeToPlayer = (ownerDegree - goalDegree) * Mathf.Rad2Deg;
 
@@ -67,17 +66,15 @@ public class MilliMonsterStateMove : MonsterState
             monsterObject.Angle -=
                 Time.deltaTime * monsterObject.monsterData.rotationSpeed;
 
-        monsterObject.SetObject(ownerDegree * Mathf.Rad2Deg);
-        Debug.Log(ownerDegree);
-        monsterObject.right = new Vector3(Mathf.Sign(monsterObject.Angle), Mathf.Cos(monsterObject.Angle * Mathf.Deg2Rad), 0);
-        Debug.Log(monsterObject.right);
-        //ownerDirection = new Vector3(ownerDirection.x * Mathf.Cos(degreeToPlayer) - ownerDirection.y * Mathf.Sin(degreeToPlayer),
-        //                               ownerDirection.x * Mathf.Sin(degreeToPlayer) + ownerDirection.y * Mathf.Cos(degreeToPlayer), 0);  
+        Vector3 ownerset = new Vector3(1, 0, 0);
+
+        ownerDirection = new Vector3(ownerset.x * Mathf.Cos(monsterObject.Angle * Mathf.Deg2Rad) - ownerset.y * Mathf.Sin(monsterObject.Angle * Mathf.Deg2Rad),
+                                       ownerset.x * Mathf.Sin(monsterObject.Angle * Mathf.Deg2Rad) + ownerset.y * Mathf.Cos(monsterObject.Angle * Mathf.Deg2Rad), 0);  
 
         if (directionToPlayer.magnitude > monsterObject.monsterData.attackRange)
         {
             monsterObject.gameObject.transform.position +=
-                monsterObject.right *
+                ownerDirection *
                 Time.deltaTime *
                 monsterObject.monsterData.moveSpeed;
             //monsterObject.condition.BufDebufUpdate().Speed;
