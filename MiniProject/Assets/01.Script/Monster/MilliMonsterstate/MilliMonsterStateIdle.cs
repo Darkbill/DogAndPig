@@ -14,7 +14,8 @@ public class MilliMonsterStateIdle : MonsterState
 	public override void OnStart()
 	{
 		delaytime = 0.0f;
-	}
+        monsterObject.ChangeAnimation(eMonsterAnimation.Idle);
+    }
 
 	public override bool OnTransition()
 	{

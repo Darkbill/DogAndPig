@@ -12,14 +12,18 @@ public class Monster : MonoBehaviour
 	public int MonsterID = 1;
 	private List<ConditionData> conditionList = new List<ConditionData>();
     private ConditionData conditionMain = new ConditionData();
+    public Animator monsterAnimator;
 
     public float Angle = 0;
     public Vector3 right = new Vector3(1, 0, 0);
 
+    public int actionNum = 0;
+
 	private void Awake()
 	{
 		MonsterSetting();
-	}
+
+    }
 	private void MonsterSetting()
 	{
 		monsterData = JsonMng.Ins.monsterDataTable[MonsterID].Copy();
@@ -29,8 +33,6 @@ public class Monster : MonoBehaviour
 		UpdateBuff(Time.deltaTime);
         OutStateUpdate(Time.deltaTime);
 
-        Debug.Log(Angle);
-
         if (Angle > 180) { Angle -= 360; }
         else if (Angle < -180) { Angle += 360; }
 
@@ -38,7 +40,7 @@ public class Monster : MonoBehaviour
             gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
         else
             gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
-    }
+    }   
 
 	/* 테스트코드 */
 	public virtual void Attack()
@@ -173,6 +175,11 @@ public class Monster : MonoBehaviour
 		GameMng.Ins.AddGold(GameMng.Ins.stageLevel);
 		GameMng.Ins.AddEXP(GameMng.Ins.stageLevel);
 	}
+
+    public void ChangeAnimation(eMonsterAnimation animationType)
+    {
+        monsterAnimator.SetInteger("Action", (int)animationType);
+    }
 
     //TODO : 넉백관련 몬스터 코드는 일단 주석처리..
     /*

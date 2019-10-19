@@ -6,10 +6,17 @@ public class Targetting : MonoBehaviour
 {
     float timer;
 
+    public Meteor bullet;
+    private Meteor set;
+
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        timer = 0.0f;
+        set = Instantiate(bullet,
+            gameObject.transform.position + new Vector3(0, 0.7f, 0),
+            Quaternion.Euler(0, 0, 0), 
+            gameObject.transform);
+        set.gameObject.SetActive(false);
     }
 
     public void Setting()
@@ -23,7 +30,12 @@ public class Targetting : MonoBehaviour
         timer += Time.deltaTime;
         if(timer > 1.0f)
         {
-            gameObject.SetActive(false);
+            set.gameObject.SetActive(true);
+            if(timer > 2.0f)
+            {
+                set.gameObject.SetActive(false);
+                gameObject.SetActive(false);
+            }
         }
     }
 }

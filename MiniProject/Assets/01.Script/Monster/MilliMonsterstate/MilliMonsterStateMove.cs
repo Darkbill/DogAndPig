@@ -21,18 +21,21 @@ public class MilliMonsterStateMove : MonsterState
 
     public override void OnStart()
     {
+        monsterObject.ChangeAnimation(eMonsterAnimation.Run);
     }
 
     public override bool OnTransition()
     {
         delaytime += Time.deltaTime;
         Debug.DrawRay(monsterObject.gameObject.transform.position, ownerDirection);
-        if (Mathf.Abs(degreeToPlayer) <= attackAngle && directionToPlayer.magnitude <= monsterObject.monsterData.attackRange)
+        if (Mathf.Abs(degreeToPlayer) <= monsterObject.monsterData.attackAngle && 
+            directionToPlayer.magnitude <= monsterObject.monsterData.attackRange)
         {
             if (delaytime > monsterObject.monsterData.attackSpeed)
             {
                 delaytime = 0.0f;
                 monsterObject.Attack();
+                monsterObject.ChangeAnimation(eMonsterAnimation.Attack);
                 monsterObject.monsterStateMachine.ChangeStateIdle();
                 return true;
             }
@@ -56,8 +59,8 @@ public class MilliMonsterStateMove : MonsterState
         float goalDegree = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x);
         degreeToPlayer = (ownerDegree - goalDegree) * Mathf.Rad2Deg;
 
-        if (degreeToPlayer > 180) degreeToPlayer -= 360;
-        else if (degreeToPlayer < -180) degreeToPlayer += 360;
+        if (degreeToPlayer > 180) { degreeToPlayer -= 360; }
+        else if (degreeToPlayer < -180) { degreeToPlayer += 360; }
 
         if (degreeToPlayer < 0)
             monsterObject.Angle +=

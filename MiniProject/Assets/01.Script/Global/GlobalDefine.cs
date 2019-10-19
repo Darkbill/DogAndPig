@@ -103,6 +103,17 @@ namespace GlobalDefine
 		Attack,
 		Dead,
 	}
+
+    public enum eMonsterAnimation
+    {
+        Idle = 0,
+        Run,
+        Hit,
+        Attack,
+        Skill,
+        Dead,
+    }
+
 	public enum eAttackType
 	{
 		None = 0,
