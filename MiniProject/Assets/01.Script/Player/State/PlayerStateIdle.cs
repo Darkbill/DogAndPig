@@ -8,6 +8,7 @@ public class PlayerStateIdle : PlayerState
 
 	public override void OnStart()
 	{
+		playerObject.ChangeAnimation(ePlayerAnimation.Idle);
 	}
 
 	public override bool OnTransition()
@@ -32,11 +33,14 @@ public class PlayerStateIdle : PlayerState
 			for (int i = 0; i < monsterPool.Count; ++i)
 			{
 				if (monsterPool[i].gameObject.activeSelf == false) continue;
+
 				if (att.BaseAttack(playerObject.transform.right,
-					monsterPool[i].gameObject.transform.position - playerObject.transform.position,
+					monsterPool[i].gameObject.transform.position - (playerObject.transform.position + new Vector3(0, 0.25f, 0)),
 					playerObject.calStat.attackRange,
 					playerObject.calStat.attackAngle))
 				{
+
+					Debug.DrawRay(playerObject.transform.position + new Vector3(0, 0.25f, 0), playerObject.transform.right, Color.red);
 					delayTime = 0;
 					playerObject.ChangeAnimation(ePlayerAnimation.Attack);
 					if (playerObject.calStat.knockbackAtt)

@@ -16,6 +16,7 @@ public class ObjectSetAttack
         if(range < attrange)
         {
             Vector3 target = dirbetween.normalized;
+			target.z = 0;
             dirVec += new Vector3(0, 0, target.z);
 
             if (Mathf.Abs(Vector3.Angle(dirVec, target)) <= degree)

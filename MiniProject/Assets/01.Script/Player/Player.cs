@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
 		{
 			MoveToJoyStick();
 		}
+
 	}
     public void MoveToJoyStick()
 	{
