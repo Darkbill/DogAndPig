@@ -103,7 +103,7 @@ public class SkillSplitLightning : Skill
             if (BulletLst[i].SplitCheck && BulletLst[i].SplitCnt > 0)
             {
                 BulletLst[i].SplitCheck = false;
-                CreateBullet(BulletLst[i].EndPos, i);
+                CreateBullet(BulletLst[i].EndPos + new Vector3(0, 0, -3), i);
                 continue;
             }
             if (BulletLst[i].gameObject.activeSelf)
@@ -125,6 +125,7 @@ public class SkillSplitLightning : Skill
 
         for (int i = 0; Count < MaxCount; ++i)
         {
+            
             if (Count >= MaxCount) break;
             if (BulletLst.Count == i)
             {

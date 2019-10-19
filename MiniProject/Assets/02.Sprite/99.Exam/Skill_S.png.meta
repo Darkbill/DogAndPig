@@ -125,6 +125,132 @@ TextureImporter:
   - first:
       213: 5743789268786589308
     second: circle_40
+  - first:
+      213: -7731716497146327177
+    second: Skill_S_0
+  - first:
+      213: -178387155385470476
+    second: Skill_S_1
+  - first:
+      213: -988566478812626904
+    second: Skill_S_2
+  - first:
+      213: -4652353072756977777
+    second: Skill_S_3
+  - first:
+      213: -86606333558251410
+    second: Skill_S_4
+  - first:
+      213: -789313037582585879
+    second: Skill_S_5
+  - first:
+      213: -4240563917303287193
+    second: Skill_S_6
+  - first:
+      213: -2036445968072369292
+    second: Skill_S_7
+  - first:
+      213: -8634826111844201487
+    second: Skill_S_8
+  - first:
+      213: 4731671287601207936
+    second: Skill_S_9
+  - first:
+      213: 8209026353302651737
+    second: Skill_S_10
+  - first:
+      213: 6016119267141462258
+    second: Skill_S_11
+  - first:
+      213: -2040245027538022195
+    second: Skill_S_12
+  - first:
+      213: 253026276877605802
+    second: Skill_S_13
+  - first:
+      213: -2669582065847418518
+    second: Skill_S_14
+  - first:
+      213: -2687075367350864811
+    second: Skill_S_15
+  - first:
+      213: -2251649589895726742
+    second: Skill_S_16
+  - first:
+      213: 3633783646856448898
+    second: Skill_S_17
+  - first:
+      213: 7759821514056170595
+    second: Skill_S_18
+  - first:
+      213: -8327287897994657888
+    second: Skill_S_19
+  - first:
+      213: 4390979555744063715
+    second: Skill_S_20
+  - first:
+      213: -7512436446777945954
+    second: Skill_S_21
+  - first:
+      213: 492030008085262620
+    second: Skill_S_22
+  - first:
+      213: 3652491476536319436
+    second: Skill_S_23
+  - first:
+      213: 5090176791958717513
+    second: Skill_S_24
+  - first:
+      213: 8814910656820211694
+    second: Skill_S_25
+  - first:
+      213: -1598015861351759146
+    second: Skill_S_26
+  - first:
+      213: -8175698601213995571
+    second: Skill_S_27
+  - first:
+      213: -4899860100873954031
+    second: Skill_S_28
+  - first:
+      213: -3826601554087490610
+    second: Skill_S_29
+  - first:
+      213: 2549089323562691073
+    second: Skill_S_30
+  - first:
+      213: 6514111503238888224
+    second: Skill_S_31
+  - first:
+      213: -4497969004214588457
+    second: Skill_S_32
+  - first:
+      213: 6917648039091445954
+    second: Skill_S_33
+  - first:
+      213: -2544132164755361612
+    second: Skill_S_34
+  - first:
+      213: -3301931159118823899
+    second: Skill_S_35
+  - first:
+      213: -7604666777020556277
+    second: Skill_S_36
+  - first:
+      213: 2266435090824943740
+    second: Skill_S_37
+  - first:
+      213: 384430189894656160
+    second: Skill_S_38
+  - first:
+      213: 5183815639359202135
+    second: Skill_S_39
+  - first:
+      213: 6738665183462879771
+    second: Skill_S_40
+  - first:
+      213: 2391314287071717060
+    second: Skill_S_41
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -221,139 +347,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: circle_0
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 1292
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a086bdd30ffd10b46a72c61847a96f98
-      internalID: -6231044458718751821
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: circle_1
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 1292
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69251b4fdd54a7c42a950a81e9c98ceb
-      internalID: 7831968548955687519
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: circle_2
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 1292
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4b271ca45cde3e648857d38bc747d272
-      internalID: -1872230010575188032
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: circle_3
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 1292
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 90fc8ce87bf86e54597c33fbadc4b120
-      internalID: 9073345344922152820
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: circle_4
-      rect:
-        serializedVersion: 2
-        x: 1280
-        y: 1292
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e26750831fc96e74cbe2ce61144b1635
-      internalID: 8096780804649759607
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: circle_5
-      rect:
-        serializedVersion: 2
-        x: 1536
-        y: 1292
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: da7f7467e5b23aa46bc92d6576aa3d3b
-      internalID: -6690540648535066113
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: circle_6
+      name: Skill_S_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1036
-        width: 256
-        height: 256
+        y: 1290
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -361,20 +361,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b73061fb92db7740aea561880433391
-      internalID: 7353629387270839802
+      spriteID: 0bdffcbb517a8404898984ddfb0b3970
+      internalID: -7731716497146327177
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: circle_7
+      name: Skill_S_1
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1036
-        width: 256
-        height: 256
+        x: 258
+        y: 1290
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -382,20 +382,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4638e2cd96daac849b43ed5275d98491
-      internalID: -7218752786401796872
+      spriteID: b54e39ada9862224fb1bcf68a2911ee4
+      internalID: -178387155385470476
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: circle_8
+      name: Skill_S_2
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1036
-        width: 256
-        height: 256
+        x: 516
+        y: 1290
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -403,20 +403,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9105b2566ebdc1b4caf94b18d2850d90
-      internalID: 1975874834420638310
+      spriteID: d2114225dbd3f95459714c6d912ade68
+      internalID: -988566478812626904
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: circle_9
+      name: Skill_S_3
       rect:
         serializedVersion: 2
-        x: 768
-        y: 1036
-        width: 256
-        height: 256
+        x: 774
+        y: 1290
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -424,20 +424,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56b8a806698d98a4c9454d851cfd3bf2
-      internalID: 8864160105585771393
+      spriteID: 7f0e1938013d2214093177694c5f2f37
+      internalID: -4652353072756977777
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: circle_10
+      name: Skill_S_4
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1036
-        width: 256
-        height: 256
+        x: 1032
+        y: 1290
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -445,20 +445,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7bd8e7f28d94d440a26d9778d01564b
-      internalID: -1617849582492949522
+      spriteID: 30ddf07dedb66894d80a859e88d8b16e
+      internalID: -86606333558251410
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: circle_11
+      name: Skill_S_5
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 1036
-        width: 256
-        height: 256
+        x: 1290
+        y: 1290
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -466,20 +466,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6cf72faa40a49b14191d8d380f8e0acf
-      internalID: -2816901775631964421
+      spriteID: ac8f12b5c4e0ebf489156bb23542fbe3
+      internalID: -789313037582585879
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: circle_12
+      name: Skill_S_6
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1036
-        width: 256
-        height: 256
+        x: 1548
+        y: 1290
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -487,167 +487,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3bbac4eceb667d24ab66a5088f3cca1c
-      internalID: -6450965376457626139
+      spriteID: 682c42a298a188148b3a34a36edc659a
+      internalID: -4240563917303287193
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: circle_13
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 780
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4ab494ef4035ea84a91365aaf0aaeaf4
-      internalID: -4296832723684791652
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: circle_14
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 780
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0020f1ee06bb0e74f89f6cee8b373389
-      internalID: 5942070197356707251
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: circle_15
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 780
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3d83ce12b69dccd4aaf331c54832243a
-      internalID: 9097261171536375055
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: circle_16
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 780
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ec32e4ca22fa84f4e92691e9b364ee71
-      internalID: 6379885192720853074
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: circle_17
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 780
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d1fdd46bde3aa2e47b18c5c9f56cde61
-      internalID: 5327977764657816443
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: circle_18
-      rect:
-        serializedVersion: 2
-        x: 1280
-        y: 780
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dcaaf06129639b6499b69d848f1c9a75
-      internalID: -5565757406914851647
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: circle_19
-      rect:
-        serializedVersion: 2
-        x: 1536
-        y: 780
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 027274706697acd4ea2f9d2c97a7284b
-      internalID: 1753580142542202723
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: circle_20
+      name: Skill_S_7
       rect:
         serializedVersion: 2
         x: 0
-        y: 524
-        width: 256
-        height: 256
+        y: 1032
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -655,20 +508,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89b751e85431a074d99236597072e616
-      internalID: 8260780521336835802
+      spriteID: 21a9b8cec605bdf4cbb313f565991f8b
+      internalID: -2036445968072369292
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: circle_21
+      name: Skill_S_8
       rect:
         serializedVersion: 2
-        x: 256
-        y: 524
-        width: 256
-        height: 256
+        x: 258
+        y: 1032
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -676,20 +529,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f50c2dd9c753b94897e42633ca5b078
-      internalID: -1221246934758571162
+      spriteID: 72f1b3816ef95d744abe47c60daa9c5a
+      internalID: -8634826111844201487
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: circle_22
+      name: Skill_S_9
       rect:
         serializedVersion: 2
-        x: 512
-        y: 524
-        width: 256
-        height: 256
+        x: 516
+        y: 1032
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -697,20 +550,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd44b805d7d334941b99eb6544e9c0eb
-      internalID: -978591043335580288
+      spriteID: fc9552c1ef06fea428ab1186d3b46b65
+      internalID: 4731671287601207936
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: circle_23
+      name: Skill_S_10
       rect:
         serializedVersion: 2
-        x: 768
-        y: 524
-        width: 256
-        height: 256
+        x: 774
+        y: 1032
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -718,20 +571,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b9c5b27c48ceb04e9aa148bc2b1c666
-      internalID: -9188581937439278189
+      spriteID: b52898c584aaec9458ed222be4302e19
+      internalID: 8209026353302651737
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: circle_24
+      name: Skill_S_11
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 524
-        width: 256
-        height: 256
+        x: 1032
+        y: 1032
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -739,20 +592,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 491328ee0e5679441b08005803799d0f
-      internalID: -6548804495870306281
+      spriteID: 3911883dc158a3644806b204a3014c11
+      internalID: 6016119267141462258
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: circle_25
+      name: Skill_S_12
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 524
-        width: 256
-        height: 256
+        x: 1290
+        y: 1032
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -760,20 +613,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8224e6d67dedde84c8b6974a03ad84fd
-      internalID: -5818654437047105381
+      spriteID: bcb5c860c78c520408f11ae654012d74
+      internalID: -2040245027538022195
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: circle_26
+      name: Skill_S_13
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 524
-        width: 256
-        height: 256
+        x: 1548
+        y: 1032
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -781,167 +634,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8d23c783579fd245abdb62394cf9c12
-      internalID: -4935927166289574856
+      spriteID: 6dd8d4a5c000335448d057e36962f95d
+      internalID: 253026276877605802
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: circle_27
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 268
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a40df91fad248b04dbc08d0ffefa8205
-      internalID: 778423249995914654
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: circle_28
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 268
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 49d330ec63de3bb4087343554baae2d0
-      internalID: -4396024696321667834
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: circle_29
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 268
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bf778a4e8111643499519feabe2aaeb8
-      internalID: 5864340006510925212
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: circle_30
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 268
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 278a1cd6d6564164da9101603648ee71
-      internalID: -1744392697255247590
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: circle_31
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 268
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9175cbeaf4482c64a98db5785160bcbd
-      internalID: 5516693618228862717
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: circle_32
-      rect:
-        serializedVersion: 2
-        x: 1280
-        y: 268
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ceb80be197ccc2e4da2b09190615bd00
-      internalID: -5646399477056448639
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: circle_33
-      rect:
-        serializedVersion: 2
-        x: 1536
-        y: 268
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e6e0c2a3ddaa8c846a499f370fd900c6
-      internalID: 7736333354806124126
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: circle_34
+      name: Skill_S_14
       rect:
         serializedVersion: 2
         x: 0
-        y: 12
-        width: 256
-        height: 256
+        y: 774
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -949,20 +655,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b09f31cbda8957144835222127df63c8
-      internalID: 1991185188792499480
+      spriteID: 52e3179d3a7398c4a8ac9d0fc3f97b46
+      internalID: -2669582065847418518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: circle_35
+      name: Skill_S_15
       rect:
         serializedVersion: 2
-        x: 256
-        y: 12
-        width: 256
-        height: 256
+        x: 258
+        y: 774
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -970,20 +676,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98b23945a37f58d4b9672b319a887859
-      internalID: -132555751903100182
+      spriteID: f79a491015d480d439682ed11971977c
+      internalID: -2687075367350864811
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: circle_36
+      name: Skill_S_16
       rect:
         serializedVersion: 2
-        x: 512
-        y: 12
-        width: 256
-        height: 256
+        x: 516
+        y: 774
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -991,20 +697,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a8025e69cf9fdc4b90cca60ca6f28fa
-      internalID: 5969959499000401053
+      spriteID: cfcc6e51471fc164f9dd68838a2f30f0
+      internalID: -2251649589895726742
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: circle_37
+      name: Skill_S_17
       rect:
         serializedVersion: 2
-        x: 768
-        y: 12
-        width: 256
-        height: 256
+        x: 774
+        y: 774
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1012,20 +718,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42953462a1d58e846a3266ff6926a2bc
-      internalID: 780752310748680065
+      spriteID: 0b8a87dc472c9104cb2ec9567585aafa
+      internalID: 3633783646856448898
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: circle_38
+      name: Skill_S_18
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 12
-        width: 256
-        height: 256
+        x: 1032
+        y: 774
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1033,20 +739,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6486e80a7c963f4da827c4e8c35c535
-      internalID: 7946497914123052944
+      spriteID: 496fb30a273f0d74c82718a4a0b05db6
+      internalID: 7759821514056170595
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: circle_39
+      name: Skill_S_19
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 12
-        width: 256
-        height: 256
+        x: 1290
+        y: 774
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1054,20 +760,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87bea339a6ef94748bb1f10a0f2691d6
-      internalID: 1029745767910103648
+      spriteID: 8a6091298d2040f469debd8458417b2b
+      internalID: -8327287897994657888
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: circle_40
+      name: Skill_S_20
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 12
-        width: 256
-        height: 256
+        x: 1548
+        y: 774
+        width: 258.2857
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1075,8 +781,449 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edf32b29d31d3ab4d96ba5b780c8fdf4
-      internalID: 5743789268786589308
+      spriteID: 8fea01e41b9d977488a2dab95e5085f5
+      internalID: 4390979555744063715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 516
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 041ecbe3bd4ae0441833a2be73dbfe1d
+      internalID: -7512436446777945954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_22
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 516
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52b310836d3a3864cb9a39187af7f126
+      internalID: 492030008085262620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_23
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 516
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e35730a3c4ad1a84791062c7beab5ed4
+      internalID: 3652491476536319436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_24
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 516
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5eb08bd3e093d944bb9afb99730336cb
+      internalID: 5090176791958717513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_25
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 516
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb971095a2ca24f42abf8dc74e86951a
+      internalID: 8814910656820211694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_26
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 516
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ded5ba88f3a13c242b7a7d46688cccbf
+      internalID: -1598015861351759146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_27
+      rect:
+        serializedVersion: 2
+        x: 1548
+        y: 516
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 031396a10c909ab4fbe6aec1b386b929
+      internalID: -8175698601213995571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 258
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1bca2bfe32e27940bf296b41bb65a61
+      internalID: -4899860100873954031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_29
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 258
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b83e25ebc3f387f4786bb34cb1f6048f
+      internalID: -3826601554087490610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_30
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 258
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 908f193d0e4dd5b42b7add8120f2218c
+      internalID: 2549089323562691073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_31
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 258
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa4022b371f01f94a8af800e988ff30b
+      internalID: 6514111503238888224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_32
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 258
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 878ec5d730a71384487b97dc2e2e6fcd
+      internalID: -4497969004214588457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_33
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 258
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bc77f869eae75f48a6f94236687bba0
+      internalID: 6917648039091445954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_34
+      rect:
+        serializedVersion: 2
+        x: 1548
+        y: 258
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecf324e0dcec0114ea41a255236a82ad
+      internalID: -2544132164755361612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1540d2700e48c4148a668a0887609d67
+      internalID: -3301931159118823899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_36
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 0
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf68811d32461984292c674323658110
+      internalID: -7604666777020556277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_37
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 0
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efe9a2408f73a824bbf75a678b3fe0bf
+      internalID: 2266435090824943740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_38
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 0
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aabf9d9db82df394984756c9d4aa803f
+      internalID: 384430189894656160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_39
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 0
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8278440a279d2b40a4760c2e0e8a93c
+      internalID: 5183815639359202135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_40
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 0
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2326c740c3902aa49ada18cd7367af68
+      internalID: 6738665183462879771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_S_41
+      rect:
+        serializedVersion: 2
+        x: 1548
+        y: 0
+        width: 258.2857
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ab719fbd6949f24f9fec4b3cb262596
+      internalID: 2391314287071717060
       vertices: []
       indices: 
       edges: []

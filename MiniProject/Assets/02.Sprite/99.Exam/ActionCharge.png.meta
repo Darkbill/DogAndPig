@@ -1,0 +1,523 @@
+fileFormatVersion: 2
+guid: 85fd39a433d1d26409a994990f89c224
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -720734289795550124
+    second: ActionCharge_0
+  - first:
+      213: -3700593352122583255
+    second: ActionCharge_1
+  - first:
+      213: -919593030141322768
+    second: ActionCharge_2
+  - first:
+      213: -7648750770089082626
+    second: ActionCharge_3
+  - first:
+      213: 1505662695005160129
+    second: ActionCharge_4
+  - first:
+      213: -5080919502390066774
+    second: ActionCharge_5
+  - first:
+      213: -8552562921241489001
+    second: ActionCharge_6
+  - first:
+      213: 4058331803134705422
+    second: ActionCharge_7
+  - first:
+      213: -3690745735425941861
+    second: ActionCharge_8
+  - first:
+      213: 5268328384249831248
+    second: ActionCharge_9
+  - first:
+      213: 1322624502053634755
+    second: ActionCharge_10
+  - first:
+      213: 8718713942285193230
+    second: ActionCharge_11
+  - first:
+      213: 3074214370483361833
+    second: ActionCharge_12
+  - first:
+      213: -2911707417525884542
+    second: ActionCharge_13
+  - first:
+      213: 1979414665360404163
+    second: ActionCharge_14
+  - first:
+      213: -2285535611551535086
+    second: ActionCharge_15
+  - first:
+      213: -8655385462825614100
+    second: ActionCharge_16
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ActionCharge_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1290
+        width: 258.66666
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd8436384c3043e4bac040b9230091ce
+      internalID: -720734289795550124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ActionCharge_1
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 1290
+        width: 258.66666
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 974982bca7761ad44860be35cce5e8f0
+      internalID: -3700593352122583255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ActionCharge_2
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 1290
+        width: 258.66666
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf207c206f8f4174dab5857cbf057f2b
+      internalID: -919593030141322768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ActionCharge_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1032
+        width: 258.66666
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b01d3dc5787a704997dbc0d37ad6e6f
+      internalID: -7648750770089082626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ActionCharge_4
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 1032
+        width: 258.66666
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0835507c402fac4fb94ef24553c2d88
+      internalID: 1505662695005160129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ActionCharge_5
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 1032
+        width: 258.66666
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a71d1f9bdd4f7284aa8e639f12e89a6e
+      internalID: -5080919502390066774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ActionCharge_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 774
+        width: 258.66666
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 590eb1fc389fae64e8ea613dc3785ef5
+      internalID: -8552562921241489001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ActionCharge_7
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 774
+        width: 258.66666
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 536448981c9054f468da39a3e3afeb0b
+      internalID: 4058331803134705422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ActionCharge_8
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 774
+        width: 258.66666
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afa096170cef5494e89dd15e5668a02b
+      internalID: -3690745735425941861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ActionCharge_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 516
+        width: 258.66666
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aa5e586b091a5542965e82c10aea4ca
+      internalID: 5268328384249831248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ActionCharge_10
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 516
+        width: 258.66666
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c139c55191e88b84fa52cfe7b18a6b7a
+      internalID: 1322624502053634755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ActionCharge_11
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 516
+        width: 258.66666
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e5c43508672af94bb62a0237c6228f9
+      internalID: 8718713942285193230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ActionCharge_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 258
+        width: 258.66666
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: feb31f8797cca484abfec568a16a4ecf
+      internalID: 3074214370483361833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ActionCharge_13
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 258
+        width: 258.66666
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da7591875f3de1c4a8c025373f553da7
+      internalID: -2911707417525884542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ActionCharge_14
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 258
+        width: 258.66666
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 991647685aca2114e8423d5c22b754e4
+      internalID: 1979414665360404163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ActionCharge_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 258.66666
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 324ce14dea3af8348b6c2c64a2eff982
+      internalID: -2285535611551535086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ActionCharge_16
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 0
+        width: 258.66666
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6d93995b043ac248a415338dddd71cd
+      internalID: -8655385462825614100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
