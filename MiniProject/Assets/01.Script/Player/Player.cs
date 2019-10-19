@@ -34,12 +34,14 @@ public class Player : MonoBehaviour
 	private void Update()
 	{
 		UpdateBuff(Time.deltaTime);
-		if (degree > 90 || degree < -90)
+		if (playerStateMachine.isAttack == false)
 		{
-			transform.eulerAngles = new Vector3(0, 180, 0);
+			if (degree > 90 || degree < -90)
+			{
+				transform.eulerAngles = new Vector3(0, 180, 0);
+			}
+			else transform.eulerAngles = new Vector3(0, 0, 0);
 		}
-		else transform.eulerAngles = new Vector3(0, 0, 0);
-
 		if (isMove)
 		{
 			MoveToJoyStick();
@@ -153,7 +155,7 @@ public class Player : MonoBehaviour
 	private void CalculatorStat()
 	{
 		//TODO : 레벨에 의한 스탯계산
-		calStat = calStat.AddStat(skillStat,conditionList);
+		calStat = JsonMng.Ins.playerDataTable[1].AddStat(skillStat,conditionList,calStat.level);
 	}
 	public void AddEXP(int _exp)
 	{
@@ -183,5 +185,36 @@ public class Player : MonoBehaviour
 	public void ChangeAnimation(ePlayerAnimation animationType)
 	{
 		playerAnimator.SetInteger("Action", (int)animationType);
+	}
+	public void Attack()
+	{
+		ObjectSetAttack att = new ObjectSetAttack();
+		var monsterPool = GameMng.Ins.monsterPool.monsterList;
+		for (int i = 0; i < monsterPool.Count; ++i)
+		{
+			if (monsterPool[i].gameObject.activeSelf == false) continue;
+
+			if (att.BaseAttack(transform.right,
+				monsterPool[i].gameObject.transform.position - (transform.position + new Vector3(0, 0.25f, 0)),
+				calStat.attackRange,
+				calStat.attackAngle))
+			{
+				playerStateMachine.attackDelayTime = 0;
+				ChangeAnimation(ePlayerAnimation.Attack);
+				playerStateMachine.isAttack = true;
+				if (Rand.Permile(calStat.knockback))
+				{
+					monsterPool[i].OutStateAdd(new ConditionData(eBuffType.NockBack, 4, 1, 2), 300);
+				}
+				if (Rand.Percent(calStat.criticalChance))
+				{
+					monsterPool[i].Damage(eAttackType.Physics, calStat.damage * calStat.criticalDamage);
+				}
+				else
+				{
+					monsterPool[i].Damage(eAttackType.Physics, calStat.damage);
+				}
+			}
+		}
 	}
 }
