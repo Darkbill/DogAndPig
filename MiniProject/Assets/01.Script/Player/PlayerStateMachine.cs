@@ -6,6 +6,8 @@ public class PlayerStateMachine : MonoBehaviour
 {
 	public Dictionary<ePlayerState, PlayerState> stateDict = new Dictionary<ePlayerState, PlayerState>();
 	public PlayerState cState;
+	public bool isAttack = false;
+	public float attackDelayTime;
 	private void Awake()
 	{
 		Setting();
@@ -31,17 +33,20 @@ public class PlayerStateMachine : MonoBehaviour
 	{
 		ChangeState(ePlayerState.Idle);
 		cState.playerObject.ChangeAnimation(ePlayerAnimation.Idle);
+		isAttack = false;
 	}
 	private void FixedUpdate()
 	{
 		cState.Tick();
+		attackDelayTime += Time.deltaTime;
 	}
-	public void AttackDelay()
+	public bool IsAttack()
 	{
-		StartCoroutine(IEAttackDelay());
+		if (attackDelayTime >= GameMng.Ins.player.calStat.attackSpeed)
+		{
+			return true;
+		}
+		return false;
 	}
-	private IEnumerator IEAttackDelay()
-	{
-		yield return new WaitForSeconds(cState.playerObject.calStat.attackSpeed);
-	}
+
 }

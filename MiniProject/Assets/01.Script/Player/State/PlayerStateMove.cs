@@ -44,39 +44,9 @@ public class PlayerStateMove : PlayerState
 	}
     private void Attack()
 	{
-		delayTime += Time.deltaTime;
-		if (delayTime >= playerObject.calStat.attackSpeed)
+		if (playerObject.playerStateMachine.IsAttack())
 		{
-			ObjectSetAttack att = new ObjectSetAttack();
-			var monsterPool = GameMng.Ins.monsterPool.monsterList;
-			for (int i = 0; i < monsterPool.Count; ++i)
-			{ 
-				if (monsterPool[i].gameObject.activeSelf == false) continue;
-
-				if (att.BaseAttack(playerObject.transform.right,
-					monsterPool[i].gameObject.transform.position - (playerObject.transform.position + new Vector3(0,0.25f,0)),
-					playerObject.calStat.attackRange,	
-					playerObject.calStat.attackAngle))
-				{
-					delayTime = 0;
-					playerObject.ChangeAnimation(ePlayerAnimation.Attack);
-
-					if(Rand.Permile(playerObject.calStat.knockback))
-					{
-						monsterPool[i].OutStateAdd(new ConditionData(eBuffType.NockBack, 4, 1, 2), 300);
-					}
-					//if (playerObject.calStat.knockbackAtt)
-     //                   monsterPool[i].OutStateAdd(new ConditionData(eBuffType.NockBack, 4, 1, 2), 300);
-                    if (Rand.Percent(playerObject.calStat.criticalChance))
-					{
-						monsterPool[i].Damage(eAttackType.Physics, playerObject.calStat.damage * playerObject.calStat.criticalDamage);
-					}
-					else
-					{
-						monsterPool[i].Damage(eAttackType.Physics, playerObject.calStat.damage);
-					}
-                }
-			}
+			GameMng.Ins.player.Attack();
 		}
 	}
 	

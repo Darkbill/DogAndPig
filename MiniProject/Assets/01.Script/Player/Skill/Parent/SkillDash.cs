@@ -41,9 +41,8 @@ public class SkillDash : Skill
 	{
 		base.ActiveSkill();
 		//테스트 코드
-		GameMng.Ins.player.AddBuff(new ConditionData(GlobalDefine.eBuffType.MoveFast, 1, 3, 2));
-		GameMng.Ins.player.playerStateMachine.ChangeState(GlobalDefine.ePlayerState.Dash);
-		GameMng.Ins.player.playerStateMachine.cState.isDash = true;
+		GameMng.Ins.player.AddBuff(new ConditionData(eBuffType.MoveFast, 1, 3, 2));
+		GameMng.Ins.player.playerStateMachine.ChangeState(ePlayerState.Dash);
 		for (int i = 0; i < Count; ++i)
 		{
 			alterList[i].Setting(GameMng.Ins.player.transform.position,GameMng.Ins.player.transform.right,i+5);
