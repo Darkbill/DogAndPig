@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
 	// * private * //
 	private List<ConditionData> conditionList = new List<ConditionData>();
     private ConditionData conditionMain = new ConditionData();
-	private int level = 1;
 	private int exp = 0;
 	public float degree;
 	private PlayerData skillStat = new PlayerData();
@@ -29,6 +28,7 @@ public class Player : MonoBehaviour
 	}
 	private void PlayerSetting()
 	{
+		calStat = JsonMng.Ins.playerDataTable[1];
 		CalculatorStat();
 	}
 	private void Update()
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
         float Degree = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3(0, 0, Degree);
 	}
-
+	#region Damage
 	/* Damage */
 	public void Damage(eAttackType attackType, float damage)
 	{
@@ -80,7 +80,8 @@ public class Player : MonoBehaviour
 		if (calStat.healthPoint <= 0) GameMng.Ins.GameOver();
 	}
 	/* Damage */
-
+	#endregion
+	#region Buff
 	/* Buff */
 	private void UpdateBuff(float delayTime)
 	{
@@ -93,27 +94,19 @@ public class Player : MonoBehaviour
 				CalculatorStat();
 			}
 		}
-        StateBuffUpdate();
+		if (conditionMain != null)
+		{
+			conditionMain.currentTime -= delayTime;
+			if (conditionMain.currentTime <= 0)
+			{
+				Debug.Log("상태이상이 풀렸습니다.");
+				conditionMain = null;
+				playerStateMachine.ChangeState(ePlayerState.Move);
+			}
+		}
 	}
 
-    //TODO : 현재 적용된 상태이상 버프에 대한 확률 값.
-    private void StateBuffUpdate()
-    {
-        if(calStat.stun > Rand.Random() % 1000)
-        {
-            calStat.stunAtt = true;
-            return;
-        }
-        //기절이 걸린 상태이면 다음 상태인 넉백으로 넘어 갈 필요가 없다.
-        if (calStat.knockback > Rand.Random() % 1000)
-        {
-            calStat.knockbackAtt = true;
-            return;
-        }
-        calStat.ResetAttackType();
-    }
-
-    public void AddBuff(ConditionData condition)
+	public void AddBuff(ConditionData condition)
 	{
         int index = conditionList.FindID(condition.skillIndex, condition.buffType);
         if (index != -1) { conditionList[index].Set(condition); return; }
@@ -131,72 +124,61 @@ public class Player : MonoBehaviour
                 if (conditionMain.currentTime < condition.currentTime)
                 {
                     conditionMain = condition;
-                    AddConditionlist(conditionMain);
+					ChangeState(conditionMain.buffType);
                 }
                 return;
             }
         }
         conditionMain = condition;
-        AddConditionlist(conditionMain);
+		ChangeState(conditionMain.buffType);
     }
 
-    private void AddConditionlist(ConditionData condition)
+    private void ChangeState(eBuffType stateType)
     {
-        switch (condition.buffType)
-        {
-            case eBuffType.Stun:
-				playerStateMachine.ChangeState(ePlayerState.Stun);
-                break;
-            case eBuffType.NockBack:
+		switch(stateType)
+		{
+			case eBuffType.NockBack:
 				playerStateMachine.ChangeState(ePlayerState.KnockBack);
-                break;
-        }
+				break;
+			case eBuffType.Stun:
+				playerStateMachine.ChangeState(ePlayerState.Stun);
+				break;
+		}
         Debug.Log("상태이상에 걸렸습니다.");
     }
 
-    public void OutStateUpdate(float delayTime)
-    {
-        if (conditionMain != null)
-        {
-            conditionMain.currentTime -= delayTime;
-            if (conditionMain.currentTime <= 0)
-            {
-                Debug.Log("상태이상이 풀렸습니다.");
-                conditionMain = null;
-                playerStateMachine.ChangeState(ePlayerState.Move);
-            }
-        }
-    }
 
-    /* Buff */
-    private void CalculatorStat()
+	/* Buff */
+	#endregion
+	private void CalculatorStat()
 	{
 		//TODO : 레벨에 의한 스탯계산
-		calStat = JsonMng.Ins.playerDataTable[level].AddStat(skillStat,conditionList);
+		calStat = calStat.AddStat(skillStat,conditionList);
 	}
 	public void AddEXP(int _exp)
 	{
 		exp += _exp;
-		if(exp >= JsonMng.Ins.expDataTable[level+1].requiredExp)
+		if(exp >= JsonMng.Ins.expDataTable[calStat.level+1].requiredExp)
 		{
-			int saveEXP = JsonMng.Ins.expDataTable[level+1].requiredExp - exp;
+			int saveEXP = JsonMng.Ins.expDataTable[calStat.level + 1].requiredExp - exp;
 			LevelUP();
 			exp = saveEXP;
 		}
 	}
 	public float GetFullHP()
 	{
-		return skillStat.healthPoint + JsonMng.Ins.playerDataTable[level].healthPoint;
+		return skillStat.healthPoint + calStat.GetHealthPoint(calStat.level);
 	}
 	public float GetEXPFill()
 	{
-		return (float)exp / JsonMng.Ins.expDataTable[level+1].requiredExp;
+		return (float)exp / JsonMng.Ins.expDataTable[calStat.level + 1].requiredExp;
 	}
 	private void LevelUP()
 	{
-		level++;
+		calStat.level++;
 		exp = 0;
 		CalculatorStat();
+		UIMngInGame.Ins.RenewPlayerInfo();
 	}
 	public void ChangeAnimation(ePlayerAnimation animationType)
 	{

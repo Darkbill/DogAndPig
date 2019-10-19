@@ -58,12 +58,15 @@ public class PlayerStateMove : PlayerState
 					playerObject.calStat.attackRange,	
 					playerObject.calStat.attackAngle))
 				{
-
-					Debug.DrawRay(playerObject.transform.position + new Vector3(0, 0.25f, 0), playerObject.transform.right, Color.red);
 					delayTime = 0;
 					playerObject.ChangeAnimation(ePlayerAnimation.Attack);
-					if (playerObject.calStat.knockbackAtt)
-                        monsterPool[i].OutStateAdd(new ConditionData(eBuffType.NockBack, 4, 1, 2), 300);
+
+					if(Rand.Permile(playerObject.calStat.knockback))
+					{
+						monsterPool[i].OutStateAdd(new ConditionData(eBuffType.NockBack, 4, 1, 2), 300);
+					}
+					//if (playerObject.calStat.knockbackAtt)
+     //                   monsterPool[i].OutStateAdd(new ConditionData(eBuffType.NockBack, 4, 1, 2), 300);
                     if (Rand.Percent(playerObject.calStat.criticalChance))
 					{
 						monsterPool[i].Damage(eAttackType.Physics, playerObject.calStat.damage * playerObject.calStat.criticalDamage);

@@ -1,7 +1,7 @@
 ﻿using GlobalDefine;
 public class MonsterData : TableBase
 {
-	public float monsterID;
+	public int monsterID;
 	public string monsterName;
 	public float size;
 	public eMonsterMoveType moveType;
@@ -20,7 +20,7 @@ public class MonsterData : TableBase
 	public float windResist;
 	public float lightningResist;
 	public float skillIndex;
-
+	public int level;
 	public MonsterData()
 	{
 
@@ -44,5 +44,10 @@ public class MonsterData : TableBase
 			default:
 				return 0;
 		}
+	}
+	public void SetMonsterData(int level)
+	{
+		damage *= level;
+		armor *= level;
 	}
 }

@@ -8,15 +8,16 @@ public static class ExtensionMethod
         PlayerData stat = new PlayerData();
 		stat.level = levelStat.level;
 		stat.size = levelStat.size;
-		stat.healthPoint = levelStat.healthPoint + skillStat.healthPoint;
-		stat.damage = levelStat.damage + skillStat.damage;
+		//TODO :JsonMng.Ins.playerDataTable[1]지우기
+		stat.healthPoint = levelStat.GetHealthPoint(stat.level) + skillStat.healthPoint;
+		stat.damage = (levelStat.damage * levelStat.level) + skillStat.damage;
 		stat.attackRange = levelStat.attackRange + skillStat.attackRange;
 		stat.attackAngle = levelStat.attackAngle + skillStat.attackAngle;
 		stat.attackSpeed = levelStat.attackSpeed + skillStat.attackSpeed;
 		stat.moveSpeed = levelStat.moveSpeed + skillStat.moveSpeed;
 		stat.criticalChance = levelStat.criticalChance + skillStat.criticalChance;
 		stat.criticalDamage = levelStat.criticalDamage + skillStat.criticalDamage;
-		stat.armor = levelStat.armor + skillStat.armor;
+		stat.armor = (levelStat.armor * levelStat.level) + skillStat.armor;
 		stat.physicsResist = levelStat.physicsResist + skillStat.physicsResist;
 		stat.fireResist = levelStat.fireResist + skillStat.fireResist;
 		stat.windResist = levelStat.windResist + skillStat.windResist;

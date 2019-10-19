@@ -1,7 +1,7 @@
 ﻿using GlobalDefine;
 public class PlayerData : TableBase
 {
-	public float level;
+	public int level;
 	public float size;
 	public float healthPoint;
 	public float damage;
@@ -17,7 +17,6 @@ public class PlayerData : TableBase
 	public float waterResist;
 	public float windResist;
 	public float lightningResist;
-
     public float knockback = 0;
     public float stun = 0;
 
@@ -53,4 +52,8 @@ public class PlayerData : TableBase
         knockbackAtt = false;
         stunAtt = false;
     }
+	public int GetHealthPoint(int lv)
+	{
+		return (int)((lv * JsonMng.Ins.playerDataTable[1].healthPoint) + ((lv + 1) * (lv - 1)));
+	}
 }

@@ -31,7 +31,6 @@ public class Monster : MonoBehaviour
 	private void Update()
 	{
 		UpdateBuff(Time.deltaTime);
-        OutStateUpdate(Time.deltaTime);
 
         if (Angle > 180) { Angle -= 360; }
         else if (Angle < -180) { Angle += 360; }
@@ -47,16 +46,84 @@ public class Monster : MonoBehaviour
 	{
 		GameMng.Ins.DamageToPlayer(eAttackType.Physics, monsterData.damage);
 	}
+	#region Buff
+	//TODO : State 따로관리 stun과 nockback
+	//add에서 상태이상 비교하여 삽입.
+	public void OutStateAdd(ConditionData condition, float activePer)
+	{
+		if (conditionMain != null)
+		{
+			if (conditionMain.buffType == condition.buffType)
+			{
+				if (conditionMain.currentTime < condition.currentTime)
+				{
+					conditionMain = condition;
+					AddConditionlist(conditionMain);
+				}
+				return;
+			}
+		}
+		conditionMain = condition;
+		AddConditionlist(conditionMain);
+	}
 
-    #region MonsterDamageSet
-    public void Damage(eAttackType attackType, float damage)
+	private void AddConditionlist(ConditionData condition)
+	{
+		switch (condition.buffType)
+		{
+			case eBuffType.Stun:
+				gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.Stun);
+				break;
+			case eBuffType.NockBack:
+				gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.KnockBack);
+				break;
+		}
+		Debug.Log("상태이상에 걸렸습니다.");
+	}
+
+	private void UpdateBuff(float delayTime)
+	{
+		for (int i = 0; i < conditionList.Count; ++i)
+		{
+			conditionList[i].currentTime -= delayTime;
+			if (conditionList[i].currentTime <= 0)
+			{
+				conditionList.Remove(conditionList[i]);
+				CalculatorStat();
+			}
+		}
+		if (conditionMain != null)
+		{
+			conditionMain.currentTime -= delayTime;
+			if (conditionMain.currentTime <= 0)
+			{
+				Debug.Log("상태이상이 풀렸습니다.");
+				conditionMain = null;
+				gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.Move);
+			}
+		}
+	}
+	public void AddBuff(ConditionData condition)
+	{
+		int index = conditionList.FindID(condition.skillIndex, condition.buffType);
+		if (index != -1)
+		{
+			conditionList[index].Set(condition);
+			return;
+		}
+		else conditionList.Add(condition);
+		CalculatorStat();
+	}
+#endregion
+	#region MonsterDamageSet
+	public void Damage(eAttackType attackType, float damage)
 	{
         float d = (damage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
 		DamageResult((int)d);
 	}
-	public void Damage(eAttackType attackType, float damage, ConditionData condition,float activePer)
+	public void Damage(eAttackType attackType, float PlayerDmage, float skillDamage, ConditionData condition,float activePer)
 	{
-		float d = (damage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
+		float d = (PlayerDmage +  skillDamage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
 		bool isBuff = monsterData.GetResist(attackType).GetBuff(activePer);
 		if (isBuff)
 		{
@@ -65,77 +132,7 @@ public class Monster : MonoBehaviour
 		}
 		DamageResult((int)d);
 	}
-    //TODO : State 따로관리 stun과 nockback
-    //add에서 상태이상 비교하여 삽입.
-    public void OutStateAdd(ConditionData condition, float activePer)
-    {
-        if (conditionMain != null)
-        {
-            if (conditionMain.buffType == condition.buffType)
-            {
-                if (conditionMain.currentTime < condition.currentTime)
-                {
-                    conditionMain = condition;
-                    AddConditionlist(conditionMain);
-                }
-                return;
-            }
-        }
-        conditionMain = condition;
-        AddConditionlist(conditionMain);
-    }
-
-    private void AddConditionlist(ConditionData condition)
-    {
-        switch (condition.buffType)
-        {
-            case eBuffType.Stun:
-                gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.Stun);
-                break;
-            case eBuffType.NockBack:
-                gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.KnockBack);
-                break;
-        }
-        Debug.Log("상태이상에 걸렸습니다.");
-    }
-
-    public void OutStateUpdate(float delayTime)
-    {
-        if (conditionMain != null)
-        {
-            conditionMain.currentTime -= delayTime;
-            if (conditionMain.currentTime <= 0)
-            {
-                Debug.Log("상태이상이 풀렸습니다.");
-                conditionMain = null;
-                gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.Move);
-            }
-        }
-    }
-
-    private void UpdateBuff(float delayTime)
-    {
-        for (int i = 0; i < conditionList.Count; ++i)
-        {
-            conditionList[i].currentTime -= delayTime;
-            if (conditionList[i].currentTime <= 0)
-            {
-                conditionList.Remove(conditionList[i]);
-                CalculatorStat();
-            }
-        }
-    }
-    public void AddBuff(ConditionData condition)
-    {
-        int index = conditionList.FindID(condition.skillIndex, condition.buffType);
-        if (index != -1)
-        {
-            conditionList[index].Set(condition);
-            return;
-        }
-        else conditionList.Add(condition);
-        CalculatorStat();
-    }
+    
     #endregion
     public void DamageResult(int d)
 	{

@@ -184,7 +184,7 @@ namespace GlobalDefine
 		public static int Random() { return randomArr[nIndex]; }
 
 		public static bool Percent(float a_nPercent) { return randomArr[nIndex] <= (a_nPercent * 100); }
-		public static bool Permile(int a_nPermile) { return randomArr[nIndex] <= (a_nPermile * 10); }
+		public static bool Permile(float a_nPermile) { return randomArr[nIndex] <= (a_nPermile * 10); }
 		public static bool Permilad(int a_nPermilad) { return randomArr[nIndex] <= a_nPermilad; }
 		public static int Range(int a_nStart, int a_nEnd)
 		{

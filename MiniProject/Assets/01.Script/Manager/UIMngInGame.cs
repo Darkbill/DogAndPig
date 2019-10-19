@@ -46,6 +46,7 @@ public class UIMngInGame : MonoBehaviour
 	/* Text */
 	public Text healthText;
 	public Text coinText;
+	public Text levelText;
 
 	private Vector3 stickPos;
 	private Coroutine fillCoroutine;
@@ -64,7 +65,9 @@ public class UIMngInGame : MonoBehaviour
     }
     public void UISetting()
     {
-        healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.calStat.healthPoint,
+		levelText.text = GameMng.Ins.player.calStat.level.ToString();
+
+		healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.calStat.healthPoint,
             GameMng.Ins.player.GetFullHP());
 		coinText.text = JsonMng.Ins.playerInfoDataTable.gold.ToString();
 		for (int i = 0; i < JsonMng.Ins.playerInfoDataTable.setSkillList.Count; ++i)
@@ -74,6 +77,12 @@ public class UIMngInGame : MonoBehaviour
 			skillImageBGArr[i].sprite = sprite;
 		}
     }
+	public void RenewPlayerInfo()
+	{
+		levelText.text = GameMng.Ins.player.calStat.level.ToString();
+		healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.calStat.healthPoint,
+			GameMng.Ins.player.GetFullHP());
+	}
 	#region MoveUI
 	public void OnStrickDrag()
     {
