@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 public static class ExtensionMethod
 {
-	public static PlayerData AddStat(this PlayerData levelStat,PlayerData skillStat,List<ConditionData> conditionList)
+	public static PlayerData AddStat(this PlayerData levelStat,PlayerData skillStat,List<ConditionData> conditionList,int level)
 	{
         #region PlayerDataSetting
         PlayerData stat = new PlayerData();
-		stat.level = levelStat.level;
+		stat.level = level;
 		stat.size = levelStat.size;
 		stat.healthPoint = levelStat.GetHealthPoint(stat.level) + skillStat.healthPoint;
-		stat.damage = (levelStat.damage * levelStat.level) + skillStat.damage;
+		stat.damage = (levelStat.damage * stat.level) + skillStat.damage;
 		stat.attackRange = levelStat.attackRange + skillStat.attackRange;
 		stat.attackAngle = levelStat.attackAngle + skillStat.attackAngle;
 		stat.attackSpeed = levelStat.attackSpeed + skillStat.attackSpeed;
 		stat.moveSpeed = levelStat.moveSpeed + skillStat.moveSpeed;
 		stat.criticalChance = levelStat.criticalChance + skillStat.criticalChance;
 		stat.criticalDamage = levelStat.criticalDamage + skillStat.criticalDamage;
-		stat.armor = (levelStat.armor * levelStat.level) + skillStat.armor;
+		stat.armor = (levelStat.armor * stat.level) + skillStat.armor;
 		stat.physicsResist = levelStat.physicsResist + skillStat.physicsResist;
 		stat.fireResist = levelStat.fireResist + skillStat.fireResist;
 		stat.windResist = levelStat.windResist + skillStat.windResist;
