@@ -8,7 +8,6 @@ public static class ExtensionMethod
         PlayerData stat = new PlayerData();
 		stat.level = levelStat.level;
 		stat.size = levelStat.size;
-		//TODO :JsonMng.Ins.playerDataTable[1]지우기
 		stat.healthPoint = levelStat.GetHealthPoint(stat.level) + skillStat.healthPoint;
 		stat.damage = (levelStat.damage * levelStat.level) + skillStat.damage;
 		stat.attackRange = levelStat.attackRange + skillStat.attackRange;

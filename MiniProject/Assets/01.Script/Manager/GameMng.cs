@@ -35,13 +35,6 @@ public class GameMng : MonoBehaviour
 		stageLevel = 1;
         StartGame();
     }
-	private void Update()
-	{
-		if(Input.GetMouseButton(0))
-		{
-			AddEXP(1);
-		}
-	}
 	public void StartGame()
     {
         monsterPool.StartStage(stageLevel);
