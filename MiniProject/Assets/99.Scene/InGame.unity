@@ -794,7 +794,7 @@ GameObject:
   - component: {fileID: 132104121}
   m_Layer: 0
   m_Name: Lightning (3)
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1148,6 +1148,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649613307174577317, guid: a61bbeb10d1d6174390047dd8f477a4a,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a61bbeb10d1d6174390047dd8f477a4a, type: 3}
@@ -1860,7 +1865,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   TargetPos: {x: 0, y: 0, z: 0}
-  Attack: []
   StartMove: 0
 --- !u!58 &384992501
 CircleCollider2D:
@@ -2359,7 +2363,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   TargetPos: {x: 0, y: 0, z: 0}
-  Attack: []
   StartMove: 0
 --- !u!212 &463687276
 SpriteRenderer:
@@ -2718,6 +2721,7 @@ MonoBehaviour:
   player: {fileID: 161292121}
   cameraMove: {fileID: 1563380632}
   monsterPool: {fileID: 285599445}
+  hitMonsterIndex: 
   skillMng: {fileID: 912548249}
   stageLevel: 0
 --- !u!4 &547203918
@@ -2781,7 +2785,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   TargetPos: {x: 0, y: 0, z: 0}
-  Attack: []
   StartMove: 0
 --- !u!212 &556269382
 SpriteRenderer:
@@ -2895,7 +2898,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   TargetPos: {x: 0, y: 0, z: 0}
-  Attack: []
   StartMove: 0
 --- !u!212 &580724730
 SpriteRenderer:
@@ -3311,7 +3313,7 @@ GameObject:
   - component: {fileID: 775381938}
   m_Layer: 0
   m_Name: Ice
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4463,7 +4465,7 @@ GameObject:
   - component: {fileID: 965309620}
   m_Layer: 0
   m_Name: Lightning (1)
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4969,6 +4971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45aa8470d5fd47f4db75b3ec9c33303e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delayTime: 0
 --- !u!4 &1055332652
 Transform:
   m_ObjectHideFlags: 0
@@ -5512,7 +5515,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   TargetPos: {x: 0, y: 0, z: 0}
-  Attack: []
   StartMove: 0
 --- !u!212 &1213163966
 SpriteRenderer:
@@ -6227,7 +6229,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   TargetPos: {x: 0, y: 0, z: 0}
-  Attack: []
   StartMove: 0
 --- !u!212 &1426915873
 SpriteRenderer:
@@ -6432,7 +6433,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   TargetPos: {x: 0, y: 0, z: 0}
-  Attack: []
   StartMove: 0
 --- !u!212 &1460590716
 SpriteRenderer:
@@ -6639,7 +6639,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   TargetPos: {x: 0, y: 0, z: 0}
-  Attack: []
   StartMove: 0
 --- !u!212 &1468724617
 SpriteRenderer:
@@ -6791,7 +6790,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   TargetPos: {x: 0, y: 0, z: 0}
-  Attack: []
   StartMove: 0
 --- !u!212 &1554004698
 SpriteRenderer:
@@ -6969,7 +6967,7 @@ GameObject:
   - component: {fileID: 1572736957}
   m_Layer: 0
   m_Name: Lightning (2)
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7307,7 +7305,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   TargetPos: {x: 0, y: 0, z: 0}
-  Attack: []
   StartMove: 0
 --- !u!212 &1649521210
 SpriteRenderer:
@@ -8728,7 +8725,7 @@ GameObject:
   - component: {fileID: 1496711209339724022}
   m_Layer: 0
   m_Name: FireBall04
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8890,7 +8887,7 @@ GameObject:
   - component: {fileID: 2519867965014650648}
   m_Layer: 0
   m_Name: Lightning
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15263,7 +15260,7 @@ GameObject:
   - component: {fileID: 6539188117862353804}
   m_Layer: 0
   m_Name: FireBall00
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15298,7 +15295,7 @@ GameObject:
   - component: {fileID: 6544598556648977927}
   m_Layer: 0
   m_Name: FireBall01
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16945,7 +16942,7 @@ GameObject:
   - component: {fileID: 8506857201854723745}
   m_Layer: 0
   m_Name: FireBall03
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17111,7 +17108,7 @@ GameObject:
   - component: {fileID: 9073718299978381375}
   m_Layer: 0
   m_Name: FireBall02
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

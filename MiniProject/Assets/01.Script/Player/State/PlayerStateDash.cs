@@ -10,20 +10,21 @@ public class PlayerStateDash : PlayerState
 
     Vector3 target = new Vector3();
     Vector3 movVec = new Vector3();
-
+	Vector3 dir;
     public PlayerStateDash(Player o) : base(o)
     {
     }
 
     public override void OnStart()
     {
-        movVec = playerObject.transform.right * Range;
+		dir = new Vector3(Mathf.Cos(GameMng.Ins.player.degree * Mathf.Deg2Rad), Mathf.Sin(GameMng.Ins.player.degree * Mathf.Deg2Rad), 0);
+		movVec = dir * Range;
         target = playerObject.transform.position + movVec;
     }
 
     public override bool OnTransition()
     {
-        Ray2D ray = new Ray2D(playerObject.transform.position, playerObject.transform.right);
+        Ray2D ray = new Ray2D(playerObject.transform.position, dir);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 0.5f, 1 << LayerMask.NameToLayer("Wall"));
         if (hit.collider == null) return false;
         if (hit.collider.CompareTag("Wall"))

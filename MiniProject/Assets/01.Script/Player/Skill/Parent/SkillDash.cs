@@ -15,6 +15,7 @@ public class SkillDash : Skill
 
     eAttackType attackType = eAttackType.Wind;
     private float damage;
+	List<Monster> Attack = new List<Monster>();
 	public override void SkillSetting()
 	{
 		skillID = 1;
@@ -40,30 +41,35 @@ public class SkillDash : Skill
 	public override void ActiveSkill()
 	{
 		base.ActiveSkill();
+		Attack.Clear();
 		//테스트 코드
 		GameMng.Ins.player.AddBuff(new ConditionData(eBuffType.MoveFast, 1, 3, 2));
 		GameMng.Ins.player.playerStateMachine.ChangeState(ePlayerState.Dash);
+		Vector3 direction = new Vector3(Mathf.Cos(GameMng.Ins.player.degree * Mathf.Deg2Rad),Mathf.Sin(GameMng.Ins.player.degree * Mathf.Deg2Rad), 0);
 		for (int i = 0; i < Count; ++i)
 		{
-			alterList[i].Setting(GameMng.Ins.player.transform.position,GameMng.Ins.player.transform.right,i+5);
+			alterList[i].Setting(GameMng.Ins.player.transform.position, direction, i+5);
+		}
+		Ray2D ray = new Ray2D(GameMng.Ins.player.transform.position, direction);
+		//TODO : Range
+		RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction,2);
+		for(int i = 0; i < hits.Length; ++i)
+		{
+			if (hits[i].collider.CompareTag("Monster"))
+			{
+				Attack.Add(hits[i].collider.GetComponent<Monster>());
+			}
 		}
         AttackSet = true;
     }
 
     private void FinishAttack()
     {
-        List<Collider2D> Attack = new List<Collider2D>();
-
-        for (int i = 0; i < Count; ++i)
-            for(int j = 0;j<alterList[i].Attack.Count;++j)
-                Attack.Add(alterList[i].Attack[j]);
-
-        Attack = Attack.Distinct().ToList();
-
-        for(int i = 0;i<Attack.Count;++i)
-        {
-            Attack[i].GetComponent<Monster>().Damage(attackType, damage);
-        }
+		for(int i = 0; i < Attack.Count; ++i)
+		{
+			Debug.Log("대쉬어택");
+			Attack[i].Damage(attackType, damage);
+		}
     }
 
 	private void Update()

@@ -10,9 +10,7 @@ public class MilliMonsterStateMove : MonsterState
     private float delaytime = 0.0f;
     Vector2 directionToPlayer;
     float degreeToPlayer;
-
     Vector3 ownerDirection = new Vector3(1, 0, 0);
-    float attackAngle = 0.0f;
 
     public MilliMonsterStateMove(MilliMonster o) : base(o)
     {
@@ -26,22 +24,18 @@ public class MilliMonsterStateMove : MonsterState
 
     public override bool OnTransition()
     {
-        delaytime += Time.deltaTime;
-        Debug.DrawRay(monsterObject.gameObject.transform.position, ownerDirection);
-        if (Mathf.Abs(degreeToPlayer) <= monsterObject.monsterData.attackAngle && 
-            directionToPlayer.magnitude <= monsterObject.monsterData.attackRange)
-        {
-            if (delaytime > monsterObject.monsterData.attackSpeed)
-            {
-                delaytime = 0.0f;
-                monsterObject.Attack();
-                monsterObject.ChangeAnimation(eMonsterAnimation.Attack);
-                monsterObject.monsterStateMachine.ChangeStateIdle();
-                return true;
-            }
-        }
-        return false;
-    }
+		if (Mathf.Abs(degreeToPlayer) <= monsterObject.monsterData.attackAngle &&
+			directionToPlayer.magnitude <= monsterObject.monsterData.attackRange)
+		{
+			if (monsterObject.monsterStateMachine.IsAttack())
+			{
+				monsterObject.monsterStateMachine.ChangeStateIdle();
+				monsterObject.ChangeAnimation(eMonsterAnimation.Attack);
+				return true;
+			}
+		}
+		return false;
+	}
 
     public override void Tick()
     {
@@ -80,7 +74,6 @@ public class MilliMonsterStateMove : MonsterState
                 ownerDirection *
                 Time.deltaTime *
                 monsterObject.monsterData.moveSpeed;
-            //monsterObject.condition.BufDebufUpdate().Speed;
         }
     }
 

@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class MilliMonsterStateIdle : MonsterState
 {
-	private float delaytime;
 
 	public MilliMonsterStateIdle(MilliMonster o) : base(o)
 	{
@@ -13,20 +12,15 @@ public class MilliMonsterStateIdle : MonsterState
 
 	public override void OnStart()
 	{
-		delaytime = 0.0f;
         monsterObject.ChangeAnimation(eMonsterAnimation.Idle);
     }
 
 	public override bool OnTransition()
 	{
-		delaytime += Time.deltaTime;
-		if (delaytime >= 1.0f)
-		{
-			monsterObject.monsterStateMachine.ChangeStateMove();
-			return true;
-		}
 
-		return false;
+		monsterObject.monsterStateMachine.ChangeStateMove();
+		return true;
+
 	}
 
 	public override void Tick()

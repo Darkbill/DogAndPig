@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lightning : MonoBehaviour
+public class Lightning : BulletPlayerSkill
 {
     public float damage = 0;
     eAttackType Attacktype = eAttackType.Lightning;
@@ -22,7 +22,6 @@ public class Lightning : MonoBehaviour
 
     List<Lightning> lightningList = new List<Lightning>();
 
-    // Start is called before the first frame update
     public void Setting(int id, int splitcnt, float p, float damage)
     {
         Id = id;
@@ -51,4 +50,12 @@ public class Lightning : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+	public override void Crash(Monster monster)
+	{
+		monster.Damage(Attacktype, damage);
+		monster.OutStateAdd(new ConditionData(bufftype, Id, 10.0f, 500), 1000);
+		EndPos = monster.transform.position;
+		SplitCheck = true;
+		gameObject.SetActive(false);
+	}
 }

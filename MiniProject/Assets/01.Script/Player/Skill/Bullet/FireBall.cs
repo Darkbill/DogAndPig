@@ -4,22 +4,22 @@ using UnityEngine;
 using GlobalDefine;
 using System;
 
-public class FireBall : MonoBehaviour
+public class FireBall : BulletPlayerSkill
 {
     public float damage = 0;
     eAttackType attackType = eAttackType.Fire;
 
     public Vector3 BulletMovVec;
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Wall"))
-        {
-            gameObject.SetActive(false);
-            return;
-        }
-        collision.GetComponent<Monster>().Damage(attackType, damage);
-        gameObject.SetActive(false);
-    }
+	public void Setting(Vector3 pos,Vector3 moveVec)
+	{
+		gameObject.transform.position = pos;
+		BulletMovVec = moveVec;
+		gameObject.SetActive(true);
+	}
+	public override void Crash(Monster monster)
+	{
+		monster.Damage(attackType, damage);
+		gameObject.SetActive(false);
+	}
 }

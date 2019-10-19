@@ -26,6 +26,7 @@ public class GameMng : MonoBehaviour
 	public Player player;
 	public CameraMove cameraMove;
 	public MonsterPool monsterPool;
+	public List<int> hitMonsterIndex = new List<int>();
 	public SkillMng skillMng;
 	public int stageLevel;
 	private void Awake()

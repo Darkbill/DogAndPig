@@ -32,6 +32,7 @@ public class MilliMonsterStateMachine : MonsterStateMachine
 	private void FixedUpdate()
 	{
 		cState.Tick();
+		delayTime += Time.deltaTime;
 	}
 	public override void ChangeStateKnockBack()
 	{
@@ -52,6 +53,7 @@ public class MilliMonsterStateMachine : MonsterStateMachine
 	public override void ChangeStateIdle()
 	{
 		ChangeState(eMilliMonsterState.Idle);
+		cState.monsterObject.ChangeAnimation(eMonsterAnimation.Idle);
 	}
 	public override void ChangeStateMove()
 	{

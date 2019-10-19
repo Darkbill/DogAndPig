@@ -27,7 +27,7 @@ public class PlayerStateIdle : PlayerState
 
 		if (playerObject.playerStateMachine.attackDelayTime >= playerObject.calStat.attackSpeed)
 		{
-			GameMng.Ins.player.Attack();
+			GameMng.Ins.player.AttackCheck();
 		}
 	}
 	public override void OnEnd()

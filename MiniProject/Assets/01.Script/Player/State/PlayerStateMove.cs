@@ -46,7 +46,7 @@ public class PlayerStateMove : PlayerState
 	{
 		if (playerObject.playerStateMachine.IsAttack())
 		{
-			GameMng.Ins.player.Attack();
+			GameMng.Ins.player.AttackCheck();
 		}
 	}
 	

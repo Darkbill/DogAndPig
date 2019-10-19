@@ -75,7 +75,6 @@ public class Player : MonoBehaviour
 	}
 	public void DamageResult(int d)
 	{
-		ChangeAnimation(ePlayerAnimation.Damage);
 		if (d < 1) d = 1;
 		calStat.healthPoint -= d;
 		UIMngInGame.Ins.DamageToPlayer(d);
@@ -186,7 +185,7 @@ public class Player : MonoBehaviour
 	{
 		playerAnimator.SetInteger("Action", (int)animationType);
 	}
-	public void Attack()
+	public void AttackCheck()
 	{
 		ObjectSetAttack att = new ObjectSetAttack();
 		var monsterPool = GameMng.Ins.monsterPool.monsterList;
@@ -199,22 +198,32 @@ public class Player : MonoBehaviour
 				calStat.attackRange,
 				calStat.attackAngle))
 			{
+				GameMng.Ins.hitMonsterIndex.Add(i);
 				playerStateMachine.attackDelayTime = 0;
 				ChangeAnimation(ePlayerAnimation.Attack);
 				playerStateMachine.isAttack = true;
-				if (Rand.Permile(calStat.knockback))
-				{
-					monsterPool[i].OutStateAdd(new ConditionData(eBuffType.NockBack, 4, 1, 2), 300);
-				}
-				if (Rand.Percent(calStat.criticalChance))
-				{
-					monsterPool[i].Damage(eAttackType.Physics, calStat.damage * calStat.criticalDamage);
-				}
-				else
-				{
-					monsterPool[i].Damage(eAttackType.Physics, calStat.damage);
-				}
 			}
 		}
+	}
+	public void Attack()
+	{
+		var monsterIndexList = GameMng.Ins.hitMonsterIndex;
+		var monsterPool = GameMng.Ins.monsterPool.monsterList;
+		for (int i = 0; i < monsterIndexList.Count; ++i)
+		{
+			if (Rand.Permile(calStat.knockback))
+			{
+				monsterPool[monsterIndexList[i]].OutStateAdd(new ConditionData(eBuffType.NockBack, 4, 1, 2), 300);
+			}
+			if (Rand.Percent(calStat.criticalChance))
+			{
+				monsterPool[monsterIndexList[i]].Damage(eAttackType.Physics, calStat.damage * calStat.criticalDamage);
+			}
+			else
+			{
+				monsterPool[monsterIndexList[i]].Damage(eAttackType.Physics, calStat.damage);
+			}
+		}
+		GameMng.Ins.hitMonsterIndex.Clear();
 	}
 }

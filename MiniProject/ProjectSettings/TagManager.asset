@@ -7,6 +7,7 @@ TagManager:
   - JoyStick
   - Monster
   - Wall
+  - Bullet
   layers:
   - Default
   - TransparentFX

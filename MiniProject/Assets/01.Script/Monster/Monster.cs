@@ -178,8 +178,8 @@ public class Monster : MonoBehaviour
         monsterAnimator.SetInteger("Action", (int)animationType);
     }
 
-    //TODO : 넉백관련 몬스터 코드는 일단 주석처리..
-    /*
+	//TODO : 넉백관련 몬스터 코드는 일단 주석처리..
+	/*
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.collider.CompareTag("Wall"))
@@ -189,13 +189,12 @@ public class Monster : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Wall"))
-        {
-            gameObject.GetComponent<MilliMonsterStateMachine>().
-                ChangeState(eMilliMonsterState.Move);
-        }
-    }
     //*/
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if(collision.CompareTag("Bullet"))
+		{
+			collision.GetComponent<BulletPlayerSkill>().Crash(this);
+		}
+	}
 }

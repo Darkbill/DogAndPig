@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Freezen : MonoBehaviour
+public class Freezen : BulletPlayerSkill
 {
     public float damage = 0;
     eBuffType buffType = eBuffType.MoveSlow;
@@ -20,11 +20,8 @@ public class Freezen : MonoBehaviour
 		slow = s;
 		per = p;
 	}
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Monster"))
-        {
-			collision.GetComponent<Monster>().Damage(eAttackType.Water,GameMng.Ins.player.calStat.damage, damage,new ConditionData(buffType, Id,MaxTimer,slow),per);
-		}
-    }
+	public override void Crash(Monster monster)
+	{
+		monster.Damage(eAttackType.Water, GameMng.Ins.player.calStat.damage, damage, new ConditionData(buffType, Id, MaxTimer, slow), per);
+	}
 }

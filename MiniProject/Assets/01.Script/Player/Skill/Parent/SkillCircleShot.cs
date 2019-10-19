@@ -49,11 +49,11 @@ public class SkillCircleShot : Skill
 		Vector3 bulletstartvec = new Vector3(0, Radius, 0);
 		for (int i = 0; i < BulletLst.Count; ++i)
 		{
-            Quaternion radian = Quaternion.Euler(0, 0, Angle180 * 2 / BulletLst.Count * i);
-			BulletLst[i].transform.position = radian * bulletstartpos + new Vector3(0, 0, -3) +
+			Quaternion radian = Quaternion.Euler(0, 0, Angle180 * 2 / BulletLst.Count * i);
+			Vector3 pos = radian * bulletstartpos + new Vector3(0, 0, -3) +
                 gameObject.transform.position;
-			BulletLst[i].BulletMovVec = radian * bulletstartvec;
-			BulletLst[i].gameObject.SetActive(true);
+			Vector3 moveVec = radian * bulletstartvec;
+			BulletLst[i].Setting(pos, moveVec);
 		}
 	}
 
