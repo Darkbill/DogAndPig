@@ -48,7 +48,7 @@ public class SkillDash : Skill
 		Vector3 direction = new Vector3(Mathf.Cos(GameMng.Ins.player.degree * Mathf.Deg2Rad),Mathf.Sin(GameMng.Ins.player.degree * Mathf.Deg2Rad), 0);
 		for (int i = 0; i < Count; ++i)
 		{
-			alterList[i].Setting(GameMng.Ins.player.transform.position, direction, i+5);
+			alterList[i].Setting(GameMng.Ins.player.transform.position + new Vector3(0.01f, 0.25f, 0), direction, i+5);
 		}
 		Ray2D ray = new Ray2D(GameMng.Ins.player.transform.position, direction);
 		//TODO : Range

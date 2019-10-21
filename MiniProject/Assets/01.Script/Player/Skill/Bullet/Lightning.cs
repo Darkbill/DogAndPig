@@ -31,6 +31,7 @@ public class Lightning : BulletPlayerSkill
         SplitCnt = splitcnt;
         MaxTimer = SplitCnt;
         Speed = Rand.Random() % 10 / 3 + 1f;
+        SetTimer = 0.0f;
     }
 
     private void Update()
@@ -39,23 +40,26 @@ public class Lightning : BulletPlayerSkill
         if (SetTimer >= MaxTimer)
             gameObject.SetActive(false);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Monster") && SetTimer > 0.3f)
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Monster") && SetTimer > 0.3f)
+    //    {
+    //        collision.GetComponent<Monster>().Damage(Attacktype, damage);
+    //        collision.GetComponent<Monster>().OutStateAdd(new ConditionData(bufftype, Id, 10.0f, 500), 1000);
+    //        EndPos = collision.transform.position;
+    //        SplitCheck = true;
+    //        gameObject.SetActive(false);
+    //    }
+    //}
+	public override void Crash(Monster monster)
+	{
+        if (SetTimer > 0.3f)
         {
-            collision.GetComponent<Monster>().Damage(Attacktype, damage);
-            collision.GetComponent<Monster>().OutStateAdd(new ConditionData(bufftype, Id, 10.0f, 500), 1000);
-            EndPos = collision.transform.position;
+            monster.Damage(Attacktype, damage);
+            monster.OutStateAdd(new ConditionData(bufftype, Id, 10.0f, 500), 1000);
+            EndPos = monster.transform.position;
             SplitCheck = true;
             gameObject.SetActive(false);
         }
-    }
-	public override void Crash(Monster monster)
-	{
-		monster.Damage(Attacktype, damage);
-		monster.OutStateAdd(new ConditionData(bufftype, Id, 10.0f, 500), 1000);
-		EndPos = monster.transform.position;
-		SplitCheck = true;
-		gameObject.SetActive(false);
 	}
 }

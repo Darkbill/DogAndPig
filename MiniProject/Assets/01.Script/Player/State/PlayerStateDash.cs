@@ -24,7 +24,7 @@ public class PlayerStateDash : PlayerState
 
     public override bool OnTransition()
     {
-        Ray2D ray = new Ray2D(playerObject.transform.position, dir);
+        Ray2D ray = new Ray2D(playerObject.transform.position + new Vector3(0, 0.35f, 0), dir);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 0.5f, 1 << LayerMask.NameToLayer("Wall"));
         if (hit.collider == null) return false;
         if (hit.collider.CompareTag("Wall"))
@@ -36,7 +36,6 @@ public class PlayerStateDash : PlayerState
 
     public override void Tick()
     {
-
         if (OnTransition() == true)
         {
             playerObject.playerStateMachine.ChangeState(ePlayerState.Move);

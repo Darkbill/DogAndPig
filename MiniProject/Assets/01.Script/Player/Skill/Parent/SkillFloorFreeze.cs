@@ -41,27 +41,30 @@ public class SkillFloorFreeze : Skill
 		cooldownTime = skillData.optionArr[(int)eFloorFreezeOption.CoolTime];
 		DebufEffectPer = skillData.optionArr[(int)eFloorFreezeOption.DebugEffectPer];
 		delayTime = cooldownTime;
-		dummy.Setting(skillID, DebufTime, 0.5f, DebufActivePer);
+        FreezenShot.Setting(skillID, DebufTime, 0.5f, DebufActivePer);
 		gameObject.SetActive(false);
 	}
 	#endregion
 
 	//TODO : SpriteDummy
-	public Freezen dummy;
+	public Freezen FreezenShot;
 
     public override void ActiveSkill()
     {
 		base.ActiveSkill();
-		dummy.gameObject.SetActive(true);
-        dummy.transform.eulerAngles = GameMng.Ins.player.transform.eulerAngles + new Vector3(0, 0, 90);
-        dummy.transform.position = GameMng.Ins.player.transform.position +
-            GameMng.Ins.player.transform.right * height / 2;
+        float degree = GameMng.Ins.player.degree;
+
+        Vector3 pos = new Vector3(Mathf.Cos(degree), Mathf.Sin(degree), 0);
+        FreezenShot.gameObject.SetActive(true);
+        FreezenShot.transform.position = GameMng.Ins.player.transform.position;
+        FreezenShot.transform.eulerAngles = new Vector3(0, 0, degree + 90);
+        FreezenShot.transform.localScale = new Vector3(width, height / 2, 0);
     }
 
     void Update()
     {
 		delayTime += Time.deltaTime;
 		if (delayTime >= 0.5f)
-			dummy.gameObject.SetActive(false);
+            FreezenShot.gameObject.SetActive(false);
     }
 }

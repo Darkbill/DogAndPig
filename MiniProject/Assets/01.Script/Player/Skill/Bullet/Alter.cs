@@ -5,6 +5,7 @@ public class Alter : MonoBehaviour
     public float Speed;
 	private const float Range = 2f;
 	public Vector3 TargetPos = new Vector3();
+    private Vector3 setplayerpos = new Vector3(0.01f, 0.25f, 0);
 
     public bool StartMove;
     public void Setting(Vector3 startPos,Vector3 direction, float speed)
@@ -22,7 +23,7 @@ public class Alter : MonoBehaviour
             Vector3 movement = TargetPos - gameObject.transform.position;
             movement.z = 0;
             if(Vector3.Distance(transform.position, TargetPos) < 0.2f ||
-                Vector3.Distance(transform.position, GameMng.Ins.player.transform.position) < 0.2f)
+                Vector3.Distance(transform.position, GameMng.Ins.player.transform.position + setplayerpos) < 0.2f)
             {
                 gameObject.SetActive(false);
                 StartMove = false;
