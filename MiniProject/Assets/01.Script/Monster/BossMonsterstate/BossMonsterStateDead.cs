@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class BossMonsterStateDead : MonsterState
 {
+    SkillBurningMeteor skill;
     public BossMonsterStateDead(BossMonster o) : base(o)
     {
-
+        skill = o.BossSkill01;
     }
 
     public override void OnStart()
     {
+        skill.SkillButtonOff();
+        monsterObject.monsterAnimator.speed = 0.1f;
     }
 
     public override bool OnTransition()

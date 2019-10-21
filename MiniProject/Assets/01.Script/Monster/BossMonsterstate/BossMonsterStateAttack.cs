@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class BossMonsterStateAttack : MonsterState
 {
+
     public BossMonsterStateAttack(BossMonster o) : base(o)
     {
-
+       
     }
     public override void OnStart()
     {
-
+        
     }
 
     public override bool OnTransition()

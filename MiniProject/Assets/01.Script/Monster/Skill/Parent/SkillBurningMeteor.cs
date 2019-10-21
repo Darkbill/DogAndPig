@@ -63,11 +63,12 @@ public class SkillBurningMeteor : Skill
 
     private void Update()
     {
-        if (Input.GetKeyDown("z"))
-            skillbut = true;
         if (skillbut)
             SkillStart();
     }
+
+    public void SkillButtonOn() { skillbut = true; }
+    public void SkillButtonOff() { skillbut = false; }
 
     void SkillStart()
     {
@@ -85,6 +86,11 @@ public class SkillBurningMeteor : Skill
         for (int i = 0; i < TargetList.Count; ++i)
         {
             TargetList[i].Setting();
+            if(i == 0)
+            {
+                TargetList[0].transform.position = GameMng.Ins.player.transform.position;
+                TargetList[0].gameObject.SetActive(true);
+            }
 
             Vector3 o = new Vector3((float)Rand.Range(-Radius, Radius) / 10, (float)Rand.Range(-Radius, Radius) / 10, 0);
             if ((TargetList[i].transform.position + o).x < -DefineClass.MapSizX / 10 ||

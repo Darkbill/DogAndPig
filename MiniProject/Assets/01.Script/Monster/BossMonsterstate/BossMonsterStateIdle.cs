@@ -15,7 +15,7 @@ public class BossMonsterStateIdle : MonsterState
 
     public override bool OnTransition()
     {
-
+        monsterObject.monsterStateMachine.ChangeStateMove();
         return false;
     }
 

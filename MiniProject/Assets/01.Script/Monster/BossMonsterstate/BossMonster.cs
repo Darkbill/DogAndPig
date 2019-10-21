@@ -4,6 +4,7 @@ using UnityEngine;
 using GlobalDefine;
 public class BossMonster : Monster
 {
+    public SkillBurningMeteor BossSkill01;
     public override void Attack()
     {
         base.Attack();
