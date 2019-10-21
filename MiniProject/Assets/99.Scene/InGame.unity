@@ -5973,6 +5973,7 @@ MonoBehaviour:
   healthText: {fileID: 1080409366}
   coinText: {fileID: 341309561}
   levelText: {fileID: 125265139}
+  stageLevelText: {fileID: 1632478299}
 --- !u!1 &1363786324
 GameObject:
   m_ObjectHideFlags: 0

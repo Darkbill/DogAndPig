@@ -120,6 +120,11 @@ public class Monster : MonoBehaviour
         float d = (damage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
 		DamageResult((int)d);
 	}
+	public void Damage(eAttackType attackType, float damage,float skillDamage)
+	{
+		float d = (damage + skillDamage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
+		DamageResult((int)d);
+	}
 	public void Damage(eAttackType attackType, float PlayerDmage, float skillDamage, ConditionData condition,float activePer)
 	{
 		float d = (PlayerDmage +  skillDamage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
@@ -175,6 +180,7 @@ public class Monster : MonoBehaviour
 		gameObject.GetComponent<CircleCollider2D>().enabled = false;
 		GameMng.Ins.AddGold(GameMng.Ins.stageLevel);
 		GameMng.Ins.AddEXP(GameMng.Ins.stageLevel);
+		GameMng.Ins.monsterPool.DeadMonster();
 	}
 
     public void ChangeAnimation(eMonsterAnimation animationType)

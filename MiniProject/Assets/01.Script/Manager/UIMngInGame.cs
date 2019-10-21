@@ -47,6 +47,7 @@ public class UIMngInGame : MonoBehaviour
 	public Text healthText;
 	public Text coinText;
 	public Text levelText;
+	public Text stageLevelText;
 
 	private Vector3 stickPos;
 	private Vector3 healthGageImagePos;
@@ -83,6 +84,7 @@ public class UIMngInGame : MonoBehaviour
 		levelText.text = GameMng.Ins.player.calStat.level.ToString();
 		healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.calStat.healthPoint,
 			GameMng.Ins.player.GetFullHP());
+		stageLevelText.text = string.Format("Stage LV.{0}", GameMng.Ins.stageLevel);
 	}
 	#region MoveUI
 	public void OnStrickDrag()

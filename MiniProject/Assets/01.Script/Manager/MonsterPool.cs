@@ -7,8 +7,9 @@ public class MonsterPool : MonoBehaviour
     private int activeMonsterCount;
     public void StartStage(int stageLevel)
     {
-        //스테이지 정보 불러
-        List<StageDataTable> stageDataTable = JsonMng.Ins.GetStageData(stageLevel);
+		//스테이지 정보 불러
+		monsterList.Clear();
+		List<StageDataTable> stageDataTable = JsonMng.Ins.GetStageData(stageLevel);
         activeMonsterCount = stageDataTable.Count;
         for (int i = 0; i < stageDataTable.Count; ++i)
         {

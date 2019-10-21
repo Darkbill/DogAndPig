@@ -19,7 +19,7 @@ public class FireBall : BulletPlayerSkill
 	}
 	public override void Crash(Monster monster)
 	{
-		monster.Damage(attackType, damage);
+		monster.Damage(attackType, GameMng.Ins.player.calStat.damage, damage);
 		gameObject.SetActive(false);
 	}
 }

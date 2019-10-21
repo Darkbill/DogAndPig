@@ -39,6 +39,7 @@ public class GameMng : MonoBehaviour
 	public void StartGame()
     {
         monsterPool.StartStage(stageLevel);
+		UIMngInGame.Ins.RenewPlayerInfo();
     }
     public void StageClear()
     {
