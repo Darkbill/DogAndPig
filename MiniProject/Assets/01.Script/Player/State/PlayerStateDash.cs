@@ -17,7 +17,7 @@ public class PlayerStateDash : PlayerState
 
     public override void OnStart()
     {
-		dir = new Vector3(Mathf.Cos(GameMng.Ins.player.degree * Mathf.Deg2Rad), Mathf.Sin(GameMng.Ins.player.degree * Mathf.Deg2Rad), 0);
+		dir = playerObject.GetForward();
 		movVec = dir * Range;
         target = playerObject.transform.position + movVec;
     }

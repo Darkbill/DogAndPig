@@ -70,4 +70,14 @@ public class GameMng : MonoBehaviour
 		player.AddEXP(exp);
 		UIMngInGame.Ins.AddEXP();
 	}
+	public bool RemoveHitMonster(int monsterIndex)
+	{
+		hitMonsterIndex.Remove(monsterIndex);
+		if (hitMonsterIndex.Count == 0)
+		{
+			player.playerStateMachine.ChangeStateIdle();
+			return true;
+		}
+		return false;
+	}
 }

@@ -37,8 +37,8 @@ public class PlayerStateMachine : MonoBehaviour
 	}
 	private void FixedUpdate()
 	{
-		cState.Tick();
 		attackDelayTime += Time.deltaTime;
+		cState.Tick();
 	}
 	public bool AttackDelay()
 	{

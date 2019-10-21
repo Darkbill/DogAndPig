@@ -42,14 +42,15 @@ public class Player : MonoBehaviour
 			}
 			else transform.eulerAngles = new Vector3(0, 0, 0);
 		}
+		else
+		{
+			AttackCheck();
+		}
 		if (isMove)
 		{
 			MoveToJoyStick();
 		}
-		if(playerStateMachine.isAttack)
-		{
-			AttackCheck();
-		}
+
 	}
     public void MoveToJoyStick()
 	{
@@ -200,7 +201,7 @@ public class Player : MonoBehaviour
 		{
 			if (monsterPool[i].gameObject.activeSelf == false) continue;
 
-			if (att.BaseAttack(transform.right,
+			if (att.BaseAttack(GetForward(),
 				monsterPool[i].gameObject.transform.position - (transform.position + new Vector3(0, 0.25f, 0)),
 				calStat.attackRange,
 				calStat.attackAngle))
@@ -211,7 +212,10 @@ public class Player : MonoBehaviour
 				playerStateMachine.isAttack = true;
 			}
 		}
-
+	}
+	public Vector3 GetForward()
+	{
+		return new Vector3(Mathf.Cos(GameMng.Ins.player.degree * Mathf.Deg2Rad), Mathf.Sin(GameMng.Ins.player.degree * Mathf.Deg2Rad), 0);
 	}
 	private void AttackCheck()
 	{
@@ -222,7 +226,7 @@ public class Player : MonoBehaviour
 			//스킬 공격으로 이미 죽었을 때 처리
 			if (monsterPool[hitMonsterList[i]].gameObject.activeSelf == false)
 			{
-				if (RemoveHitMonster(hitMonsterList[i]))
+				if (GameMng.Ins.RemoveHitMonster(hitMonsterList[i]))
 				{
 					break;
 				}
@@ -234,7 +238,7 @@ public class Player : MonoBehaviour
 				calStat.attackRange,
 				calStat.attackAngle) == false)
 			{
-				if(RemoveHitMonster(hitMonsterList[i]))
+				if(GameMng.Ins.RemoveHitMonster(hitMonsterList[i]))
 				{
 					break;
 				}
@@ -242,16 +246,7 @@ public class Player : MonoBehaviour
 			}
 		}
 	}
-	private bool RemoveHitMonster(int monsterIndex)
-	{
-		GameMng.Ins.hitMonsterIndex.Remove(monsterIndex);
-		if (GameMng.Ins.hitMonsterIndex.Count == 0)
-		{
-			playerStateMachine.ChangeStateIdle();
-			return true;
-		}
-		return false;
-	}
+
 	public void Attack()
 	{
 		//애니메이션 이벤트 호출
