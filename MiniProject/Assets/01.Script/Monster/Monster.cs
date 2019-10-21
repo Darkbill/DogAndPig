@@ -139,6 +139,10 @@ public class Monster : MonoBehaviour
 		monsterData.healthPoint -= d;
 		UIMngInGame.Ins.ShowDamage(d, Camera.main.WorldToScreenPoint(gameObject.transform.position));
 		if (monsterData.healthPoint <= 0) Dead();
+		else
+		{
+			ChangeAnimation(eMonsterAnimation.Hit);
+		}
 	}
 
 	

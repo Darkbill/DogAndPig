@@ -6,8 +6,6 @@ using GlobalDefine;
 
 public class MilliMonsterStateMove : MonsterState
 {
-
-    private float delaytime = 0.0f;
     Vector2 directionToPlayer;
     float degreeToPlayer;
     Vector3 ownerDirection = new Vector3(1, 0, 0);
