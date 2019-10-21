@@ -1,7 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class CameraMove : MonoBehaviour
 {
 	//카메라 초기위치와 진동 도달위치
@@ -90,5 +89,7 @@ public class CameraMove : MonoBehaviour
 	public void GameOver()
 	{
 		currentTime = endTime;
+		gameObject.transform.DOMove(new Vector3(GameMng.Ins.player.transform.position.x, GameMng.Ins.player.transform.position.y, -10), 1f);
+		Camera.main.DOOrthoSize(0.6f, 1f).OnComplete(() => { Time.timeScale = 0; UIMngInGame.Ins.GameOver(); });
 	}
 }

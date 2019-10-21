@@ -36,6 +36,13 @@ public class GameMng : MonoBehaviour
 		stageLevel = 1;
         StartGame();
     }
+	private void Update()
+	{
+		if(Input.GetMouseButtonDown(0))
+		{
+			player.Damage(eAttackType.Physics, 10);
+		}
+	}
 	public void StartGame()
     {
         monsterPool.StartStage(stageLevel);
@@ -54,8 +61,6 @@ public class GameMng : MonoBehaviour
 	{
 		//TODO : 옵저버
 		cameraMove.GameOver();
-		Time.timeScale = 0;
-		UIMngInGame.Ins.GameOver();
 	}
 	public bool ActiveSkill(int skillID)
 	{

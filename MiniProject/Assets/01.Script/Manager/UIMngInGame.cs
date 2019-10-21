@@ -49,6 +49,7 @@ public class UIMngInGame : MonoBehaviour
 	public Text levelText;
 
 	private Vector3 stickPos;
+	private Vector3 healthGageImagePos;
 	private Coroutine fillCoroutine;
 	private float saveDamage = 0;
 	private float stickRadius = 60;
@@ -66,7 +67,7 @@ public class UIMngInGame : MonoBehaviour
     public void UISetting()
     {
 		levelText.text = GameMng.Ins.player.calStat.level.ToString();
-
+		healthGageImagePos = healthGageImage.transform.position;
 		healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.calStat.healthPoint,
             GameMng.Ins.player.GetFullHP());
 		coinText.text = JsonMng.Ins.playerInfoDataTable.gold.ToString();
@@ -262,6 +263,7 @@ public class UIMngInGame : MonoBehaviour
 	}
 	private void OnPlayerDamageHPShake()
     {
-		healthGageImage.transform.DOShakePosition(0.3f, 20.0f, 10, 90, false, true);
+		healthGageImage.transform.position = healthGageImagePos;
+		healthGageImage.transform.DOShakePosition(0.1f, 10.0f, 10, 90, false, true).OnComplete(()=> { healthGageImage.transform.position = healthGageImagePos; });
     }
 }
