@@ -40,7 +40,7 @@ public class PlayerStateMachine : MonoBehaviour
 		cState.Tick();
 		attackDelayTime += Time.deltaTime;
 	}
-	public bool IsAttack()
+	public bool AttackDelay()
 	{
 		if (attackDelayTime >= GameMng.Ins.player.calStat.attackSpeed)
 		{

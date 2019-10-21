@@ -9,14 +9,14 @@ public class Player : MonoBehaviour
 	public bool isMove;
 	public PlayerData calStat;
 	public PlayerStateMachine playerStateMachine;
-	public Sprite playerSprite;
 	public Animator playerAnimator;
+	public float degree;
 	// * private * //
 	private List<ConditionData> conditionList = new List<ConditionData>();
     private ConditionData conditionMain = new ConditionData();
-	private int exp = 0;
-	public float degree;
 	private PlayerData skillStat = new PlayerData();
+	private ObjectSetAttack att = new ObjectSetAttack();
+	private int exp = 0;
 	private void Awake()
 	{
 		PlayerSetting();
@@ -46,7 +46,10 @@ public class Player : MonoBehaviour
 		{
 			MoveToJoyStick();
 		}
-
+		if(playerStateMachine.isAttack)
+		{
+			AttackCheck();
+		}
 	}
     public void MoveToJoyStick()
 	{
@@ -185,9 +188,8 @@ public class Player : MonoBehaviour
 	{
 		playerAnimator.SetInteger("Action", (int)animationType);
 	}
-	public void AttackCheck()
+	public void AttackStart()
 	{
-		ObjectSetAttack att = new ObjectSetAttack();
 		var monsterPool = GameMng.Ins.monsterPool.monsterList;
 		for (int i = 0; i < monsterPool.Count; ++i)
 		{
@@ -204,9 +206,50 @@ public class Player : MonoBehaviour
 				playerStateMachine.isAttack = true;
 			}
 		}
+
+	}
+	private void AttackCheck()
+	{
+		var monsterPool = GameMng.Ins.monsterPool.monsterList;
+		var hitMonsterList = GameMng.Ins.hitMonsterIndex;
+		for (int i = 0; i < hitMonsterList.Count; ++i)
+		{
+			//스킬 공격으로 이미 죽었을 때 처리
+			if (monsterPool[hitMonsterList[i]].gameObject.activeSelf == false)
+			{
+				if (RemoveHitMonster(hitMonsterList[i]))
+				{
+					break;
+				}
+				--i;
+			}
+			//공격범위 넘어갔을 때 처리
+			else if (att.BaseAttack(transform.right,
+				monsterPool[hitMonsterList[i]].gameObject.transform.position - (transform.position + new Vector3(0, 0.25f, 0)),
+				calStat.attackRange,
+				calStat.attackAngle) == false)
+			{
+				if(RemoveHitMonster(hitMonsterList[i]))
+				{
+					break;
+				}
+				--i;
+			}
+		}
+	}
+	private bool RemoveHitMonster(int monsterIndex)
+	{
+		GameMng.Ins.hitMonsterIndex.Remove(monsterIndex);
+		if (GameMng.Ins.hitMonsterIndex.Count == 0)
+		{
+			playerStateMachine.ChangeStateIdle();
+			return true;
+		}
+		return false;
 	}
 	public void Attack()
 	{
+		//애니메이션 이벤트 호출
 		var monsterIndexList = GameMng.Ins.hitMonsterIndex;
 		var monsterPool = GameMng.Ins.monsterPool.monsterList;
 		for (int i = 0; i < monsterIndexList.Count; ++i)

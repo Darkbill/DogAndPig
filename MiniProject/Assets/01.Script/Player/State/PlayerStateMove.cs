@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using GlobalDefine;
 public class PlayerStateMove : PlayerState
 {
@@ -44,9 +42,9 @@ public class PlayerStateMove : PlayerState
 	}
     private void Attack()
 	{
-		if (playerObject.playerStateMachine.IsAttack())
+		if (playerObject.playerStateMachine.AttackDelay())
 		{
-			GameMng.Ins.player.AttackCheck();
+			GameMng.Ins.player.AttackStart();
 		}
 	}
 	
