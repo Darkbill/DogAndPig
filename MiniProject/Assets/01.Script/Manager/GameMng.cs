@@ -36,13 +36,6 @@ public class GameMng : MonoBehaviour
 		stageLevel = 1;
         StartGame();
     }
-	private void Update()
-	{
-		if(Input.GetMouseButtonDown(0))
-		{
-			player.Damage(eAttackType.Physics, 10);
-		}
-	}
 	public void StartGame()
     {
         monsterPool.StartStage(stageLevel);

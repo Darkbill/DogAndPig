@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class MilliMonsterStateDead : MonsterState
+﻿public class MilliMonsterStateDead : MonsterState
 {
 	public MilliMonsterStateDead(MilliMonster o) : base(o)
 	{
@@ -10,7 +6,7 @@ public class MilliMonsterStateDead : MonsterState
 	}
 	public override void OnStart()
 	{
-		monsterObject.gameObject.SetActive(false);
+		
 	}
 
 	public override bool OnTransition()

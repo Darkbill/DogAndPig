@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using GlobalDefine;
-using System;
+using DG.Tweening;
 
 public class Monster : MonoBehaviour
 {
@@ -167,8 +166,9 @@ public class Monster : MonoBehaviour
 	}
 	public virtual void Dead()
 	{
-		Debug.Log("죽었다");
-		//TODO : 테이블에서 골드 exp값으로 추가
+		ChangeAnimation(eMonsterAnimation.Dead);
+		monsterStateMachine.ChangeStateDead();
+		gameObject.GetComponent<CircleCollider2D>().enabled = false;
 		GameMng.Ins.AddGold(GameMng.Ins.stageLevel);
 		GameMng.Ins.AddEXP(GameMng.Ins.stageLevel);
 	}
@@ -196,5 +196,9 @@ public class Monster : MonoBehaviour
 		{
 			collision.GetComponent<BulletPlayerSkill>().Crash(this);
 		}
+	}
+	public void ActiveOff()
+	{
+		gameObject.SetActive(false);
 	}
 }
