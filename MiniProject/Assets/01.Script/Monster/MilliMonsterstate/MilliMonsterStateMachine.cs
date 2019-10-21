@@ -44,7 +44,7 @@ public class MilliMonsterStateMachine : MonsterStateMachine
 	}
 	public override void ChangeStateAttack()
 	{
-		//ChangeState(eMilliMonsterState.SkillAttack);
+		
 	}
 	public override void ChangeStateDead()
 	{

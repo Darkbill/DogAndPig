@@ -16,24 +16,6 @@ namespace GlobalDefine
 		public const float upscaleDuration = 2f;
 	}
 
-	public enum eBulletStyle
-    {
-        NONE = 0,
-        NORMAL,
-        BOOMERANG,
-        PARABOLALEFT,
-        PARABOLARIGHT,
-        BORN,
-		Max,
-    }
-	public enum eBulletType
-    {
-        None = 0,
-        Player,
-        Monster,
-        hostility,
-		Max,
-    }
     public enum eBossMonsterState
     {
         None = 0,
@@ -122,15 +104,6 @@ namespace GlobalDefine
 		Water,
 		Wind,
 		Lightning,
-		Max,
-	}
-	public enum eWallType
-	{
-		None = 0,
-		Up,
-		Down,
-		Right,
-		Left,
 		Max,
 	}
 	public enum eBuffType
