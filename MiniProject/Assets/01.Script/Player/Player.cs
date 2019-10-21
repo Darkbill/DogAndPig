@@ -193,7 +193,9 @@ public class Player : MonoBehaviour
 	public void ChangeAnimation(ePlayerAnimation animationType)
 	{
 		playerAnimator.SetInteger("Action", (int)animationType);
-	}
+        if (calStat != null)
+            playerAnimator.speed = calStat.moveSpeed / 2;
+    }
 	public void AttackStart()
 	{
 		var monsterPool = GameMng.Ins.monsterPool.monsterList;
