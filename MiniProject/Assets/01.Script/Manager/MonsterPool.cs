@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterPool : MonoBehaviour
 {
     public List<Monster> monsterList = new List<Monster>();
+    public List<GameObject> monsterEffectList = new List<GameObject>();
     private int activeMonsterCount;
     public void StartStage(int stageLevel)
     {
@@ -16,13 +18,17 @@ public class MonsterPool : MonoBehaviour
             CreateMonster(stageDataTable[i]);
         }
     }
+
     private void CreateMonster(StageDataTable stageData)
     {
         GameObject o = Instantiate(Resources.Load(string.Format("predator Variant_{0}", stageData.enemyIndex), typeof(GameObject))) as GameObject;
+        GameObject eff = Instantiate(Resources.Load(string.Format("MonsterCreateTestEffect"), typeof(GameObject))) as GameObject;
         o.transform.position = new Vector3(stageData.enemyPosX, stageData.enemyPosY,-3);
+        eff.transform.position = o.transform.position;
 		Monster m = o.GetComponent<Monster>();
 		m.monsterData.SetMonsterData(stageData.enemyLevel);
 		monsterList.Add(m);
+        monsterEffectList.Add(eff);
     }
     public void DeadMonster()
     {
