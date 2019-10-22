@@ -29,6 +29,7 @@ public class MonsterPool : MonoBehaviour
 		m.monsterData.SetMonsterData(stageData.enemyLevel);
 		monsterList.Add(m);
         monsterEffectList.Add(eff);
+		//보스 몬스터이면 UI에 정보전달
     }
     public void DeadMonster()
     {

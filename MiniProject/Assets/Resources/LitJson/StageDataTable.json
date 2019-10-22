@@ -103,7 +103,7 @@
     "stageLevel": 4,
     "enemyIndex": 2,
     "enemyLevel": 1,
-    "enemyPosX": -3.6,
+    "enemyPosX": -1.6,
     "enemyPosY": 2.3,
     "boss": 0
   },
@@ -112,7 +112,7 @@
     "stageLevel": 5,
     "enemyIndex": 1,
     "enemyLevel": 1,
-    "enemyPosX": -4,
+    "enemyPosX": -2,
     "enemyPosY": 2.5,
     "boss": 0
   },
@@ -121,7 +121,7 @@
     "stageLevel": 5,
     "enemyIndex": 1,
     "enemyLevel": 1,
-    "enemyPosX": -4.8,
+    "enemyPosX": -2.8,
     "enemyPosY": 2.3,
     "boss": 0
   },
@@ -130,7 +130,7 @@
     "stageLevel": 5,
     "enemyIndex": 1,
     "enemyLevel": 1,
-    "enemyPosX": -4.6,
+    "enemyPosX": -2.6,
     "enemyPosY": 2.7,
     "boss": 0
   },
@@ -139,7 +139,7 @@
     "stageLevel": 5,
     "enemyIndex": 1,
     "enemyLevel": 1,
-    "enemyPosX": 4,
+    "enemyPosX": 2,
     "enemyPosY": 2.2,
     "boss": 0
   },
@@ -148,7 +148,7 @@
     "stageLevel": 5,
     "enemyIndex": 1,
     "enemyLevel": 1,
-    "enemyPosX": 4.8,
+    "enemyPosX": 2.8,
     "enemyPosY": 1.9,
     "boss": 0
   },
@@ -157,7 +157,7 @@
     "stageLevel": 5,
     "enemyIndex": 1,
     "enemyLevel": 1,
-    "enemyPosX": 4.5,
+    "enemyPosX": 2.5,
     "enemyPosY": 2.5,
     "boss": 0
   },
@@ -184,7 +184,7 @@
     "stageLevel": 6,
     "enemyIndex": 1,
     "enemyLevel": 1,
-    "enemyPosX": 3.2,
+    "enemyPosX": 2.2,
     "enemyPosY": 3,
     "boss": 0
   },
@@ -193,8 +193,8 @@
     "stageLevel": 6,
     "enemyIndex": 2,
     "enemyLevel": 2,
-    "enemyPosX": 3.5,
-    "enemyPosY": 3.8,
+    "enemyPosX": 2.5,
+    "enemyPosY": 2.8,
     "boss": 0
   },
   {
@@ -202,8 +202,8 @@
     "stageLevel": 6,
     "enemyIndex": 2,
     "enemyLevel": 2,
-    "enemyPosX": 3.3,
-    "enemyPosY": 3.3,
+    "enemyPosX": 2.3,
+    "enemyPosY": 2.3,
     "boss": 0
   },
   {
@@ -211,7 +211,7 @@
     "stageLevel": 6,
     "enemyIndex": 2,
     "enemyLevel": 2,
-    "enemyPosX": 3.8,
+    "enemyPosX": 1.8,
     "enemyPosY": 1.8,
     "boss": 0
   },
@@ -220,7 +220,7 @@
     "stageLevel": 6,
     "enemyIndex": 2,
     "enemyLevel": 2,
-    "enemyPosX": 3.4,
+    "enemyPosX": 1.4,
     "enemyPosY": 1.1,
     "boss": 0
   },
@@ -230,7 +230,7 @@
     "enemyIndex": 1,
     "enemyLevel": 2,
     "enemyPosX": 0,
-    "enemyPosY": 3.8,
+    "enemyPosY": 2.8,
     "boss": 0
   },
   {
@@ -239,7 +239,7 @@
     "enemyIndex": 1,
     "enemyLevel": 2,
     "enemyPosX": 0.5,
-    "enemyPosY": 4.2,
+    "enemyPosY": 2.2,
     "boss": 0
   },
   {
@@ -248,7 +248,7 @@
     "enemyIndex": 3,
     "enemyLevel": 3,
     "enemyPosX": -0.4,
-    "enemyPosY": 4.2,
+    "enemyPosY": 2.2,
     "boss": 0
   },
   {
@@ -337,7 +337,7 @@
     "stageLevel": 9,
     "enemyIndex": 1,
     "enemyLevel": 2,
-    "enemyPosX": 3,
+    "enemyPosX": 2,
     "enemyPosY": 1.2,
     "boss": 0
   },
@@ -346,7 +346,7 @@
     "stageLevel": 9,
     "enemyIndex": 1,
     "enemyLevel": 2,
-    "enemyPosX": 3.4,
+    "enemyPosX": 1.4,
     "enemyPosY": 1.8,
     "boss": 0
   },
@@ -364,7 +364,7 @@
     "stageLevel": 9,
     "enemyIndex": 2,
     "enemyLevel": 3,
-    "enemyPosX": 3.6,
+    "enemyPosX": 2.6,
     "enemyPosY": 1.6,
     "boss": 0
   },
@@ -373,7 +373,7 @@
     "stageLevel": 9,
     "enemyIndex": 2,
     "enemyLevel": 3,
-    "enemyPosX": 3.4,
+    "enemyPosX": 2.4,
     "enemyPosY": 0.8,
     "boss": 0
   },
@@ -382,7 +382,7 @@
     "stageLevel": 9,
     "enemyIndex": 2,
     "enemyLevel": 3,
-    "enemyPosX": -3.6,
+    "enemyPosX": -1.6,
     "enemyPosY": 0.8,
     "boss": 0
   },
@@ -391,7 +391,7 @@
     "stageLevel": 9,
     "enemyIndex": 2,
     "enemyLevel": 3,
-    "enemyPosX": -3.8,
+    "enemyPosX": -1.8,
     "enemyPosY": 1.2,
     "boss": 0
   },
@@ -400,7 +400,7 @@
     "stageLevel": 9,
     "enemyIndex": 3,
     "enemyLevel": 3,
-    "enemyPosX": -3.5,
+    "enemyPosX": -1.5,
     "enemyPosY": 0.4,
     "boss": 0
   },
@@ -409,7 +409,7 @@
     "stageLevel": 9,
     "enemyIndex": 3,
     "enemyLevel": 3,
-    "enemyPosX": -4.2,
+    "enemyPosX": -2.2,
     "enemyPosY": -0.2,
     "boss": 0
   },
@@ -428,7 +428,7 @@
     "enemyIndex": 2,
     "enemyLevel": 5,
     "enemyPosX": 1.2,
-    "enemyPosY": 4.3,
+    "enemyPosY": 2.3,
     "boss": 0
   },
   {
@@ -436,8 +436,8 @@
     "stageLevel": 10,
     "enemyIndex": 2,
     "enemyLevel": 5,
-    "enemyPosX": 6.6,
-    "enemyPosY": 4.6,
+    "enemyPosX": 3.6,
+    "enemyPosY": 2.6,
     "boss": 0
   },
   {
@@ -445,8 +445,8 @@
     "stageLevel": 10,
     "enemyIndex": 4,
     "enemyLevel": 10,
-    "enemyPosX": 6.3,
-    "enemyPosY": 4.2,
+    "enemyPosX": 0,
+    "enemyPosY": 0,
     "boss": 1
   }
 ]
