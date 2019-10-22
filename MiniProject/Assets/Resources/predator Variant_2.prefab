@@ -2119,6 +2119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62ddf69626ec22948988cd117f7eb0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster: {fileID: 648882745014158066}
   delayTime: 0
 --- !u!114 &648882745014158066
 MonoBehaviour:

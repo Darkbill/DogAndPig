@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class RangeMonsterStateDead : MonsterState
+﻿public class MonsterStateStun : MonsterState
 {
-	public RangeMonsterStateDead(RangeMonster o) : base(o)
+	public MonsterStateStun(Monster o) : base(o)
 	{
 
 	}

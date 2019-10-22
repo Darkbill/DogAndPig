@@ -57,8 +57,7 @@ public class Player : MonoBehaviour
 		Vector3 direction = UIMngInGame.Ins.GetJoyStickDirection();
 		gameObject.transform.position += new Vector3(direction.x, direction.y, 0) * calStat.moveSpeed * Time.deltaTime;
 
-        float Degree = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.eulerAngles = new Vector3(0, 0, Degree);
+        degree = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 	}
 	#region Damage
 	/* Damage */
@@ -201,10 +200,10 @@ public class Player : MonoBehaviour
 		var monsterPool = GameMng.Ins.monsterPool.monsterList;
 		for (int i = 0; i < monsterPool.Count; ++i)
 		{
-			if (monsterPool[i].gameObject.activeSelf == false) continue;
+			if (monsterPool[i].active == false) continue;
 
 			if (att.BaseAttack(GetForward(),
-				monsterPool[i].gameObject.transform.position - (transform.position + new Vector3(0, 0.25f, 0)),
+				monsterPool[i].transform.position - transform.position ,
 				calStat.attackRange,
 				calStat.attackAngle))
 			{
@@ -217,7 +216,7 @@ public class Player : MonoBehaviour
 	}
 	public Vector3 GetForward()
 	{
-		return new Vector3(Mathf.Cos(GameMng.Ins.player.degree * Mathf.Deg2Rad), Mathf.Sin(GameMng.Ins.player.degree * Mathf.Deg2Rad), 0);
+		return new Vector3(Mathf.Cos(degree * Mathf.Deg2Rad), Mathf.Sin(degree * Mathf.Deg2Rad), 0);
 	}
 	private void AttackCheck()
 	{
@@ -226,7 +225,7 @@ public class Player : MonoBehaviour
 		for (int i = 0; i < hitMonsterList.Count; ++i)
 		{
 			//스킬 공격으로 이미 죽었을 때 처리
-			if (monsterPool[hitMonsterList[i]].gameObject.activeSelf == false)
+			if (monsterPool[hitMonsterList[i]].active == false)
 			{
 				if (GameMng.Ins.RemoveHitMonster(hitMonsterList[i]))
 				{
@@ -235,8 +234,8 @@ public class Player : MonoBehaviour
 				--i;
 			}
 			//공격범위 넘어갔을 때 처리
-			else if (att.BaseAttack(transform.right,
-				monsterPool[hitMonsterList[i]].gameObject.transform.position - (transform.position + new Vector3(0, 0.25f, 0)),
+			else if (att.BaseAttack(GetForward(),
+				monsterPool[hitMonsterList[i]].gameObject.transform.position - transform.position,
 				calStat.attackRange,
 				calStat.attackAngle) == false)
 			{

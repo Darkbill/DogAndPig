@@ -1,19 +1,20 @@
 ﻿using UnityEngine;
-
 public abstract class MonsterStateMachine : MonoBehaviour
 {
+	public Monster monster;
 	public abstract void ChangeStateKnockBack();
 	public abstract void ChangeStateStun();
 	public abstract void ChangeStateAttack();
 	public abstract void ChangeStateDead();
 	public abstract void ChangeStateIdle();
 	public abstract void ChangeStateMove();
-	public float delayTime;
+	public abstract void ChangeStateDamage();
+
+	public float delayTime = 0;
 	public bool IsAttack()
 	{
-		if (delayTime >= gameObject.GetComponent<Monster>().monsterData.attackSpeed)
+		if (delayTime >= monster.monsterData.attackSpeed)
 		{
-			delayTime = 0.0f;
 			return true;
 		}
 		return false;

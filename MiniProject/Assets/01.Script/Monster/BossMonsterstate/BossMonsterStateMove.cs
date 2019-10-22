@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class BossMonsterStateMove : MonsterState
+﻿public class BossMonsterStateMove : MonsterState
 {
     public BossMonsterStateMove(BossMonster o) : base(o)
     {

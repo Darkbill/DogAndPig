@@ -1,16 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class RangeMonsterStateStun : MonsterState
+﻿using GlobalDefine;
+public class MonsterStateDead : MonsterState
 {
-	public RangeMonsterStateStun(RangeMonster o) : base(o)
+	public MonsterStateDead(Monster o) : base(o)
 	{
 
 	}
 	public override void OnStart()
 	{
-
+		monsterObject.ChangeAnimation(eMonsterAnimation.Dead);
 	}
 
 	public override bool OnTransition()

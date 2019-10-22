@@ -10,13 +10,11 @@ public class ObjectSetAttack
     //degree : 범위 각도
     public bool BaseAttack(Vector3 dirVec, Vector3 dirbetween, float attrange, float degree)
     {
-       
-        float range = dirbetween.magnitude;
-        if(range < attrange)
+		dirbetween.z = 0;
+		float range = dirbetween.magnitude;
+        if(range <= attrange)
         {
             Vector3 target = dirbetween.normalized;
-			target.z = 0;
-            dirVec += new Vector3(0, 0, target.z);
             if (Mathf.Abs(Vector3.Angle(dirVec, target)) <= degree)
             {
                 return true;

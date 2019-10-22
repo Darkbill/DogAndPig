@@ -1,17 +1,18 @@
 ﻿using GlobalDefine;
-public class MilliMonsterStateSkillAttack : MonsterState
+public class MonsterStateDamage : MonsterState
 {
-	public MilliMonsterStateSkillAttack(MilliMonster o) : base(o)
+	public MonsterStateDamage(Monster o) : base(o)
 	{
-		
 	}
+
 	public override void OnStart()
 	{
-		monsterObject.ChangeAnimation(eMonsterAnimation.Skill);
+		monsterObject.ChangeAnimation(eMonsterAnimation.Hit);
 	}
 
 	public override bool OnTransition()
 	{
+		monsterObject.monsterStateMachine.ChangeStateMove();
 		return true;
 	}
 

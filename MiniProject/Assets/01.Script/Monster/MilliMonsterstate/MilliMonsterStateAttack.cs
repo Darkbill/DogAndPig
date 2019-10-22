@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using GlobalDefine;
 public class MilliMonsterStateAttack : MonsterState
 {
 	public MilliMonsterStateAttack(MilliMonster o) : base(o)
@@ -10,7 +7,7 @@ public class MilliMonsterStateAttack : MonsterState
 	}
 	public override void OnStart()
 	{
-
+		monsterObject.ChangeAnimation(eMonsterAnimation.Attack);
 	}
 
 	public override bool OnTransition()

@@ -1,31 +1,26 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using GlobalDefine;
-using DG.Tweening;
 
 public class Monster : MonoBehaviour
 {
 	public MonsterData monsterData;
 	public MonsterStateMachine monsterStateMachine;
-	/* 테스트코드 */
 	public int MonsterID = 1;
 	private List<ConditionData> conditionList = new List<ConditionData>();
     private ConditionData conditionMain = new ConditionData();
     public Animator monsterAnimator;
-
+	private ObjectSetAttack att = new ObjectSetAttack();
     public float Angle = 0;
-    public Vector3 right = new Vector3(1, 0, 0);
-
-    public int actionNum = 0;
-
+	public bool active;
 	private void Awake()
 	{
 		MonsterSetting();
-
     }
 	private void MonsterSetting()
 	{
 		monsterData = JsonMng.Ins.monsterDataTable[MonsterID].Copy();
+		active = true;
 	}
 	private void Update()
 	{
@@ -39,11 +34,23 @@ public class Monster : MonoBehaviour
         else
             gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
     }   
-
-	/* 테스트코드 */
-	public virtual void Attack()
+	public bool AttackCheckStart()
 	{
-		GameMng.Ins.DamageToPlayer(eAttackType.Physics, monsterData.damage);
+		Vector3 directionToPlayer = GameMng.Ins.player.transform.position - gameObject.transform.position;
+		if (att.BaseAttack(GetForward(), directionToPlayer, monsterData.attackRange, monsterData.attackAngle))
+		{
+			return true;
+		}
+		return false;
+	}
+	public void AttackCheckEnd()
+	{
+		//애니메이션 호출 함수
+		Vector3 directionToPlayer = GameMng.Ins.player.transform.position - gameObject.transform.position;
+		if(att.BaseAttack(GetForward(), directionToPlayer,monsterData.attackRange,monsterData.attackAngle))
+		{
+			GameMng.Ins.DamageToPlayer(eAttackType.Physics, monsterData.damage);
+		}
 	}
 	#region Buff
 	//TODO : State 따로관리 stun과 nockback
@@ -98,7 +105,7 @@ public class Monster : MonoBehaviour
 			{
 				Debug.Log("상태이상이 풀렸습니다.");
 				conditionMain = null;
-				gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.Move);
+				gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMonsterState.Move);
 			}
 		}
 	}
@@ -144,12 +151,7 @@ public class Monster : MonoBehaviour
 		monsterData.healthPoint -= d;
 		UIMngInGame.Ins.ShowDamage(d, Camera.main.WorldToScreenPoint(gameObject.transform.position));
 		if (monsterData.healthPoint <= 0) Dead();
-		else
-		{
-			ChangeAnimation(eMonsterAnimation.Hit);
-		}
 	}
-
 	
 	private void CalculatorStat()
 	{
@@ -175,7 +177,7 @@ public class Monster : MonoBehaviour
 	}
 	public virtual void Dead()
 	{
-		ChangeAnimation(eMonsterAnimation.Dead);
+		active = false;
 		monsterStateMachine.ChangeStateDead();
 		gameObject.GetComponent<CircleCollider2D>().enabled = false;
 		GameMng.Ins.AddGold(GameMng.Ins.stageLevel);
@@ -213,5 +215,11 @@ public class Monster : MonoBehaviour
 	{
 		//애니메이션 이벤트 호출 함수
 		gameObject.SetActive(false);
+	}
+
+	/* 계산용 */
+	public Vector3 GetForward()
+	{
+		return new Vector3(Mathf.Cos(Angle * Mathf.Deg2Rad), Mathf.Sin(Angle * Mathf.Deg2Rad), 0);
 	}
 }

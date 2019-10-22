@@ -1,24 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using GlobalDefine;
+﻿using UnityEngine;
 public class MilliMonster : Monster
 {
-	/* 테스트코드 */
-	public override void Attack()
+	public override void DamageResult(int d)
 	{
-		base.Attack();
-		StartCoroutine(AttackAnimationDelay());
-	}
-	IEnumerator AttackAnimationDelay()
-	{
-		Debug.Log("몬스터 공격");
-		yield return new WaitForSeconds(1);
-		monsterStateMachine.ChangeStateAttack();
-	}
-	public override void Dead()
-	{
-		base.Dead();
-		monsterStateMachine.ChangeStateDead();
+		if (d < 1) d = 1;
+		monsterData.healthPoint -= d;
+		UIMngInGame.Ins.ShowDamage(d, Camera.main.WorldToScreenPoint(gameObject.transform.position));
+		if (monsterData.healthPoint <= 0) Dead();
+		else monsterStateMachine.ChangeStateDamage();
 	}
 }

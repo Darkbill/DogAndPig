@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿
 public class RangeMonsterStateAttack : MonsterState
 {
 	public RangeMonsterStateAttack(RangeMonster o) : base(o)

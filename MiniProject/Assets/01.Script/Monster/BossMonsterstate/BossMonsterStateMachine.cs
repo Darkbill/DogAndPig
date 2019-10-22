@@ -16,7 +16,7 @@ public class BossMonsterStateMachine : MonsterStateMachine
         BossMonster o = gameObject.GetComponent<BossMonster>();
         o.BossSkill01 = Instantiate(Resources.Load(string.Format("Skill_FireBullet"), 
             typeof(SkillBurningMeteor)) as SkillBurningMeteor);
-        stateDict.Add(eBossMonsterState.Idle, new BossMonsterStateIdle(o));
+        stateDict.Add(eBossMonsterState.Idle, new MonsterStateIdle(o));
         stateDict.Add(eBossMonsterState.Move, new BossMonsterStateMove(o));
         stateDict.Add(eBossMonsterState.SkillAttack, new BossMonsterStateSkillAttack(o));
         stateDict.Add(eBossMonsterState.Dash, new BossMonsterStateDead(o));
@@ -57,5 +57,9 @@ public class BossMonsterStateMachine : MonsterStateMachine
 	public override void ChangeStateMove()
 	{
 		ChangeState(eBossMonsterState.Move);
+	}
+	public override void ChangeStateDamage()
+	{
+		return;
 	}
 }

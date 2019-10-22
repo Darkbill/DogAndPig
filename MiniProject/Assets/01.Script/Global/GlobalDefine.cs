@@ -29,18 +29,7 @@ namespace GlobalDefine
         Max,
     }
 
-    public enum eMilliMonsterState
-	{
-		None = 0,
-		Idle,
-		Move,
-		Stun,
-		SkillAttack,
-		Dash,
-		Dead,
-        KnockBack,
-		Max,
-	}
+
 	public enum eMonsterMoveType
 	{
 		None = 0,
@@ -53,16 +42,17 @@ namespace GlobalDefine
 		Milli,
 		Range,
 	}
-	public enum eRangeMonsterState
+	public enum eMonsterState
 	{
 		None = 0,
 		Idle,
 		Move,
+		Damage,
 		Attack,
-		KnockBack,
-		Stun,
 		SkillAttack,
 		Dash,
+		Stun,
+		KnockBack,
 		Dead,
 		Max,
 	}
