@@ -10,7 +10,7 @@ public class Meteor : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<Player>().Damage(GlobalDefine.eAttackType.Fire, 1);
+            collision.GetComponent<Player>().Damage(GlobalDefine.eAttackType.Fire, 10);
         }
     }
 }

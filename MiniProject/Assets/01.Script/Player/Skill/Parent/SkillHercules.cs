@@ -42,8 +42,8 @@ public class SkillHercules : Skill
 
     public override void ActiveSkill()
     {
-        GameMng.Ins.player.AddBuff(new ConditionData(eBuffType.PhysicsStrong, skillID, 10, -7));
-        GameMng.Ins.player.AddBuff(new ConditionData(eBuffType.NockBack, skillID, 10, 500));
+        GameMng.Ins.player.AddBuff(new ConditionData(eBuffType.PhysicsStrong, skillID, buftime, damage));
+        GameMng.Ins.player.AddBuff(new ConditionData(eBuffType.NockBack, skillID, buftime, attackper));
     }
 
     void Update()

@@ -54,6 +54,7 @@ public class SkillCircleShot : Skill
                 gameObject.transform.position;
 			Vector3 moveVec = radian * bulletstartvec;
 			BulletLst[i].Setting(pos, moveVec);
+            BulletLst[i].transform.eulerAngles = new Vector3(30, 0, -90);
 		}
 	}
 

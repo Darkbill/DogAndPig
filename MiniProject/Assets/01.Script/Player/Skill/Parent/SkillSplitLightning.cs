@@ -80,7 +80,8 @@ public class SkillSplitLightning : Skill
 
     void Update()
     {
-        for(int i = 0;i< BulletLst.Count; ++i)
+        delayTime += Time.deltaTime;
+        for (int i = 0;i< BulletLst.Count; ++i)
         {
             int randnum = Rand.Range(-5, 5) * 5;
             if (BulletLst[i].SplitCheck && BulletLst[i].SplitCnt > 0)
