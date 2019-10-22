@@ -43,7 +43,6 @@ public class SkillDash : Skill
 		base.ActiveSkill();
 		Attack.Clear();
 		//테스트 코드
-		GameMng.Ins.player.AddBuff(new ConditionData(eBuffType.MoveFast, 1, 3, 2));
 		GameMng.Ins.player.playerStateMachine.ChangeState(ePlayerState.Dash);
 		Vector3 direction = new Vector3(Mathf.Cos(GameMng.Ins.player.degree * Mathf.Deg2Rad),Mathf.Sin(GameMng.Ins.player.degree * Mathf.Deg2Rad), 0);
 		for (int i = 0; i < Count; ++i)

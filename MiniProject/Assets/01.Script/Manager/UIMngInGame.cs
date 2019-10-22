@@ -56,7 +56,7 @@ public class UIMngInGame : MonoBehaviour
 	private Coroutine fillCoroutine;
 	private float saveDamage = 0;
 	private float stickRadius = 60;
-	private int moveTouchID;
+	public int moveTouchID;
 	private bool isCool = false;
 
 	private void Start()

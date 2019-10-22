@@ -105,7 +105,7 @@ public class Monster : MonoBehaviour
 			{
 				Debug.Log("상태이상이 풀렸습니다.");
 				conditionMain = null;
-				gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMonsterState.Move);
+				monsterStateMachine.ChangeStateMove();
 			}
 		}
 	}

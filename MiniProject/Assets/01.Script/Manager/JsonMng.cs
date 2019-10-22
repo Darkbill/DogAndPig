@@ -56,9 +56,9 @@ public class JsonMng : MonoBehaviour
 #if UNITY_EDITOR_WIN
 		string JsonString = File.ReadAllText(string.Format("{0}/Resources/LitJson/{1}.json", Application.dataPath, "PlayerInfoDataTable"));
 #else
-		string JsonString = File.ReadAllText(string.Format("{0}/Resources/LitJson/{1}.json", Application.persistentDataPath, fileName));
+		string JsonString = File.ReadAllText(string.Format("{0}/Resources/LitJson/{1}.json", Application.persistentDataPath, "PlayerInfoDataTable"));
 #endif
-		JsonData jsonData = JsonMapper.ToObject(JsonString);
+        JsonData jsonData = JsonMapper.ToObject(JsonString);
 		playerInfoDataTable = JsonMapper.ToObject<PlayerInfoData>(jsonData.ToJson());
 	
 	}
