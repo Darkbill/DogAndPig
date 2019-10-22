@@ -32,6 +32,7 @@ public class UIMngInGame : MonoBehaviour
     public GameObject gameOverUI;
 	public GameObject joyStick;
 	public GameObject healthPack;
+	public GameObject bossInfo;
 	public BuffUI buffUI;
 	public DamageTextPool damageTextPool;
 
@@ -39,6 +40,7 @@ public class UIMngInGame : MonoBehaviour
 	public Image stickImage;
 	public Image expImage;
 	public Image healthGageImage;
+	public Image bossHealthGageImage;
 	public Image coinImage;
 	public Image[] skillImageArr;
 	public Image[] skillImageBGArr;
@@ -268,4 +270,13 @@ public class UIMngInGame : MonoBehaviour
 		healthGageImage.transform.position = healthGageImagePos;
 		healthGageImage.transform.DOShakePosition(0.1f, 10.0f, 10, 90, false, true).OnComplete(()=> { healthGageImage.transform.position = healthGageImagePos; });
     }
+	public void SetBossInfo()
+	{
+		bossInfo.gameObject.SetActive(true);
+		bossHealthGageImage.fillAmount = GameMng.Ins.monsterPool.GetBossFill();
+	}
+	public void AllClear()
+	{
+		bossInfo.gameObject.SetActive(false);
+	}
 }

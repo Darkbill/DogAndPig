@@ -1311,6 +1311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterList: []
   monsterEffectList: []
+  bossIndex: -1
 --- !u!4 &285599446
 Transform:
   m_ObjectHideFlags: 0
@@ -5548,11 +5549,13 @@ MonoBehaviour:
   gameOverUI: {fileID: 8197487863926010870}
   joyStick: {fileID: 277079577}
   healthPack: {fileID: 1547597143}
+  bossInfo: {fileID: 1719431434}
   buffUI: {fileID: 99556337}
   damageTextPool: {fileID: 1420551329}
   stickImage: {fileID: 7573771754993154139}
   expImage: {fileID: 2076389431}
   healthGageImage: {fileID: 474134876}
+  bossHealthGageImage: {fileID: 264553760}
   coinImage: {fileID: 521794436}
   skillImageArr:
   - {fileID: 885315114}

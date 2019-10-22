@@ -6,6 +6,7 @@ public class MonsterPool : MonoBehaviour
 {
     public List<Monster> monsterList = new List<Monster>();
     public List<GameObject> monsterEffectList = new List<GameObject>();
+	public int bossIndex = -1;
     private int activeMonsterCount;
     public void StartStage(int stageLevel)
     {
@@ -16,9 +17,14 @@ public class MonsterPool : MonoBehaviour
         for (int i = 0; i < stageDataTable.Count; ++i)
         {
             CreateMonster(stageDataTable[i]);
+			if (stageDataTable[i].boss == 1) SetBossInfo(i);
         }
     }
-
+	private void SetBossInfo(int _bossIndex)
+	{
+		bossIndex = _bossIndex;
+		UIMngInGame.Ins.SetBossInfo();
+	}
     private void CreateMonster(StageDataTable stageData)
     {
         GameObject o = Instantiate(Resources.Load(string.Format("predator Variant_{0}", stageData.enemyIndex), typeof(GameObject))) as GameObject;
@@ -29,7 +35,6 @@ public class MonsterPool : MonoBehaviour
 		m.monsterData.SetMonsterData(stageData.enemyLevel);
 		monsterList.Add(m);
         monsterEffectList.Add(eff);
-		//보스 몬스터이면 UI에 정보전달
     }
     public void DeadMonster()
     {
@@ -39,6 +44,17 @@ public class MonsterPool : MonoBehaviour
             GameMng.Ins.StageClear();
         }
     }
+	public float GetBossFill()
+	{
+		return monsterList[bossIndex].monsterData.healthPoint / JsonMng.Ins.monsterDataTable[monsterList[bossIndex].MonsterID].healthPoint;
+	}
+	public void AllClear()
+	{
+		for(int i = 0; i < monsterList.Count; ++i)
+		{
+			monsterList[i].gameObject.SetActive(false);
+		}
+	}
     //TODO : Pooling Test;
 
  //   public int Stage = 0;

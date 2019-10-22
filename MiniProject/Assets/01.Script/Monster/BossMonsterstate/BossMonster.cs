@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using GlobalDefine;
 public class BossMonster : Monster
 {
     public SkillBurningMeteor BossSkill01;
@@ -19,6 +17,15 @@ public class BossMonster : Monster
     public override void Dead()
     {
         base.Dead();
-        monsterStateMachine.ChangeStateDead();
+		GameMng.Ins.AllClear();
+        //monsterStateMachine.ChangeStateDead();
     }
+	public override void DamageResult(int d)
+	{
+		if (d < 1) d = 1;
+		monsterData.healthPoint -= d;
+		UIMngInGame.Ins.ShowDamage(d, Camera.main.WorldToScreenPoint(gameObject.transform.position));
+		if (monsterData.healthPoint <= 0) Dead();
+		UIMngInGame.Ins.bossHealthGageImage.fillAmount = GameMng.Ins.monsterPool.GetBossFill();
+	}
 }

@@ -46,6 +46,12 @@ public class GameMng : MonoBehaviour
         stageLevel++;
         StartGame();
     }
+	public void AllClear()
+	{
+		monsterPool.AllClear();
+		UIMngInGame.Ins.AllClear();
+		//TODO : 
+	}
 	public void DamageToPlayer(eAttackType attackType, float damage)
 	{
 		cameraMove.OnStart();

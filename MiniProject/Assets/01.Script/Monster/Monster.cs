@@ -71,10 +71,10 @@ public class Monster : MonoBehaviour
 		switch (condition.buffType)
 		{
 			case eBuffType.Stun:
-				gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.Stun);
+				monsterStateMachine.ChangeStateStun();
 				break;
 			case eBuffType.NockBack:
-				gameObject.GetComponent<MilliMonsterStateMachine>().ChangeState(eMilliMonsterState.KnockBack);
+				monsterStateMachine.ChangeStateKnockBack();
 				break;
 		}
 		Debug.Log("상태이상에 걸렸습니다.");
@@ -138,7 +138,7 @@ public class Monster : MonoBehaviour
 	}
     
     #endregion
-    public void DamageResult(int d)
+    public virtual void DamageResult(int d)
 	{
 		if (d < 1) d = 1;
 		monsterData.healthPoint -= d;
