@@ -29,6 +29,7 @@ public class MilliMonsterStateMove : MonsterState
 			{
 				monsterObject.monsterStateMachine.ChangeStateIdle();
 				monsterObject.ChangeAnimation(eMonsterAnimation.Attack);
+                monsterObject.monsterAnimator.speed = monsterObject.monsterData.moveSpeed * 2;
 				return true;
 			}
 		}
