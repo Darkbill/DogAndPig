@@ -14,6 +14,8 @@ public class BossMonsterStateMachine : MonsterStateMachine
     private void Setting()
     {
         BossMonster o = gameObject.GetComponent<BossMonster>();
+        o.BossSkill01 = Instantiate(Resources.Load(string.Format("Skill_FireBullet"), 
+            typeof(SkillBurningMeteor)) as SkillBurningMeteor);
         stateDict.Add(eBossMonsterState.Idle, new BossMonsterStateIdle(o));
         stateDict.Add(eBossMonsterState.Move, new BossMonsterStateMove(o));
         stateDict.Add(eBossMonsterState.SkillAttack, new BossMonsterStateSkillAttack(o));
