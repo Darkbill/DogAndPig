@@ -55,6 +55,7 @@ public class UIMngInGame : MonoBehaviour
 	private float stickRadius = 60;
 	public int moveTouchID;
 	private bool isCool = false;
+    public Vector3 dir;
 
 	private void Start()
     {
@@ -104,18 +105,18 @@ public class UIMngInGame : MonoBehaviour
 		/* 컴퓨터 빌드 */
 #if UNITY_EDITOR_WIN
 		stickImage.gameObject.transform.position = Input.mousePosition;
-		Vector3 dir = stickImage.gameObject.transform.position - stickPos;
+		dir = stickImage.gameObject.transform.position - stickPos;
 		float m = dir.magnitude;
 		dir.Normalize();
 		if (m > stickRadius)
 		{
 			stickImage.gameObject.transform.position = stickPos + dir * stickRadius;
-		}
+        }
 		else
 		{
 			stickImage.gameObject.transform.position = Input.mousePosition;
 		}
-		return dir;
+        return dir;
 #else
 		/* 모바일 빌드 */
 		for (int i = 0; i < Input.touchCount; i++)
@@ -125,7 +126,7 @@ public class UIMngInGame : MonoBehaviour
 			if (tempTouchs.fingerId == moveTouchID)
 			{
 				stickImage.gameObject.transform.position = tempTouchs.position;
-				Vector3 dir = stickImage.gameObject.transform.position - stickPos;
+				dir = stickImage.gameObject.transform.position - stickPos;
 				float m = dir.magnitude;
 				dir.Normalize();
 				if (m > stickRadius)
@@ -139,6 +140,7 @@ public class UIMngInGame : MonoBehaviour
 				return dir;
 			}
 		}
+        dir = Vector3.zero;
 		return Vector3.zero;
 #endif
 	}

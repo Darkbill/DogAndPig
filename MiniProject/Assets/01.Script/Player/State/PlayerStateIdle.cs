@@ -21,13 +21,14 @@ public class PlayerStateIdle : PlayerState
 			return true;
 		}
 #else
-		if(playerObject.isMove == true)
-		{
+        if(playerObject.isMove == true)
+        {
 			playerObject.playerStateMachine.ChangeState(ePlayerState.Move);
 			return true;
 		}
+        return false;
 #endif
-		return false;
+        return false;
 	}
 
 	public override void Tick()

@@ -17,20 +17,21 @@ public class PlayerStateMove : PlayerState
 
 	public override bool OnTransition()
 	{
-		fHorizontal = Input.GetAxis("Horizontal");
-		fVertical = Input.GetAxis("Vertical");
+		
 #if UNITY_EDITOR_WIN
-		if (fVertical == 0 && fHorizontal == 0)
-		{
-			return true;
-		}
+        fHorizontal = Input.GetAxis("Horizontal");
+		fVertical = Input.GetAxis("Vertical");
+
 #else
 		if (playerObject.isMove == false)
-		{
 			return true;
-		}
+        return false;
 #endif
-		return false;
+        if (fVertical == 0 && fHorizontal == 0)
+        {
+            return true;
+        }
+        return false;
 	}
 
 	public override void Tick()
@@ -58,8 +59,12 @@ public class PlayerStateMove : PlayerState
 
 	private void Moving()
 	{
-		Mov.iSpeed = playerObject.calStat.moveSpeed;
-		playerObject.transform.position += Mov.Move(fHorizontal, fVertical);
-		playerObject.degree = Mathf.Atan2(fVertical, fHorizontal) * Mathf.Rad2Deg;
+#if UNITY_EDITOR_WIN
+        Mov.iSpeed = playerObject.calStat.moveSpeed;
+        playerObject.transform.position += Mov.Move(fHorizontal, fVertical);
+        playerObject.degree = Mathf.Atan2(fVertical, fHorizontal) * Mathf.Rad2Deg;
+#else
+		
+#endif
     }
 }
