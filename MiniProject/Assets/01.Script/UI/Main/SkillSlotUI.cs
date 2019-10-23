@@ -4,13 +4,22 @@ using GlobalDefine;
 public class SkillSlotUI : MonoBehaviour
 {
 	public Image skillImage;
+	public Text skillName;
 	public bool changeFlag;
 	private int skillID;
 	public int slotIndex;
 	public void Setting(int sI)
 	{
 		skillID = sI;
-		skillImage.sprite = SpriteMng.Ins.skillAtlas.GetSprite(string.Format("Skill_{0}",skillID.ToString()));
+		skillImage.sprite = SpriteMng.Ins.skillAtlas.GetSprite(string.Format("Skill_{0}", skillID.ToString()));
+		if (skillID == 0)
+		{
+			skillName.text = "";
+		}
+		else
+		{
+			skillName.text = JsonMng.Ins.playerSkillDataTable[skillID].skillName;
+		}
 	}
 	public void OnClickSetSkill()
 	{

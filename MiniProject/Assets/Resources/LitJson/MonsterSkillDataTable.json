@@ -1,6 +1,8 @@
 [
   {
     "skillID": 1,
+    "skillName": "fireDrop",
+    "decal": "default_target",
     "skillType": 2,
     "target": 1,
     "optionArr": [
@@ -11,6 +13,8 @@
   },
   {
     "skillID": 2,
+    "skillName": "empty",
+    "decal": 0,
     "skillType": 3,
     "target": 1,
     "optionArr": [
@@ -21,6 +25,8 @@
   },
   {
     "skillID": 3,
+    "skillName": "empty",
+    "decal": 0,
     "skillType": 4,
     "target": 1,
     "optionArr": [
@@ -31,6 +37,8 @@
   },
   {
     "skillID": 4,
+    "skillName": "empty",
+    "decal": 0,
     "skillType": 5,
     "target": 1,
     "optionArr": [
@@ -41,6 +49,8 @@
   },
   {
     "skillID": 5,
+    "skillName": "empty",
+    "decal": 0,
     "skillType": 6,
     "target": 1,
     "optionArr": [

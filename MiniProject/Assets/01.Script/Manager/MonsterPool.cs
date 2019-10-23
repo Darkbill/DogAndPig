@@ -27,7 +27,7 @@ public class MonsterPool : MonoBehaviour
 	}
     private void CreateMonster(StageDataTable stageData)
     {
-        GameObject o = Instantiate(Resources.Load(string.Format("predator Variant_{0}", stageData.enemyIndex), typeof(GameObject))) as GameObject;
+        GameObject o = Instantiate(Resources.Load(string.Format("Monster/predator Variant_{0}", stageData.enemyIndex), typeof(GameObject))) as GameObject;
         GameObject eff = Instantiate(Resources.Load(string.Format("MonsterCreateTestEffect"), typeof(GameObject))) as GameObject;
         o.transform.position = new Vector3(stageData.enemyPosX, stageData.enemyPosY,-3);
         eff.transform.position = o.transform.position;

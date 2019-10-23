@@ -1,8 +1,8 @@
 ﻿using GlobalDefine;
-using System.Collections.Generic;
 public class PlayerSkillData : TableBase
 {
 	public int skillID;
+	public string skillName;
 	public int price;
 	public eAttackType skillType;
 	public eSkillType target;

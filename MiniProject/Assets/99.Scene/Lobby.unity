@@ -617,7 +617,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: FireBall
+  m_Text: 
 --- !u!222 &165347432
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -714,6 +714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillImage: {fileID: 179300797}
+  skillName: {fileID: 188803498}
   changeFlag: 0
   slotIndex: 2
 --- !u!114 &179300800
@@ -966,7 +967,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: IceAge
+  m_Text: 
 --- !u!222 &188803499
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1781,9 +1782,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'SKillName
-
-'
+  m_Text: 
 --- !u!222 &402225400
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2029,6 +2028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillImage: {fileID: 545419936}
+  skillName: {fileID: 165347431}
   changeFlag: 0
   slotIndex: 1
 --- !u!114 &545419939
@@ -4230,6 +4230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillImage: {fileID: 1608926487}
+  skillName: {fileID: 402225399}
   changeFlag: 0
   slotIndex: 3
 --- !u!114 &1608926490
@@ -4878,6 +4879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillImage: {fileID: 1826830634}
+  skillName: {fileID: 1918159693}
   changeFlag: 0
   slotIndex: 0
 --- !u!114 &1826830637
@@ -5286,9 +5288,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Dash
-
-'
+  m_Text: 
 --- !u!222 &1918159694
 CanvasRenderer:
   m_ObjectHideFlags: 0
