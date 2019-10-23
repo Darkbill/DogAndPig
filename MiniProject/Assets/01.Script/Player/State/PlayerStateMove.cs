@@ -19,14 +19,17 @@ public class PlayerStateMove : PlayerState
 	{
 		fHorizontal = Input.GetAxis("Horizontal");
 		fVertical = Input.GetAxis("Vertical");
+#if UNITY_EDITOR_WIN
+		if (fVertical == 0 && fHorizontal == 0)
+		{
+			return true;
+		}
+#else
 		if (playerObject.isMove == false)
 		{
 			return true;
 		}
-		else if (fVertical == 0 && fHorizontal == 0)
-		{
-			return true;
-		}
+#endif
 		return false;
 	}
 

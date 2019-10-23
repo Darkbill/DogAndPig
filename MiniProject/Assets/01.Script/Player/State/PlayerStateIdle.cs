@@ -13,17 +13,20 @@ public class PlayerStateIdle : PlayerState
 
 	public override bool OnTransition()
 	{
-		//TODO : 빌드 제한
+
+#if UNITY_EDITOR_WIN
+		if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+		{
+			playerObject.playerStateMachine.ChangeState(ePlayerState.Move);
+			return true;
+		}
+#else
 		if(playerObject.isMove == true)
 		{
 			playerObject.playerStateMachine.ChangeState(ePlayerState.Move);
 			return true;
 		}
-		else if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-		{
-			playerObject.playerStateMachine.ChangeState(ePlayerState.Move);
-			return true;
-		}
+#endif
 		return false;
 	}
 
