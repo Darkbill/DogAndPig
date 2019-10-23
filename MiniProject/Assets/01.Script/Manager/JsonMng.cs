@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 using System.IO;
 using LitJson;
 
@@ -34,6 +33,14 @@ public class JsonMng : MonoBehaviour
 	public Dictionary<int, StageDataTable> stageDataTable { get; private set; } = new Dictionary<int, StageDataTable>();
 	public Dictionary<int, EXPData> expDataTable { get; private set; } = new Dictionary<int, EXPData>();
 	public PlayerInfoData playerInfoDataTable { get; private set; } = new PlayerInfoData();
+	private int AllDownCount = 7;
+	private int cDownCount = 0;
+	public bool IsDone
+	{
+		get { if (AllDownCount == cDownCount) return true;
+			else return false;
+		}
+	}
 	//테스트 코드
 	private void Awake()
 	{
@@ -58,6 +65,7 @@ public class JsonMng : MonoBehaviour
 		string jsonString = www.text;
 		JsonData jsonData = JsonMapper.ToObject(jsonString);
 		playerInfoDataTable = JsonMapper.ToObject<PlayerInfoData>(jsonData.ToJson());
+		cDownCount++;
 	}
 	private IEnumerator StartLoad<T>(string fileName, Dictionary<int, T> table) where T : TableBase
 	{
@@ -70,6 +78,11 @@ public class JsonMng : MonoBehaviour
 		{
 			T save = JsonMapper.ToObject<T>(jsonData[i].ToJson());
 			table.Add((int)save.GetTableID(), save);
+		}
+		cDownCount++;
+		if(cDownCount == AllDownCount)
+		{
+			UIMng.Ins.Setting();
 		}
 	}
 	private void LoadExpDataTable()

@@ -34,12 +34,7 @@ public class UIMng : MonoBehaviour
 	public GameObject[] boxArr;
 
 	public int selectSkillID;
-	private void Start()
-	{
-		//TODO : 로딩 후 실행
-		Setting();
-	}
-	private void Setting()
+	public void Setting()
 	{
 		shopUI.Setting();
 		SetBaseUI();

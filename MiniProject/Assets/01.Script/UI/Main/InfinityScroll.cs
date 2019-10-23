@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -25,7 +23,6 @@ public class InfinityScroll : MonoBehaviour
 	int tailContent;
 	int firstItem;
 	int lastItem;
-
 	public void Setting()
 	{
 		itemList = JsonMng.Ins.playerSkillDataTable.ToList();
@@ -47,8 +44,6 @@ public class InfinityScroll : MonoBehaviour
 
 		if (showCount >= itemList.Count) SetBasicScroll(itemList.Count);
 		else SetInfinityScroll(itemList.Count);
-
-
 		itemExam.gameObject.SetActive(false);
 		SetItemList();
 	}
@@ -64,6 +59,7 @@ public class InfinityScroll : MonoBehaviour
 	}
 	private void Update()
 	{
+		if (JsonMng.Ins.IsDone == false) return;
 		float cPos = gameObject.transform.localPosition.y;
 		float topValue = Mathf.Ceil(cPos / (itemSize.size.y + upPadding));
 		if (topValue > firstItem/horCount)
