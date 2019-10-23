@@ -42,10 +42,13 @@ public class SkillDash : Skill
 	{
 		base.ActiveSkill();
 		Attack.Clear();
-		//테스트 코드
+        //테스트 코드
+        
 		GameMng.Ins.player.playerStateMachine.ChangeState(ePlayerState.Dash);
 		Vector3 direction = new Vector3(Mathf.Cos(GameMng.Ins.player.degree * Mathf.Deg2Rad),Mathf.Sin(GameMng.Ins.player.degree * Mathf.Deg2Rad), 0);
-		for (int i = 0; i < Count; ++i)
+        Debug.DrawRay(GameMng.Ins.player.transform.position, direction);
+
+        for (int i = 0; i < Count; ++i)
 		{
 			alterList[i].Setting(GameMng.Ins.player.transform.position + new Vector3(0.01f, 0.25f, 0), direction, i+5);
 		}
@@ -64,11 +67,20 @@ public class SkillDash : Skill
 
     private void FinishAttack()
     {
-		for(int i = 0; i < Attack.Count; ++i)
+        List<Monster> hitlst = new List<Monster>();
+		for(int i = 0; i < alterList.Count; ++i)
 		{
-			Debug.Log("대쉬어택");
-			Attack[i].Damage(attackType, damage);
+            for(int j = 0;j<alterList[i].hitMonsterList.Count;++j)
+            {
+                hitlst.Add(alterList[i].hitMonsterList[j]);
+            }
 		}
+        hitlst = hitlst.Distinct().ToList();
+
+        for(int i = 0;i<hitlst.Count;++i)
+        {
+            hitlst[i].Damage(attackType, damage);
+        }
     }
 
 	private void Update()

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-public class Alter : MonoBehaviour
+public class Alter : BulletPlayerSkill
 {
     public float Speed;
 	private const float Range = 2f;
@@ -8,6 +11,7 @@ public class Alter : MonoBehaviour
     private Vector3 setplayerpos = new Vector3(0.01f, 0.25f, 0);
 
     public bool StartMove;
+    public List<Monster> hitMonsterList = new List<Monster>();
     public void Setting(Vector3 startPos,Vector3 direction, float speed)
     {
         gameObject.SetActive(true);
@@ -15,6 +19,7 @@ public class Alter : MonoBehaviour
         gameObject.transform.position = startPos;
 		TargetPos = startPos + direction * Range;
 		Speed = speed;
+        hitMonsterList.Clear();
     }
     void Update()
     {
@@ -33,5 +38,11 @@ public class Alter : MonoBehaviour
                 gameObject.transform.position += movement * Time.deltaTime * Speed;
             }
         }
+    }
+
+    public override void Crash(Monster monster)
+    {
+        hitMonsterList.Add(monster);
+        hitMonsterList = hitMonsterList.Distinct().ToList();
     }
 }
