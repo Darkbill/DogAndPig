@@ -20,7 +20,6 @@ public class MilliMonsterStateMove : MonsterState
 	{
 		if (monsterObject.monsterStateMachine.IsAttack() && monsterObject.AttackCheckStart())
 		{
-			monsterObject.monsterAnimator.speed = monsterObject.monsterData.moveSpeed * 2;
 			monsterObject.monsterStateMachine.ChangeStateAttack();
 			return true;
 		}

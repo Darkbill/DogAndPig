@@ -188,8 +188,6 @@ public class Monster : MonoBehaviour
     public void ChangeAnimation(eMonsterAnimation animationType)
     {
         monsterAnimator.SetInteger("Action", (int)animationType);
-        if (monsterData != null)
-            monsterAnimator.speed = monsterData.moveSpeed / 2;
     }
 
 	//TODO : 넉백관련 몬스터 코드는 일단 주석처리..

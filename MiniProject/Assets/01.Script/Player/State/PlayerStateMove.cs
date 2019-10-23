@@ -13,7 +13,6 @@ public class PlayerStateMove : PlayerState
 	public override void OnStart()
 	{
 		playerObject.ChangeAnimation(ePlayerAnimation.Run);
-        
     }
 
 	public override bool OnTransition()
@@ -55,6 +54,5 @@ public class PlayerStateMove : PlayerState
 		Mov.iSpeed = playerObject.calStat.moveSpeed;
 		playerObject.transform.position += Mov.Move(fHorizontal, fVertical);
 		playerObject.degree = Mathf.Atan2(fVertical, fHorizontal) * Mathf.Rad2Deg;
-        playerObject.playerAnimator.speed = playerObject.calStat.moveSpeed / 2;
     }
 }

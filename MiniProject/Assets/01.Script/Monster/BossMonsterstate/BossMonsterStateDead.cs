@@ -13,7 +13,6 @@ public class BossMonsterStateDead : MonsterState
     public override void OnStart()
     {
         skill.SkillButtonOff();
-        monsterObject.monsterAnimator.speed = 0.1f;
     }
 
     public override bool OnTransition()

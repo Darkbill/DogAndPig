@@ -9096,7 +9096,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.5
+  - time: 0.6666667
     functionName: AttackCheckEnd
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: 7b80ae76c30804d469524c3a6e43233d,
