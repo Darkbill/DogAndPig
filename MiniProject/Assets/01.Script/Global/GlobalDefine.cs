@@ -80,7 +80,7 @@ namespace GlobalDefine
     {
         Idle = 0,
         Run,
-        Hit,
+        Damage,
         Attack,
         Skill,
         Dead,

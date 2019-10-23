@@ -28,7 +28,6 @@ public class UIMngInGame : MonoBehaviour
     #endregion
     /* UI List */
     public GameObject gameOverUI;
-	public GameObject joyStick;
 	public GameObject healthPack;
 	public GameObject bossInfo;
 	public BuffUI buffUI;
@@ -84,28 +83,29 @@ public class UIMngInGame : MonoBehaviour
 		levelText.text = GameMng.Ins.player.calStat.level.ToString();
 		healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.calStat.healthPoint,
 			GameMng.Ins.player.GetFullHP());
+		healthGageImage.fillAmount = GameMng.Ins.player.calStat.healthPoint / GameMng.Ins.player.GetFullHP();
 		stageLevelText.text = string.Format("Stage LV.{0}", GameMng.Ins.stageLevel);
 	}
 	#region MoveUI
 	public void OnStrickDrag()
     {
         GameMng.Ins.player.isMove = true;
-        joyStick.gameObject.SetActive(true);
-        joyStick.gameObject.transform.position = Input.mousePosition;
+		stickImage.gameObject.SetActive(true);
+		stickImage.gameObject.transform.position = Input.mousePosition;
         stickPos = stickImage.gameObject.transform.position;
     }
     public void OnStrickDrag(Touch touch)
     {
         GameMng.Ins.player.isMove = true;
-        joyStick.gameObject.SetActive(true);
+		stickImage.gameObject.SetActive(true);
         moveTouchID = touch.fingerId;
-        joyStick.gameObject.transform.position = touch.position;
+		stickImage.gameObject.transform.position = touch.position;
         stickPos = stickImage.gameObject.transform.position;
     }
     public void OnStickDrop()
     {
         GameMng.Ins.player.isMove = false;
-        joyStick.gameObject.SetActive(false);
+		stickImage.gameObject.SetActive(false);
         moveTouchID = -1;
     }
 	public Vector3 GetJoyStickDirection()

@@ -7,12 +7,12 @@ public class MonsterStateDamage : MonsterState
 
 	public override void OnStart()
 	{
-		monsterObject.ChangeAnimation(eMonsterAnimation.Hit);
+		monsterObject.ChangeAnimation(eMonsterAnimation.Damage);
 	}
 
 	public override bool OnTransition()
 	{
-		monsterObject.monsterStateMachine.ChangeStateMove();
+
 		return true;
 	}
 

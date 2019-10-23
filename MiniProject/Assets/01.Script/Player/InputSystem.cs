@@ -18,12 +18,12 @@ public class InputSystem : MonoBehaviour
 			//Att01.BulletShot();
 
 
-			//UIMngInGame.Ins.OnStickDrop();
+			UIMngInGame.Ins.OnStickDrop();
 
 		}
 		if (Input.GetMouseButtonDown(0))
 		{
-			//UIMngInGame.Ins.OnStrickDrag();
+			UIMngInGame.Ins.OnStrickDrag();
 		}
 #else
 
