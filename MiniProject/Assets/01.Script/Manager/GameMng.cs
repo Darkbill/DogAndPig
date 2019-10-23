@@ -28,6 +28,7 @@ public class GameMng : MonoBehaviour
 	public MonsterPool monsterPool;
 	public List<int> hitMonsterIndex = new List<int>();
 	public SkillMng skillMng;
+    public EffectPool effectPool;
 	public int stageLevel;
 	private void Awake()
 	{
@@ -57,7 +58,13 @@ public class GameMng : MonoBehaviour
 	{
 		cameraMove.OnStart();
 		player.Damage(attackType, damage);
-	}
+    }
+    public void HitToEffect(eAttackType type, Vector3 target, Vector3 pos)
+    {
+        //TODO : target - 맞는사람, pos - 공격자
+        //GameMng.Ins.HitToEffect(eAttackType.Physics, GameMng.Ins.player.transform.position + new Vector3(0, 0.3f, 0),transform.position + new Vector3(0, 0.3f, 0));
+        effectPool.RunHitAnimation(type, target, pos);
+    }
 	public void GameOver()
 	{
 		//TODO : 옵저버
