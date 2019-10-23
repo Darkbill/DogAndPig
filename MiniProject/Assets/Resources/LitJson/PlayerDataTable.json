@@ -5,7 +5,7 @@
     "healthPoint": 10,
     "damage": 10,
     "attackRange": 1,
-    "attackAngle": 20,
+    "attackAngle": 40,
     "attackSpeed": 1,
     "moveSpeed": 2,
     "critacalCance": 20,

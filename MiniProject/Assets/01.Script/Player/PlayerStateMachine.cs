@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using GlobalDefine;
 public class PlayerStateMachine : MonoBehaviour
@@ -42,7 +41,8 @@ public class PlayerStateMachine : MonoBehaviour
 	}
 	public bool AttackDelay()
 	{
-		if (attackDelayTime >= GameMng.Ins.player.calStat.attackSpeed)
+		if (isAttack == true) return false;
+		else if (attackDelayTime >= GameMng.Ins.player.calStat.attackSpeed)
 		{
 			return true;
 		}

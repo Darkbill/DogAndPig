@@ -1,7 +1,6 @@
 ﻿using GlobalDefine;
 using UnityEngine;
 using System.Collections.Generic;
-using System;
 
 public class Player : MonoBehaviour
 {
@@ -29,14 +28,21 @@ public class Player : MonoBehaviour
 	}
 	private void Update()
 	{
+		Debug.DrawRay(gameObject.transform.position + new Vector3(0,0.25f,0), GetForward(), Color.red, 2f);
 		UpdateBuff(Time.deltaTime);
 		if (playerStateMachine.isAttack == false)
 		{
-			if (degree > 90 || degree < -90)
+			if (Mathf.Abs(degree) != 90)
 			{
-				transform.eulerAngles = new Vector3(0, 180, 0);
+				if (degree > 90 || degree < -90)
+				{
+					transform.eulerAngles = new Vector3(0, 180, 0);
+				}
+				else
+				{
+					transform.eulerAngles = new Vector3(0, 0, 0);
+				}
 			}
-			else transform.eulerAngles = new Vector3(0, 0, 0);
 		}
 		else
 		{
@@ -187,6 +193,7 @@ public class Player : MonoBehaviour
 	}
 	public void ChangeAnimation(ePlayerAnimation animationType)
 	{
+		if (playerStateMachine.isAttack == true) return;
 		playerAnimator.SetInteger("Action", (int)animationType);
     }
 	public void AttackStart()
@@ -196,12 +203,12 @@ public class Player : MonoBehaviour
 		{
 			if (monsterPool[i].active == false) continue;
 
-			if (att.BaseAttack(GetForward(),
-				monsterPool[i].transform.position - transform.position ,
+			if (att.BaseAttack(transform.right,
+				(monsterPool[i].gameObject.transform.position + new Vector3(0, 0.3f, 0)) - (transform.position + new Vector3(0,0.3f,0)),
 				calStat.attackRange,
 				calStat.attackAngle))
 			{
-				GameMng.Ins.hitMonsterIndex.Add(i);
+				Debug.Log("공격");
 				playerStateMachine.attackDelayTime = 0;
 				ChangeAnimation(ePlayerAnimation.Attack);
 				playerStateMachine.isAttack = true;
@@ -214,54 +221,55 @@ public class Player : MonoBehaviour
 	}
 	private void AttackCheck()
 	{
+		int count = 0;
 		var monsterPool = GameMng.Ins.monsterPool.monsterList;
-		var hitMonsterList = GameMng.Ins.hitMonsterIndex;
-		for (int i = 0; i < hitMonsterList.Count; ++i)
+		for (int i = 0; i < monsterPool.Count; ++i)
 		{
-			//스킬 공격으로 이미 죽었을 때 처리
-			if (monsterPool[hitMonsterList[i]].active == false)
-			{
-				if (GameMng.Ins.RemoveHitMonster(hitMonsterList[i]))
-				{
-					break;
-				}
-				--i;
-			}
-			//공격범위 넘어갔을 때 처리
-			else if (att.BaseAttack(GetForward(),
-				monsterPool[hitMonsterList[i]].gameObject.transform.position - transform.position,
+			if (monsterPool[i].active == false) continue;
+
+			if (att.BaseAttack(transform.right,
+				(monsterPool[i].gameObject.transform.position + new Vector3(0, 0.3f, 0)) - (transform.position + new Vector3(0, 0.3f, 0)),
 				calStat.attackRange,
-				calStat.attackAngle) == false)
+				calStat.attackAngle))
 			{
-				if(GameMng.Ins.RemoveHitMonster(hitMonsterList[i]))
-				{
-					break;
-				}
-				--i;
+				count++;
 			}
+		}
+		if(count == 0)
+		{
+			Debug.Log("벗어남");
+			playerStateMachine.ChangeStateIdle();
 		}
 	}
 
 	public void Attack()
 	{
 		//애니메이션 이벤트 호출
-		var monsterIndexList = GameMng.Ins.hitMonsterIndex;
+		//var monsterIndexList = GameMng.Ins.hitMonsterIndex;
 		var monsterPool = GameMng.Ins.monsterPool.monsterList;
-		for (int i = 0; i < monsterIndexList.Count; ++i)
+		Debug.Log("End");
+		for (int i = 0; i < monsterPool.Count; ++i)
 		{
-			if (Rand.Permile(calStat.knockback))
+			if (monsterPool[i].active == false) continue;
+
+			if (att.BaseAttack(transform.right,
+				(monsterPool[i].transform.position + new Vector3(0, 0.3f, 0)) - (transform.position + new Vector3(0, 0.3f, 0)),
+				calStat.attackRange,
+				calStat.attackAngle))
 			{
-				monsterPool[monsterIndexList[i]].OutStateAdd(new ConditionData(eBuffType.NockBack, 4, 1, 2), 300);
-			}
-			if (Rand.Percent(calStat.criticalChance))
-			{
-				monsterPool[monsterIndexList[i]].Damage(eAttackType.Physics, calStat.damage * calStat.criticalDamage);
-			}
-			else
-			{
-				monsterPool[monsterIndexList[i]].Damage(eAttackType.Physics, calStat.damage);
+				if (Rand.Permile(calStat.knockback))
+				{
+					monsterPool[i].OutStateAdd(new ConditionData(eBuffType.NockBack, 4, 1, 2), 300);
+				}
+				if (Rand.Percent(calStat.criticalChance))
+				{
+					monsterPool[i].Damage(eAttackType.Physics, calStat.damage * calStat.criticalDamage);
+				}
+				else
+				{
+					monsterPool[i].Damage(eAttackType.Physics, calStat.damage);
+				}
 			}
 		}
-		GameMng.Ins.hitMonsterIndex.Clear();
 	}
 }

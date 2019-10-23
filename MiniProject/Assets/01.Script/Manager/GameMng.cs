@@ -26,7 +26,6 @@ public class GameMng : MonoBehaviour
 	public Player player;
 	public CameraMove cameraMove;
 	public MonsterPool monsterPool;
-	public List<int> hitMonsterIndex = new List<int>();
 	public SkillMng skillMng;
     public EffectPool effectPool;
 	public int stageLevel;
@@ -84,15 +83,5 @@ public class GameMng : MonoBehaviour
 	{
 		player.AddEXP(exp);
 		UIMngInGame.Ins.AddEXP();
-	}
-	public bool RemoveHitMonster(int monsterIndex)
-	{
-		hitMonsterIndex.Remove(monsterIndex);
-		if (hitMonsterIndex.Count == 0)
-		{
-			player.playerStateMachine.ChangeStateIdle();
-			return true;
-		}
-		return false;
 	}
 }

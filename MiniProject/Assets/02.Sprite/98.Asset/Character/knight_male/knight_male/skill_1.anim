@@ -11361,7 +11361,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1
+  - time: 0.9
     functionName: ChangeStateIdle
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: 1bc4c54b59cc82b4997fc198e7cade62,

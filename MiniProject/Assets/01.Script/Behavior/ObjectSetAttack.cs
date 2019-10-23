@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ObjectSetAttack
 {
@@ -14,8 +12,7 @@ public class ObjectSetAttack
 		float range = dirbetween.magnitude;
         if(range <= attrange)
         {
-            Vector3 target = dirbetween.normalized;
-            if (Mathf.Abs(Vector3.Angle(dirVec, target)) <= degree)
+            if (Vector3.Angle(dirVec.normalized, dirbetween.normalized) <= degree)
             {
                 return true;
             }
