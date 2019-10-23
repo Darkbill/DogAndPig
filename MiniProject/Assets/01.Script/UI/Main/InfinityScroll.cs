@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class InfinityScroll : MonoBehaviour
 {
@@ -59,6 +59,7 @@ public class InfinityScroll : MonoBehaviour
 	}
 	private void Update()
 	{
+		//TODO 스크롤뷰 꺼놓고 시작할 수 있으면 필요없는 코드
 		if (JsonMng.Ins.IsDone == false) return;
 		float cPos = gameObject.transform.localPosition.y;
 		float topValue = Mathf.Ceil(cPos / (itemSize.size.y + upPadding));
@@ -164,6 +165,7 @@ public class InfinityScroll : MonoBehaviour
 			for (int i = 0; i < itemList.Count; ++i)
 			{
 				contentList[i].Setting(itemList[i].skillID);
+				scrollView.GetComponent<ScrollRect>().vertical = false;
 			}
 		}
 		else
