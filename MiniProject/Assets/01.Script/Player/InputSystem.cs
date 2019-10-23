@@ -28,7 +28,7 @@ public class InputSystem : MonoBehaviour
 #else
 
 		/* 모바일 빌드 */
-		if (Input.touchCount > 0)
+				if (Input.touchCount > 0)
 		{    //터치가 1개 이상이면.
 			for (int i = 0; i < Input.touchCount; i++)
 			{
@@ -39,22 +39,21 @@ public class InputSystem : MonoBehaviour
 					{
 						UIMngInGame.Ins.OnStickDrop();
 					}
-					else
-					{
-						
-					}
 				}
 				else if (tempTouchs.phase == TouchPhase.Moved)
 				{
 					if (UIMngInGame.Ins.moveTouchID != -1) continue;
 					UIMngInGame.Ins.OnStrickDrag(tempTouchs);
 				}
+				else if (tempTouchs.phase == TouchPhase.Began)
+				{
+					if (UIMngInGame.Ins.moveTouchID == -1)
+					{
+						UIMngInGame.Ins.OnStrickDrag(tempTouchs);
+					}
+				}
 			}
 		}
 #endif
-	}
-	private void FixedUpdate()
-	{
-
 	}
 }

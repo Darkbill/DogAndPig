@@ -13,7 +13,13 @@ public class PlayerStateIdle : PlayerState
 
 	public override bool OnTransition()
 	{
-		if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+		//TODO : 빌드 제한
+		if(playerObject.isMove == true)
+		{
+			playerObject.playerStateMachine.ChangeState(ePlayerState.Move);
+			return true;
+		}
+		else if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
 		{
 			playerObject.playerStateMachine.ChangeState(ePlayerState.Move);
 			return true;

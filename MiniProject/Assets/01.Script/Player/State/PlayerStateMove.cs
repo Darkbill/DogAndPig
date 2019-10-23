@@ -19,7 +19,11 @@ public class PlayerStateMove : PlayerState
 	{
 		fHorizontal = Input.GetAxis("Horizontal");
 		fVertical = Input.GetAxis("Vertical");
-		if (fVertical == 0 && fHorizontal == 0)
+		if (playerObject.isMove == false)
+		{
+			return true;
+		}
+		else if (fVertical == 0 && fHorizontal == 0)
 		{
 			return true;
 		}
