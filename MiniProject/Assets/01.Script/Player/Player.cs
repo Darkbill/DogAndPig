@@ -17,16 +17,12 @@ public class Player : MonoBehaviour
 	private PlayerData skillStat = new PlayerData();
 	private ObjectSetAttack att = new ObjectSetAttack();
 	private int exp = 0;
-	private void Awake()
-	{
-		PlayerSetting();
-	}
 	/* 테스트 코드 */
 	public float GetTime(int skillIndex)
 	{
 		return conditionList[conditionList.FindID(skillIndex)].currentTime;
 	}
-	private void PlayerSetting()
+	public void PlayerSetting()
 	{
 		calStat = JsonMng.Ins.playerDataTable[1];
 		CalculatorStat();

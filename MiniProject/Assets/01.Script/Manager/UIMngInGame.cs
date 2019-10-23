@@ -1,9 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using GlobalDefine;
-using System;
 using DG.Tweening;
 
 public class UIMngInGame : MonoBehaviour
