@@ -604,5 +604,5 @@ MonoBehaviour:
   - {fileID: 2570337617822022387}
   - {fileID: 2570337615847938389}
   - {fileID: 2570337616382878117}
-  lightning: {fileID: 6291673012977251655, guid: b3a29eabf4957fa4eacc15bf2782bee3,
+  lightning: {fileID: 4234128699324033530, guid: 7f835ce841c8b4e42b340edb93eaa010,
     type: 3}
