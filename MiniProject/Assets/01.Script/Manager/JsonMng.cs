@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using System.IO;
 using LitJson;
-using System;
 
 public class JsonMng : MonoBehaviour
 {
@@ -42,7 +42,7 @@ public class JsonMng : MonoBehaviour
 	}
 	private void LoadAll()
 	{
-		LoadPlayerInfoData();
+		StartCoroutine(StartLoadPlayerData());
 		LoadPlayerData();
 		LoadPlayerSkillData();
 		LoadMonsterData();
@@ -50,50 +50,60 @@ public class JsonMng : MonoBehaviour
 		LoadExpDataTable();
 		LoadStageData();
 	}
-
-	private void LoadPlayerInfoData()
+	private IEnumerator StartLoadPlayerData()
 	{
-#if UNITY_EDITOR_WIN
-		string JsonString = File.ReadAllText(string.Format("{0}/Resources/LitJson/{1}.json", Application.dataPath, "PlayerInfoDataTable"));
-#else
-		string JsonString = File.ReadAllText(string.Format("{0}/Resources/LitJson/{1}.json", Application.persistentDataPath, "PlayerInfoDataTable"));
-#endif
-        JsonData jsonData = JsonMapper.ToObject(JsonString);
+		string path = string.Format("{0}/LitJson/{1}.json", Application.streamingAssetsPath, "PlayerInfoDataTable");
+		WWW www = new WWW(path);
+		yield return www;
+		string jsonString = www.text;
+		JsonData jsonData = JsonMapper.ToObject(jsonString);
 		playerInfoDataTable = JsonMapper.ToObject<PlayerInfoData>(jsonData.ToJson());
-	
+	}
+	private IEnumerator StartLoad<T>(string fileName, Dictionary<int, T> table) where T : TableBase
+	{
+		string path = string.Format("{0}/LitJson/{1}.json",Application.streamingAssetsPath, fileName);
+		WWW www = new WWW(path);
+		yield return www;
+		string jsonString = www.text;
+		JsonData jsonData = JsonMapper.ToObject(jsonString);
+		for (int i = 0; i < jsonData.Count; ++i)
+		{
+			T save = JsonMapper.ToObject<T>(jsonData[i].ToJson());
+			table.Add((int)save.GetTableID(), save);
+		}
 	}
 	private void LoadExpDataTable()
 	{
-		LoadData("EXPDataTable", expDataTable);
+		StartCoroutine(StartLoad("EXPDataTable", expDataTable));
 	}
 	private void LoadStageData()
 	{
-		LoadData("StageDataTable", stageDataTable);
+		StartCoroutine(StartLoad("StageDataTable", stageDataTable));
 	}
 	private void LoadPlayerData()
 	{
-		LoadData("PlayerDataTable", playerDataTable);
+		StartCoroutine(StartLoad("PlayerDataTable", playerDataTable));
 	}
 	private void LoadMonsterData()
 	{
-		LoadData("MonsterDataTable", monsterDataTable);
+		StartCoroutine(StartLoad("MonsterDataTable", monsterDataTable));
 	}
 	private void LoadPlayerSkillData()
 	{
-		LoadData("PlayerSkillDataTable", playerSkillDataTable);
+		StartCoroutine(StartLoad("PlayerSkillDataTable", playerSkillDataTable));
 	}
 	private void LoadMonsterSkillData()
 	{
-		LoadData("MonsterSkillDataTable", monsterSkillDataTable);
+		StartCoroutine(StartLoad("MonsterSkillDataTable", monsterSkillDataTable));
 	}
 	private void LoadData<T>(string fileName,Dictionary<int,T> table) where T : TableBase
 	{
 #if UNITY_EDITOR_WIN
-		string JsonString = File.ReadAllText(string.Format("{0}/Resources/LitJson/{1}.json", Application.dataPath, fileName));
+		string jsonString = File.ReadAllText(string.Format("{0}/Resources/LitJson/{1}.json", Application.dataPath, fileName));
 #else
-		string JsonString = File.ReadAllText(string.Format("{0}/Resources/LitJson/{1}.json", Application.persistentDataPath, fileName));
+		string jsonString = File.ReadAllText(string.Format("{0}/Resources/LitJson/{1}.json", Application.persistentDataPath, fileName));
 #endif
-		JsonData jsonData = JsonMapper.ToObject(JsonString);
+		JsonData jsonData = JsonMapper.ToObject(jsonString);
 		for (int i = 0; i < jsonData.Count; ++i)
 		{
 			T save = JsonMapper.ToObject<T>(jsonData[i].ToJson());

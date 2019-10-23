@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
 	}
 	private void Update()
 	{
-		Debug.DrawRay(gameObject.transform.position + new Vector3(0,0.25f,0), GetForward(), Color.red, 2f);
 		UpdateBuff(Time.deltaTime);
 		if (playerStateMachine.isAttack == false)
 		{
