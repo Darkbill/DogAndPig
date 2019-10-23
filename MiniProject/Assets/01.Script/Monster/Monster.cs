@@ -50,7 +50,8 @@ public class Monster : MonoBehaviour
 		if(att.BaseAttack(GetForward(), directionToPlayer,monsterData.attackRange,monsterData.attackAngle))
 		{
 			GameMng.Ins.DamageToPlayer(eAttackType.Physics, monsterData.damage);
-		}
+            GameMng.Ins.HitToEffect(eAttackType.Physics, GameMng.Ins.player.transform.position + new Vector3(0, 0.3f, 0), transform.position + new Vector3(0, 0.3f, 0));
+        }
 	}
 	#region Buff
 	//TODO : State 따로관리 stun과 nockback
