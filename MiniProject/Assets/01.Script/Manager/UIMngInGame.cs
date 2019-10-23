@@ -48,7 +48,7 @@ public class UIMngInGame : MonoBehaviour
 	public Text levelText;
 	public Text stageLevelText;
 
-	private Vector3 stickPos;
+	private Vector3 stickPos; //터치 눌러서 joyStick이 시작한 위치
 	private Vector3 healthGageImagePos;
 	private Coroutine fillCoroutine;
 	private float saveDamage = 0;
@@ -94,19 +94,10 @@ public class UIMngInGame : MonoBehaviour
 		stickImage.gameObject.transform.position = Input.mousePosition;
         stickPos = stickImage.gameObject.transform.position;
     }
-    public void OnStrickDrag(Touch touch)
-    {
-        GameMng.Ins.player.isMove = true;
-		stickImage.gameObject.SetActive(true);
-        moveTouchID = touch.fingerId;
-		stickImage.gameObject.transform.position = touch.position;
-        stickPos = stickImage.gameObject.transform.position;
-    }
     public void OnStickDrop()
     {
         GameMng.Ins.player.isMove = false;
 		stickImage.gameObject.SetActive(false);
-        moveTouchID = -1;
     }
 	public Vector3 GetJoyStickDirection()
 	{
