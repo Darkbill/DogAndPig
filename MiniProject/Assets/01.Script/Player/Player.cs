@@ -207,45 +207,16 @@ public class Player : MonoBehaviour
 				calStat.attackRange,
 				calStat.attackAngle))
 			{
-				Debug.Log("공격");
 				playerStateMachine.attackDelayTime = 0;
 				ChangeAnimation(ePlayerAnimation.Attack);
 				playerStateMachine.isAttack = true;
 			}
 		}
 	}
-	public Vector3 GetForward()
-	{
-		return new Vector3(Mathf.Cos(degree * Mathf.Deg2Rad), Mathf.Sin(degree * Mathf.Deg2Rad), 0);
-	}
-	private void AttackCheck()
-	{
-		int count = 0;
-		var monsterPool = GameMng.Ins.monsterPool.monsterList;
-		for (int i = 0; i < monsterPool.Count; ++i)
-		{
-			if (monsterPool[i].active == false) continue;
-
-			if (att.BaseAttack(transform.right,
-				(monsterPool[i].gameObject.transform.position + new Vector3(0, 0.3f, 0)) - (transform.position + new Vector3(0, 0.3f, 0)),
-				calStat.attackRange,
-				calStat.attackAngle))
-			{
-				count++;
-			}
-		}
-		if(count == 0)
-		{
-			Debug.Log("벗어남");
-			playerStateMachine.ChangeStateIdle();
-		}
-	}
-
 	public void Attack()
 	{
 		//애니메이션 이벤트 호출
 		var monsterPool = GameMng.Ins.monsterPool.monsterList;
-		Debug.Log("End");
 		for (int i = 0; i < monsterPool.Count; ++i)
 		{
 			if (monsterPool[i].active == false) continue;
@@ -269,5 +240,33 @@ public class Player : MonoBehaviour
 				}
 			}
 		}
+		playerStateMachine.ChangeStateIdle();
 	}
+	public Vector3 GetForward()
+	{
+		return new Vector3(Mathf.Cos(degree * Mathf.Deg2Rad), Mathf.Sin(degree * Mathf.Deg2Rad), 0);
+	}
+	private void AttackCheck()
+	{
+		int count = 0;
+		var monsterPool = GameMng.Ins.monsterPool.monsterList;
+		for (int i = 0; i < monsterPool.Count; ++i)
+		{
+			if (monsterPool[i].active == false) continue;
+
+			if (att.BaseAttack(transform.right,
+				(monsterPool[i].gameObject.transform.position + new Vector3(0, 0.3f, 0)) - (transform.position + new Vector3(0, 0.3f, 0)),
+				calStat.attackRange,
+				calStat.attackAngle))
+			{
+				count++;
+			}
+		}
+		if(count == 0)
+		{
+			playerStateMachine.ChangeStateIdle();
+		}
+	}
+
+
 }
