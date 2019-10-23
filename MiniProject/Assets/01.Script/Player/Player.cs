@@ -160,7 +160,7 @@ public class Player : MonoBehaviour
 
 	/* Buff */
 	#endregion
-	private void CalculatorStat()
+	public void CalculatorStat()
 	{
 		//TODO : 레벨에 의한 스탯계산
 		calStat = JsonMng.Ins.playerDataTable[1].AddStat(skillStat,conditionList,calStat.level);
@@ -244,7 +244,6 @@ public class Player : MonoBehaviour
 	public void Attack()
 	{
 		//애니메이션 이벤트 호출
-		//var monsterIndexList = GameMng.Ins.hitMonsterIndex;
 		var monsterPool = GameMng.Ins.monsterPool.monsterList;
 		Debug.Log("End");
 		for (int i = 0; i < monsterPool.Count; ++i)
@@ -260,7 +259,7 @@ public class Player : MonoBehaviour
 				{
 					monsterPool[i].OutStateAdd(new ConditionData(eBuffType.NockBack, 4, 1, 2), 300);
 				}
-				if (Rand.Percent(calStat.criticalChance))
+				if (Rand.Permile(calStat.criticalChance))
 				{
 					monsterPool[i].Damage(eAttackType.Physics, calStat.damage * calStat.criticalDamage);
 				}

@@ -50,7 +50,6 @@ public class PlayerStateDash : PlayerState
     
     public void Dash()
     {
-
         if (Vector3.Distance(playerObject.transform.position, target) > 0.5f)
         {
             playerObject.transform.position += movVec * Time.deltaTime * fSpeed;
