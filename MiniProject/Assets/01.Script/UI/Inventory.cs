@@ -34,7 +34,6 @@ public class Inventory : MonoBehaviour
 	}
 	// * TestCode * //
 	public InventorySlot[] inventorySlotArr;
-	//TODO : 재사용 스크롤
 	private void SetInventory()
 	{
 		for (int i = 0; i < itemList.Count; ++i)
