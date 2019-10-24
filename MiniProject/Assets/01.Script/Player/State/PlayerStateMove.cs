@@ -64,7 +64,9 @@ public class PlayerStateMove : PlayerState
         playerObject.transform.position += Mov.Move(fHorizontal, fVertical);
         playerObject.degree = Mathf.Atan2(fVertical, fHorizontal) * Mathf.Rad2Deg;
 #else
-		
+		Vector3 direction = UIMngInGame.Ins.GetJoyStickDirection();
+        playerObject.transform.position += new Vector3(direction.x, direction.y, 0) * playerObject.calStat.moveSpeed * Time.deltaTime;
+        playerObject.degree = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 #endif
     }
 }
