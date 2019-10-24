@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using GlobalDefine;
-using System.Collections.Generic;
 public class GameMng : MonoBehaviour
 {
 	#region SINGLETON
@@ -33,7 +32,7 @@ public class GameMng : MonoBehaviour
 	{
 		//테스트 코드
 		Time.timeScale = 1;
-		stageLevel = 6;
+		stageLevel = 1;
 		player.PlayerSetting();
         StartGame();
     }

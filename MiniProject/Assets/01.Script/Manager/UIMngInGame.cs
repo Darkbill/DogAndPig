@@ -179,7 +179,6 @@ public class UIMngInGame : MonoBehaviour
             yield return null;
         }
     }
-    //TODO 제네릭^^ 몬스터스테이트까지 전부
     public void DamageToPlayer(int damage)
     {
         ShowDamage(damage, Camera.main.WorldToScreenPoint(GameMng.Ins.player.transform.position));

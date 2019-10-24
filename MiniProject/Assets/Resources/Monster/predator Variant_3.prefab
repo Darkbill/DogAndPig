@@ -1362,7 +1362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterStateMachine: {fileID: 5455224987427733651}
-  MonsterID: 1
+  MonsterID: 3
   monsterAnimator: {fileID: 5396066474893333234}
   Angle: 0
   active: 0
