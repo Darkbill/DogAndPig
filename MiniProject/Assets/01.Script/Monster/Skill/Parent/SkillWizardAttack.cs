@@ -7,10 +7,6 @@ public class SkillWizardAttack : MonoBehaviour
 
     private float countTime = 0.0f;
     private const float maxCountTime = 1.0f;
-	private void Start()
-	{
-		StartingCount();
-	}
 	public void StartingCount()
 	{
 		gameObject.transform.position = GameMng.Ins.player.transform.position;
