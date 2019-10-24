@@ -16,6 +16,7 @@ public class SkillWizardAttack : MonoBehaviour
 		gameObject.transform.position = GameMng.Ins.player.transform.position;
 		Target = true;
 		Attack.Setting();
+		gameObject.SetActive(true);
 	}
 	void Update()
     {
@@ -37,7 +38,8 @@ public class SkillWizardAttack : MonoBehaviour
             {
                 countTime = 0.0f;
                 gameObject.GetComponent<CircleCollider2D>().enabled = false;
-                gameObject.SetActive(false);
+				Target = false;
+				gameObject.SetActive(false);
             }
         }
     }
