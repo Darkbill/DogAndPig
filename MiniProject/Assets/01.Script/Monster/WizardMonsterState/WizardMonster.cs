@@ -4,6 +4,5 @@
 	public void ShotMeteo()
 	{
 		SkillWizardAttack o = Instantiate(attack);
-		o.StartingCount();
 	}
 }

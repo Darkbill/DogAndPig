@@ -7,8 +7,17 @@ public class SkillWizardAttack : MonoBehaviour
 
     private float countTime = 0.0f;
     private const float maxCountTime = 1.0f;
-    
-    void Update()
+	private void Start()
+	{
+		StartingCount();
+	}
+	public void StartingCount()
+	{
+		gameObject.transform.position = GameMng.Ins.player.transform.position;
+		Target = true;
+		Attack.Setting();
+	}
+	void Update()
     {
         if (Target)
         {
@@ -30,16 +39,6 @@ public class SkillWizardAttack : MonoBehaviour
                 gameObject.GetComponent<CircleCollider2D>().enabled = false;
                 gameObject.SetActive(false);
             }
-        }
-    }
-
-    public void StartingCount()
-    {
-        if (!Target)
-        {
-            gameObject.transform.position = GameMng.Ins.player.transform.position;
-            Target = true;
-            Attack.Setting();
         }
     }
 
