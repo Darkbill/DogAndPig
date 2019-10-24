@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SkillWizardAttack : MonoBehaviour
 {
@@ -10,23 +8,17 @@ public class SkillWizardAttack : MonoBehaviour
     private float countTime = 0.0f;
     private const float maxCountTime = 1.0f;
     
-
-    private void Awake()
-    {
-        
-    }
-
     void Update()
     {
         if (Target)
         {
             countTime += Time.deltaTime;
-            if (countTime >= maxCountTime)
-            {
-                Target = false;
-                countTime = 0.0f;
-                Attack.gameObject.SetActive(true);
-            }
+			if (countTime >= maxCountTime)
+			{
+				Target = false;
+				countTime = 0.0f;
+				Attack.gameObject.SetActive(true);
+			}
         }
         else if(!Target && !Attack.gameObject.activeSelf)
         {
@@ -41,7 +33,7 @@ public class SkillWizardAttack : MonoBehaviour
         }
     }
 
-    public void StartingCount(int damage)
+    public void StartingCount()
     {
         if (!Target)
         {

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AttackMeteor : MonoBehaviour
 {
@@ -20,6 +18,6 @@ public class AttackMeteor : MonoBehaviour
                 new Vector3(Mathf.Cos(150), Mathf.Sin(150), 0) * Time.deltaTime * 20f;
             return;
         }
-        gameObject.SetActive(false);
+        else gameObject.SetActive(false);
     }
 }

@@ -1366,7 +1366,7 @@ MonoBehaviour:
   monsterAnimator: {fileID: 5396066474893333234}
   Angle: 0
   active: 0
-  attack: {fileID: 0}
+  attack: {fileID: 2485846107738030185, guid: 05c9e161b1128a445b726c21d0e0421f, type: 3}
 --- !u!114 &5455224987427733651
 MonoBehaviour:
   m_ObjectHideFlags: 0

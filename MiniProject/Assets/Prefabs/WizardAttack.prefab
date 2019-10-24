@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Attack: {fileID: 6903324769063794009}
-  Target: 1
+  Target: 0
 --- !u!58 &7583164996756990284
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -51,12 +51,11 @@ public class RangeMonsterStateMove : MonsterState
 			monsterObject.Angle -=
 				Time.deltaTime * monsterObject.monsterData.rotationSpeed;
 
-		//if (directionToPlayer.magnitude > monsterObject.monsterData.attackRange)
-		//{
-			monsterObject.gameObject.transform.position +=
-				ownerDirection *
-				Time.deltaTime *
-				monsterObject.monsterData.moveSpeed;
-		//}
+
+		monsterObject.gameObject.transform.position +=
+			ownerDirection *
+			Time.deltaTime *
+			monsterObject.monsterData.moveSpeed;
+
 	}
 }

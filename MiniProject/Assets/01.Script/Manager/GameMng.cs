@@ -32,7 +32,7 @@ public class GameMng : MonoBehaviour
 	{
 		//테스트 코드
 		Time.timeScale = 1;
-		stageLevel = 1;
+		stageLevel = 7;
 		player.PlayerSetting();
         StartGame();
     }

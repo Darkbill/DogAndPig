@@ -1,7 +1,4 @@
 ﻿using GlobalDefine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class WizardMonsterStateSkillAttack : MonsterState
 {
