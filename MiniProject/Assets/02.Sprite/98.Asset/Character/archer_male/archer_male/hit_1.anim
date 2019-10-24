@@ -1317,7 +1317,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.73333335
+    m_StopTime: 0.72
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -5528,7 +5528,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.73333335
+  - time: 0.7
     functionName: ChangeStateIdle
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: 46f64bf4dcc20fd43b9bc4c456d4dfd5,
