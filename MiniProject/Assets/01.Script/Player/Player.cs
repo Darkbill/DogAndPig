@@ -47,19 +47,18 @@ public class Player : MonoBehaviour
 		{
 			AttackCheck();
 		}
-		if (isMove)
-		{
-			MoveToJoyStick();
-		}
+		//if (isMove)
+		//{
+		//	MoveToJoyStick();
+		//}
 
 	}
-    public void MoveToJoyStick()
-	{
-		Vector3 direction = UIMngInGame.Ins.GetJoyStickDirection();
-		gameObject.transform.position += new Vector3(direction.x, direction.y, 0) * calStat.moveSpeed * Time.deltaTime;
-
-        degree = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-	}
+ //   public void MoveToJoyStick()
+	//{
+	//	Vector3 direction = UIMngInGame.Ins.GetJoyStickDirection();
+	//	gameObject.transform.position += new Vector3(direction.x, direction.y, 0) * calStat.moveSpeed * Time.deltaTime;
+ //       degree = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+	//}
 	#region Damage
 	/* Damage */
 	public void Damage(eAttackType attackType, float damage)
