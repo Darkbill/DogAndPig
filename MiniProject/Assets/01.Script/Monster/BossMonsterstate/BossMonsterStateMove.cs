@@ -1,4 +1,6 @@
-﻿public class BossMonsterStateMove : MonsterState
+﻿using GlobalDefine;
+
+public class BossMonsterStateMove : MonsterState
 {
     public BossMonsterStateMove(BossMonster o) : base(o)
     {
@@ -7,6 +9,7 @@
 
     public override void OnStart()
     {
+        monsterObject.ChangeAnimation(eMonsterAnimation.Run);
     }
 
     public override bool OnTransition()

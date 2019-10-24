@@ -7,7 +7,7 @@ public class MilliMonsterStateSkillAttack : MonsterState
 	}
 	public override void OnStart()
 	{
-		monsterObject.ChangeAnimation(eMonsterAnimation.Skill);
+		monsterObject.ChangeAnimation(eMonsterAnimation.Attack);
 	}
 
 	public override bool OnTransition()

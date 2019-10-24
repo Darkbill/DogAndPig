@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BossMonsterStateMachine : MonsterStateMachine
 {
-    public Dictionary<eBossMonsterState, MonsterState> stateDict = new Dictionary<eBossMonsterState, MonsterState>();
+    public Dictionary<eMonsterState, MonsterState> stateDict = new Dictionary<eMonsterState, MonsterState>();
     public MonsterState cState;
     private void Awake()
     {
@@ -16,15 +16,21 @@ public class BossMonsterStateMachine : MonsterStateMachine
         BossMonster o = gameObject.GetComponent<BossMonster>();
         o.BossSkill01 = Instantiate(Resources.Load(string.Format("Skill_FireBullet"), 
             typeof(SkillBurningMeteor)) as SkillBurningMeteor);
-        stateDict.Add(eBossMonsterState.Idle, new MonsterStateIdle(o));
-        stateDict.Add(eBossMonsterState.Move, new BossMonsterStateMove(o));
-        stateDict.Add(eBossMonsterState.SkillAttack, new BossMonsterStateSkillAttack(o));
-        stateDict.Add(eBossMonsterState.Dash, new BossMonsterStateDead(o));
-        stateDict.Add(eBossMonsterState.Dead, new BossMonsterStateDead(o));
-        cState = stateDict[eBossMonsterState.Idle];
+
+        stateDict.Add(eMonsterState.Idle, new MonsterStateIdle(o));
+        stateDict.Add(eMonsterState.Move, new BossMonsterStateMove(o));
+        stateDict.Add(eMonsterState.SkillAttack, new BossMonsterStateSkillAttack(o));
+        stateDict.Add(eMonsterState.Attack, new BossMonsterStateAttack(o));
+
+        stateDict.Add(eMonsterState.Damage, new MonsterStateDamage(o));
+        stateDict.Add(eMonsterState.Dead, new MonsterStateDead(o));
+        stateDict.Add(eMonsterState.Stun, new MonsterStateStun(o));
+        stateDict.Add(eMonsterState.KnockBack, new MonsterStateKnockBack(o));
+
+        cState = stateDict[eMonsterState.Idle];
         cState.OnStart();
     }
-    public void ChangeState(eBossMonsterState stateType)
+    public void ChangeState(eMonsterState stateType)
     {
         cState.OnEnd();
         cState = stateDict[stateType];
@@ -33,6 +39,7 @@ public class BossMonsterStateMachine : MonsterStateMachine
     private void FixedUpdate()
     {
         cState.Tick();
+        delayTime += Time.deltaTime;
     }
 	public override void ChangeStateKnockBack()
 	{
@@ -44,19 +51,20 @@ public class BossMonsterStateMachine : MonsterStateMachine
 	}
 	public override void ChangeStateAttack()
 	{
-		ChangeState(eBossMonsterState.SkillAttack);
+        delayTime = 0;
+        ChangeState(eMonsterState.Attack);
 	}
 	public override void ChangeStateDead()
 	{
-		ChangeState(eBossMonsterState.Dead);
+		ChangeState(eMonsterState.Dead);
 	}
 	public override void ChangeStateIdle()
 	{
-		ChangeState(eBossMonsterState.Idle);
+		ChangeState(eMonsterState.Idle);
 	}
 	public override void ChangeStateMove()
 	{
-		ChangeState(eBossMonsterState.Move);
+		ChangeState(eMonsterState.Move);
 	}
 	public override void ChangeStateDamage()
 	{

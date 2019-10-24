@@ -5,7 +5,8 @@ public class BossMonster : Monster
     public override void Dead()
     {
         base.Dead();
-		GameMng.Ins.AllClear();
+        BossSkill01.SkillButtonOff();
+        GameMng.Ins.AllClear();
     }
 	public override void DamageResult(int d)
 	{
@@ -15,4 +16,8 @@ public class BossMonster : Monster
 		if (monsterData.healthPoint <= 0) Dead();
 		UIMngInGame.Ins.bossHealthGageImage.fillAmount = GameMng.Ins.monsterPool.GetBossFill();
 	}
+    public void AttackStart()
+    {
+        BossSkill01.SkillButtonOn();
+    }
 }
