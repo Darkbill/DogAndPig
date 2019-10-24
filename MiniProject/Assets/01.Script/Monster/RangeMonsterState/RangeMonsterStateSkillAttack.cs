@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using GlobalDefine;
 public class RangeMonsterStateSkillAttack : MonsterState
 {
 	public RangeMonsterStateSkillAttack(RangeMonster o) : base(o)
@@ -10,7 +7,7 @@ public class RangeMonsterStateSkillAttack : MonsterState
 	}
 	public override void OnStart()
 	{
-
+		monsterObject.ChangeAnimation(eMonsterAnimation.Skill);
 	}
 
 	public override bool OnTransition()

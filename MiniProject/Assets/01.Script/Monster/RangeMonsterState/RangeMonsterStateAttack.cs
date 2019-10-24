@@ -1,4 +1,4 @@
-﻿
+﻿using GlobalDefine;
 public class RangeMonsterStateAttack : MonsterState
 {
 	public RangeMonsterStateAttack(RangeMonster o) : base(o)
@@ -7,7 +7,7 @@ public class RangeMonsterStateAttack : MonsterState
 	}
 	public override void OnStart()
 	{
-
+		monsterObject.ChangeAnimation(eMonsterAnimation.Attack);
 	}
 
 	public override bool OnTransition()

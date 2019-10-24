@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using GlobalDefine;
+using UnityEngine;
 public class RangeMonsterStateMachine : MonsterStateMachine
 {
 	public Dictionary<eMonsterState, MonsterState> stateDict = new Dictionary<eMonsterState, MonsterState>();
@@ -30,9 +31,10 @@ public class RangeMonsterStateMachine : MonsterStateMachine
 		cState = stateDict[stateType];
 		cState.OnStart();
 	}
-	private void Update()
+	private void FixedUpdate()
 	{
 		cState.Tick();
+		delayTime += Time.deltaTime;
 	}
 	public override void ChangeStateKnockBack()
 	{
@@ -44,6 +46,7 @@ public class RangeMonsterStateMachine : MonsterStateMachine
 	}
 	public override void ChangeStateAttack()
 	{
+		delayTime = 0;
 		ChangeState(eMonsterState.Attack);
 	}
 	public override void ChangeStateDead()

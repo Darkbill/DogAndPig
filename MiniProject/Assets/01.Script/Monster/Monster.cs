@@ -10,7 +10,7 @@ public class Monster : MonoBehaviour
 	private List<ConditionData> conditionList = new List<ConditionData>();
     private ConditionData conditionMain = new ConditionData();
     public Animator monsterAnimator;
-	private ObjectSetAttack att = new ObjectSetAttack();
+	protected ObjectSetAttack att = new ObjectSetAttack();
     public float Angle = 0;
 	public bool active;
 	private void Awake()
@@ -34,7 +34,7 @@ public class Monster : MonoBehaviour
         else
             gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
     }   
-	public bool AttackCheckStart()
+	public virtual bool AttackCheckStart()
 	{
 		Vector3 directionToPlayer = GameMng.Ins.player.transform.position - gameObject.transform.position;
 		if (att.BaseAttack(GetForward(), directionToPlayer, monsterData.attackRange, monsterData.attackAngle))
@@ -152,6 +152,7 @@ public class Monster : MonoBehaviour
 		monsterData.healthPoint -= d;
 		UIMngInGame.Ins.ShowDamage(d, Camera.main.WorldToScreenPoint(gameObject.transform.position));
 		if (monsterData.healthPoint <= 0) Dead();
+		else monsterStateMachine.ChangeStateDamage();
 	}
 	
 	private void CalculatorStat()

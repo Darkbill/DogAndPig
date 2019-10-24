@@ -12,13 +12,22 @@ public class MonsterStateIdle : MonsterState
 
 	public override bool OnTransition()
 	{
-		monsterObject.monsterStateMachine.ChangeStateMove();
-		return true;
+		if (monsterObject.AttackCheckStart() == false)
+		{
+			monsterObject.monsterStateMachine.ChangeStateMove();
+			return true;
+		}
+		return false;
 	}
 
 	public override void Tick()
 	{
 		if (OnTransition() == true) return;
+
+		if (monsterObject.monsterStateMachine.IsAttack())
+		{
+			monsterObject.monsterStateMachine.ChangeStateAttack();
+		}
 	}
 	public override void OnEnd()
 	{
