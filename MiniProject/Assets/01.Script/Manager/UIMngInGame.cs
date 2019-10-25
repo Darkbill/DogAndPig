@@ -41,6 +41,7 @@ public class UIMngInGame : MonoBehaviour
 	public Image coinImage;
 	public Image[] skillImageArr;
 	public Image[] skillImageBGArr;
+	public Image FadeImage;
 
 	/* Text */
 	public Text healthText;
@@ -268,5 +269,10 @@ public class UIMngInGame : MonoBehaviour
 	public void AllClear()
 	{
 		bossInfo.gameObject.SetActive(false);
+	}
+	public void StageClear()
+	{
+		FadeImage.gameObject.SetActive(true);
+		FadeImage.DOColor(new Color(0, 0, 0, 1), 0.5f).OnComplete(() => { FadeImage.DOColor(new Color(0, 0, 0, 0), 0.5f).OnComplete(() => { GameMng.Ins.StageClear(); FadeImage.gameObject.SetActive(false); });});
 	}
 }
