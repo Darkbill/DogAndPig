@@ -68,6 +68,6 @@ public class BossMonsterStateMachine : MonsterStateMachine
 	}
 	public override void ChangeStateDamage()
 	{
-		return;
+        ChangeState(eMonsterState.SkillAttack);
 	}
 }

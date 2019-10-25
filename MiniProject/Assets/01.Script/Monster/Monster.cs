@@ -85,7 +85,6 @@ public class Monster : MonoBehaviour
 				monsterStateMachine.ChangeStateKnockBack();
 				break;
 		}
-		Debug.Log("상태이상에 걸렸습니다.");
 	}
 
 	private void UpdateBuff(float delayTime)
@@ -104,7 +103,6 @@ public class Monster : MonoBehaviour
 			conditionMain.currentTime -= delayTime;
 			if (conditionMain.currentTime <= 0)
 			{
-				Debug.Log("상태이상이 풀렸습니다.");
 				conditionMain = null;
 				monsterStateMachine.ChangeStateMove();
 			}

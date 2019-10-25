@@ -1,19 +1,19 @@
-﻿using System.Collections;
+﻿using GlobalDefine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BossMonsterStateSkillAttack : MonsterState
 {
-    SkillBurningMeteor skill;
+
 
     public BossMonsterStateSkillAttack(BossMonster o) : base(o)
     {
-        skill = o.BossSkill01;
+
     }
     public override void OnStart()
     {
-        skill.SkillSetting();
-        skill.SkillButtonOn();
+        monsterObject.ChangeAnimation(eMonsterAnimation.Skill);
     }
 
     public override bool OnTransition()

@@ -6,8 +6,8 @@ namespace GlobalDefine
 {
     static class DefineClass
     {
-        public const float MapSizX = 40;
-        public const float MapSizY = 20;
+        public const float MapSizX = 60;
+        public const float MapSizY = 35;
     }
 	static public class Define
 	{
