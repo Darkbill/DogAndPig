@@ -3158,8 +3158,7 @@ MonoBehaviour:
   MonsterID: 1
   monsterAnimator: {fileID: 773810023031710307}
   Angle: 0
-  right: {x: 1, y: 0, z: 0}
-  actionNum: 0
+  active: 0
 --- !u!58 &8820420223198703492
 CircleCollider2D:
   m_ObjectHideFlags: 0
