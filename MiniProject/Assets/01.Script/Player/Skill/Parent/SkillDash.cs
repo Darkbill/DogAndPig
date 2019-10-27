@@ -38,7 +38,7 @@ public class SkillDash : Skill
     bool AttackSet = false;
 
 
-	public override void ActiveSkill()
+	public override bool ActiveSkill()
 	{
 		base.ActiveSkill();
 		Attack.Clear();
@@ -63,6 +63,7 @@ public class SkillDash : Skill
 			}
 		}
         AttackSet = true;
+		return true;
     }
 
     private void FinishAttack()

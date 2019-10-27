@@ -9,10 +9,11 @@ public abstract class Skill : MonoBehaviour
 	public float cooldownTime;
 	public float delayTime;
 	abstract public void SkillSetting();
-	public virtual void ActiveSkill()
+	public virtual bool ActiveSkill()
 	{
 		gameObject.SetActive(true);
 		delayTime = 0;
+		return true;
 	}
 	public float GetDelay()
 	{

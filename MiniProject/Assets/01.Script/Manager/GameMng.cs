@@ -27,7 +27,9 @@ public class GameMng : MonoBehaviour
 	public MonsterPool monsterPool;
 	public SkillMng skillMng;
     public EffectPool effectPool;
+	public InputSystem inputSystem;
 	public int stageLevel;
+	public int aimSkillID;
 	private void Awake()
 	{
 		//테스트 코드
@@ -70,8 +72,8 @@ public class GameMng : MonoBehaviour
 	}
 	public bool ActiveSkill(int skillID)
 	{
-		skillMng.skillDict[skillID].ActiveSkill();
-		return true;
+		if (skillMng.skillDict[skillID].ActiveSkill()) return true;
+		else return false;
 	}
 	public void AddGold(int gold)
 	{
@@ -82,5 +84,28 @@ public class GameMng : MonoBehaviour
 	{
 		player.AddEXP(exp);
 		UIMngInGame.Ins.AddEXP();
+	}
+	public void SetSkillAim(int skillID)
+	{
+		aimSkillID = skillID;
+		inputSystem.isSkillDrag = true;
+	}
+	public void StartSkillAim()
+	{
+		UIMngInGame.Ins.OnSkillDrag();
+		player.playerStateMachine.ChangeState(ePlayerState.SkillAim);
+	}
+	public void EndSkillAim()
+	{
+		ActiveSkill(aimSkillID);
+		player.playerStateMachine.ChangeStateIdle();
+		UIMngInGame.Ins.OnSkillDrop();
+	}
+	public void OffSkillAim()
+	{
+		aimSkillID = -1;
+		inputSystem.isSkillDrag = false;
+		player.playerStateMachine.ChangeStateIdle();
+		UIMngInGame.Ins.OffSkillAim();
 	}
 }

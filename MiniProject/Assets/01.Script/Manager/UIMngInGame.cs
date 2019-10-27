@@ -32,6 +32,7 @@ public class UIMngInGame : MonoBehaviour
 	public GameObject bossInfo;
 	public BuffUI buffUI;
 	public DamageTextPool damageTextPool;
+	public Aim aimImage;
 
 	/* Image */
 	public Image stickImage;
@@ -54,11 +55,8 @@ public class UIMngInGame : MonoBehaviour
 	private Coroutine fillCoroutine;
 	private float saveDamage = 0;
 	private float stickRadius = 60;
-	public int moveTouchID;
 	private bool isCool = false;
     public Vector3 dir;
-    private bool isSkillOn = false;
-    private int isSkillNum = 0;
 
     private void Start()
     {
@@ -102,7 +100,28 @@ public class UIMngInGame : MonoBehaviour
     {
         GameMng.Ins.player.isMove = false;
 		stickImage.gameObject.SetActive(false);
+		aimImage.gameObject.SetActive(false);
     }
+	//컴퓨터빌드
+	public void OnSkillDrag()
+	{
+		aimImage.gameObject.SetActive(true);
+	}
+	public void OnSkillDrag(int touchID)
+	{
+		aimImage.SetTouchID(touchID);
+		aimImage.gameObject.SetActive(true);
+	}
+	public void OnSkillDrop()
+	{
+		aimImage.gameObject.SetActive(false);
+		CoolDownAllSkill();
+		//TODO : 스킬발사
+	}
+	public void OffSkillAim()
+	{
+		aimImage.gameObject.SetActive(false);
+	}
 	public Vector3 GetJoyStickDirection()
 	{
 		/* 컴퓨터 빌드 */
@@ -148,49 +167,20 @@ public class UIMngInGame : MonoBehaviour
 	}
 	#endregion
 	/* Skill */
-	public void ActiveSkill(int slotNumber)
-    {
-        isSkillOn = true;
-        isSkillNum = slotNumber;
-   //     if (skillImageArr[slotNumber].fillAmount == 1)
-   //     {
-			//int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[slotNumber];
-			//if (skillID == 0) return;
-			//GameMng.Ins.ActiveSkill(skillID);
-   //         CoolDownAllSkill();
-   //     }
-    }
     public void StartSkillSet(int skillnum)
     {
         if (skillImageArr[skillnum].fillAmount == 1)
         {
             int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[skillnum];
             if (skillID == 0) return;
-            GameMng.Ins.ActiveSkill(skillID);
-            CoolDownAllSkill();
-        }
-        isSkillOn = false;
+			else if(skillID == GameMng.Ins.aimSkillID)
+			{
+				GameMng.Ins.OffSkillAim();
+				return;
+			}
+            if(GameMng.Ins.ActiveSkill(skillID)) CoolDownAllSkill();
+		}
     }
-    //TODO : Player의 방향벡터 컨트롤 조작여부.
-    /*
-    public bool KeyboardArrowUpCheck()
-    {
-#if UNITY_EDITOR_WIN
-        float rightHorizontal = Input.GetAxis("HorizontalArrow");
-        float rightVertical = Input.GetAxis("VerticalArrow");
-
-        if ((//rightHorizontal == 0 && rightVertical == 0 && (
-            Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow) ||
-            Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow)))
-            return true;
-#else
-		
-		
-#endif
-
-        return false;
-    }
-    */
 
     public void CoolDownAllSkill()
     {

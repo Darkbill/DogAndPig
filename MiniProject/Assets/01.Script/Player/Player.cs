@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
 	// * public * //
 	public bool isMove;
+	public bool isSkillAim;
 	public PlayerData calStat;
 	public PlayerStateMachine playerStateMachine;
 	public Animator playerAnimator;
@@ -16,15 +17,17 @@ public class Player : MonoBehaviour
 	private PlayerData skillStat = new PlayerData();
 	private ObjectSetAttack att = new ObjectSetAttack();
 	private int exp = 0;
-	/* 테스트 코드 */
-	public float GetTime(int skillIndex)
-	{
-		return conditionList[conditionList.FindID(skillIndex)].currentTime;
-	}
+
+
 	public void PlayerSetting()
 	{
 		calStat = JsonMng.Ins.playerDataTable[1];
 		CalculatorStat();
+	}
+	public void CalculatorStat()
+	{
+		//TODO : 레벨에 의한 스탯계산
+		calStat = JsonMng.Ins.playerDataTable[1].AddStat(skillStat, conditionList, calStat.level);
 	}
 	private void Update()
 	{
@@ -148,11 +151,6 @@ public class Player : MonoBehaviour
 
 	/* Buff */
 	#endregion
-	public void CalculatorStat()
-	{
-		//TODO : 레벨에 의한 스탯계산
-		calStat = JsonMng.Ins.playerDataTable[1].AddStat(skillStat,conditionList,calStat.level);
-	}
 	public void AddEXP(int _exp)
 	{
 		exp += _exp;
@@ -163,14 +161,7 @@ public class Player : MonoBehaviour
 			exp = saveEXP;
 		}
 	}
-	public float GetFullHP()
-	{
-		return skillStat.healthPoint + calStat.GetHealthPoint(calStat.level);
-	}
-	public float GetEXPFill()
-	{
-		return (float)exp / JsonMng.Ins.expDataTable[calStat.level + 1].requiredExp;
-	}
+
 	private void LevelUP()
 	{
 		calStat.level++;
@@ -233,10 +224,7 @@ public class Player : MonoBehaviour
 		}
 		playerStateMachine.ChangeStateIdle();
 	}
-	public Vector3 GetForward()
-	{
-		return new Vector3(Mathf.Cos(degree * Mathf.Deg2Rad), Mathf.Sin(degree * Mathf.Deg2Rad), 0);
-	}
+
 	private void AttackCheck()
 	{
 		int count = 0;
@@ -258,6 +246,26 @@ public class Player : MonoBehaviour
 			playerStateMachine.ChangeStateIdle();
 		}
 	}
+	public void StartSkillAim()
+	{
+		playerStateMachine.ChangeState(ePlayerState.SkillAim);
+	}
 
 
+	public float GetTime(int skillIndex)
+	{
+		return conditionList[conditionList.FindID(skillIndex)].currentTime;
+	}
+	public Vector3 GetForward()
+	{
+		return new Vector3(Mathf.Cos(degree * Mathf.Deg2Rad), Mathf.Sin(degree * Mathf.Deg2Rad), 0);
+	}
+	public float GetFullHP()
+	{
+		return skillStat.healthPoint + calStat.GetHealthPoint(calStat.level);
+	}
+	public float GetEXPFill()
+	{
+		return (float)exp / JsonMng.Ins.expDataTable[calStat.level + 1].requiredExp;
+	}
 }

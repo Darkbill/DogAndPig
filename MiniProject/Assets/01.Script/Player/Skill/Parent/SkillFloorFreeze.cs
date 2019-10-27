@@ -1,8 +1,4 @@
-﻿using GlobalDefine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SkillFloorFreeze : Skill
 {
@@ -48,19 +44,32 @@ public class SkillFloorFreeze : Skill
 
 	//TODO : SpriteDummy
 	public Freezen FreezenShot;
-
-    public override void ActiveSkill()
+	public bool isAim = false;
+    public override bool ActiveSkill()
     {
-		base.ActiveSkill();
-        float degree = GameMng.Ins.player.degree;
-
-        Vector3 pos = new Vector3(Mathf.Cos(degree), Mathf.Sin(degree), 0);
-        FreezenShot.gameObject.SetActive(true);
-        FreezenShot.transform.position = GameMng.Ins.player.transform.position;
-        FreezenShot.transform.eulerAngles = new Vector3(0, 0, degree + 90);
-        FreezenShot.transform.localScale = new Vector3(width, height / 2, 0);
+		if (isAim == false)
+		{
+			StartAim();
+			isAim = true;
+			return false;
+		}
+		else
+		{
+			isAim = false;
+			base.ActiveSkill();
+			float degree = GameMng.Ins.player.degree;
+			Vector3 pos = new Vector3(Mathf.Cos(degree), Mathf.Sin(degree), 0);
+			FreezenShot.gameObject.SetActive(true);
+			FreezenShot.transform.position = GameMng.Ins.player.transform.position;
+			FreezenShot.transform.eulerAngles = new Vector3(0, 0, degree + 90);
+			FreezenShot.transform.localScale = new Vector3(width, height / 2, 0);
+			return true;
+		}
     }
-
+	public void StartAim()
+	{
+		GameMng.Ins.SetSkillAim(skillID);
+	}
     void Update()
     {
 		delayTime += Time.deltaTime;

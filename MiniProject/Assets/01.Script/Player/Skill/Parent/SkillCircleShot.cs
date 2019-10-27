@@ -36,12 +36,13 @@ public class SkillCircleShot : Skill
 	private float Speed = 5;
 	public List<FireBall> BulletLst = new List<FireBall>();
 
-	public override void ActiveSkill()
+	public override bool ActiveSkill()
 	{
 		base.ActiveSkill();
 		gameObject.transform.position = GameMng.Ins.player.transform.position;
 		gameObject.transform.eulerAngles = Vector3.zero;
 		BulletSetting();
+		return true;
 	}
 	private void BulletSetting()
 	{

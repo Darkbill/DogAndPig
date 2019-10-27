@@ -241,7 +241,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1341116297}
-        m_MethodName: ActiveSkill
+        m_MethodName: StartSkillSet
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1280,7 +1280,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1341116297}
-        m_MethodName: ActiveSkill
+        m_MethodName: StartSkillSet
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2171,7 +2171,9 @@ MonoBehaviour:
   monsterPool: {fileID: 285599445}
   skillMng: {fileID: 912548249}
   effectPool: {fileID: 362262294}
+  inputSystem: {fileID: 979259865}
   stageLevel: 0
+  aimSkillID: 0
 --- !u!4 &547203918
 Transform:
   m_ObjectHideFlags: 0
@@ -2186,6 +2188,92 @@ Transform:
   m_Father: {fileID: 2072180611}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &556623405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 556623406}
+  - component: {fileID: 556623409}
+  - component: {fileID: 556623408}
+  - component: {fileID: 556623407}
+  m_Layer: 5
+  m_Name: Aim
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &556623406
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556623405}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1336496937}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 25, y: 25}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &556623407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556623405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e6ca1a2e7c05214d9af1e4f284ad402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &556623408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556623405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: efc40b30c17cb4a04ba5566107c84960, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &556623409
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556623405}
+  m_CullTransparentMesh: 0
 --- !u!1 &586401265
 GameObject:
   m_ObjectHideFlags: 0
@@ -2717,7 +2805,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1341116297}
-        m_MethodName: ActiveSkill
+        m_MethodName: StartSkillSet
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2920,7 +3008,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1341116297}
-        m_MethodName: ActiveSkill
+        m_MethodName: StartSkillSet
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3549,6 +3637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df16e2728ed08f341853659fae5b65a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSkillDrag: 0
 --- !u!4 &979259866
 Transform:
   m_ObjectHideFlags: 0
@@ -4595,6 +4684,7 @@ GameObject:
   - component: {fileID: 1336496936}
   - component: {fileID: 1336496935}
   - component: {fileID: 1336496934}
+  - component: {fileID: 1336496938}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4680,6 +4770,7 @@ RectTransform:
   - {fileID: 414897745}
   - {fileID: 8275938571593653972}
   - {fileID: 165959062}
+  - {fileID: 556623406}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4688,6 +4779,14 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!222 &1336496938
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336496933}
+  m_CullTransparentMesh: 0
 --- !u!1 &1341116295
 GameObject:
   m_ObjectHideFlags: 0
@@ -4736,6 +4835,7 @@ MonoBehaviour:
   bossInfo: {fileID: 1719431434}
   buffUI: {fileID: 99556337}
   damageTextPool: {fileID: 1420551329}
+  aimImage: {fileID: 556623407}
   stickImage: {fileID: 7573771754993154139}
   expImage: {fileID: 2076389431}
   healthGageImage: {fileID: 474134876}
@@ -4756,7 +4856,6 @@ MonoBehaviour:
   coinText: {fileID: 341309561}
   levelText: {fileID: 125265139}
   stageLevelText: {fileID: 1632478299}
-  moveTouchID: 0
   dir: {x: 0, y: 0, z: 0}
 --- !u!1 &1363786324
 GameObject:
@@ -7976,6 +8075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMove: 0
+  isSkillAim: 0
   playerStateMachine: {fileID: 4649613307031649276}
   playerAnimator: {fileID: 4744094799766923441}
   degree: 0

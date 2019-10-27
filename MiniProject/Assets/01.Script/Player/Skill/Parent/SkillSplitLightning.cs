@@ -44,11 +44,12 @@ public class SkillSplitLightning : Skill
 
     //TODO : SpriteDummy
 
-    public override void ActiveSkill()
+    public override bool ActiveSkill()
     {
         base.ActiveSkill();
         int randnum = Rand.Random() % 90;
         CreateAndPoolBullet(randnum);
+		return true;
     }
 
     private void CreateAndPoolBullet(int randnum)
