@@ -6,6 +6,9 @@ public class PlayerStateMove : PlayerState
 	public float fVertical;
 	public Movement Mov = new Movement();
 
+    public float rightHorizontal;
+    public float rightVertical;
+
 	public PlayerStateMove(Player o) : base(o)
 	{
 	}
@@ -17,11 +20,17 @@ public class PlayerStateMove : PlayerState
 
 	public override bool OnTransition()
 	{
-		
-#if UNITY_EDITOR_WIN
-        fHorizontal = Input.GetAxis("Horizontal");
-		fVertical = Input.GetAxis("Vertical");
 
+#if UNITY_EDITOR_WIN
+
+        float movesiz = Time.deltaTime;
+
+        fHorizontal = Input.GetAxis("Horizontal");
+        fVertical = Input.GetAxis("Vertical");
+
+        Debug.DrawRay(playerObject.transform.position, new Vector3(rightVertical, rightHorizontal));
+        rightHorizontal = Input.GetAxis("HorizontalArrow");
+        rightVertical = Input.GetAxis("VerticalArrow");
 #else
 		if (playerObject.isMove == false)
 			return true;
@@ -62,7 +71,10 @@ public class PlayerStateMove : PlayerState
 #if UNITY_EDITOR_WIN
         Mov.iSpeed = playerObject.calStat.moveSpeed;
         playerObject.transform.position += Mov.Move(fHorizontal, fVertical);
-        playerObject.degree = Mathf.Atan2(fVertical, fHorizontal) * Mathf.Rad2Deg;
+        if(rightHorizontal != 0 || rightVertical != 0)
+            playerObject.degree = Mathf.Atan2(rightVertical, rightHorizontal) * Mathf.Rad2Deg - 90;
+        else
+            playerObject.degree = Mathf.Atan2(fVertical, fHorizontal) * Mathf.Rad2Deg;
 #else
 		Vector3 direction = UIMngInGame.Ins.GetJoyStickDirection();
         playerObject.transform.position += new Vector3(direction.x, direction.y, 0) * playerObject.calStat.moveSpeed * Time.deltaTime;

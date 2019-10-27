@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
 	private void Update()
 	{
 		UpdateBuff(Time.deltaTime);
+        Debug.Log(degree);
 		if (playerStateMachine.isAttack == false)
 		{
 			if (Mathf.Abs(degree) != 90)
@@ -47,18 +48,7 @@ public class Player : MonoBehaviour
 		{
 			AttackCheck();
 		}
-		//if (isMove)
-		//{
-		//	MoveToJoyStick();
-		//}
-
 	}
- //   public void MoveToJoyStick()
-	//{
-	//	Vector3 direction = UIMngInGame.Ins.GetJoyStickDirection();
-	//	gameObject.transform.position += new Vector3(direction.x, direction.y, 0) * calStat.moveSpeed * Time.deltaTime;
- //       degree = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-	//}
 	#region Damage
 	/* Damage */
 	public void Damage(eAttackType attackType, float damage)
@@ -237,7 +227,10 @@ public class Player : MonoBehaviour
 				{
 					monsterPool[i].Damage(eAttackType.Physics, calStat.damage);
 				}
-			}
+                GameMng.Ins.HitToEffect(eAttackType.Physics,
+                    monsterPool[i].transform.position + new Vector3(0, 0.3f, 0), 
+                    transform.position + new Vector3(0, 0.3f, 0));
+            }
 		}
 		playerStateMachine.ChangeStateIdle();
 	}
