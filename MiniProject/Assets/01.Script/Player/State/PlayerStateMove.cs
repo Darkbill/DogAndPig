@@ -31,9 +31,9 @@ public class PlayerStateMove : PlayerState
 
         //TODO : Axis를 wasd와 키보드 방향키 분리했음
         //rightHorizontal이랑 rightVertical에 vec랑 hor값만 세팅해주면 됨.
-        Debug.DrawRay(playerObject.transform.position, new Vector3(rightVertical, rightHorizontal));
         rightHorizontal = Input.GetAxis("HorizontalArrow");
         rightVertical = Input.GetAxis("VerticalArrow");
+        Debug.DrawRay(playerObject.transform.position, new Vector3(rightHorizontal, rightVertical));
 #else
 		if (playerObject.isMove == false)
 			return true;
@@ -75,7 +75,7 @@ public class PlayerStateMove : PlayerState
         Mov.iSpeed = playerObject.calStat.moveSpeed;
         playerObject.transform.position += Mov.Move(fHorizontal, fVertical);
         if(rightHorizontal != 0 || rightVertical != 0)
-            playerObject.degree = Mathf.Atan2(rightVertical, rightHorizontal) * Mathf.Rad2Deg - 90;
+            playerObject.degree = Mathf.Atan2(rightVertical, rightHorizontal) * Mathf.Rad2Deg;
         else
             playerObject.degree = Mathf.Atan2(fVertical, fHorizontal) * Mathf.Rad2Deg;
         //TODO : 모바일 부분에 해당 조이스틱의 움직임 값을 가져와 세팅
