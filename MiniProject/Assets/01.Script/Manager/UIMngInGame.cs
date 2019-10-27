@@ -57,6 +57,8 @@ public class UIMngInGame : MonoBehaviour
 	public int moveTouchID;
 	private bool isCool = false;
     public Vector3 dir;
+    private bool isSkillOn = false;
+    private int isSkillNum = 0;
 
 	private void Start()
     {
@@ -148,14 +150,46 @@ public class UIMngInGame : MonoBehaviour
 	/* Skill */
 	public void ActiveSkill(int slotNumber)
     {
-        if (skillImageArr[slotNumber].fillAmount == 1)
+        isSkillOn = true;
+        isSkillNum = slotNumber;
+   //     if (skillImageArr[slotNumber].fillAmount == 1)
+   //     {
+			//int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[slotNumber];
+			//if (skillID == 0) return;
+			//GameMng.Ins.ActiveSkill(skillID);
+   //         CoolDownAllSkill();
+   //     }
+    }
+    private void StartSkillSet()
+    {
+        if (skillImageArr[isSkillNum].fillAmount == 1)
         {
-			int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[slotNumber];
-			if (skillID == 0) return;
-			GameMng.Ins.ActiveSkill(skillID);
+            int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[isSkillNum];
+            if (skillID == 0) return;
+            GameMng.Ins.ActiveSkill(skillID);
             CoolDownAllSkill();
         }
+        isSkillOn = false;
     }
+    //TODO : Player의 방향벡터 컨트롤 조작여부.
+    public bool KeyboardArrowUpCheck()
+    {
+#if UNITY_EDITOR_WIN
+        float rightHorizontal = Input.GetAxis("HorizontalArrow");
+        float rightVertical = Input.GetAxis("VerticalArrow");
+
+        if ((//rightHorizontal == 0 && rightVertical == 0 && (
+            Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow) ||
+            Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow)))
+            return true;
+#else
+		/* 모바일 빌드 */
+		
+#endif
+
+        return false;
+    }
+    
     public void CoolDownAllSkill()
     {
         isCool = true;
@@ -223,6 +257,10 @@ public class UIMngInGame : MonoBehaviour
 				if (skillID == 0) continue;
 				skillImageArr[i].fillAmount = GameMng.Ins.skillMng.skillDict[skillID].GetDelay();
             }
+        }
+        if(isSkillOn && KeyboardArrowUpCheck())
+        {
+            StartSkillSet();
         }
     }
     public void GameOver()

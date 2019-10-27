@@ -29,7 +29,6 @@ public class Player : MonoBehaviour
 	private void Update()
 	{
 		UpdateBuff(Time.deltaTime);
-        Debug.Log(degree);
 		if (playerStateMachine.isAttack == false)
 		{
 			if (Mathf.Abs(degree) != 90)
