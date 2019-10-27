@@ -141,7 +141,6 @@ public class UIMngInGame : MonoBehaviour
 				return dir;
 			}
 		}
-        dir = Vector3.zero;
 		return Vector3.zero;
 #endif
 	}
