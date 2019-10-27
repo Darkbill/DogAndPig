@@ -15,6 +15,23 @@ public class InputSystem : MonoBehaviour
 		{
 			UIMngInGame.Ins.OnStickDrop();
 		}
+
+        if(Input.GetKeyDown("1"))
+        {
+            UIMngInGame.Ins.StartSkillSet(0);
+        }
+        if(Input.GetKeyDown("2"))
+        {
+            UIMngInGame.Ins.StartSkillSet(1);
+        }
+        if (Input.GetKeyDown("3"))
+        {
+            UIMngInGame.Ins.StartSkillSet(2);
+        }
+        if (Input.GetKeyDown("4"))
+        {
+            UIMngInGame.Ins.StartSkillSet(3);
+        }
 #else
 		/* 모바일 빌드 */
 		if (Input.touchCount > 0)
@@ -41,5 +58,5 @@ public class InputSystem : MonoBehaviour
 			}
 		}
 #endif
-	}
+    }
 }

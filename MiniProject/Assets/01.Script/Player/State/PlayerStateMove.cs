@@ -54,7 +54,7 @@ public class PlayerStateMove : PlayerState
 			return;
 		}
 		Moving();
-		Attack();
+		//Attack();
 	}
 	public override void OnEnd()
 	{

@@ -60,7 +60,7 @@ public class UIMngInGame : MonoBehaviour
     private bool isSkillOn = false;
     private int isSkillNum = 0;
 
-	private void Start()
+    private void Start()
     {
         UISetting();
     }
@@ -160,11 +160,11 @@ public class UIMngInGame : MonoBehaviour
    //         CoolDownAllSkill();
    //     }
     }
-    private void StartSkillSet()
+    public void StartSkillSet(int skillnum)
     {
-        if (skillImageArr[isSkillNum].fillAmount == 1)
+        if (skillImageArr[skillnum].fillAmount == 1)
         {
-            int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[isSkillNum];
+            int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[skillnum];
             if (skillID == 0) return;
             GameMng.Ins.ActiveSkill(skillID);
             CoolDownAllSkill();
@@ -172,6 +172,7 @@ public class UIMngInGame : MonoBehaviour
         isSkillOn = false;
     }
     //TODO : Player의 방향벡터 컨트롤 조작여부.
+    /*
     public bool KeyboardArrowUpCheck()
     {
 #if UNITY_EDITOR_WIN
@@ -183,13 +184,14 @@ public class UIMngInGame : MonoBehaviour
             Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow)))
             return true;
 #else
-		/* 모바일 빌드 */
+		
 		
 #endif
 
         return false;
     }
-    
+    */
+
     public void CoolDownAllSkill()
     {
         isCool = true;
@@ -258,10 +260,10 @@ public class UIMngInGame : MonoBehaviour
 				skillImageArr[i].fillAmount = GameMng.Ins.skillMng.skillDict[skillID].GetDelay();
             }
         }
-        if(isSkillOn && KeyboardArrowUpCheck())
-        {
-            StartSkillSet();
-        }
+        //if(isSkillOn && KeyboardArrowUpCheck())
+        //{
+        //    StartSkillSet();
+        //}
     }
     public void GameOver()
     {
