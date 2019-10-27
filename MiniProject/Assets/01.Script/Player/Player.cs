@@ -6,7 +6,6 @@ public class Player : MonoBehaviour
 {
 	// * public * //
 	public bool isMove;
-	public bool isSkillAim;
 	public PlayerData calStat;
 	public PlayerStateMachine playerStateMachine;
 	public Animator playerAnimator;
@@ -29,9 +28,8 @@ public class Player : MonoBehaviour
 		//TODO : 레벨에 의한 스탯계산
 		calStat = JsonMng.Ins.playerDataTable[1].AddStat(skillStat, conditionList, calStat.level);
 	}
-	private void Update()
+	public void ChangePlayerAngle()
 	{
-		UpdateBuff(Time.deltaTime);
 		if (playerStateMachine.isAttack == false)
 		{
 			if (Mathf.Abs(degree) != 90)
@@ -50,6 +48,11 @@ public class Player : MonoBehaviour
 		{
 			AttackCheck();
 		}
+	}
+	private void Update()
+	{
+		UpdateBuff(Time.deltaTime);
+		ChangePlayerAngle();
 	}
 	#region Damage
 	/* Damage */

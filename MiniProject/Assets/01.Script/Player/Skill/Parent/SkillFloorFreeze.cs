@@ -66,6 +66,10 @@ public class SkillFloorFreeze : Skill
 			return true;
 		}
     }
+	public override void OffAim()
+	{
+		isAim = false;
+	}
 	public void StartAim()
 	{
 		GameMng.Ins.SetSkillAim(skillID);

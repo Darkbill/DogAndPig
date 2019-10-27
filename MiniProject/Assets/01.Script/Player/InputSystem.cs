@@ -2,19 +2,19 @@
 public class InputSystem : MonoBehaviour
 {
 	private Touch tempTouchs;
-	private int touchID = -1;
+	public int touchID = -1;
 	private int skillID = -1;
+	//윈도우 빌드용
 	public bool isSkillDrag;
-
 
 	private void Update()
 	{
 		/* 컴퓨터 빌드 */
 		if (Input.GetMouseButtonDown(0))
 		{
-			if (isSkillDrag == true)
+			if (isSkillDrag)
 			{
-				GameMng.Ins.StartSkillAim();
+				UIMngInGame.Ins.OnSkillDrag(0);
 				isSkillDrag = false;
 			}
 		}
@@ -50,13 +50,13 @@ public class InputSystem : MonoBehaviour
 					}
 					else if (tempTouchs.fingerId == skillID)
 					{
-						UIMngInGame.Ins.OnSkillDrop();
+						UIMngInGame.Ins.OnSkillTouchDrop();
 						skillID = -1;
 					}
 				}
 				else if (tempTouchs.phase == TouchPhase.Began)
 				{
-					if (isSkillDrag == true)
+					if (isSkillDrag)
 					{
 						UIMngInGame.Ins.OnSkillDrag(tempTouchs.fingerId);
 						skillID = tempTouchs.fingerId;
@@ -70,6 +70,5 @@ public class InputSystem : MonoBehaviour
 				}
 			}
 		}
-
 	}
 }

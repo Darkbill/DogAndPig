@@ -11,6 +11,7 @@ public abstract class Skill : MonoBehaviour
 	abstract public void SkillSetting();
 	public virtual bool ActiveSkill()
 	{
+		//Aim있는 스킬일 경우 Aim까지 종료했을 때 return true //스킬 발동시에만 AllCoolDown돌리기 위함
 		gameObject.SetActive(true);
 		delayTime = 0;
 		return true;
@@ -25,5 +26,8 @@ public abstract class Skill : MonoBehaviour
 		}
 		return delayTime / cooldownTime;
 	}
-
+	public virtual void OffAim()
+	{
+		return;
+	}
 }

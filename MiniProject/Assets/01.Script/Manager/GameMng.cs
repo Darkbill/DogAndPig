@@ -87,22 +87,27 @@ public class GameMng : MonoBehaviour
 	}
 	public void SetSkillAim(int skillID)
 	{
+		//에임이 필요한 스킬 발동시 호출
 		aimSkillID = skillID;
 		inputSystem.isSkillDrag = true;
 	}
 	public void StartSkillAim()
 	{
-		UIMngInGame.Ins.OnSkillDrag();
+		//에임 필요한 스킬 발동 후 드래그 시작시 호출
 		player.playerStateMachine.ChangeState(ePlayerState.SkillAim);
 	}
 	public void EndSkillAim()
 	{
+		//에임 필요한 스킬 발동 후 드래그 종료시 호출 //컴퓨터 빌드시 AimState에서, 모바일 빌드시 터치End일 때 호출
 		ActiveSkill(aimSkillID);
 		player.playerStateMachine.ChangeStateIdle();
 		UIMngInGame.Ins.OnSkillDrop();
+		aimSkillID = -1;
 	}
 	public void OffSkillAim()
 	{
+		//에임 필요한 스킬 재발동시 호출, 스킬사용 종료
+		skillMng.skillDict[aimSkillID].OffAim();
 		aimSkillID = -1;
 		inputSystem.isSkillDrag = false;
 		player.playerStateMachine.ChangeStateIdle();

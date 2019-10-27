@@ -58,7 +58,7 @@ public class UIMngInGame : MonoBehaviour
 	private bool isCool = false;
     public Vector3 dir;
 
-    private void Start()
+	private void Start()
     {
         UISetting();
     }
@@ -102,13 +102,9 @@ public class UIMngInGame : MonoBehaviour
 		stickImage.gameObject.SetActive(false);
 		aimImage.gameObject.SetActive(false);
     }
-	//컴퓨터빌드
-	public void OnSkillDrag()
-	{
-		aimImage.gameObject.SetActive(true);
-	}
 	public void OnSkillDrag(int touchID)
 	{
+		GameMng.Ins.StartSkillAim();
 		aimImage.SetTouchID(touchID);
 		aimImage.gameObject.SetActive(true);
 	}
@@ -116,7 +112,11 @@ public class UIMngInGame : MonoBehaviour
 	{
 		aimImage.gameObject.SetActive(false);
 		CoolDownAllSkill();
-		//TODO : 스킬발사
+	}
+	public void OnSkillTouchDrop()
+	{
+		//모바일 빌드 스킬 터치 종료시에만 호출
+		GameMng.Ins.EndSkillAim();
 	}
 	public void OffSkillAim()
 	{
@@ -145,7 +145,7 @@ public class UIMngInGame : MonoBehaviour
 		{
 			Touch tempTouchs = Input.GetTouch(i);
 
-			if (tempTouchs.fingerId == moveTouchID)
+			if (tempTouchs.fingerId == GameMng.Ins.inputSystem.touchID)
 			{
 				stickImage.gameObject.transform.position = tempTouchs.position;
 				dir = stickImage.gameObject.transform.position - stickPos;
@@ -175,6 +175,7 @@ public class UIMngInGame : MonoBehaviour
             if (skillID == 0) return;
 			else if(skillID == GameMng.Ins.aimSkillID)
 			{
+				//Aim중인 스킬 재사용시 Aim종료
 				GameMng.Ins.OffSkillAim();
 				return;
 			}
@@ -187,6 +188,7 @@ public class UIMngInGame : MonoBehaviour
         isCool = true;
         StartCoroutine(IECoolDownAllSkill());
     }
+
     private IEnumerator IECoolDownAllSkill()
     {
         float timer = 0;
@@ -250,10 +252,6 @@ public class UIMngInGame : MonoBehaviour
 				skillImageArr[i].fillAmount = GameMng.Ins.skillMng.skillDict[skillID].GetDelay();
             }
         }
-        //if(isSkillOn && KeyboardArrowUpCheck())
-        //{
-        //    StartSkillSet();
-        //}
     }
     public void GameOver()
     {
