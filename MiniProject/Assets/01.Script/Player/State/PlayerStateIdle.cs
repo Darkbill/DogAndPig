@@ -20,6 +20,10 @@ public class PlayerStateIdle : PlayerState
 			playerObject.playerStateMachine.ChangeState(ePlayerState.Move);
 			return true;
 		}
+		if (Input.GetMouseButtonUp(0))
+		{
+			GameMng.Ins.EndSkillAim();
+		}
 #else
         if(playerObject.isMove == true)
         {
@@ -28,7 +32,7 @@ public class PlayerStateIdle : PlayerState
 		}
         return false;
 #endif
-        return false;
+		return false;
 	}
 
 	public override void Tick()
@@ -38,6 +42,12 @@ public class PlayerStateIdle : PlayerState
 		if (playerObject.playerStateMachine.AttackDelay())
 		{
 			GameMng.Ins.player.AttackStart();
+		}
+		if (playerObject.isAim)
+		{
+			Vector3 aimPos = Camera.main.ScreenToWorldPoint(UIMngInGame.Ins.aimImage.transform.position);
+			Vector3 dir = aimPos - playerObject.transform.position;
+			playerObject.degree = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 		}
 	}
 	public override void OnEnd()

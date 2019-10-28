@@ -5,7 +5,10 @@ using System.Collections.Generic;
 public class Player : MonoBehaviour
 {
 	// * public * //
+	[HideInInspector]
 	public bool isMove;
+	[HideInInspector]
+	public bool isAim;
 	public PlayerData calStat;
 	public PlayerStateMachine playerStateMachine;
 	public Animator playerAnimator;
@@ -248,10 +251,6 @@ public class Player : MonoBehaviour
 		{
 			playerStateMachine.ChangeStateIdle();
 		}
-	}
-	public void StartSkillAim()
-	{
-		playerStateMachine.ChangeState(ePlayerState.SkillAim);
 	}
 
 

@@ -78,11 +78,21 @@ public class PlayerStateMove : PlayerState
             playerObject.degree = Mathf.Atan2(rightVertical, rightHorizontal) * Mathf.Rad2Deg;
         else
             playerObject.degree = Mathf.Atan2(fVertical, fHorizontal) * Mathf.Rad2Deg;
-        //TODO : 모바일 부분에 해당 조이스틱의 움직임 값을 가져와 세팅
+		if (Input.GetMouseButtonUp(0))
+		{
+			GameMng.Ins.EndSkillAim();
+		}
 #else
 		Vector3 direction = UIMngInGame.Ins.GetJoyStickDirection();
         playerObject.transform.position += new Vector3(direction.x, direction.y, 0) * playerObject.calStat.moveSpeed * Time.deltaTime;
         playerObject.degree = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 #endif
+		if (playerObject.isAim)
+		{
+			Vector3 aimPos = Camera.main.ScreenToWorldPoint(UIMngInGame.Ins.aimImage.transform.position);
+			Vector3 dir = aimPos - playerObject.transform.position;
+			playerObject.degree = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+		}
     }
 }

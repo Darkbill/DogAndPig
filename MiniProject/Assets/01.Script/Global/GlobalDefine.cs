@@ -61,7 +61,6 @@ namespace GlobalDefine
 		None = 0,
 		Idle,
 		Move,
-		SkillAim,
 		Dash,
         KnockBack,
 		Stun,
