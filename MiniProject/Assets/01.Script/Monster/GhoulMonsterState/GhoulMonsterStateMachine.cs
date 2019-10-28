@@ -28,7 +28,6 @@ public class GhoulMonsterStateMachine : MonsterStateMachine
 	}
 	public override void ChangeStateAttack()
 	{
-		delayTime = 0;
 		ChangeState(eMonsterState.Attack);
 	}
 	public override void ChangeStateDead()

@@ -28,8 +28,7 @@ public class MilliMonsterStateMachine : MonsterStateMachine
 		ChangeState(eMonsterState.Stun);
 	}
 	public override void ChangeStateAttack()
-	{
-		delayTime = 0;
+	{ 
 		ChangeState(eMonsterState.Attack);
 	}
 	public override void ChangeStateDead()

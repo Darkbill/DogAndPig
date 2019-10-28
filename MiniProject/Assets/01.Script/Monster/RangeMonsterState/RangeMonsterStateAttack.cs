@@ -21,6 +21,6 @@ public class RangeMonsterStateAttack : MonsterState
 	}
 	public override void OnEnd()
 	{
-
+		monsterObject.monsterStateMachine.delayTime = 0;
 	}
 }

@@ -14,6 +14,7 @@ public abstract class MonsterStateMachine : MonoBehaviour
 	public abstract void ChangeStateMove();
 	public abstract void ChangeStateDamage();
 	public abstract void Setting();
+	public float delayTime = 0;
 	private void Awake()
 	{
 		Setting();
@@ -30,7 +31,7 @@ public abstract class MonsterStateMachine : MonoBehaviour
 		cState = stateDict[stateType];
 		cState.OnStart();
 	}
-	public float delayTime = 0;
+
 	public bool IsAttack()
 	{
 		if (delayTime >= monster.monsterData.attackSpeed)

@@ -24,6 +24,6 @@ public class BossMonsterStateAttack : MonsterState
     }
     public override void OnEnd()
     {
-
-    }
+		monsterObject.monsterStateMachine.delayTime = 0;
+	}
 }
