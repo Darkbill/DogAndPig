@@ -62,7 +62,7 @@ public class SkillSplitLightning : Skill
                 GameObject light = Instantiate(
                     lightning,
                     GameMng.Ins.player.transform.position + new Vector3(0, 0, -3),
-                    Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count + randnum),
+                    Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count),// + randnum),
                     gameObject.transform);
                 light.GetComponent<Lightning>().Setting(skillID, SplitCnt, sturnper, damage);
                 BulletLst.Add(light.GetComponent<Lightning>());
@@ -71,7 +71,7 @@ public class SkillSplitLightning : Skill
             if (!BulletLst[i].gameObject.activeSelf)
             {
                 BulletLst[i].transform.position = GameMng.Ins.player.transform.position;
-                BulletLst[i].transform.rotation = Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count + randnum);
+                BulletLst[i].transform.rotation = Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count);// + randnum);
                 BulletLst[i].Setting(skillID, SplitCnt, sturnper, damage);
                 BulletLst[i].gameObject.SetActive(true);
                 ++Count;
@@ -97,9 +97,16 @@ public class SkillSplitLightning : Skill
                     BulletLst[i].transform.right *
                     Time.deltaTime *
                     BulletLst[i].Speed;
-                BulletLst[i].transform.eulerAngles += new Vector3(0, 0, randnum);
+                StartCoroutine(corrset(i));
+//                BulletLst[i].transform.eulerAngles += new Vector3(0, 0, randnum);
             }
         }
+    }
+    private IEnumerator corrset(int num)
+    {
+        yield return new WaitForSeconds(1.0f);
+        int randnum = Rand.Range(-5, 5) * 5;
+        BulletLst[num].transform.eulerAngles += new Vector3(0, 0, randnum);
     }
 
     private void CreateBullet(Vector3 endPos, int index)
@@ -132,5 +139,11 @@ public class SkillSplitLightning : Skill
                 ++Count;
             }
         }
+    }
+
+    private void OnDisable()
+    {
+        for(int i = 0;i<BulletLst.Count;++i)
+            BulletLst[i].gameObject.SetActive(false);
     }
 }
