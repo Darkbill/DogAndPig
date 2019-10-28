@@ -1,4 +1,5 @@
-﻿public class MonsterStateStun : MonsterState
+﻿using GlobalDefine;
+public class MonsterStateStun : MonsterState
 {
 	public MonsterStateStun(Monster o) : base(o)
 	{
@@ -6,7 +7,7 @@
 	}
 	public override void OnStart()
 	{
-
+		monsterObject.ChangeAnimation(eMonsterAnimation.Idle);
 	}
 
 	public override bool OnTransition()
