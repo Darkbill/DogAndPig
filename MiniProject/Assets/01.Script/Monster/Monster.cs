@@ -80,6 +80,7 @@ public class Monster : MonoBehaviour
 		{
 			case eBuffType.Stun:
 				monsterStateMachine.ChangeStateStun();
+                GameMng.Ins.monsterPool.SelectEffect(gameObject, condition);
 				break;
 			case eBuffType.NockBack:
 				monsterStateMachine.ChangeStateKnockBack();
@@ -187,7 +188,7 @@ public class Monster : MonoBehaviour
 		gameObject.GetComponent<CircleCollider2D>().enabled = false;
 		GameMng.Ins.AddGold(GameMng.Ins.stageLevel);
 		GameMng.Ins.AddEXP(GameMng.Ins.stageLevel);
-		GameMng.Ins.monsterPool.DeadMonster();
+		GameMng.Ins.monsterPool.DeadMonster(gameObject);
 	}
 
     public void ChangeAnimation(eMonsterAnimation animationType)

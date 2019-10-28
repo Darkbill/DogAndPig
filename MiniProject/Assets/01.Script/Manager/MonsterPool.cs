@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GlobalDefine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,16 +11,62 @@ public class MonsterPool : MonoBehaviour
 	public int bossIndex = -1;
     private int activeMonsterCount;
 
+    private const int poolSiz = 20;
+
+    Dictionary<eBuffType, List<BuffBase>> effectlist = new Dictionary<eBuffType, List<BuffBase>>();
+
     private void Awake()
     {
-        for(int i = 0;i<20;++i)
+        MonsterCreateEffectSet();
+        MonsterBuffEffect("BufElectricShock", eBuffType.Stun);
+    }
+
+    private void MonsterCreateEffectSet()
+    {
+        for (int i = 0; i < poolSiz; ++i)
         {
             GameObject eff = Instantiate(Resources.Load(
-                string.Format("MonsterCreateTestEffect"), 
+                string.Format("MonsterCreateTestEffect"),
                 typeof(GameObject))) as GameObject;
             eff.transform.position = new Vector3();
             eff.SetActive(false);
             monsterEffectList.Add(eff);
+        }
+    }
+
+    private void MonsterBuffEffect(string effectname, eBuffType type)
+    {
+        List<BuffBase> lst = new List<BuffBase>();
+        effectlist.Add(type, lst);
+        for (int i = 0; i < poolSiz; ++i)
+        {
+            GameObject o = Instantiate(
+                Resources.Load(string.Format("Effect/{0}", effectname),
+                typeof(GameObject)))
+                as GameObject;
+            o.transform.position = gameObject.transform.position;
+            o.transform.parent = gameObject.transform;
+            o.SetActive(false);
+            BuffBase eff = o.GetComponent<BuffBase>();
+            effectlist[type].Add(eff);
+        }
+    }
+
+    public void SelectEffect(GameObject monsterobj, ConditionData data)
+    {
+        for(int i = 0;i<effectlist[data.buffType].Count;++i)
+        {
+            if(!effectlist[data.buffType][i].gameObject.activeSelf)
+            {
+                effectlist[data.buffType][i].gameObject.SetActive(true);
+                effectlist[data.buffType][i].Setting(data, monsterobj);
+                return;
+            }
+            if(effectlist[data.buffType][i].settingObj == monsterobj)
+            {
+                effectlist[data.buffType][i].Setting(data, monsterobj);
+                return;
+            }
         }
     }
 
@@ -74,13 +121,21 @@ public class MonsterPool : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         monsterEffectList[num].SetActive(false);
     }
-    public void DeadMonster()
+    public void DeadMonster(GameObject obj)
     {
         activeMonsterCount--;
         if(activeMonsterCount == 0)
         {
 			GameMng.Ins.StageClear();
         }
+        //for(eBuffType i = eBuffType.None;i<eBuffType.Max;++i)
+        //{
+        //    for(int j = 0;j<effectlist[i].Count;++j)
+        //    {
+        //        if (effectlist[i][j].settingObj == obj)
+        //            effectlist[i][j].gameObject.SetActive(false);
+        //    }
+        //}
     }
 	public float GetBossFill()
 	{

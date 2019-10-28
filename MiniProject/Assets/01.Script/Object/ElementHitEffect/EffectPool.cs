@@ -40,17 +40,23 @@ public class EffectPool : MonoBehaviour
 
     public void RunHitAnimation(eAttackType type, Vector3 target, Vector3 pos)
     {
-        for(int i = 0;i<effectlist[type].Count;++i)
+        Vector3 right = target - pos;
+        for (int i = 0;i<effectlist[type].Count;++i)
         {
             if(!effectlist[type][i].gameObject.activeSelf)
             {
-                Vector3 right = target - pos;
                 right.Normalize();
                 effectlist[type][i].transform.position = pos + right;
                 effectlist[type][i].gameObject.SetActive(true);
                 break;
             }
         }
-		//TODO : 추가생성
+        //TODO : 추가생성
+        HitBase o = Instantiate(effectlist[type][0]);
+        o.transform.position = pos + right;
+        o.transform.parent = gameObject.transform;
+        o.gameObject.SetActive(true);
+        effectlist[type].Add(o);
+
     }
 }
