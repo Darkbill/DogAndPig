@@ -78,10 +78,7 @@ public class PlayerStateMove : PlayerState
             playerObject.degree = Mathf.Atan2(rightVertical, rightHorizontal) * Mathf.Rad2Deg;
         else
             playerObject.degree = Mathf.Atan2(fVertical, fHorizontal) * Mathf.Rad2Deg;
-		if (Input.GetMouseButtonUp(0))
-		{
-			GameMng.Ins.EndSkillAim();
-		}
+
 #else
 		Vector3 direction = UIMngInGame.Ins.GetJoyStickDirection();
         playerObject.transform.position += new Vector3(direction.x, direction.y, 0) * playerObject.calStat.moveSpeed * Time.deltaTime;
@@ -92,7 +89,10 @@ public class PlayerStateMove : PlayerState
 			Vector3 aimPos = Camera.main.ScreenToWorldPoint(UIMngInGame.Ins.aimImage.transform.position);
 			Vector3 dir = aimPos - playerObject.transform.position;
 			playerObject.degree = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
+			if (Input.GetMouseButtonUp(0))
+			{
+				GameMng.Ins.EndSkillAim();
+			}
 		}
     }
 }
