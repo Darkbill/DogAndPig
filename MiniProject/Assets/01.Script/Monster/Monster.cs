@@ -117,7 +117,10 @@ public class Monster : MonoBehaviour
 			return;
 		}
 		else conditionList.Add(condition);
+
+		
 		CalculatorStat();
+
 	}
 #endregion
 	#region MonsterDamageSet
@@ -155,7 +158,9 @@ public class Monster : MonoBehaviour
 	
 	private void CalculatorStat()
 	{
+		float cHP = monsterData.healthPoint;
 		MonsterSetting();
+		monsterData.healthPoint = cHP;
 		for (int i = 0; i < conditionList.Count; ++i)
 		{
 			switch (conditionList[i].buffType)

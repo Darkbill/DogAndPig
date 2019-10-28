@@ -28,8 +28,14 @@ public class Player : MonoBehaviour
 	}
 	public void CalculatorStat()
 	{
-		//TODO : 레벨에 의한 스탯계산
 		calStat = JsonMng.Ins.playerDataTable[1].AddStat(skillStat, conditionList, calStat.level);
+	}
+	public void CalculatorBuffStat()
+	{
+		//HP를 제외한 값만 초기 데이터에서 불러오기 위함
+		float cHp = calStat.healthPoint;
+		CalculatorStat();
+		calStat.healthPoint = cHp;
 	}
 	public void ChangePlayerAngle()
 	{
@@ -98,7 +104,7 @@ public class Player : MonoBehaviour
 			if (conditionList[i].currentTime <= 0)
 			{
 				conditionList.Remove(conditionList[i]);
-				CalculatorStat();
+				CalculatorBuffStat();
 			}
 		}
 		if (conditionMain != null)
@@ -118,10 +124,10 @@ public class Player : MonoBehaviour
         int index = conditionList.FindID(condition.skillIndex, condition.buffType);
         if (index != -1) { conditionList[index].Set(condition); return; }
         else conditionList.Add(condition);
-        CalculatorStat();
+		CalculatorBuffStat();
 		UIMngInGame.Ins.ActiveBuff(condition.skillIndex);
 	}
-
+	
     public void OutStateAdd(ConditionData condition, float activePer)
     {
         if (conditionMain != null)
