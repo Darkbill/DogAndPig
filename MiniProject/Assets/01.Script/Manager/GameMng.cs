@@ -46,7 +46,7 @@ public class GameMng : MonoBehaviour
     public void StageClear()
     {
         stageLevel++;
-        StartGame();
+		UIMngInGame.Ins.StageClear();
     }
 	public void AllClear()
 	{
@@ -56,7 +56,6 @@ public class GameMng : MonoBehaviour
 	}
 	public void DamageToPlayer(eAttackType attackType, float damage)
 	{
-		cameraMove.OnStart();
 		player.Damage(attackType, damage);
     }
     public void HitToEffect(eAttackType type, Vector3 target, Vector3 pos)

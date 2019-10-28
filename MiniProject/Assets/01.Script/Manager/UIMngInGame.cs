@@ -42,13 +42,13 @@ public class UIMngInGame : MonoBehaviour
 	public Image coinImage;
 	public Image[] skillImageArr;
 	public Image[] skillImageBGArr;
-	public Image FadeImage;
 
 	/* Text */
 	public Text healthText;
 	public Text coinText;
 	public Text levelText;
 	public Text stageLevelText;
+	public Text nextStageText;
 
 	private Vector3 stickPos; //터치 눌러서 joyStick이 시작한 위치
 	private Vector3 healthGageImagePos;
@@ -86,7 +86,7 @@ public class UIMngInGame : MonoBehaviour
 		healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.calStat.healthPoint,
 			GameMng.Ins.player.GetFullHP());
 		healthGageImage.fillAmount = GameMng.Ins.player.calStat.healthPoint / GameMng.Ins.player.GetFullHP();
-		stageLevelText.text = string.Format("Stage LV.{0}", GameMng.Ins.stageLevel);
+		stageLevelText.text = GameMng.Ins.stageLevel.ToString();
 	}
 	#region MoveUI
 	public void OnStrickDrag()
@@ -299,7 +299,18 @@ public class UIMngInGame : MonoBehaviour
 	}
 	public void StageClear()
 	{
-		FadeImage.gameObject.SetActive(true);
-		FadeImage.DOColor(new Color(0, 0, 0, 1), 0.5f).OnComplete(() => { FadeImage.DOColor(new Color(0, 0, 0, 0), 0.5f).OnComplete(() => { GameMng.Ins.StageClear(); FadeImage.gameObject.SetActive(false); });});
+		stageLevelText.text = GameMng.Ins.stageLevel.ToString();
+		stageLevelText.transform.localScale = new Vector3(2, 2, 2);
+		stageLevelText.transform.DOScale(1, 0.5f);
+		nextStageText.gameObject.SetActive(true);
+		nextStageText.gameObject.transform.DOMoveX(gameObject.transform.position.x + 350, 0.4f).OnComplete(()=> {
+			nextStageText.gameObject.transform.DOScale(2, 1f);
+			nextStageText.DOColor(new Color(1, 1, 1, 0), 1f).OnComplete(()=> {
+				nextStageText.color = Color.white;
+				nextStageText.transform.localScale = Vector3.one;
+				nextStageText.transform.position = new Vector3(nextStageText.transform.position.x - 350, nextStageText.transform.position.y, nextStageText.transform.position.z);
+				nextStageText.gameObject.SetActive(false);
+				GameMng.Ins.StartGame(); });
+		});
 	}
 }

@@ -41,7 +41,7 @@ public class MonsterPool : MonoBehaviour
         activeMonsterCount--;
         if(activeMonsterCount == 0)
         {
-			UIMngInGame.Ins.StageClear();
+			GameMng.Ins.StageClear();
         }
     }
 	public float GetBossFill()

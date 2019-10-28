@@ -150,7 +150,7 @@ public class Monster : MonoBehaviour
 		monsterData.healthPoint -= d;
 		UIMngInGame.Ins.ShowDamage(d, Camera.main.WorldToScreenPoint(gameObject.transform.position));
 		if (monsterData.healthPoint <= 0) Dead();
-		else monsterStateMachine.ChangeStateDamage();
+		else GameMng.Ins.cameraMove.OnStart();
 	}
 	
 	private void CalculatorStat()
@@ -211,6 +211,7 @@ public class Monster : MonoBehaviour
 	}
 	public void ActiveOff()
 	{
+		//애니메이션 호출 함수
         Destroy(gameObject);
 	}
 
