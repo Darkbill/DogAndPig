@@ -2,7 +2,6 @@
 public class RangeMonster : Monster
 {
 	public GameObject arrowImage;
-	public Arrow arrow;
 	private Vector3 arrowDir;
 	public override bool AttackCheckStart()
 	{
@@ -18,8 +17,6 @@ public class RangeMonster : Monster
 	}
 	public void ShotArrow()
 	{
-		//TODO : Arrow 풀링
-		GameObject o = Instantiate(arrow.gameObject,transform);
-		o.GetComponent<Arrow>().Setting(arrowImage.transform.position, arrowDir,monsterData.damage);
+		GameMng.Ins.objectPool.arrowPool.SetArrow(arrowImage.transform.position, arrowDir, monsterData.damage);
 	}
 }

@@ -20,7 +20,7 @@ public class PlayerStateIdle : PlayerState
 			playerObject.playerStateMachine.ChangeState(ePlayerState.Move);
 			return true;
 		}
-		if (Input.GetMouseButtonUp(0))
+		if (Input.GetMouseButtonUp(0) && playerObject.isAim)
 		{
 			GameMng.Ins.EndSkillAim();
 		}

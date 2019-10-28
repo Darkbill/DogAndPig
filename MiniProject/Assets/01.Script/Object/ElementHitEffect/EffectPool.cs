@@ -51,5 +51,6 @@ public class EffectPool : MonoBehaviour
                 break;
             }
         }
+		//TODO : 추가생성
     }
 }

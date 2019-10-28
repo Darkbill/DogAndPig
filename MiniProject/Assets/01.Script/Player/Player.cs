@@ -245,6 +245,8 @@ public class Player : MonoBehaviour
 		{
 			if (monsterPool[i].active == false) continue;
 
+
+			//TODO : 몬스터 사이즈에 따라 업벡터 수정
 			if (att.BaseAttack(transform.right,
 				(monsterPool[i].gameObject.transform.position + new Vector3(0, 0.3f, 0)) - (transform.position + new Vector3(0, 0.3f, 0)),
 				calStat.attackRange,

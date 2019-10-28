@@ -26,7 +26,7 @@ public class GameMng : MonoBehaviour
 	public CameraMove cameraMove;
 	public MonsterPool monsterPool;
 	public SkillMng skillMng;
-    public EffectPool effectPool;
+    public ObjectPool objectPool;
 	public InputSystem inputSystem;
 	[HideInInspector]
 	public int stageLevel;
@@ -65,7 +65,7 @@ public class GameMng : MonoBehaviour
     {
         //TODO : target - 맞는사람, pos - 공격자
         //GameMng.Ins.HitToEffect(eAttackType.Physics, GameMng.Ins.player.transform.position + new Vector3(0, 0.3f, 0),transform.position + new Vector3(0, 0.3f, 0));
-        effectPool.RunHitAnimation(type, target, pos);
+        objectPool.effectPool.RunHitAnimation(type, target, pos);
     }
 	public void GameOver()
 	{
