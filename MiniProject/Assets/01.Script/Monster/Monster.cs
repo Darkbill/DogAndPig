@@ -177,8 +177,8 @@ public class Monster : MonoBehaviour
 	}
 	public virtual void Dead()
 	{
-		active = false;
 		monsterStateMachine.ChangeStateDead();
+        active = false;
 		gameObject.GetComponent<CircleCollider2D>().enabled = false;
 		GameMng.Ins.AddGold(GameMng.Ins.stageLevel);
 		GameMng.Ins.AddEXP(GameMng.Ins.stageLevel);
@@ -187,7 +187,8 @@ public class Monster : MonoBehaviour
 
     public void ChangeAnimation(eMonsterAnimation animationType)
     {
-        monsterAnimator.SetInteger("Action", (int)animationType);
+        if(active)
+            monsterAnimator.SetInteger("Action", (int)animationType);
     }
 
 	//TODO : 넉백관련 몬스터 코드는 일단 주석처리..
