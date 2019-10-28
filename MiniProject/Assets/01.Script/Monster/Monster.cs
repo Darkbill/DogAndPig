@@ -187,8 +187,7 @@ public class Monster : MonoBehaviour
 
     public void ChangeAnimation(eMonsterAnimation animationType)
     {
-        if(active)
-            monsterAnimator.SetInteger("Action", (int)animationType);
+         monsterAnimator.SetInteger("Action", (int)animationType);
     }
 
 	//TODO : 넉백관련 몬스터 코드는 일단 주석처리..

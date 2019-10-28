@@ -9,7 +9,7 @@ public class RangeMonster : Monster
 		Vector3 directionToPlayer = GameMng.Ins.player.transform.position - gameObject.transform.position;
 		if (att.BaseAttack(gameObject.transform.right, directionToPlayer, monsterData.attackRange, monsterData.attackAngle))
 		{
-			arrowDir = GameMng.Ins.player.transform.position - gameObject.transform.position;
+			arrowDir = GameMng.Ins.player.transform.position - gameObject.transform.position + new Vector3(0,0.3f,0);
 			arrowDir.z = 0;
 			arrowDir.Normalize();
 			return true;
