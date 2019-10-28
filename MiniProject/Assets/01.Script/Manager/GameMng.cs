@@ -28,7 +28,9 @@ public class GameMng : MonoBehaviour
 	public SkillMng skillMng;
     public EffectPool effectPool;
 	public InputSystem inputSystem;
+	[HideInInspector]
 	public int stageLevel;
+	[HideInInspector]
 	public int aimSkillID;
 	private void Awake()
 	{
@@ -36,7 +38,8 @@ public class GameMng : MonoBehaviour
 		Time.timeScale = 1;
 		stageLevel = 1;
 		player.PlayerSetting();
-        StartGame();
+		aimSkillID = -1;
+		StartGame();
     }
 	public void StartGame()
     {
@@ -87,6 +90,7 @@ public class GameMng : MonoBehaviour
 	public void SetSkillAim(int skillID)
 	{
 		//에임이 필요한 스킬 발동시 호출
+		if(aimSkillID != -1) OffSkillAim();
 		aimSkillID = skillID;
 		inputSystem.isSkillDrag = true;
 	}
