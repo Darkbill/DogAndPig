@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,20 @@ public class MonsterPool : MonoBehaviour
     public List<GameObject> monsterEffectList = new List<GameObject>();
 	public int bossIndex = -1;
     private int activeMonsterCount;
+
+    private void Awake()
+    {
+        for(int i = 0;i<20;++i)
+        {
+            GameObject eff = Instantiate(Resources.Load(
+                string.Format("MonsterCreateTestEffect"), 
+                typeof(GameObject))) as GameObject;
+            eff.transform.position = new Vector3();
+            eff.SetActive(false);
+            monsterEffectList.Add(eff);
+        }
+    }
+
     public void StartStage(int stageLevel)
     {
 		//스테이지 정보 불러
@@ -28,13 +43,36 @@ public class MonsterPool : MonoBehaviour
     private void CreateMonster(StageDataTable stageData)
     {
         GameObject o = Instantiate(Resources.Load(string.Format("Monster/predator Variant_{0}", stageData.enemyIndex), typeof(GameObject))) as GameObject;
-        GameObject eff = Instantiate(Resources.Load(string.Format("MonsterCreateTestEffect"), typeof(GameObject))) as GameObject;
         o.transform.position = new Vector3(stageData.enemyPosX, stageData.enemyPosY,-3);
-        eff.transform.position = o.transform.position;
 		Monster m = o.GetComponent<Monster>();
 		m.monsterData.SetMonsterData(stageData.enemyLevel);
 		monsterList.Add(m);
+        SelectEffect(m.transform.position);
+    }
+    private void SelectEffect(Vector3 pos)
+    {
+        for(int i = 0;i<monsterEffectList.Count;++i)
+        {
+            if(!monsterEffectList[i].activeSelf)
+            {
+                monsterEffectList[i].transform.position = pos;
+                monsterEffectList[i].SetActive(true);
+                StartCoroutine(IEWaitEffect(i));
+                return;
+            }
+        }
+        GameObject eff = Instantiate(Resources.Load(
+                string.Format("MonsterCreateTestEffect"),
+                typeof(GameObject))) as GameObject;
+        eff.transform.position = pos;
+        eff.SetActive(true);
         monsterEffectList.Add(eff);
+
+    }
+    private IEnumerator IEWaitEffect(int num) 
+    {
+        yield return new WaitForSeconds(2.0f);
+        monsterEffectList[num].SetActive(false);
     }
     public void DeadMonster()
     {
