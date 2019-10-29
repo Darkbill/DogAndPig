@@ -129,9 +129,9 @@ public class MonsterPool : MonoBehaviour
         {
 			GameMng.Ins.StageClear();
         }
-        //for(eBuffType i = eBuffType.None;i<eBuffType.Max;++i)
+        //for (eBuffType i = eBuffType.MoveFast; i < eBuffType.Max; ++i)
         //{
-        //    for(int j = 0;j<effectlist[i].Count;++j)
+        //    for (int j = 0; j < effectlist[i].Count; ++j)
         //    {
         //        if (effectlist[i][j].settingObj == obj)
         //            effectlist[i][j].gameObject.SetActive(false);

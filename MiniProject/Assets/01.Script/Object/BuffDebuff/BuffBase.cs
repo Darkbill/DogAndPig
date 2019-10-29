@@ -18,7 +18,7 @@ public class BuffBase : MonoBehaviour
     {
         if(settingObj != null)
             gameObject.transform.position = settingObj.transform.position;
-        if (settingObj == null)
+        if (settingObj == null || settingObj.GetComponent<Monster>().monsterData.healthPoint <= 0)
             gameObject.SetActive(false);
     }
 

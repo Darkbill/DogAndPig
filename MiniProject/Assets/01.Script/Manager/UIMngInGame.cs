@@ -295,6 +295,10 @@ public class UIMngInGame : MonoBehaviour
         //테스트코드
         UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
     }
+    public void OnClickLobby()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Lobby");
+    }
     public void OnClickContinue()
     {
 
