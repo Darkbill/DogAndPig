@@ -61,7 +61,7 @@ public class SkillSplitLightning : Skill
 			{
 				GameObject light = Instantiate(
 					lightning,
-					GameMng.Ins.player.transform.position + new Vector3(0, 0, -3),
+					GameMng.Ins.player.transform.position,
 					Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count),// + randnum),
 					gameObject.transform);
 				light.GetComponent<Lightning>().Setting(skillID, SplitCnt, sturnper, damage);

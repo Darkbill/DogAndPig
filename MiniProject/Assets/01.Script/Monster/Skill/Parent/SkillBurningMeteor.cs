@@ -54,7 +54,7 @@ public class SkillBurningMeteor : Skill
         for(int i = 0;i<MaxCount;++i)
         {
             Targetting o = Instantiate(Target,
-                GameMng.Ins.player.transform.position + new Vector3(0, 0, -3),
+                GameMng.Ins.player.transform.position,
                 Quaternion.Euler(0, 0, 0),
                 gameObject.transform);
             o.gameObject.SetActive(false);

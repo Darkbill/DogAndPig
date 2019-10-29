@@ -91,7 +91,7 @@ public class MonsterPool : MonoBehaviour
     private void CreateMonster(StageDataTable stageData)
     {
         GameObject o = Instantiate(Resources.Load(string.Format("Monster/predator Variant_{0}", stageData.enemyIndex), typeof(GameObject))) as GameObject;
-        o.transform.position = new Vector3(stageData.enemyPosX, stageData.enemyPosY,-3);
+        o.transform.position = new Vector3(stageData.enemyPosX, stageData.enemyPosY,0);
 		Monster m = o.GetComponent<Monster>();
 		m.monsterData.SetMonsterData(stageData.enemyLevel);
 		monsterList.Add(m);

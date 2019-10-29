@@ -51,7 +51,7 @@ public class SkillCircleShot : Skill
 		for (int i = 0; i < BulletLst.Count; ++i)
 		{
 			Quaternion radian = Quaternion.Euler(0, 0, Angle180 * 2 / BulletLst.Count * i);
-			Vector3 pos = radian * bulletstartpos + new Vector3(0, 0, -3) +
+			Vector3 pos = radian * bulletstartpos +
                 gameObject.transform.position;
 			Vector3 moveVec = radian * bulletstartvec;
 			BulletLst[i].Setting(pos, moveVec);
