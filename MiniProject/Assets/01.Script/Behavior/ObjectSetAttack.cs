@@ -8,7 +8,6 @@ public class ObjectSetAttack
     //degree : 범위 각도
     public bool BaseAttack(Vector3 dirVec, Vector3 dirbetween, float attrange, float degree)
     {
-		dirbetween.z = 0;
 		float range = dirbetween.magnitude;
         if(range <= attrange)
         {
