@@ -4,9 +4,12 @@ public class BossMonster : Monster
     public SkillBurningMeteor BossSkill01;
     public override void Dead()
     {
-        base.Dead();
-        BossSkill01.SkillButtonOff();
-        GameMng.Ins.AllClear();
+		monsterStateMachine.ChangeStateDead();
+		active = false;
+		gameObject.GetComponent<CircleCollider2D>().enabled = false;
+		GameMng.Ins.AddGold(GameMng.Ins.stageLevel);
+		GameMng.Ins.AddEXP(GameMng.Ins.stageLevel);
+		BossSkill01.SkillButtonOff();
     }
 	public override void DamageResult(int d)
 	{
@@ -20,4 +23,8 @@ public class BossMonster : Monster
     {
         BossSkill01.SkillButtonOn();
     }
+	public void AllClear()
+	{
+		GameMng.Ins.AllClear();
+	}
 }

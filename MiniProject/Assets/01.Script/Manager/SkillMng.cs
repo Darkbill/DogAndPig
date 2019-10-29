@@ -17,4 +17,12 @@ public class SkillMng : MonoBehaviour
 			skillDict.Add(JsonMng.Ins.playerSkillDataTable[playerSkillArr[i]].skillID,skill);
 		}
 	}
+	public void OffSkill()
+	{
+		var e = skillDict.GetEnumerator();
+		while(e.MoveNext())
+		{
+			e.Current.Value.gameObject.SetActive(false);
+		}
+	}
 }

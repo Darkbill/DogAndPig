@@ -29,7 +29,8 @@ public class UIMngInGame : MonoBehaviour
     /* UI List */
     public GameObject gameOverUI;
     public GameObject WaitUI;
-    public GameObject healthPack;
+	public GameObject ClearUI;
+	public GameObject healthPack;
 	public GameObject bossInfo;
 	public BuffUI buffUI;
 	public DamageTextPool damageTextPool;
@@ -87,9 +88,12 @@ public class UIMngInGame : MonoBehaviour
 	public void RenewPlayerInfo()
 	{
 		levelText.text = GameMng.Ins.player.calStat.level.ToString();
-		healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.calStat.healthPoint,
+		float cHp = GameMng.Ins.player.calStat.healthPoint;
+		if (cHp < 0) cHp = 0;
+		healthText.text = string.Format("{0} / {1} ", cHp,
 			GameMng.Ins.player.GetFullHP());
-		healthGageImage.fillAmount = GameMng.Ins.player.calStat.healthPoint / GameMng.Ins.player.GetFullHP();
+		
+		healthGageImage.fillAmount = cHp / GameMng.Ins.player.GetFullHP();
 		stageLevelText.text = GameMng.Ins.stageLevel.ToString();
 	}
 	#region MoveUI
@@ -333,6 +337,7 @@ public class UIMngInGame : MonoBehaviour
 	public void AllClear()
 	{
 		bossInfo.gameObject.SetActive(false);
+		ClearUI.gameObject.SetActive(true);
 	}
 	public void StageClear()
 	{

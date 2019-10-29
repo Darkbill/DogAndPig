@@ -36,7 +36,7 @@ public class GameMng : MonoBehaviour
 	{
 		//테스트 코드
 		Time.timeScale = 1;
-		stageLevel = 1;
+		stageLevel = 10;
 		player.PlayerSetting();
 		aimSkillID = -1;
 		StartGame();
@@ -55,7 +55,6 @@ public class GameMng : MonoBehaviour
 	{
 		monsterPool.AllClear();
 		UIMngInGame.Ins.AllClear();
-		//TODO : 
 	}
 	public void DamageToPlayer(eAttackType attackType, float damage)
 	{
@@ -70,6 +69,7 @@ public class GameMng : MonoBehaviour
 	public void GameOver()
 	{
 		//TODO : 옵저버
+		skillMng.OffSkill();
 		cameraMove.GameOver();
 	}
 	public bool ActiveSkill(int skillID)

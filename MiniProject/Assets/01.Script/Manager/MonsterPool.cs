@@ -144,10 +144,10 @@ public class MonsterPool : MonoBehaviour
 	}
 	public void AllClear()
 	{
-		for(int i = 0; i < monsterList.Count; ++i)
-		{
-			monsterList[i].gameObject.SetActive(false);
-		}
+		//for(int i = 0; i < monsterList.Count; ++i)
+		//{
+		//	monsterList[i].gameObject.SetActive(false);
+		//}
 	}
     //TODO : Pooling Test;
 
