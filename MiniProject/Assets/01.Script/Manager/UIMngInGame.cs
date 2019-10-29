@@ -58,6 +58,9 @@ public class UIMngInGame : MonoBehaviour
 	private bool isCool = false;
     public Vector3 dir;
 
+    private int skillNum = 0;
+    private bool isSkillAct = false;
+
 	private void Start()
     {
         UISetting();
@@ -169,6 +172,7 @@ public class UIMngInGame : MonoBehaviour
 	/* Skill */
     public void StartSkillSet(int skillnum)
     {
+        skillNum = skillnum;
         if (skillImageArr[skillnum].fillAmount == 1)
         {
             int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[skillnum];
@@ -181,6 +185,25 @@ public class UIMngInGame : MonoBehaviour
 			}
             if(GameMng.Ins.ActiveSkill(skillID)) CoolDownAllSkill();
 		}
+    }
+
+    public void HightLightSkillSet(bool onCheck)
+    {
+        isSkillAct = onCheck;
+        StartCoroutine(SelectoffSet());
+    }
+    private IEnumerator SelectoffSet()
+    {
+        while(isSkillAct)
+        {
+            skillImageArr[skillNum].DOColor(Color.black, 0.5f).OnComplete(() => 
+            {
+                skillImageArr[skillNum].DOColor(Color.white, 0.5f);
+            });
+            yield return new WaitForSeconds(1.0f);
+        }
+        skillImageArr[skillNum].color = Color.white;
+        yield break;
     }
 
     public void CoolDownAllSkill()

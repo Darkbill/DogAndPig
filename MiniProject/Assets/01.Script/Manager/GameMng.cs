@@ -93,7 +93,8 @@ public class GameMng : MonoBehaviour
 		if(aimSkillID != -1) OffSkillAim();
 		aimSkillID = skillID;
 		inputSystem.isSkillDrag = true;
-	}
+        UIMngInGame.Ins.HightLightSkillSet(true);
+    }
 	public void StartSkillAim()
 	{
 		//에임 필요한 스킬 발동 후 드래그 시작시 호출
@@ -106,7 +107,8 @@ public class GameMng : MonoBehaviour
 		player.isAim = false;
 		UIMngInGame.Ins.OnSkillDrop();
 		aimSkillID = -1;
-	}
+        UIMngInGame.Ins.HightLightSkillSet(false);
+    }
 	public void OffSkillAim()
 	{
 		//에임 필요한 스킬 재발동시 호출, 스킬사용 종료
@@ -115,5 +117,6 @@ public class GameMng : MonoBehaviour
 		inputSystem.isSkillDrag = false;
 		player.isAim = false;
 		UIMngInGame.Ins.OffSkillAim();
-	}
+        UIMngInGame.Ins.HightLightSkillSet(false);
+    }
 }
