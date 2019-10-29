@@ -32,8 +32,10 @@ public class UIMng : MonoBehaviour
 	public SkillInfoUI skillInfoUI;
 	public SkillBuyUI skillBuyUI;
 	public GameObject[] boxArr;
-
+	public GameObject clickBox;
 	public int selectSkillID;
+
+	/* Setting */
 	public void Setting()
 	{
 		shopUI.Setting();
@@ -44,18 +46,27 @@ public class UIMng : MonoBehaviour
 		goldText.text = JsonMng.Ins.playerInfoDataTable.gold.ToString();
 		diamondText.text = JsonMng.Ins.playerInfoDataTable.diamond.ToString();
 	}
-	private void Renew()
+	public void ReNew()
 	{
 		selectSkillID = 0;
+		clickBox.gameObject.SetActive(false);
+		OffSelectBox();
 		shopUI.ReNew();
 		SetBaseUI();
 	}
+
+	/* 버튼호출 */
 	public void ClickGameStart()
 	{
 		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
 	}
 	public void OnClickSkill(int sI,eBoxType type)
 	{
+		if(clickBox.gameObject.activeSelf)
+		{
+			clickBox.gameObject.SetActive(false);
+			shopUI.ChangeSelectFlag(false);
+		}
 		selectSkillID = sI;
 		for (int i = 0; i < boxArr.Length; ++i)
 		{
@@ -91,7 +102,7 @@ public class UIMng : MonoBehaviour
 		{
 			JsonMng.Ins.playerInfoDataTable.gold -= JsonMng.Ins.playerSkillDataTable[selectSkillID].price;
 			shopUI.infinityScoll.BuySkill(selectSkillID);
-			Renew();
+			ReNew();
 		}
 		else
 		{
@@ -101,12 +112,12 @@ public class UIMng : MonoBehaviour
 	public void OnClickRemoveSkill()
 	{
 		JsonMng.Ins.playerInfoDataTable.RemoveSkill(selectSkillID);
-		shopUI.ReNew();
-		OffSelectBox();
+		ReNew();
 	}
 	public void OnClickSetSkill()
 	{
 		OffSelectBox();
+		clickBox.gameObject.SetActive(true);
 		shopUI.ChangeSelectFlag(true);
 	}
 }

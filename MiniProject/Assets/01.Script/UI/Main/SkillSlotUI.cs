@@ -28,7 +28,7 @@ public class SkillSlotUI : MonoBehaviour
 			int sI = UIMng.Ins.selectSkillID;
 			JsonMng.Ins.playerInfoDataTable.SetSkill(sI,slotIndex);
 			Setting(sI);
-			UIMng.Ins.shopUI.ReNew();
+			UIMng.Ins.ReNew();
 		}
 		else
 		{
