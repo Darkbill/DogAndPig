@@ -12,9 +12,10 @@ public class CameraMove : MonoBehaviour
 	private float speed;
 	private bool isreturn;
 	private Vector3 dir;
-
+	private bool isReady = true;
 	public void OnStart()
 	{
+		if (isReady == false) return;
 		//테스트코드
 		startPos = new Vector3(0, 0, -10);
 		//현위치대비 이동할 랜덤위치 -> 도달시 첫위치
@@ -49,6 +50,7 @@ public class CameraMove : MonoBehaviour
 	{
 		if (currentTime >= endTime)
 		{
+			isReady = true;
 			gameObject.transform.position = startPos;
 			return true;
 		}
@@ -88,6 +90,7 @@ public class CameraMove : MonoBehaviour
 	}
 	public void GameOver()
 	{
+		isReady = true;
 		currentTime = endTime;
 		gameObject.transform.DOMove(new Vector3(GameMng.Ins.player.transform.position.x, GameMng.Ins.player.transform.position.y, -10), 1f);
 		Camera.main.DOOrthoSize(0.6f, 1f).OnComplete(() => { Time.timeScale = 0; UIMngInGame.Ins.GameOver(); });
