@@ -36,6 +36,10 @@ public class UIMng : MonoBehaviour
 	public int selectSkillID;
 
 	/* Setting */
+	private void Start()
+	{
+		if (JsonMng.Ins.IsDone) Setting();
+	}
 	public void Setting()
 	{
 		shopUI.Setting();
