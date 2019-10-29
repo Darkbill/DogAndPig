@@ -19,6 +19,7 @@ public class MonsterPool : MonoBehaviour
     {
         MonsterCreateEffectSet();
         MonsterBuffEffect("BufElectricShock", eBuffType.Stun);
+        MonsterBuffEffect("BufFreezen", eBuffType.MoveSlow);
     }
 
     private void MonsterCreateEffectSet()

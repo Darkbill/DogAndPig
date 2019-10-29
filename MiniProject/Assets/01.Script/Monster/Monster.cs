@@ -115,12 +115,13 @@ public class Monster : MonoBehaviour
 		if (index != -1)
 		{
 			conditionList[index].Set(condition);
-			return;
+            GameMng.Ins.monsterPool.SelectEffect(gameObject, condition);
+            return;
 		}
 		else conditionList.Add(condition);
+        GameMng.Ins.monsterPool.SelectEffect(gameObject, condition);
 
-		
-		CalculatorStat();
+        CalculatorStat();
 
 	}
 #endregion
@@ -180,7 +181,7 @@ public class Monster : MonoBehaviour
 					break;
 			}
 		}
-	}
+    }
 	public virtual void Dead()
 	{
 		monsterStateMachine.ChangeStateDead();
