@@ -28,7 +28,8 @@ public class UIMngInGame : MonoBehaviour
     #endregion
     /* UI List */
     public GameObject gameOverUI;
-	public GameObject healthPack;
+    public GameObject WaitUI;
+    public GameObject healthPack;
 	public GameObject bossInfo;
 	public BuffUI buffUI;
 	public DamageTextPool damageTextPool;
@@ -278,7 +279,16 @@ public class UIMngInGame : MonoBehaviour
     }
     public void GameOver()
     {
+        WaitUI.gameObject.SetActive(false);
         gameOverUI.gameObject.SetActive(true);
+    }
+    public void InerruptGame(int time)
+    {
+        Time.timeScale = time;
+    }
+    public void InerruptGameSet()
+    {
+        WaitUI.gameObject.SetActive(true);
     }
     public void OnClickReStart()
     {

@@ -34,6 +34,11 @@ public class InputSystem : MonoBehaviour
         {
             UIMngInGame.Ins.StartSkillSet(3);
         }
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            UIMngInGame.Ins.InerruptGame(0);
+            UIMngInGame.Ins.InerruptGameSet();
+        }
 
 		/* 모바일 빌드 */
 		if (Input.touchCount > 0)
