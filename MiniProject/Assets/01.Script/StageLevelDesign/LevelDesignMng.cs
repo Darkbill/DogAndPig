@@ -36,14 +36,10 @@ public class LevelDesignMng : MonoBehaviour
 	public Text monsterLevel;
 	public Toggle monsterToggle;
 	public Text stageText;
-	private int lastID;
+	public int lastID;
 	private void Awake()
 	{
 		LoadStageData();
-		//string path = string.Format("{0}/LitJson/{1}.json", Application.streamingAssetsPath, "StageDataTable");
-		//StageDataTable s = new StageDataTable(10,10,10,10,5.5f,5.5f,5);
-		//string jsonData = JsonMapper.ToJson(s);
-		//File.WriteAllText(path, jsonData);
 	}
 	private void Setting()
 	{
@@ -54,8 +50,22 @@ public class LevelDesignMng : MonoBehaviour
 		{
 			dropDown.options.Add(new Dropdown.OptionData() { text = i.Current.Key.ToString() });
 		}
-		ShowStageInfo(1);
+		int firstStage = GetFirstStage();
+		ShowStageInfo(firstStage);
 		dropDown.value = 0;
+	}
+	private int GetFirstStage()
+	{
+		var i = stageDataTable.GetEnumerator();
+		int index = int.MaxValue;
+		while (i.MoveNext())
+		{
+			if(i.Current.Key < index)
+			{
+				index = i.Current.Key;
+			}
+		}
+		return index;
 	}
 	public void ShowStageInfo(int stageNumber)
 	{
@@ -81,7 +91,7 @@ public class LevelDesignMng : MonoBehaviour
 			if (monsterExamList[i] == null) continue;
 			StageDataTable temp = new StageDataTable();
 			temp.stageID = ++lastID;
-			temp.stageLevel = dropDown.value + 1;
+			temp.stageLevel = int.Parse(dropDown.captionText.text);
 			temp.enemyIndex = int.Parse(monsterExamList[i].indexText.text);
 			temp.enemyLevel = int.Parse(monsterExamList[i].levelText.text);
 			Vector2 pos = monsterExamList[i].GetCoord();
@@ -89,19 +99,13 @@ public class LevelDesignMng : MonoBehaviour
 			temp.enemyPosY = pos.y;
 			tempList.Add(temp);
 		}
-		if(stageDataTable.ContainsKey(dropDown.value+1))
-		{
-			stageDataTable[dropDown.value+1] = tempList;
-		}
-		else
-		{
-			stageDataTable.Add(dropDown.value+1, tempList);
-		}
+		stageDataTable[int.Parse(dropDown.captionText.text)] = tempList;
 	}
 	private void RemoveMonsterExamList()
 	{
 		for(int i = 0; i < monsterExamList.Count; ++i)
 		{
+			if (monsterExamList[i] == null) continue;
 			Destroy(monsterExamList[i].gameObject);
 		}
 		monsterExamList.Clear();
@@ -129,29 +133,38 @@ public class LevelDesignMng : MonoBehaviour
 				List<StageDataTable> temp = new List<StageDataTable>();
 				temp.Add(save);
 				table.Add(save.stageLevel, temp);
-				lastID = save.stageID;
 			}
+			lastID = save.stageID;
 		}
+
 		Setting();
 	}
 	public void SaveAll()
 	{
 		string path = string.Format("{0}/LitJson/{1}.json", Application.streamingAssetsPath, "StageDataTable");
+		
+		//JsonData data = JsonMapper.ToJson(stageDataTable);
+		//string jsonData = data.ToString();
 		var i = stageDataTable.GetEnumerator();
-		string jsonData = "";
+		List<StageDataTable> temp = new List<StageDataTable>();
 		while(i.MoveNext())
 		{
+			if(i.Current.Value.Count == 0)
+			{
+				Debug.LogError("비어있는 스테이지가 있습니다.");
+				return;
+			}
 			for(int j = 0; j < i.Current.Value.Count; ++j)
 			{
-				JsonData data = JsonMapper.ToJson(i.Current.Value[j]);
-				jsonData = string.Format("{0}{1}", jsonData, data.ToString());
+				temp.Add(i.Current.Value[j]);
 			}
 		}
-		File.WriteAllText(path, jsonData);
+		JsonData data = JsonMapper.ToJson(temp);
+		File.WriteAllText(path, data.ToString());
 	}
 	public void RemoveStage()
 	{
-		stageDataTable.Remove(dropDown.value+1);
+		stageDataTable.Remove(int.Parse(dropDown.captionText.text));
 		Setting();
 	}
 	public void CreateStage()
@@ -163,6 +176,7 @@ public class LevelDesignMng : MonoBehaviour
 		else
 		{
 			stageDataTable.Add(int.Parse(stageText.text), new List<StageDataTable>());
+			Sort();
 			Setting();
 		}
 		stageText.text = "";
@@ -180,5 +194,24 @@ public class LevelDesignMng : MonoBehaviour
 		monsterExamList.Add(e);
 		monsterLevel.text = "";
 		monsterIndex.text = "";
+	}
+	public void Sort()
+	{
+		Dictionary<int, List<StageDataTable>> temp = new Dictionary<int, List<StageDataTable>>();
+		while (stageDataTable.Count != 0)
+		{
+			int cIndex = int.MaxValue;
+			var e = stageDataTable.GetEnumerator();
+			while (e.MoveNext())
+			{
+				if (cIndex > e.Current.Key)
+				{
+					cIndex = e.Current.Key;
+				}
+			}
+			temp.Add(cIndex, stageDataTable[cIndex]);
+			stageDataTable.Remove(cIndex);
+		}
+		stageDataTable = temp;
 	}
 }

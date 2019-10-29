@@ -507,7 +507,8 @@ namespace LitJson
                 return instance;
             }
 
-            if (reader.Token == JsonToken.Int) {
+
+			if (reader.Token == JsonToken.Int) {
                 instance.SetInt ((int) reader.Value);
                 return instance;
             }
@@ -748,7 +749,13 @@ namespace LitJson
                 return;
             }
 
-            if (obj is Int32) {
+			if (obj is float)
+			{
+				writer.Write((float)obj);
+				return;
+			}
+
+			if (obj is Int32) {
                 writer.Write ((int) obj);
                 return;
             }

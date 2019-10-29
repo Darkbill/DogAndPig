@@ -3026,7 +3026,9 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options: []
+    m_Options:
+    - m_Text: 0
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3102,7 +3104,7 @@ MonoBehaviour:
   monsterExamList: []
   monsterIndex: {fileID: 1582064473}
   monsterLevel: {fileID: 220284688}
-  monsterToggle: {fileID: 0}
+  monsterToggle: {fileID: 208885421}
   stageText: {fileID: 1844386873}
 --- !u!4 &1100071957
 Transform:
@@ -3625,7 +3627,7 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1825499456}
-  toggleTransition: 1
+  toggleTransition: 0
   graphic: {fileID: 96202520}
   m_Group: {fileID: 0}
   onValueChanged:
@@ -4584,7 +4586,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 0
 --- !u!222 &1620040353
 CanvasRenderer:
   m_ObjectHideFlags: 0
