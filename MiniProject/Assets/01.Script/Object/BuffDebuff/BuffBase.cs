@@ -10,7 +10,7 @@ public class BuffBase : MonoBehaviour
     public void Setting(ConditionData condition, GameObject obj)
     {
         settingObj = obj;
-        StartCoroutine(selecttime(condition.currentTime));
+        StartCoroutine(selecttime(condition));
     }
 
     // Update is called once per frame
@@ -18,17 +18,14 @@ public class BuffBase : MonoBehaviour
     {
         if(settingObj != null)
             gameObject.transform.position = settingObj.transform.position;
+        if (settingObj == null)
+            gameObject.SetActive(false);
     }
 
-    private IEnumerator selecttime(float time)
+    private IEnumerator selecttime(ConditionData condition)
     {
-        if(settingObj == null)
-        {
+        yield return new WaitForSeconds(condition.sustainmentTime);
+        if(condition.currentTime <= 0)
             gameObject.SetActive(false);
-            yield break;
-        }
-
-        yield return new WaitForSeconds(time);
-        gameObject.SetActive(false);
     }
 }
