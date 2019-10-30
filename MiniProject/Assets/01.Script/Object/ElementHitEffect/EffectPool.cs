@@ -46,14 +46,14 @@ public class EffectPool : MonoBehaviour
             if(!effectlist[type][i].gameObject.activeSelf)
             {
                 right.Normalize();
-                effectlist[type][i].transform.position = pos + right;
+                effectlist[type][i].transform.position = pos + right * 0.5f;
                 effectlist[type][i].gameObject.SetActive(true);
-                break;
+                return;
             }
         }
         //TODO : 추가생성
         HitBase o = Instantiate(effectlist[type][0]);
-        o.transform.position = pos + right;
+        o.transform.position = pos + right * 0.5f;
         o.transform.parent = gameObject.transform;
         o.gameObject.SetActive(true);
         effectlist[type].Add(o);

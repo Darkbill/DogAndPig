@@ -222,6 +222,8 @@ public class Monster : MonoBehaviour
         Destroy(gameObject);
 	}
 
+    public ConditionData ConditionMainGet() { return conditionMain; }
+
 	/* 계산용 */
 	public Vector3 GetForward()
 	{

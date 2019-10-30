@@ -5,6 +5,7 @@ using UnityEngine;
 public class BuffBase : MonoBehaviour
 {
     public GameObject settingObj;
+    public bool inaction = false;
 
     // Start is called before the first frame update
     public void Setting(ConditionData condition, GameObject obj)
@@ -18,7 +19,9 @@ public class BuffBase : MonoBehaviour
     {
         if(settingObj != null)
             gameObject.transform.position = settingObj.transform.position;
-        if (settingObj == null || settingObj.GetComponent<Monster>().monsterData.healthPoint <= 0)
+        if (settingObj == null || 
+            settingObj.GetComponent<Monster>().monsterData.healthPoint <= 0 ||
+            settingObj.GetComponent<Monster>().ConditionMainGet() == null)
             gameObject.SetActive(false);
     }
 
