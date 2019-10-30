@@ -2,7 +2,7 @@
 public class BossMonster : Monster
 {
     public SkillBurningMeteor BossSkill01;
-    public override void Dead()
+	public override void Dead()
     {
 		monsterStateMachine.ChangeStateDead();
 		active = false;
