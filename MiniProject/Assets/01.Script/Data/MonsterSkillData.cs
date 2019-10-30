@@ -3,6 +3,7 @@ public class MonsterSkillData : TableBase
 {
 	public float skillID;
 	public string skillName;
+	public string decal;
 	public eAttackType skillType;
 	public eSkillType target;
 	public int[] optionArr;

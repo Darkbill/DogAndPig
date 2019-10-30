@@ -14,7 +14,7 @@
   {
     "skillID": 2,
     "skillName": "empty",
-    "decal": 0,
+    "decal": "default_target",
     "skillType": 3,
     "target": 1,
     "optionArr": [
@@ -26,7 +26,7 @@
   {
     "skillID": 3,
     "skillName": "empty",
-    "decal": 0,
+    "decal": "default_target",
     "skillType": 4,
     "target": 1,
     "optionArr": [
@@ -38,7 +38,7 @@
   {
     "skillID": 4,
     "skillName": "empty",
-    "decal": 0,
+    "decal": "default_target",
     "skillType": 5,
     "target": 1,
     "optionArr": [
@@ -50,7 +50,7 @@
   {
     "skillID": 5,
     "skillName": "empty",
-    "decal": 0,
+    "decal": "default_target",
     "skillType": 6,
     "target": 1,
     "optionArr": [
