@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
 	{
 		UpdateBuff(Time.deltaTime);
 		ChangePlayerAngle();
-	}
+    }
 	#region Damage
 	/* Damage */
 	public void Damage(eAttackType attackType, float damage)
@@ -189,13 +189,17 @@ public class Player : MonoBehaviour
 	public void AttackStart()
 	{
 		var monsterPool = GameMng.Ins.monsterPool.monsterList;
-		for (int i = 0; i < monsterPool.Count; ++i)
+        Vector3 rightvec = att.GetFindShortStreet(monsterPool,
+            gameObject.transform.position,
+            calStat.attackRange,
+            gameObject.transform.right.x);
+        for (int i = 0; i < monsterPool.Count; ++i)
 		{
 			if (monsterPool[i].active == false) continue;
 
-			if (att.BaseAttack(transform.right,
-				(monsterPool[i].gameObject.transform.position + new Vector3(0, 0.3f, 0)) - (transform.position + new Vector3(0,0.3f,0)),
-				calStat.attackRange,
+			if (att.BaseAttack(rightvec,
+				(monsterPool[i].gameObject.transform.position + new Vector3(0, monsterPool[i].monsterData.size, 0)) - (transform.position + new Vector3(0,0.3f,0)),
+				calStat.attackRange + 0.3f,
 				calStat.attackAngle))
 			{
 				playerStateMachine.attackDelayTime = 0;
@@ -208,13 +212,19 @@ public class Player : MonoBehaviour
 	{
 		//애니메이션 이벤트 호출
 		var monsterPool = GameMng.Ins.monsterPool.monsterList;
+
+        Vector3 rightvec = att.GetFindShortStreet(monsterPool,
+            gameObject.transform.position,
+            calStat.attackRange + 0.3f,
+            gameObject.transform.right.x);
+        Debug.DrawRay(transform.position, rightvec);
 		for (int i = 0; i < monsterPool.Count; ++i)
 		{
 			if (monsterPool[i].active == false) continue;
 
-			if (att.BaseAttack(transform.right,
-				(monsterPool[i].transform.position + new Vector3(0, 0.3f, 0)) - (transform.position + new Vector3(0, 0.3f, 0)),
-				calStat.attackRange,
+			if (att.BaseAttack(rightvec,
+				(monsterPool[i].transform.position + new Vector3(0, monsterPool[i].monsterData.size, 0)) - (transform.position + new Vector3(0, 0.3f, 0)),
+				calStat.attackRange + 0.3f,
 				calStat.attackAngle))
 			{
 				if (Rand.Permile(calStat.knockback))
@@ -230,8 +240,8 @@ public class Player : MonoBehaviour
 					monsterPool[i].Damage(eAttackType.Physics, calStat.damage);
 				}
                 GameMng.Ins.HitToEffect(eAttackType.Physics,
-                    monsterPool[i].transform.position + new Vector3(0, 0.3f, 0), 
-                    transform.position + new Vector3(0, 0.3f, 0));
+                    monsterPool[i].transform.position + new Vector3(0, monsterPool[i].monsterData.size, 0), 
+                    transform.position + new Vector3(0, calStat.size, 0));
             }
 		}
 		playerStateMachine.ChangeStateIdle();
@@ -241,15 +251,19 @@ public class Player : MonoBehaviour
 	{
 		int count = 0;
 		var monsterPool = GameMng.Ins.monsterPool.monsterList;
-		for (int i = 0; i < monsterPool.Count; ++i)
+        Vector3 rightvec = att.GetFindShortStreet(monsterPool,
+            gameObject.transform.position,
+            calStat.attackRange + 0.3f,
+            gameObject.transform.right.x);
+        for (int i = 0; i < monsterPool.Count; ++i)
 		{
 			if (monsterPool[i].active == false) continue;
 
 
 			//TODO : 몬스터 사이즈에 따라 업벡터 수정
-			if (att.BaseAttack(transform.right,
-				(monsterPool[i].gameObject.transform.position + new Vector3(0, 0.3f, 0)) - (transform.position + new Vector3(0, 0.3f, 0)),
-				calStat.attackRange,
+			if (att.BaseAttack(rightvec,
+				(monsterPool[i].gameObject.transform.position + new Vector3(0, monsterPool[i].monsterData.size, 0)) - (transform.position + new Vector3(0, 0.3f, 0)),
+				calStat.attackRange + 0.3f,
 				calStat.attackAngle))
 			{
 				count++;
