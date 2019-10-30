@@ -8,6 +8,7 @@ public class Arrow : MonoBehaviour
 	{
 		gameObject.SetActive(true);
 		gameObject.transform.position = new Vector3(startPos.x, startPos.y, 0);
+		gameObject.transform.parent = null;
 		gameObject.transform.localScale = new Vector3(0.35f, 0.35f, 1);
 		gameObject.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
 		gameObject.GetComponent<Rigidbody2D>().AddForce(dir * 300);

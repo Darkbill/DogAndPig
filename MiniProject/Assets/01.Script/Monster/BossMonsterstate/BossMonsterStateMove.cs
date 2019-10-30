@@ -22,13 +22,8 @@ public class BossMonsterStateMove : MonsterState
     public override void Tick()
     {
         if (OnTransition() == true) return;
-        ChaseToPlayer();
     }
     public override void OnEnd()
-    {
-
-    }
-    public void ChaseToPlayer()
     {
 
     }
