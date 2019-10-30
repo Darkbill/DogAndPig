@@ -6,38 +6,28 @@ using UnityEngine;
 
 public class SkillBurningMeteor : Skill
 {
-	#region SkillSetting
-	enum eOption
-	{
-		Damage,
-		What,
-		CoolDown,
-	}
+    #region SkillSetting
+    enum eDashOption
+    {
+        Damage,
+    }
 
-	private const float rSiz = 3;
+    private const float rSiz = 3;
 
-	eAttackType attackType = eAttackType.Fire;
-	private float damage;
-	private string decal;
-	public override void SkillSetting()
-	{
-		skillID = 6;
-		MonsterSkillData skillData = JsonMng.Ins.monsterSkillDataTable[skillID];
-		skillID = 1;
-		skillName = "FireDrop";
-		decal = skillData.decal;
-		skillType = skillData.skillType;
-		target = skillData.target;
-		damage = skillData.optionArr[(int)eOption.Damage];
-		delayTime = cooldownTime;
-		target = skillData.target;
-		cooldownTime = skillData.optionArr[(int)eOption.CoolDown];
-		delayTime = cooldownTime;
-		damage = skillData.optionArr[(int)eOption.Damage];
-	}
-	#endregion
+    eAttackType attackType = eAttackType.Fire;
+    private float damage;
+    public override void SkillSetting()
+    {
+        skillID = 6;
+        PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
+        skillType = skillData.skillType;
+        target = skillData.target;
+        damage = skillData.optionArr[(int)eDashOption.Damage];
+        delayTime = cooldownTime;
+    }
+    #endregion
 
-	public Targetting Target;
+    public Targetting Target;
 
     private const int MaxCount = 30;
     private const int Radius = 10;
