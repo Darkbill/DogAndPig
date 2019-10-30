@@ -31,6 +31,7 @@ public class MonsterPool : MonoBehaviour
                 typeof(GameObject))) as GameObject;
             eff.transform.position = new Vector3();
             eff.SetActive(false);
+			eff.gameObject.transform.parent = gameObject.transform;
             monsterEffectList.Add(eff);
         }
     }
@@ -114,7 +115,8 @@ public class MonsterPool : MonoBehaviour
                 typeof(GameObject))) as GameObject;
         eff.transform.position = pos;
         eff.SetActive(true);
-        monsterEffectList.Add(eff);
+		eff.gameObject.transform.parent = gameObject.transform;
+		monsterEffectList.Add(eff);
 
     }
     private IEnumerator IEWaitEffect(int num) 
