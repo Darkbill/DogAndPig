@@ -65,7 +65,7 @@
   {
     "monsterID": 4,
     "monsterName": "d",
-    "size": 0.5,
+    "size": 1,
     "moveType": 1,
     "moveSpeed": 0.1,
     "rotationSpeed": 15,

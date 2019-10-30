@@ -28,7 +28,6 @@ public class GameMng : MonoBehaviour
 	public SkillMng skillMng;
     public ObjectPool objectPool;
 	public InputSystem inputSystem;
-	[HideInInspector]
 	public int stageLevel;
 	[HideInInspector]
 	public int aimSkillID;
@@ -41,6 +40,12 @@ public class GameMng : MonoBehaviour
 		aimSkillID = -1;
 		StartGame();
     }
+	public void ChangeStage()
+	{
+		monsterPool.ResetMonster();
+		monsterPool.StartStage(stageLevel);
+		UIMngInGame.Ins.RenewPlayerInfo();
+	}
 	public void StartGame()
     {
         monsterPool.StartStage(stageLevel);

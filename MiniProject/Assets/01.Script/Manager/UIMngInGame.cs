@@ -67,7 +67,19 @@ public class UIMngInGame : MonoBehaviour
     {
         UISetting();
     }
-    public void ActiveBuff(int skillIndex)
+	private void Update()
+	{
+		if (isCool == false)
+		{
+			for (int i = 0; i < JsonMng.Ins.playerInfoDataTable.setSkillList.Count; ++i)
+			{
+				int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[i];
+				if (skillID == 0) continue;
+				skillImageArr[i].fillAmount = GameMng.Ins.skillMng.skillDict[skillID].GetDelay();
+			}
+		}
+	}
+	public void ActiveBuff(int skillIndex)
     {
         buffUI.ActiveBuff(skillIndex);
     }
@@ -235,6 +247,8 @@ public class UIMngInGame : MonoBehaviour
             yield return null;
         }
     }
+
+	/* Damage */
     public void DamageToPlayer(int damage)
     {
         ShowDamage(damage, Camera.main.WorldToScreenPoint(GameMng.Ins.player.transform.position));
@@ -269,18 +283,8 @@ public class UIMngInGame : MonoBehaviour
         saveDamage = 0;
         fillCoroutine = null;
     }
-    private void Update()
-    {
-        if (isCool == false)
-        {
-            for (int i = 0; i < JsonMng.Ins.playerInfoDataTable.setSkillList.Count; ++i)
-            {
-				int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[i];
-				if (skillID == 0) continue;
-				skillImageArr[i].fillAmount = GameMng.Ins.skillMng.skillDict[skillID].GetDelay();
-            }
-        }
-    }
+
+	/* Button */
     public void GameOver()
     {
         WaitUI.gameObject.SetActive(false);
@@ -312,7 +316,8 @@ public class UIMngInGame : MonoBehaviour
 
     }
 
-    public void AddGold(int gold)
+	/* Player */
+	public void AddGold(int gold)
     {
         int c = int.Parse(coinText.text);
         c += gold;
@@ -329,6 +334,8 @@ public class UIMngInGame : MonoBehaviour
 		healthGageImage.transform.position = healthGageImagePos;
 		healthGageImage.transform.DOShakePosition(0.1f, 10.0f, 10, 90, false, true).OnComplete(()=> { healthGageImage.transform.position = healthGageImagePos; });
     }
+
+	/* Game */
 	public void SetBossInfo()
 	{
 		bossInfo.gameObject.SetActive(true);
@@ -345,14 +352,15 @@ public class UIMngInGame : MonoBehaviour
 		stageLevelText.transform.localScale = new Vector3(2, 2, 2);
 		stageLevelText.transform.DOScale(1, 0.5f);
 		nextStageText.gameObject.SetActive(true);
-		nextStageText.gameObject.transform.DOMoveX(gameObject.transform.position.x + 350, 0.4f).OnComplete(()=> {
+		nextStageText.gameObject.transform.DOMoveX(gameObject.transform.position.x + 350, 0.4f).OnComplete(() => {
 			nextStageText.gameObject.transform.DOScale(2, 1f);
-			nextStageText.DOColor(new Color(1, 1, 1, 0), 1f).OnComplete(()=> {
+			nextStageText.DOColor(new Color(1, 1, 1, 0), 1f).OnComplete(() => {
 				nextStageText.color = Color.white;
 				nextStageText.transform.localScale = Vector3.one;
 				nextStageText.transform.position = new Vector3(nextStageText.transform.position.x - 350, nextStageText.transform.position.y, nextStageText.transform.position.z);
 				nextStageText.gameObject.SetActive(false);
-				GameMng.Ins.StartGame(); });
+				GameMng.Ins.StartGame();
+			});
 		});
 	}
 }
