@@ -11,15 +11,15 @@ public class SkillIconInGame : MonoBehaviour
 		Sprite sprite = SpriteMng.Ins.skillAtlas.GetSprite(string.Format("Skill_{0}", skillIndex));
 		skillImage.sprite = sprite;
 		skillBG.sprite = sprite;
-		if (skillIndex != 0)
-		{
-			frameImage.sprite = SpriteMng.Ins.frameAtlas.GetSprite(
-				JsonMng.Ins.playerSkillDataTable[skillIndex].activeType.ToString());
-		}
-		else
+
+		if(skillIndex == 0)
 		{
 			frameImage.sprite = SpriteMng.Ins.frameAtlas.GetSprite("None");
+			return;
 		}
+		frameImage.sprite = SpriteMng.Ins.frameAtlas.GetSprite(
+			JsonMng.Ins.playerSkillDataTable[skillIndex].activeType.ToString());
+
 	}
 	public void ChangeFill(float fillValue)
 	{
