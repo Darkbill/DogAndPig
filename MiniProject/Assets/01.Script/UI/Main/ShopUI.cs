@@ -6,7 +6,6 @@ public class ShopUI : MonoBehaviour
 	public void Setting()
 	{
 		infinityScoll.Setting();
-		gameObject.SetActive(false);
 		PlayerInfoData p = JsonMng.Ins.playerInfoDataTable;
 		for(int i = 0; i < skillSlotArr.Length; ++i)
 		{

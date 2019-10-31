@@ -38,7 +38,11 @@ public class UIMng : MonoBehaviour
 	/* Setting */
 	private void Start()
 	{
-		if (JsonMng.Ins.IsDone) Setting();
+		if(JsonMng.Ins.IsDone == false)
+		{
+			JsonMng.Ins.LoadAll();
+		}
+		else Setting();
 	}
 	public void Setting()
 	{

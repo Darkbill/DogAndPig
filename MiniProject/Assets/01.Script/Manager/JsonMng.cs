@@ -44,9 +44,8 @@ public class JsonMng : MonoBehaviour
 	private void Awake()
 	{
 		DontDestroyOnLoad(this);
-		LoadAll();
 	}
-	private void LoadAll()
+	public void LoadAll()
 	{
 		StartCoroutine(StartLoadPlayerData());
 		LoadPlayerData();

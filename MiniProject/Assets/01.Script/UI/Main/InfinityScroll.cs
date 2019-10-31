@@ -59,11 +59,9 @@ public class InfinityScroll : MonoBehaviour
 	}
 	private void Update()
 	{
-		//TODO 스크롤뷰 꺼놓고 시작할 수 있으면 필요없는 코드
-		if (JsonMng.Ins.IsDone == false) return;
 		float cPos = gameObject.transform.localPosition.y;
 		float topValue = Mathf.Ceil(cPos / (itemSize.size.y + upPadding));
-		if (topValue > firstItem/horCount)
+		if (topValue > firstItem / horCount)
 		{
 			Vector3 nextStartPos = contentList[tailContent].gameObject.transform.localPosition;
 			nextStartPos.x = contentList[headContent].transform.localPosition.x;
@@ -72,7 +70,7 @@ public class InfinityScroll : MonoBehaviour
 				firstItem++;
 				lastItem++;
 				contentList[headContent].gameObject.transform.localPosition =
-					nextStartPos + new Vector3(changePos.x * i,-changePos.y,0);
+					nextStartPos + new Vector3(changePos.x * i, -changePos.y, 0);
 				if (lastItem < itemList.Count)
 				{
 					contentList[headContent].Setting(itemList[lastItem].skillID);
@@ -131,7 +129,7 @@ public class InfinityScroll : MonoBehaviour
 			{
 				GameObject o = Instantiate(itemExam.gameObject, gameObject.transform);
 				contentList.Add(o.GetComponent<ContentItem>());
-				Vector2 pos = new Vector2(-(scrolViewSize.width / 2) + itemSize.width * j + (leftPadding * (j + 1)) + (itemSize.width / 2), -itemSize.height * i - (upPadding * (i + 1)) - (itemSize.height / 2));
+				Vector2 pos = new Vector2(itemSize.width * j + (leftPadding * (j + 1)) + (itemSize.width / 2), -itemSize.height * i - (upPadding * (i + 1)) - (itemSize.height / 2));
 				o.GetComponent<RectTransform>().localPosition = pos;
 				itemCount--;
 				if (itemCount == 0)
@@ -140,7 +138,6 @@ public class InfinityScroll : MonoBehaviour
 				}
 			}
 		}
-
 	}
 	private void CreateUpSpace()
 	{
@@ -150,7 +147,7 @@ public class InfinityScroll : MonoBehaviour
 			GameObject o = Instantiate(itemExam.gameObject, gameObject.transform);
 			contentList.Add(o.GetComponent<ContentItem>());
 			Rect r = o.GetComponent<RectTransform>().rect;
-			Vector2 pos = new Vector2(-(scrolViewSize.width / 2) + r.width * i + (leftPadding * (i + 1)) + (r.width / 2),
+			Vector2 pos = new Vector2(r.width * i + (leftPadding * (i + 1)) + (r.width / 2),
 									  r.height / 2);
 			o.GetComponent<RectTransform>().localPosition = pos;
 			o.gameObject.SetActive(false);
@@ -162,10 +159,10 @@ public class InfinityScroll : MonoBehaviour
 	{
 		if (itemList.Count < showCount)
 		{
+			scrollView.GetComponent<ScrollRect>().vertical = false;
 			for (int i = 0; i < itemList.Count; ++i)
 			{
 				contentList[i].Setting(itemList[i].skillID);
-				scrollView.GetComponent<ScrollRect>().vertical = false;
 			}
 		}
 		else
