@@ -1,6 +1,4 @@
 ﻿using GlobalDefine;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -117,7 +115,6 @@ public class SkillBurningMeteor : Skill
 			}
             MeteorList[i].transform.position += o;
             GameMng.Ins.objectPool.effectPool.GetHitTargetEff(MeteorList[i].transform.position,skillID);
-			//Targetting.activeSkillList.Add(skillID);
 
 			if (i == Count - 1)
 				break;
