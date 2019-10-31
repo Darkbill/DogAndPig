@@ -81,14 +81,15 @@ public class EffectPool : MonoBehaviour
 
     }
 
-    public void GetHitTargetEff(Vector3 pos)
+    public void GetHitTargetEff(Vector3 pos,int skillID)
     {
         for(int i = 0;i< HitTargetEff.Count;++i)
         {
             if (!HitTargetEff[i].gameObject.activeSelf)
             {
                 HitTargetEff[i].transform.position = pos;
-                HitTargetEff[i].gameObject.SetActive(true);
+				HitTargetEff[i].skillID = skillID;
+				HitTargetEff[i].gameObject.SetActive(true);
                 return;
             }
         }

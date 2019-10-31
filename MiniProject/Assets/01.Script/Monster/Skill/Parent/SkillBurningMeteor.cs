@@ -61,7 +61,7 @@ public class SkillBurningMeteor : Skill
 
 	private void Awake()
 	{
-        Targetting.MeteorRun += MeteorRun;
+		Targetting.SetActionDict(skillID, MeteorRun);
 
         for (int i = 0; i < MaxCount; ++i)
         {
@@ -116,9 +116,10 @@ public class SkillBurningMeteor : Skill
 				continue;
 			}
             MeteorList[i].transform.position += o;
-            GameMng.Ins.objectPool.effectPool.GetHitTargetEff(MeteorList[i].transform.position);
+            GameMng.Ins.objectPool.effectPool.GetHitTargetEff(MeteorList[i].transform.position,skillID);
+			//Targetting.activeSkillList.Add(skillID);
 
-            if (i == Count - 1)
+			if (i == Count - 1)
 				break;
 		}
 	}
@@ -134,4 +135,9 @@ public class SkillBurningMeteor : Skill
             }
         }
     }
+	public void EndEvent()
+	{
+		gameObject.SetActive(false);
+		MeteorRun(gameObject.transform.position + new Vector3(0, 0.7f, 0));
+	}
 }
