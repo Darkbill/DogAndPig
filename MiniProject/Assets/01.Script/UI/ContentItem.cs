@@ -8,6 +8,7 @@ public class ContentItem : MonoBehaviour
 	public Text priceText;
 	public Image lockImage;
 	public Image goldImage;
+	public Image frameImage;
 	public int skillID;
 	public void Setting(int sI)
 	{
@@ -15,6 +16,7 @@ public class ContentItem : MonoBehaviour
 		skillID = sI;
 		skillImage.sprite = SpriteMng.Ins.skillAtlas.GetSprite(string.Format("Skill_{0}", skillID));
 		skillText.text = JsonMng.Ins.playerSkillDataTable[skillID].skillName;
+		
 		if (JsonMng.Ins.playerInfoDataTable.haveSkillList.Contains(skillID) == true)
 		{
 			lockImage.gameObject.SetActive(false);
@@ -29,6 +31,13 @@ public class ContentItem : MonoBehaviour
 			lockImage.color = new Color(1, 1, 1, 0.75f);
 			priceText.text = JsonMng.Ins.playerSkillDataTable[skillID].price.ToString();
 		}	
+		if(sI == 0)
+		{
+			frameImage.sprite = SpriteMng.Ins.frameAtlas.GetSprite("None");
+			return;
+		}
+		frameImage.sprite = SpriteMng.Ins.frameAtlas.GetSprite(
+			JsonMng.Ins.playerSkillDataTable[sI].activeType.ToString());
 	}
 	public void OnClickHaveSkill()
 	{
