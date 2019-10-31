@@ -67,6 +67,13 @@ namespace GlobalDefine
 		Dead,
 		Max,
 	}
+	public enum eSkillActiveType
+	{
+		None = 0,
+		Buff,
+		Active,
+		Target,
+	}
 	public enum ePlayerAnimation
 	{
 		Idle = 0,

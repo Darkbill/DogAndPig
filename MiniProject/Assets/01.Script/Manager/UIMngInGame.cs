@@ -33,6 +33,7 @@ public class UIMngInGame : MonoBehaviour
 	public GameObject healthPack;
 	public GameObject bossInfo;
 	public BuffUI buffUI;
+	public SkillUI skillUI;
 	public DamageTextPool damageTextPool;
 	public Aim aimImage;
 
@@ -44,6 +45,7 @@ public class UIMngInGame : MonoBehaviour
 	public Image coinImage;
 	public Image[] skillImageArr;
 	public Image[] skillImageBGArr;
+
 
 	/* Text */
 	public Text healthText;
@@ -57,28 +59,12 @@ public class UIMngInGame : MonoBehaviour
 	private Coroutine fillCoroutine;
 	private float saveDamage = 0;
 	private float stickRadius = 60;
-	private bool isCool = false;
     public Vector3 dir;
-
-    private int skillNum = 0;
-    private bool isSkillAct = false;
 
 	private void Start()
     {
         UISetting();
     }
-	private void Update()
-	{
-		if (isCool == false)
-		{
-			for (int i = 0; i < JsonMng.Ins.playerInfoDataTable.setSkillList.Count; ++i)
-			{
-				int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[i];
-				if (skillID == 0) continue;
-				skillImageArr[i].fillAmount = GameMng.Ins.skillMng.skillDict[skillID].GetDelay();
-			}
-		}
-	}
 	public void ActiveBuff(int skillIndex)
     {
         buffUI.ActiveBuff(skillIndex);
@@ -90,13 +76,8 @@ public class UIMngInGame : MonoBehaviour
 		healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.calStat.healthPoint,
             GameMng.Ins.player.GetFullHP());
 		coinText.text = JsonMng.Ins.playerInfoDataTable.gold.ToString();
-		for (int i = 0; i < JsonMng.Ins.playerInfoDataTable.setSkillList.Count; ++i)
-		{
-			Sprite sprite = SpriteMng.Ins.skillAtlas.GetSprite(string.Format("Skill_{0}", JsonMng.Ins.playerInfoDataTable.setSkillList[i]));
-			skillImageArr[i].sprite = sprite;
-			skillImageBGArr[i].sprite = sprite;
-		}
-    }
+		skillUI.Setting();
+	}
 	public void RenewPlayerInfo()
 	{
 		levelText.text = GameMng.Ins.player.calStat.level.ToString();
@@ -189,63 +170,17 @@ public class UIMngInGame : MonoBehaviour
 	/* Skill */
     public void StartSkillSet(int skillnum)
     {
-        skillNum = skillnum;
-        if (skillImageArr[skillnum].fillAmount == 1)
-        {
-            int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[skillnum];
-            if (skillID == 0) return;
-			else if(skillID == GameMng.Ins.aimSkillID)
-			{
-				//Aim중인 스킬 재사용시 Aim종료
-				GameMng.Ins.OffSkillAim();
-				return;
-			}
-            if(GameMng.Ins.ActiveSkill(skillID)) CoolDownAllSkill();
-		}
+		skillUI.StartSkillSet(skillnum);
     }
 
     public void HightLightSkillSet(bool onCheck)
     {
-        isSkillAct = onCheck;
-        StartCoroutine(SelectoffSet());
-    }
-    private IEnumerator SelectoffSet()
-    {
-        while(isSkillAct)
-        {
-            skillImageArr[skillNum].DOColor(Color.black, 0.5f).OnComplete(() => 
-            {
-                skillImageArr[skillNum].DOColor(Color.white, 0.5f);
-            });
-            yield return new WaitForSeconds(1.0f);
-        }
-        skillImageArr[skillNum].color = Color.white;
-        yield break;
+		skillUI.HightLightSkillSet(onCheck);
     }
 
     public void CoolDownAllSkill()
     {
-        isCool = true;
-        StartCoroutine(IECoolDownAllSkill());
-    }
-
-    private IEnumerator IECoolDownAllSkill()
-    {
-        float timer = 0;
-        while (true)
-        {
-            timer += Time.deltaTime;
-            if (timer >= Define.coolDownTimeAll)
-            {
-                isCool = false;
-                break;
-            }
-            for (int i = 0; i < JsonMng.Ins.playerInfoDataTable.setSkillList.Count; ++i)
-            {
-                skillImageArr[i].fillAmount = (timer / Define.coolDownTimeAll);
-            }
-            yield return null;
-        }
+		skillUI.CoolDownAllSkill();
     }
 
 	/* Damage */

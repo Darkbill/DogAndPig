@@ -310,6 +310,7 @@ GameObject:
   - component: {fileID: 12845805}
   - component: {fileID: 12845804}
   - component: {fileID: 12845803}
+  - component: {fileID: 12845806}
   m_Layer: 5
   m_Name: SkillSlot2BG
   m_TagString: Untagged
@@ -428,6 +429,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 12845801}
   m_CullTransparentMesh: 0
+--- !u!114 &12845806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12845801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411f4846852230a45865e2a89dfdaad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillImage: {fileID: 260206935}
+  skillBG: {fileID: 1577163399}
+  frameImage: {fileID: 12845804}
 --- !u!1 &23106996
 GameObject:
   m_ObjectHideFlags: 0
@@ -2225,36 +2241,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 289127908}
   m_CullTransparentMesh: 0
---- !u!1 &290280807
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 290280808}
-  m_Layer: 0
-  m_Name: Attack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &290280808
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 290280807}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &304741365
 GameObject:
   m_ObjectHideFlags: 0
@@ -2357,6 +2343,7 @@ GameObject:
   - component: {fileID: 331642537}
   - component: {fileID: 331642536}
   - component: {fileID: 331642535}
+  - component: {fileID: 331642538}
   m_Layer: 5
   m_Name: SkillSlot4BG
   m_TagString: Untagged
@@ -2475,6 +2462,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 331642533}
   m_CullTransparentMesh: 0
+--- !u!114 &331642538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331642533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411f4846852230a45865e2a89dfdaad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillImage: {fileID: 586401267}
+  skillBG: {fileID: 903382181}
+  frameImage: {fileID: 331642536}
 --- !u!1 &341309559
 GameObject:
   m_ObjectHideFlags: 0
@@ -5604,6 +5606,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 783358484}
+  - component: {fileID: 783358485}
   m_Layer: 5
   m_Name: SkillUI
   m_TagString: Untagged
@@ -5634,6 +5637,23 @@ RectTransform:
   m_AnchoredPosition: {x: -400, y: 225}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &783358485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783358483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a60d4b4fb3e95a940bf757401eccab18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillArr:
+  - {fileID: 901017671}
+  - {fileID: 12845806}
+  - {fileID: 802104374}
+  - {fileID: 331642538}
 --- !u!1 &802104369
 GameObject:
   m_ObjectHideFlags: 0
@@ -5646,6 +5666,7 @@ GameObject:
   - component: {fileID: 802104373}
   - component: {fileID: 802104372}
   - component: {fileID: 802104371}
+  - component: {fileID: 802104374}
   m_Layer: 5
   m_Name: SkillSlot3BG
   m_TagString: Untagged
@@ -5764,6 +5785,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 802104369}
   m_CullTransparentMesh: 0
+--- !u!114 &802104374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802104369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411f4846852230a45865e2a89dfdaad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillImage: {fileID: 401762035}
+  skillBG: {fileID: 2084329749}
+  frameImage: {fileID: 802104372}
 --- !u!1 &828045594
 GameObject:
   m_ObjectHideFlags: 0
@@ -6148,6 +6184,7 @@ GameObject:
   - component: {fileID: 901017670}
   - component: {fileID: 901017669}
   - component: {fileID: 901017668}
+  - component: {fileID: 901017671}
   m_Layer: 5
   m_Name: SkillSlot1BG
   m_TagString: Untagged
@@ -6266,6 +6303,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901017666}
   m_CullTransparentMesh: 0
+--- !u!114 &901017671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901017666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411f4846852230a45865e2a89dfdaad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillImage: {fileID: 885315114}
+  skillBG: {fileID: 947024643}
+  frameImage: {fileID: 901017669}
 --- !u!1 &903382179
 GameObject:
   m_ObjectHideFlags: 0
@@ -9959,6 +10011,7 @@ MonoBehaviour:
   healthPack: {fileID: 1547597143}
   bossInfo: {fileID: 1719431434}
   buffUI: {fileID: 99556337}
+  skillUI: {fileID: 783358485}
   damageTextPool: {fileID: 1420551329}
   aimImage: {fileID: 556623407}
   stickImage: {fileID: 7573771754993154139}
@@ -16382,7 +16435,7 @@ Transform:
   - {fileID: 4650854034515151045}
   - {fileID: 779025707}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4653873563821013365
 Transform:
