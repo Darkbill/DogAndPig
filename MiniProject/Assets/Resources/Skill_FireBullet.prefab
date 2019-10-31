@@ -49,7 +49,8 @@ MonoBehaviour:
   cooldownTime: 0
   delayTime: 0
   Target: {fileID: 5884530550262096232}
-  TargetList: []
+  meteor: {fileID: 1116656177357941319, guid: 8f046cb03a5d14540b16716277064f06, type: 3}
+  MeteorList: []
 --- !u!1 &5884530550262096233
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29dc9aad951ee394aa98b1252df658c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 5884530551888615822}
 --- !u!1 &5884530551888615923
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,3 +296,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d72c35d864eb1842baa2816c1740c69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pos: {x: 0, y: 0, z: 0}

@@ -7,7 +7,10 @@ public class EffectPool : MonoBehaviour
     Dictionary<eAttackType, List<HitBase>> effectlist = 
         new Dictionary<eAttackType, List<HitBase>>();
 
+    List<Targetting> HitTargetEff = new List<Targetting>();
+
     const int PoolSiz = 20;
+    const int HitTargetSiz = 100;
 
     private void Awake()
     {
@@ -17,6 +20,8 @@ public class EffectPool : MonoBehaviour
         CreateEffect("TestHitEffect", eAttackType.Water);
         CreateEffect("TestHitEffect", eAttackType.Lightning);
         CreateEffect("TestHitEffect", eAttackType.Wind);
+
+        CreateHitTargetEff("Target");
     }
 
     void CreateEffect(string effectname, eAttackType type)
@@ -34,6 +39,22 @@ public class EffectPool : MonoBehaviour
             o.SetActive(false);
             HitBase eff = o.GetComponent<HitBase>();
             effectlist[type].Add(eff);
+        }
+    }
+
+    void CreateHitTargetEff(string effectname)
+    {
+        for(int i = 0;i<HitTargetSiz;++i)
+        {
+            GameObject o = Instantiate(
+                Resources.Load(string.Format("Effect/{0}", effectname),
+                typeof(GameObject)))
+                as GameObject;
+            o.transform.position = gameObject.transform.position;
+            o.transform.parent = gameObject.transform;
+            o.SetActive(false);
+            Targetting eff = o.GetComponent<Targetting>();
+            HitTargetEff.Add(eff);
         }
     }
 
@@ -59,8 +80,17 @@ public class EffectPool : MonoBehaviour
         effectlist[type].Add(o);
 
     }
-	public void GetEvent()
-	{
-		
-	}
+
+    public void GetHitTargetEff(Vector3 pos)
+    {
+        for(int i = 0;i< HitTargetEff.Count;++i)
+        {
+            if (!HitTargetEff[i].gameObject.activeSelf)
+            {
+                HitTargetEff[i].transform.position = pos;
+                HitTargetEff[i].gameObject.SetActive(true);
+                return;
+            }
+        }
+    }
 }

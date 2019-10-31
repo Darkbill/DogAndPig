@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Meteor : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Vector3 pos = new Vector3();
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -13,4 +13,6 @@ public class Meteor : MonoBehaviour
             collision.GetComponent<Player>().Damage(GlobalDefine.eAttackType.Fire, 10);
         }
     }
+
+    public void EndAnimation() { gameObject.SetActive(false); }
 }
