@@ -98,6 +98,7 @@ public class UIMng : MonoBehaviour
 		OffSelectBox();
 		skillInfoUI.ShowSkillInfo(selectSkillID);
 	}
+
 	public void OnClickSkillBuyUI()
 	{
 		OffSelectBox();

@@ -2,7 +2,8 @@
 public class ShopUI : MonoBehaviour
 {
 	public InfinityScroll infinityScoll;
-	public SkillSlotUI[] skillSlotArr; 
+	public SkillSlotUI[] skillSlotArr;
+	public bool changeFlag;
 	public void Setting()
 	{
 		infinityScoll.Setting();

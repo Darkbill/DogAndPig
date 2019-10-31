@@ -34,4 +34,16 @@ public class PlayerInfoData
 	{
 		gold += _gold;
 	}
+	public int FindSkill(int skillID)
+	{
+		for (int i = 0; i < setSkillList.Count; ++i)
+		{
+
+			if(setSkillList[i] == skillID)
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
 }
