@@ -6,6 +6,7 @@ using UnityEditor;
 [CustomEditor(typeof(GameMng))]
 public class GameMngEditor : Editor
 {
+
 	public override void OnInspectorGUI()
 	{
 		DrawDefaultInspector();

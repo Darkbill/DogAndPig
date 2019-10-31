@@ -27,6 +27,8 @@ public class SpriteMng : MonoBehaviour
 	private void Awake()
 	{
 		DontDestroyOnLoad(this);
+		itemAtlas = Resources.Load(string.Format("Atlas/{0}","ItemAtlas"), typeof(SpriteAtlas)) as SpriteAtlas;
+		skillAtlas = Resources.Load(string.Format("Atlas/{0}", "SkillAtlas"), typeof(SpriteAtlas)) as SpriteAtlas;
 	}
 	public SpriteAtlas itemAtlas;
 	public SpriteAtlas skillAtlas;

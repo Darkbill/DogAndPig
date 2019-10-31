@@ -23,7 +23,7 @@ public class SkillBurningMeteor : Skill
 	{
 		skillID = 1;
 		MonsterSkillData skillData = JsonMng.Ins.monsterSkillDataTable[skillID];
-		skillName = "FireDrop";
+		skillName = JsonMng.Ins.monsterSkillDataTable[skillID].skillName;
 		decal = skillData.decal;
 		skillType = skillData.skillType;
 		target = skillData.target;

@@ -59,4 +59,8 @@ public class EffectPool : MonoBehaviour
         effectlist[type].Add(o);
 
     }
+	public void GetEvent()
+	{
+		
+	}
 }
