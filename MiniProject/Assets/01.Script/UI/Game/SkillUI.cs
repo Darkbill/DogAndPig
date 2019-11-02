@@ -73,6 +73,7 @@ public class SkillUI : MonoBehaviour
 	}
 	private IEnumerator SelectoffSet()
 	{
+		//TODO : 여기 수정..
         int skillnum = skillNum;
 
         while (isSkillAct)

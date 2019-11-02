@@ -46,13 +46,13 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 81737e368a0134c7cb7f1ee4631bdfd7, type: 3}
   - {fileID: 21300000, guid: 0a6a0877600344c2d9990ab00d83a218, type: 3}
   - {fileID: 21300000, guid: cb856e3be79db0c4c9076dc88b1aba79, type: 3}
-  - {fileID: 21300000, guid: 866d6c2e6199c4835a2d8a3130b0ee31, type: 3}
+  - {fileID: 21300000, guid: fbad407dd3fa2420786fc50d50e13319, type: 3}
   - {fileID: 21300000, guid: 505686de691fe4424b41721f9d75d80a, type: 3}
   m_PackedSpriteNamesToIndex:
   - Skill_1
   - Skill_2
-  - Skill_5
   - Skill_4
+  - Skill_5
   - Skill_0
   - Skill_6
   - Skill_3

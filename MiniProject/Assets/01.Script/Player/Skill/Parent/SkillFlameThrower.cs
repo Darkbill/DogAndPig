@@ -35,7 +35,7 @@ public class SkillFlameThrower : Skill
 		{
 			if (delayTime > activeTime)
 			{
-				flame.gameObject.SetActive(false);
+				GameMng.Ins.EndSkillAim();
 			}
 		}
 	}
