@@ -32,7 +32,8 @@ public class PlayerStateMachine : MonoBehaviour
 	{
 		ChangeState(ePlayerState.Idle);
 		cState.playerObject.ChangeAnimation(ePlayerAnimation.Idle);
-		isAttack = false;
+        attackDelayTime = 0.0f;
+        isAttack = false;
 	}
 	private void FixedUpdate()
 	{
