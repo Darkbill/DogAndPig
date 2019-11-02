@@ -14,6 +14,8 @@ namespace GlobalDefine
 		public const int nRANDOM_POOL = 1024;
 		public const float coolDownTimeAll = 0.3f;
 		public const float upscaleDuration = 2f;
+		public const float standardMoveSpeed = 0.625f;
+		public const float standardAttackSpeed = 1;
 	}
 
     public enum eBossMonsterState

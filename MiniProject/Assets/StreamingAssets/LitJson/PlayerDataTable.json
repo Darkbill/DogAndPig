@@ -6,7 +6,7 @@
     "damage": 10,
     "attackRange": 1,
     "attackAngle": 40,
-    "attackSpeed": 1,
+    "attackSpeed": 2,
     "moveSpeed": 2,
     "critacalCance": 20,
     "criticalDamage": 2,

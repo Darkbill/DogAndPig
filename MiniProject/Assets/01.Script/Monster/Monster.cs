@@ -196,9 +196,25 @@ public class Monster : MonoBehaviour
 
     public void ChangeAnimation(eMonsterAnimation animationType)
     {
-         monsterAnimator.SetInteger("Action", (int)animationType);
-    }
+        monsterAnimator.SetInteger("Action", (int)animationType);
+		SetAnimationSpeed(animationType);
 
+	}
+	public void SetAnimationSpeed(eMonsterAnimation animationType)
+	{
+		switch (animationType)
+		{
+			case eMonsterAnimation.Attack:
+				monsterAnimator.speed = monsterData.attackSpeed * Define.standardAttackSpeed;
+				break;
+			case eMonsterAnimation.Run:
+				monsterAnimator.speed = monsterData.moveSpeed * Define.standardMoveSpeed;
+				break;
+			default:
+				monsterAnimator.speed = 1;
+				break;
+		}
+	}
 	//TODO : 넉백관련 몬스터 코드는 일단 주석처리..
 	/*
     private void OnCollisionEnter2D(Collision2D collision)

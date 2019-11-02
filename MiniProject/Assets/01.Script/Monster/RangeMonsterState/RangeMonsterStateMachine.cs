@@ -38,11 +38,11 @@ public class RangeMonsterStateMachine : MonsterStateMachine
 	}
 	public override void ChangeStateIdle()
 	{
-		ChangeState(eMonsterState.Idle);
+		base.ChangeStateIdle();
 	}
 	public override void ChangeStateMove()
 	{
-		ChangeState(eMonsterState.Move);
+		base.ChangeStateMove();
 	}
 	public override void ChangeStateDamage()
 	{

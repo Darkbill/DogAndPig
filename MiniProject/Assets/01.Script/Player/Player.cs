@@ -185,7 +185,8 @@ public class Player : MonoBehaviour
 	{
 		if (playerStateMachine.isAttack == true) return;
 		playerAnimator.SetInteger("Action", (int)animationType);
-    }
+		SetAnimationSpeed(animationType);
+	}
 	public void AttackStart()
 	{
 		var monsterPool = GameMng.Ins.monsterPool.monsterList;
@@ -274,8 +275,21 @@ public class Player : MonoBehaviour
 			playerStateMachine.ChangeStateIdle();
 		}
 	}
-
-
+	public void SetAnimationSpeed(ePlayerAnimation animationType)
+	{
+		switch(animationType)
+		{
+			case ePlayerAnimation.Attack:
+				playerAnimator.speed = calStat.attackSpeed * Define.standardAttackSpeed;
+				break;
+			case ePlayerAnimation.Run:
+				playerAnimator.speed = calStat.moveSpeed * Define.standardMoveSpeed;
+				break;
+			default:
+				playerAnimator.speed = 1;
+				break;
+		}
+	}
 	public float GetTime(int skillIndex)
 	{
 		return conditionList[conditionList.FindID(skillIndex)].currentTime;

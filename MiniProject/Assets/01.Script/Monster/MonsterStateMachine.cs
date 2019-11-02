@@ -10,8 +10,14 @@ public abstract class MonsterStateMachine : MonoBehaviour
 	public abstract void ChangeStateStun();
 	public abstract void ChangeStateAttack();
 	public abstract void ChangeStateDead();
-	public abstract void ChangeStateIdle();
-	public abstract void ChangeStateMove();
+	public virtual void ChangeStateIdle()
+	{
+		ChangeState(eMonsterState.Idle);
+	}
+	public virtual void ChangeStateMove()
+	{
+		ChangeState(eMonsterState.Move);
+	}
 	public abstract void ChangeStateDamage();
 	public abstract void Setting();
 	public float delayTime = 0;
