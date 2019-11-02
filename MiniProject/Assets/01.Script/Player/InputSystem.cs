@@ -3,7 +3,7 @@ public class InputSystem : MonoBehaviour
 {
 	private Touch tempTouchs;
 	public int touchID = -1;
-	private int skillID = -1;
+	private int skillTouchID = -1;
 	//윈도우 빌드용
 	public bool isSkillDrag;
 
@@ -53,10 +53,10 @@ public class InputSystem : MonoBehaviour
 						UIMngInGame.Ins.OnStickDrop();
 						touchID = -1;
 					}
-					else if (tempTouchs.fingerId == skillID)
+					else if (tempTouchs.fingerId == skillTouchID)
 					{
 						UIMngInGame.Ins.OnSkillTouchDrop();
-						skillID = -1;
+						skillTouchID = -1;
 					}
 				}
 				else if (tempTouchs.phase == TouchPhase.Began)
@@ -64,7 +64,7 @@ public class InputSystem : MonoBehaviour
 					if (isSkillDrag)
 					{
 						UIMngInGame.Ins.OnSkillDrag(tempTouchs.fingerId);
-						skillID = tempTouchs.fingerId;
+						skillTouchID = tempTouchs.fingerId;
 						isSkillDrag = false;
 					}
 					else if (touchID == -1)
