@@ -52,7 +52,11 @@ public class SkillUI : MonoBehaviour
 	}
 	public void StartSkillSet(int skillnum)
 	{
-		skillNum = skillnum;
+        isSkillAct = false;
+        skillArr[skillNum].skillImage.DOColor(Color.white, 0.5f);
+        skillNum = skillnum;
+        //TODO : 이전의 스킬 index값을 받아와서 이전의 스킬 id가 Aim이라면 종료 후 현재스킬 사용.
+        //만약 현재스킬이 Aim스킬이라면 그대로 유지. << 좋은 방법일까?
 		if (skillArr[skillnum].skillImage.fillAmount == 1)
 		{
 			int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[skillnum];

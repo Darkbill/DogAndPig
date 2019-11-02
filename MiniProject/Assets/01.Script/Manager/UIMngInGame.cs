@@ -43,8 +43,6 @@ public class UIMngInGame : MonoBehaviour
 	public Image healthGageImage;
 	public Image bossHealthGageImage;
 	public Image coinImage;
-	public Image[] skillImageArr;
-	public Image[] skillImageBGArr;
 
 
 	/* Text */
