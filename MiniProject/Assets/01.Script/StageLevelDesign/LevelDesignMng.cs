@@ -30,7 +30,10 @@ public class LevelDesignMng : MonoBehaviour
 	public MonsterExam monsterExam;
 	public GameObject gameView;
 	public List<MonsterExam> monsterExamList;
-	public Dictionary<int, List<StageDataTable>> stageDataTable { get; private set; } = new Dictionary<int, List<StageDataTable>>();
+	public Dictionary<int, List<StageDataTable>> stageDataTable { get; private set; }
+												= new Dictionary<int, List<StageDataTable>>();
+	public Text expText;
+	public Text goldText;
 
 	public Text monsterIndex;
 	public Text monsterLevel;
@@ -51,8 +54,26 @@ public class LevelDesignMng : MonoBehaviour
 			dropDown.options.Add(new Dropdown.OptionData() { text = i.Current.Key.ToString() });
 		}
 		int firstStage = GetFirstStage();
+		ShowGetInfo(firstStage);
 		ShowStageInfo(firstStage);
 		dropDown.value = 0;
+	}
+	private void ShowGetInfo(int stage)
+	{
+		//추가될 수 
+		var i = stageDataTable.GetEnumerator();
+		int count = 0;
+		while (i.MoveNext())
+		{
+			if (i.Current.Key > stage) break;
+			var temp = i.Current.Value;
+			for(int j = 0; j < temp.Count; ++j)
+			{
+				count += temp[j].stageLevel;
+			}
+		}
+		expText.text = string.Format("EXP : {0}", count.ToString());
+		goldText.text = string.Format("GOLD : {0}", count.ToString());
 	}
 	private int GetFirstStage()
 	{
@@ -82,6 +103,7 @@ public class LevelDesignMng : MonoBehaviour
 			e.Setting(monsterLevel.ToString(), monsterIndex.ToString(),xPos,yPos,stageList[i].boss);
 			monsterExamList.Add(e);
 		}
+		ShowGetInfo(stageNumber);
 	}
 	public void SaveStage()
 	{
@@ -100,6 +122,7 @@ public class LevelDesignMng : MonoBehaviour
 			tempList.Add(temp);
 		}
 		stageDataTable[int.Parse(dropDown.captionText.text)] = tempList;
+		ShowGetInfo(int.Parse(dropDown.captionText.text));
 	}
 	private void RemoveMonsterExamList()
 	{
@@ -142,9 +165,6 @@ public class LevelDesignMng : MonoBehaviour
 	public void SaveAll()
 	{
 		string path = string.Format("{0}/LitJson/{1}.json", Application.streamingAssetsPath, "StageDataTable");
-		
-		//JsonData data = JsonMapper.ToJson(stageDataTable);
-		//string jsonData = data.ToString();
 		var i = stageDataTable.GetEnumerator();
 		List<StageDataTable> temp = new List<StageDataTable>();
 		while(i.MoveNext())
@@ -197,6 +217,7 @@ public class LevelDesignMng : MonoBehaviour
 	}
 	public void Sort()
 	{
+		//Stage 별로 다시 저장
 		Dictionary<int, List<StageDataTable>> temp = new Dictionary<int, List<StageDataTable>>();
 		while (stageDataTable.Count != 0)
 		{
