@@ -44,35 +44,25 @@ public class SkillFloorFreeze : Skill
 
 	//TODO : SpriteDummy
 	public Freezen FreezenShot;
-	public bool isAim = false;
-    public override bool ActiveSkill()
-    {
-		if (isAim == false)
-		{
-			StartAim();
-			isAim = true;
-			return false;
-		}
-		else
-		{
-			isAim = false;
-			base.ActiveSkill();
-			float degree = GameMng.Ins.player.degree;
-			Vector3 pos = new Vector3(Mathf.Cos(degree), Mathf.Sin(degree), 0);
-			FreezenShot.gameObject.SetActive(true);
-			FreezenShot.transform.position = GameMng.Ins.player.transform.position;
-			FreezenShot.transform.eulerAngles = new Vector3(0, 0, degree + 90);
-			FreezenShot.transform.localScale = new Vector3(width, height / 2, 0);
-			return true;
-		}
-    }
-	public override void OffAim()
-	{
-		isAim = false;
-	}
-	public void StartAim()
+	public override void OnButtonDown()
 	{
 		GameMng.Ins.SetSkillAim(skillID);
+	}
+	public override void OnDrag()
+	{
+		base.OnDrag();
+	}
+	public override void OnDrop()
+	{
+		base.OnDrop();
+		ActiveSkill();
+		UIMngInGame.Ins.CoolDownAllSkill();
+		float degree = GameMng.Ins.player.degree;
+		Vector3 pos = new Vector3(Mathf.Cos(degree), Mathf.Sin(degree), 0);
+		FreezenShot.gameObject.SetActive(true);
+		FreezenShot.transform.position = GameMng.Ins.player.transform.position;
+		FreezenShot.transform.eulerAngles = new Vector3(0, 0, degree + 90);
+		FreezenShot.transform.localScale = new Vector3(width, height / 2, 0);
 	}
     void Update()
     {

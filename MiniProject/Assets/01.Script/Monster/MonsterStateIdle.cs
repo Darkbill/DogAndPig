@@ -13,7 +13,8 @@ public class MonsterStateIdle : MonsterState
 
 	public override bool OnTransition()
 	{
-		if (monsterObject.AttackCheckStart() == false)
+		Vector3 directionToPlayer = GameMng.Ins.player.transform.position - monsterObject.gameObject.transform.position;
+		if(directionToPlayer.magnitude > monsterObject.monsterData.attackRange)
 		{
 			monsterObject.monsterStateMachine.ChangeStateMove();
 			return true;
@@ -42,6 +43,7 @@ public class MonsterStateIdle : MonsterState
 		if (degreeToPlayer > 180) { degreeToPlayer -= 360; }
 		else if (degreeToPlayer < -180) { degreeToPlayer += 360; }
 
+		if (Mathf.Abs(degreeToPlayer) < 1) return;
 		if (degreeToPlayer < 0)
 			monsterObject.Angle +=
 				Time.deltaTime * monsterObject.monsterData.rotationSpeed;

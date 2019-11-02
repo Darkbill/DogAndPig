@@ -50,12 +50,12 @@ public class SkillUI : MonoBehaviour
 			yield return null;
 		}
 	}
-	public void StartSkillSet(int skillnum)
+	public void StartSkillSet(int _skillNum)
 	{
-        skillNum = skillnum;
-        if (skillArr[skillnum].skillImage.fillAmount == 1)
+        skillNum = _skillNum;
+        if (skillArr[skillNum].skillImage.fillAmount == 1)
 		{
-			int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[skillnum];
+			int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[skillNum];
 			if (skillID == 0) return;
 			else if (skillID == GameMng.Ins.aimSkillID)
 			{
@@ -63,7 +63,7 @@ public class SkillUI : MonoBehaviour
 				GameMng.Ins.OffSkillAim();
 				return;
 			}
-			if (GameMng.Ins.ActiveSkill(skillID)) CoolDownAllSkill();
+			GameMng.Ins.ActiveSkill(JsonMng.Ins.playerInfoDataTable.setSkillList[skillNum]);
 		}
 	}
 	public void HightLightSkillSet(bool onCheck)

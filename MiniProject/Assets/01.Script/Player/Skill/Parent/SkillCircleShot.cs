@@ -35,7 +35,12 @@ public class SkillCircleShot : Skill
 	const float Radius = 1;
 	private float Speed = 5;
 	public List<FireBall> BulletLst = new List<FireBall>();
-
+	public override void OnButtonDown()
+	{
+		base.OnButtonDown();
+		ActiveSkill();
+		UIMngInGame.Ins.CoolDownAllSkill();
+	}
 	public override bool ActiveSkill()
 	{
 		base.ActiveSkill();

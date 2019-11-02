@@ -37,7 +37,12 @@ public class SkillDash : Skill
 
     bool AttackSet = false;
 
-
+	public override void OnButtonDown()
+	{
+		base.OnButtonDown();
+		ActiveSkill();
+		UIMngInGame.Ins.CoolDownAllSkill();
+	}
 	public override bool ActiveSkill()
 	{
 		base.ActiveSkill();

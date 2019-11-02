@@ -38,9 +38,14 @@ public class SkillHercules : Skill
         cooldownTime = skillData.optionArr[(int)eHerculesOption.ColTime];
         delayTime = cooldownTime;
     }
-    #endregion
-
-    public override bool ActiveSkill()
+	#endregion
+	public override void OnButtonDown()
+	{
+		base.OnButtonDown();
+		ActiveSkill();
+		UIMngInGame.Ins.CoolDownAllSkill();
+	}
+	public override bool ActiveSkill()
     {
         GameMng.Ins.player.AddBuff(new ConditionData(eBuffType.PhysicsStrong, skillID, buftime, -10));
         GameMng.Ins.player.AddBuff(new ConditionData(eBuffType.NockBack, skillID, buftime, 1000));

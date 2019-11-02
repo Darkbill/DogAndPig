@@ -28,6 +28,18 @@ public abstract class Skill : MonoBehaviour
 	}
 	public virtual void OffAim()
 	{
-		return;
+		Debug.Log("에임 제거");
+	}
+	public virtual void OnButtonDown()
+	{
+		Debug.Log("스킬 시작");
+	}
+	public virtual void OnDrag()
+	{
+		Debug.Log("드래그 시작");
+	}
+	public virtual void OnDrop()
+	{
+		Debug.Log("마우스 드랍");
 	}
 }

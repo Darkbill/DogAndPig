@@ -292,7 +292,7 @@ public class Player : MonoBehaviour
 	}
 	public Vector3 GetForward()
 	{
-		return new Vector3(Mathf.Cos(degree * Mathf.Deg2Rad), Mathf.Sin(degree * Mathf.Deg2Rad), 0);
+		return new Vector3(Mathf.Cos(degree * Mathf.Deg2Rad), Mathf.Sin(degree * Mathf.Deg2Rad), 0).normalized;
 	}
 	public float GetFullHP()
 	{

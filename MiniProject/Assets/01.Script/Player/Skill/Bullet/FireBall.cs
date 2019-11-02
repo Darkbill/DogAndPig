@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using GlobalDefine;
-using System;
 
 public class FireBall : BulletPlayerSkill
 {

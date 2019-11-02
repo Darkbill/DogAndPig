@@ -43,7 +43,12 @@ public class SkillSplitLightning : Skill
 	#endregion
 
 	//TODO : SpriteDummy
-
+	public override void OnButtonDown()
+	{
+		base.OnButtonDown();
+		ActiveSkill();
+		UIMngInGame.Ins.CoolDownAllSkill();
+	}
 	public override bool ActiveSkill()
 	{
 		base.ActiveSkill();
