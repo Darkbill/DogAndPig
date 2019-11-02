@@ -42,7 +42,7 @@ public class PlayerStateMachine : MonoBehaviour
 	public bool AttackDelay()
 	{
 		if (isAttack == true) return false;
-		else if (attackDelayTime >= GameMng.Ins.player.calStat.attackSpeed)
+		else if (attackDelayTime >= Define.standardAttackSpeed / GameMng.Ins.player.calStat.attackSpeed)
 		{
 			return true;
 		}
