@@ -45,9 +45,7 @@ public class SkillDash : Skill
         //테스트 코드
         
 		GameMng.Ins.player.playerStateMachine.ChangeState(ePlayerState.Dash);
-		Vector3 direction = new Vector3(Mathf.Cos(GameMng.Ins.player.degree * Mathf.Deg2Rad),Mathf.Sin(GameMng.Ins.player.degree * Mathf.Deg2Rad), 0);
-        Debug.DrawRay(GameMng.Ins.player.transform.position, direction);
-
+        Vector3 direction = GameMng.Ins.player.GetForward();
         for (int i = 0; i < Count; ++i)
 		{
 			alterList[i].Setting(GameMng.Ins.player.transform.position + new Vector3(0.01f, 0.25f, 0), direction, i+5);
