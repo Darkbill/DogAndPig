@@ -7,7 +7,7 @@ public class BossMonster : Monster
     {
 		monsterStateMachine.ChangeStateDead();
 		active = false;
-		gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        ColliderOnOff(false);
 		GameMng.Ins.AddGold(GameMng.Ins.stageLevel);
 		GameMng.Ins.AddEXP(GameMng.Ins.stageLevel);
 		BossSkill01.SkillButtonOff();
@@ -21,12 +21,16 @@ public class BossMonster : Monster
 	}
     public void ChangeRandomMove()
     {
-        transform.position = new Vector3((DefineClass.MapSizX - 10f) / 100 * Rand.Range(-10, 10),
-            (DefineClass.MapSizY - 10f) / 100 * Rand.Range(-10, 10));
+        transform.position = new ConfirmationArea().TargetSetting(transform.position);
         ColliderOnOff(true);
     }
     public void AttackStart()
     {
+        float playerStreetXpos = GameMng.Ins.player.transform.position.x - transform.position.x;
+        if (playerStreetXpos < 0)
+            Angle = 180;
+        else
+            Angle = 0;
         BossSkill01.SkillButtonOn();
     }
 	public void AllClear()

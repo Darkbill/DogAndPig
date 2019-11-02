@@ -35,8 +35,8 @@ public class ConfirmationArea
     {
         if (DefineClass.MapSizX / 10 > pos.x &&
             -DefineClass.MapSizX / 10 < pos.x &&
-            (DefineClass.MapSizY - 2.5f) / 10 > pos.y &&
-            (-DefineClass.MapSizY + 2.5f) / 10 < pos.y)
+            (DefineClass.MapSizY - 10f) / 10 > pos.y &&
+            (-DefineClass.MapSizY + 10f) / 10 < pos.y)
         {
             return true;
         }
