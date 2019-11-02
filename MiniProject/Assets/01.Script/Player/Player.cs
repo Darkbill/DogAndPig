@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 	private PlayerData skillStat = new PlayerData();
 	private ObjectSetAttack att = new ObjectSetAttack();
 	private int exp = 0;
+    private Vector3 playerMonsterAutoAttackVec = Vector3.right;
 
 
 	public void PlayerSetting()
@@ -62,6 +63,14 @@ public class Player : MonoBehaviour
 	{
 		UpdateBuff(Time.deltaTime);
 		ChangePlayerAngle();
+
+        var monsterPool = GameMng.Ins.monsterPool.monsterList;
+        playerMonsterAutoAttackVec = att.GetFindShortStreet(monsterPool,
+            gameObject.transform.position,
+            calStat.attackRange + 0.3f,
+            gameObject.transform.right.x);
+
+        Debug.DrawRay(gameObject.transform.position + new Vector3(0, 0.3f, 0), playerMonsterAutoAttackVec);
     }
 	#region Damage
 	/* Damage */
@@ -191,15 +200,11 @@ public class Player : MonoBehaviour
 	public void AttackStart()
 	{
 		var monsterPool = GameMng.Ins.monsterPool.monsterList;
-        Vector3 rightvec = att.GetFindShortStreet(monsterPool,
-            gameObject.transform.position,
-            calStat.attackRange,
-            gameObject.transform.right.x);
         for (int i = 0; i < monsterPool.Count; ++i)
 		{
 			if (monsterPool[i].active == false) continue;
 
-			if (att.BaseAttack(rightvec,
+			if (att.BaseAttack(playerMonsterAutoAttackVec,
 				(monsterPool[i].gameObject.transform.position + new Vector3(0, monsterPool[i].monsterData.size, 0)) - (transform.position + new Vector3(0,0.3f,0)),
 				calStat.attackRange + 0.3f,
 				calStat.attackAngle))
@@ -214,17 +219,11 @@ public class Player : MonoBehaviour
 	{
 		//애니메이션 이벤트 호출
 		var monsterPool = GameMng.Ins.monsterPool.monsterList;
-
-        Vector3 rightvec = att.GetFindShortStreet(monsterPool,
-            gameObject.transform.position,
-            calStat.attackRange + 0.3f,
-            gameObject.transform.right.x);
-        Debug.DrawRay(transform.position, rightvec);
 		for (int i = 0; i < monsterPool.Count; ++i)
 		{
 			if (monsterPool[i].active == false) continue;
 
-			if (att.BaseAttack(rightvec,
+			if (att.BaseAttack(playerMonsterAutoAttackVec,
 				(monsterPool[i].transform.position + new Vector3(0, monsterPool[i].monsterData.size, 0)) - (transform.position + new Vector3(0, 0.3f, 0)),
 				calStat.attackRange + 0.3f,
 				calStat.attackAngle))
@@ -253,17 +252,13 @@ public class Player : MonoBehaviour
 	{
 		int count = 0;
 		var monsterPool = GameMng.Ins.monsterPool.monsterList;
-        Vector3 rightvec = att.GetFindShortStreet(monsterPool,
-            gameObject.transform.position,
-            calStat.attackRange + 0.3f,
-            gameObject.transform.right.x);
         for (int i = 0; i < monsterPool.Count; ++i)
 		{
 			if (monsterPool[i].active == false) continue;
 
 
 			//TODO : 몬스터 사이즈에 따라 업벡터 수정
-			if (att.BaseAttack(rightvec,
+			if (att.BaseAttack(playerMonsterAutoAttackVec,
 				(monsterPool[i].gameObject.transform.position + new Vector3(0, monsterPool[i].monsterData.size, 0)) - (transform.position + new Vector3(0, 0.3f, 0)),
 				calStat.attackRange + 0.3f,
 				calStat.attackAngle))
