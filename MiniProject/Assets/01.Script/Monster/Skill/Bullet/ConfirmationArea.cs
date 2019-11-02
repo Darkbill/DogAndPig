@@ -3,22 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConfirmationArea : MonoBehaviour
+public class ConfirmationArea
 {
     public Vector3 target;
     private float range = 2;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public Vector3 TargetSetting(Vector3 pos)
     {
@@ -47,8 +35,8 @@ public class ConfirmationArea : MonoBehaviour
     {
         if (DefineClass.MapSizX / 10 > pos.x &&
             -DefineClass.MapSizX / 10 < pos.x &&
-            DefineClass.MapSizY / 10 > pos.y &&
-            -DefineClass.MapSizY / 10 < pos.y)
+            (DefineClass.MapSizY - 2.5f) / 10 > pos.y &&
+            (-DefineClass.MapSizY + 2.5f) / 10 < pos.y)
         {
             return true;
         }

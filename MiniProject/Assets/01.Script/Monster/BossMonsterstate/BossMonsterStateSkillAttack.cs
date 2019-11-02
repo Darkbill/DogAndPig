@@ -11,6 +11,7 @@ public class BossMonsterStateSkillAttack : MonsterState
     public override void OnStart()
     {
         monsterObject.ChangeAnimation(eMonsterAnimation.Skill);
+        monsterObject.ColliderOnOff(false);
     }
 
     public override bool OnTransition()

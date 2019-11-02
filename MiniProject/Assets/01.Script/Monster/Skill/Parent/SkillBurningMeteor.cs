@@ -85,12 +85,8 @@ public class SkillBurningMeteor : Skill
 
 	void SkillStart()
 	{
-		worldtargettimer += Time.deltaTime;
-		if (worldtargettimer >= 3.0f)
-		{
+		if (skillbut)
 			RandomTargetting();
-			worldtargettimer = 0.0f;
-		}
 	}
 
 	private void RandomTargetting()
@@ -119,6 +115,7 @@ public class SkillBurningMeteor : Skill
 			if (i == Count - 1)
 				break;
 		}
+        skillbut = false;
 	}
     public void MeteorRun(Vector3 pos)
     {

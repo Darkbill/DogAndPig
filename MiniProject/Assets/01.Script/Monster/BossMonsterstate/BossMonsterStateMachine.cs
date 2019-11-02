@@ -57,4 +57,9 @@ public class BossMonsterStateMachine : MonsterStateMachine
 	{
         ChangeState(eMonsterState.SkillAttack);
 	}
+
+    public void ChangeStateSkillOn()
+    {
+        ChangeState(eMonsterState.SkillAttack);
+    }
 }

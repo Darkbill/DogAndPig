@@ -13,7 +13,6 @@ public class ObjectSetAttack
         if(range <= attrange)
         {
             float settingdegree = Vector3.Angle(dirVec.normalized, dirbetween.normalized);
-            Debug.Log(settingdegree);
             if (settingdegree <= degree)
             {
                 return true;

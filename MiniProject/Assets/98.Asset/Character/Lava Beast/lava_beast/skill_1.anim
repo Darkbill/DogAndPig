@@ -6688,3 +6688,11 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 1.1333333
+    functionName: ChangeStateSkillOn
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: 45aa8470d5fd47f4db75b3ec9c33303e,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

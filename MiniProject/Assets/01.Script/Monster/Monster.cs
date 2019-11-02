@@ -188,11 +188,16 @@ public class Monster : MonoBehaviour
 	{
 		monsterStateMachine.ChangeStateDead();
         active = false;
-		gameObject.GetComponent<CircleCollider2D>().enabled = false;
-		GameMng.Ins.AddGold(GameMng.Ins.stageLevel);
+        ColliderOnOff(false);
+        GameMng.Ins.AddGold(GameMng.Ins.stageLevel);
 		GameMng.Ins.AddEXP(GameMng.Ins.stageLevel);
 		GameMng.Ins.monsterPool.DeadMonster(gameObject);
 	}
+
+    public void ColliderOnOff(bool check) 
+    { 
+        gameObject.GetComponent<CircleCollider2D>().enabled = check; 
+    }
 
     public void ChangeAnimation(eMonsterAnimation animationType)
     {
