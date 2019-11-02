@@ -2601,7 +2601,7 @@ GameObject:
   m_Component:
   - component: {fileID: 361310689}
   - component: {fileID: 361310690}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Colider (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2635,7 +2635,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.45346642, y: -3.5021176}
+  m_Offset: {x: 0.09643507, y: -3.6393085}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2646,7 +2646,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 11.8598995, y: 0.27981567}
+  m_Size: {x: 12.573962, y: 0.5541973}
   m_EdgeRadius: 0
 --- !u!1 &378707615
 GameObject:
@@ -3090,7 +3090,7 @@ GameObject:
   m_Component:
   - component: {fileID: 425804025}
   - component: {fileID: 425804026}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Colider
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3124,7 +3124,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.45346642, y: 3.3370337}
+  m_Offset: {x: 0.2663157, y: 3.3370337}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3135,7 +3135,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 11.8598995, y: 0.511652}
+  m_Size: {x: 12.234201, y: 0.511652}
   m_EdgeRadius: 0
 --- !u!1 &427447925
 GameObject:
@@ -3779,7 +3779,7 @@ GameObject:
   m_Component:
   - component: {fileID: 481854941}
   - component: {fileID: 481854942}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Colider (3)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3813,7 +3813,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 6.292835, y: -0.1694808}
+  m_Offset: {x: 6.141926, y: -0.1694808}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3824,7 +3824,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.29712248, y: 6.4814186}
+  m_Size: {x: 0.5989418, y: 6.4814186}
   m_EdgeRadius: 0
 --- !u!1 &496313876
 GameObject:
@@ -9644,7 +9644,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1277748699}
   - component: {fileID: 1277748700}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Colider (2)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -9678,7 +9678,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -5.3569045, y: -0.1694808}
+  m_Offset: {x: -5.9844103, y: -0.15847206}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -9689,7 +9689,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.23915768, y: 6.4814186}
+  m_Size: {x: 0.6574955, y: 6.459401}
   m_EdgeRadius: 0
 --- !u!1 &1285972951
 GameObject:
@@ -10019,16 +10019,6 @@ MonoBehaviour:
   healthGageImage: {fileID: 474134876}
   bossHealthGageImage: {fileID: 264553760}
   coinImage: {fileID: 521794436}
-  skillImageArr:
-  - {fileID: 885315114}
-  - {fileID: 260206935}
-  - {fileID: 401762035}
-  - {fileID: 586401267}
-  skillImageBGArr:
-  - {fileID: 947024643}
-  - {fileID: 1577163399}
-  - {fileID: 2084329749}
-  - {fileID: 903382181}
   healthText: {fileID: 1080409366}
   coinText: {fileID: 341309561}
   levelText: {fileID: 125265139}
