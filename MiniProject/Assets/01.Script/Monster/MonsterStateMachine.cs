@@ -40,7 +40,7 @@ public abstract class MonsterStateMachine : MonoBehaviour
 
 	public bool IsAttack()
 	{
-		if (delayTime >= monster.monsterData.attackSpeed)
+		if (delayTime >= Define.standardAttackSpeed / monster.monsterData.attackSpeed)
 		{
 			return true;
 		}
