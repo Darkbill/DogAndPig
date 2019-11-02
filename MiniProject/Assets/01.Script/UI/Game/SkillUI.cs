@@ -52,12 +52,8 @@ public class SkillUI : MonoBehaviour
 	}
 	public void StartSkillSet(int skillnum)
 	{
-        isSkillAct = false;
-        skillArr[skillNum].skillImage.DOColor(Color.white, 0.5f);
         skillNum = skillnum;
-        //TODO : 이전의 스킬 index값을 받아와서 이전의 스킬 id가 Aim이라면 종료 후 현재스킬 사용.
-        //만약 현재스킬이 Aim스킬이라면 그대로 유지. << 좋은 방법일까?
-		if (skillArr[skillnum].skillImage.fillAmount == 1)
+        if (skillArr[skillnum].skillImage.fillAmount == 1)
 		{
 			int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[skillnum];
 			if (skillID == 0) return;
@@ -72,20 +68,22 @@ public class SkillUI : MonoBehaviour
 	}
 	public void HightLightSkillSet(bool onCheck)
 	{
-		isSkillAct = onCheck;
+        isSkillAct = onCheck;
 		StartCoroutine(SelectoffSet());
 	}
 	private IEnumerator SelectoffSet()
 	{
-		while (isSkillAct)
+        int skillnum = skillNum;
+
+        while (isSkillAct)
 		{
-			skillArr[skillNum].skillImage.DOColor(Color.black, 0.5f).OnComplete(() =>
+			skillArr[skillnum].skillImage.DOColor(Color.black, 0.5f).OnComplete(() =>
 			{
-				skillArr[skillNum].skillImage.DOColor(Color.white, 0.5f);
+				skillArr[skillnum].skillImage.DOColor(Color.white, 0.5f);
 			});
 			yield return new WaitForSeconds(1.0f);
 		}
-		skillArr[skillNum].skillImage.color = Color.white;
+		skillArr[skillnum].skillImage.color = Color.white;
 		yield break;
 	}
 }
