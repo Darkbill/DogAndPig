@@ -49,12 +49,11 @@ public class SkillSplitLightning : Skill
 		ActiveSkill();
 		UIMngInGame.Ins.CoolDownAllSkill();
 	}
-	public override bool ActiveSkill()
+	public override void ActiveSkill()
 	{
 		base.ActiveSkill();
 		int randnum = Rand.Random() % 90;
 		CreateAndPoolBullet(randnum);
-		return true;
 	}
 
 	private void CreateAndPoolBullet(int randnum)

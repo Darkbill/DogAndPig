@@ -45,11 +45,10 @@ public class SkillHercules : Skill
 		ActiveSkill();
 		UIMngInGame.Ins.CoolDownAllSkill();
 	}
-	public override bool ActiveSkill()
+	public override void ActiveSkill()
     {
         GameMng.Ins.player.AddBuff(new ConditionData(eBuffType.PhysicsStrong, skillID, buftime, -10));
         GameMng.Ins.player.AddBuff(new ConditionData(eBuffType.NockBack, skillID, buftime, 1000));
-		return true;
     }
 
     void Update()

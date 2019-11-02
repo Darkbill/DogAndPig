@@ -41,13 +41,12 @@ public class SkillCircleShot : Skill
 		ActiveSkill();
 		UIMngInGame.Ins.CoolDownAllSkill();
 	}
-	public override bool ActiveSkill()
+	public override void ActiveSkill()
 	{
 		base.ActiveSkill();
 		gameObject.transform.position = GameMng.Ins.player.transform.position;
 		gameObject.transform.eulerAngles = Vector3.zero;
 		BulletSetting();
-		return true;
 	}
 	private void BulletSetting()
 	{

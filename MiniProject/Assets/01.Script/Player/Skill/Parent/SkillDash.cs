@@ -43,7 +43,7 @@ public class SkillDash : Skill
 		ActiveSkill();
 		UIMngInGame.Ins.CoolDownAllSkill();
 	}
-	public override bool ActiveSkill()
+	public override void ActiveSkill()
 	{
 		base.ActiveSkill();
 		Attack.Clear();
@@ -66,7 +66,6 @@ public class SkillDash : Skill
 			}
 		}
         AttackSet = true;
-		return true;
     }
 
     private void FinishAttack()

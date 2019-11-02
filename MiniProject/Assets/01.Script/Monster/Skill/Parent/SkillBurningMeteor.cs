@@ -46,10 +46,9 @@ public class SkillBurningMeteor : Skill
 
 	private float worldtargettimer = 0.0f;
 
-    public override bool ActiveSkill()
+    public override void ActiveSkill()
 	{
 		base.ActiveSkill();
-		return true;
 	}
 
 	private void FinishAttack()
