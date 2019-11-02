@@ -15,9 +15,8 @@ public class BossMonster : Monster
 	{
 		if (d < 1) d = 1;
 		monsterData.healthPoint -= d;
-		UIMngInGame.Ins.ShowDamage(d, Camera.main.WorldToScreenPoint(gameObject.transform.position));
+		UIMngInGame.Ins.DamageToBoss(d);
 		if (monsterData.healthPoint <= 0) Dead();
-		UIMngInGame.Ins.bossHealthGageImage.fillAmount = GameMng.Ins.monsterPool.GetBossFill();
 	}
     public void AttackStart()
     {

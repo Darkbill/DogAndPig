@@ -155,9 +155,9 @@ public class Monster : MonoBehaviour
 	{
 		if (d < 1) d = 1;
 		monsterData.healthPoint -= d;
-		UIMngInGame.Ins.ShowDamage(d, Camera.main.WorldToScreenPoint(gameObject.transform.position));
+		UIMngInGame.Ins.damageTextPool.ShowDamage(d, Camera.main.WorldToScreenPoint(gameObject.transform.position));
 		if (monsterData.healthPoint <= 0) Dead();
-		else GameMng.Ins.cameraMove.OnStart();
+		GameMng.Ins.cameraMove.OnStart();
 	}
 	
 	private void CalculatorStat()

@@ -84,13 +84,14 @@ public class Player : MonoBehaviour
 	{
 		if (d < 1) d = 1;
 		calStat.healthPoint -= d;
-		UIMngInGame.Ins.DamageToPlayer(d);
 		if (calStat.healthPoint <= 0)
 		{
+			calStat.healthPoint = 0;
 			ChangeAnimation(ePlayerAnimation.Dead);
 			playerStateMachine.ChangeState(ePlayerState.Dead);
 			GameMng.Ins.GameOver();
 		}
+		UIMngInGame.Ins.DamageToPlayer(d);
 	}
 	/* Damage */
 	#endregion

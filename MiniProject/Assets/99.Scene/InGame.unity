@@ -4847,6 +4847,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 673633638}
+  - component: {fileID: 673633639}
   m_Layer: 5
   m_Name: PlayerInfomation
   m_TagString: Untagged
@@ -4880,6 +4881,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &673633639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673633637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae68b0fa3baa67438d7082780d0c4d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthText: {fileID: 1080409366}
+  coinText: {fileID: 341309561}
+  levelText: {fileID: 125265139}
+  stageLevelText: {fileID: 716136246}
+  healthGageImage: {fileID: 474134876}
+  coinImage: {fileID: 521794436}
+  expImage: {fileID: 2076389431}
+  nextStageText: {fileID: 35368499}
 --- !u!1 &684352212
 GameObject:
   m_ObjectHideFlags: 0
@@ -10012,18 +10033,11 @@ MonoBehaviour:
   bossInfo: {fileID: 1719431434}
   buffUI: {fileID: 99556337}
   skillUI: {fileID: 783358485}
+  playerInfoUI: {fileID: 673633639}
   damageTextPool: {fileID: 1420551329}
   aimImage: {fileID: 556623407}
   stickImage: {fileID: 7573771754993154139}
-  expImage: {fileID: 2076389431}
-  healthGageImage: {fileID: 474134876}
   bossHealthGageImage: {fileID: 264553760}
-  coinImage: {fileID: 521794436}
-  healthText: {fileID: 1080409366}
-  coinText: {fileID: 341309561}
-  levelText: {fileID: 125265139}
-  stageLevelText: {fileID: 716136246}
-  nextStageText: {fileID: 35368499}
   dir: {x: 0, y: 0, z: 0}
 --- !u!1 &1342887555
 GameObject:

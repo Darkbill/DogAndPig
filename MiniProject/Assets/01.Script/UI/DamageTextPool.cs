@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-
 public class DamageTextPool : MonoBehaviour
 {
 	public DamageText damageText;
@@ -26,5 +24,9 @@ public class DamageTextPool : MonoBehaviour
 			GameObject o = Instantiate(damageText.gameObject, gameObject.transform);
 			damageTextList.Add(o.GetComponent<DamageText>());
 		}
+	}
+	public void ShowDamage(int damage, Vector3 pos)
+	{
+		ActiveDamageText(damage, pos);
 	}
 }
