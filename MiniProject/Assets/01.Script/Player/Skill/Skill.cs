@@ -26,10 +26,6 @@ public abstract class Skill : MonoBehaviour
 		}
 		return delayTime / cooldownTime;
 	}
-	public virtual void OffAim()
-	{
-		Debug.Log("에임 제거");
-	}
 	public virtual void OnButtonDown()
 	{
 		Debug.Log("스킬 시작");
