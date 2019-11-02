@@ -61,5 +61,9 @@ public class MilliMonsterStateMove : MonsterState
 				Time.deltaTime *
 				monsterObject.monsterData.moveSpeed;
 		}
+		else
+		{
+			monsterObject.monsterStateMachine.ChangeStateIdle();
+		}
 	}
 }
