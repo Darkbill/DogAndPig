@@ -16,12 +16,14 @@ public class PlayerInfoUI : MonoBehaviour
 	private Coroutine fillCoroutine;
 	private float saveDamage = 0;
 	public Text nextStageText;
+    private float saveCoin = 0;
 	public void Setting()
 	{
 		levelText.text = GameMng.Ins.player.calStat.level.ToString();
 		healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.calStat.healthPoint,
 			GameMng.Ins.player.GetFullHP());
-		coinText.text = JsonMng.Ins.playerInfoDataTable.gold.ToString();
+        saveCoin = JsonMng.Ins.playerInfoDataTable.gold;
+        coinText.text = saveCoin.ToString();
 		healthGageImagePos = healthGageImage.transform.position;
 	}
 	public void RenewPlayerInfo()
@@ -87,7 +89,8 @@ public class PlayerInfoUI : MonoBehaviour
 	}
 	public void StageClear()
 	{
-		stageLevelText.text = GameMng.Ins.stageLevel.ToString();
+        JsonMng.Ins.playerInfoDataTable.gold = int.Parse(coinText.text);
+        stageLevelText.text = GameMng.Ins.stageLevel.ToString();
 		stageLevelText.transform.localScale = new Vector3(2, 2, 2);
 		stageLevelText.transform.DOScale(1, 0.5f);
 		nextStageText.gameObject.SetActive(true);

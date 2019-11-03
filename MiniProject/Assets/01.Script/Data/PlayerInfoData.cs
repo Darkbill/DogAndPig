@@ -32,7 +32,7 @@ public class PlayerInfoData
 	}
 	public void AddGold(int _gold)
 	{
-		gold += _gold;
+		//gold += _gold;
 	}
 	public int FindSkill(int skillID)
 	{
