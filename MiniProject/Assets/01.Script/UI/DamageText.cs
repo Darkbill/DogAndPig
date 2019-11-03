@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using DG.Tweening;
-using UnityEngine.UI;
+using TMPro;
 public class DamageText : MonoBehaviour
 {
-	public Text text;
+	public TextMeshProUGUI textMesh;
 	public void ActiveDamageText(int damage,Vector3 pos)
 	{
 		gameObject.SetActive(true);
-		text.text = damage.ToString();
-		gameObject.transform.position = pos;
+		textMesh.text = damage.ToString();
+		gameObject.transform.position = pos + new Vector3(0,20,0);
 		gameObject.transform.DOMoveY(gameObject.transform.position.y + 100, 1f).OnComplete(() => { gameObject.SetActive(false); });
 	}
 }
