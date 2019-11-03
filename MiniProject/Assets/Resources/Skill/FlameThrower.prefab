@@ -48,6 +48,7 @@ MonoBehaviour:
   skillName: 
   cooldownTime: 0
   delayTime: 0
+  activeFlag: 0
   flame: {fileID: 3228779114489694293}
 --- !u!1 &3224406744928087249
 GameObject:
@@ -95,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0f8eae5155424e4c8ebd838ab6c9ca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frameCollider: {fileID: 3480059821663917545}
 --- !u!212 &5251182239091790749
 SpriteRenderer:
   m_ObjectHideFlags: 0
