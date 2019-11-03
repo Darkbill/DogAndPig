@@ -149,6 +149,7 @@ public class MonsterPool : MonoBehaviour
 	{
 		return monsterList[bossIndex].monsterData.healthPoint / JsonMng.Ins.monsterDataTable[monsterList[bossIndex].MonsterID].healthPoint;
 	}
+    
 	//TODO : Pooling Test;
 
 	//   public int Stage = 0;

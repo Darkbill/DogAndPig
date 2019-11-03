@@ -8,7 +8,8 @@ public class RangeMonsterStateAttack : MonsterState
 	public override void OnStart()
 	{
 		monsterObject.ChangeAnimation(eMonsterAnimation.Attack);
-	}
+        monsterObject.AttackCheckStart();
+    }
 
 	public override bool OnTransition()
 	{

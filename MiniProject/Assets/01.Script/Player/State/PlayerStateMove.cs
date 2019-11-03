@@ -83,8 +83,9 @@ public class PlayerStateMove : PlayerState
 		Vector3 direction = UIMngInGame.Ins.GetJoyStickDirection();
         playerObject.transform.position += new Vector3(direction.x, direction.y, 0) * playerObject.calStat.moveSpeed * Time.deltaTime;
         playerObject.degree = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Debug.Log(direction.x + " & " + direction.y);
 #endif
-		if (playerObject.isAim)
+        if (playerObject.isAim)
 		{
 			Vector3 aimPos = Camera.main.ScreenToWorldPoint(UIMngInGame.Ins.aimImage.transform.position);
 			Vector3 dir = aimPos - playerObject.transform.position;

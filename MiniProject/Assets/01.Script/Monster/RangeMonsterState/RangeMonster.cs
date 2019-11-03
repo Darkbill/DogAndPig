@@ -6,9 +6,11 @@ public class RangeMonster : Monster
 	public override bool AttackCheckStart()
 	{
 		Vector3 directionToPlayer = GameMng.Ins.player.transform.position - gameObject.transform.position;
-		if (att.BaseAttack(gameObject.transform.right, directionToPlayer, monsterData.attackRange, monsterData.attackAngle))
+		if (att.BaseAttack(GetForward(), directionToPlayer, monsterData.attackRange, monsterData.attackAngle))
 		{
-			arrowDir = GameMng.Ins.player.transform.position - gameObject.transform.position + new Vector3(0,0.3f,0);
+			arrowDir = GameMng.Ins.player.transform.position - 
+                gameObject.transform.position + 
+                new Vector3(0, GameMng.Ins.player.calStat.size, 0);
 			arrowDir.z = 0;
 			arrowDir.Normalize();
 			return true;

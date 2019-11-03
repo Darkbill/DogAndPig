@@ -205,9 +205,9 @@ public class UIMngInGame : MonoBehaviour
 		playerInfoUI.AddEXP();
 	}
 	/* Game */
-	public void DamageToBoss(int damage)
+	public void DamageToBoss(int damage, Vector3 pos)
 	{
-		damageTextPool.ShowDamage(damage, Camera.main.WorldToScreenPoint(gameObject.transform.position));
+		damageTextPool.ShowDamage(damage, Camera.main.WorldToScreenPoint(pos));
 		bossHealthGageImage.fillAmount = GameMng.Ins.monsterPool.GetBossFill();
 	}
 	public void SetBossInfo()
