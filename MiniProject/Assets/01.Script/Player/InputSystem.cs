@@ -55,7 +55,7 @@ public class InputSystem : MonoBehaviour
 					}
 					else if (tempTouchs.fingerId == skillTouchID)
 					{
-						UIMngInGame.Ins.OnSkillTouchDrop();
+						GameMng.Ins.EndSkillAim();
 						skillTouchID = -1;
 					}
 				}

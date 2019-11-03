@@ -79,23 +79,20 @@ public class UIMngInGame : MonoBehaviour
     }
 	public void OnSkillDrag(int touchID)
 	{
-		GameMng.Ins.StartSkillAim();
 		aimImage.SetTouchID(touchID);
 		aimImage.gameObject.SetActive(true);
+		GameMng.Ins.StartSkillAim();
 	}
 	public void OnSkillDrop()
 	{
 		aimImage.gameObject.SetActive(false);
+		HightLightSkillSet(false);
 		CoolDownAllSkill();
-	}
-	public void OnSkillTouchDrop()
-	{
-		//모바일 빌드 스킬 터치 종료시에만 호출
-		GameMng.Ins.EndSkillAim();
 	}
 	public void OffSkillAim()
 	{
 		aimImage.gameObject.SetActive(false);
+		HightLightSkillSet(false);
 	}
 	public Vector3 GetJoyStickDirection()
 	{

@@ -8,6 +8,7 @@ public class SkillUI : MonoBehaviour
 	private bool isCool = false;
 	private int skillNum = 0;
 	private bool isSkillAct = false;
+	private Coroutine hightRightCoroutine;
 	private void Update()
 	{
 		if (isCool == false)
@@ -52,10 +53,9 @@ public class SkillUI : MonoBehaviour
 	}
 	public void StartSkillSet(int _skillNum)
 	{
-        skillNum = _skillNum;
-        if (skillArr[skillNum].skillImage.fillAmount == 1)
+        if (skillArr[_skillNum].skillImage.fillAmount == 1)
 		{
-			int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[skillNum];
+			int skillID = JsonMng.Ins.playerInfoDataTable.setSkillList[_skillNum];
 			if (skillID == 0) return;
 			else if (skillID == GameMng.Ins.aimSkillID)
 			{
@@ -63,18 +63,27 @@ public class SkillUI : MonoBehaviour
 				GameMng.Ins.OffSkillAim();
 				return;
 			}
+			else if (GameMng.Ins.aimSkillID != -1) GameMng.Ins.OffSkillAim();
+			skillNum = _skillNum;
 			GameMng.Ins.ActiveSkill(JsonMng.Ins.playerInfoDataTable.setSkillList[skillNum]);
 		}
 	}
 	public void HightLightSkillSet(bool onCheck)
 	{
-        isSkillAct = onCheck;
-		StartCoroutine(SelectoffSet());
+		if (onCheck == true)
+		{
+			isSkillAct = true;
+			hightRightCoroutine = StartCoroutine(SelectoffSet());
+		}
+		else
+		{
+			StopCoroutine(hightRightCoroutine);
+			skillArr[skillNum].skillImage.color = Color.white;
+		}
 	}
 	private IEnumerator SelectoffSet()
 	{
-		//TODO : 여기 수정..
-        int skillnum = skillNum;
+		int skillnum = skillNum;
 
         while (isSkillAct)
 		{
@@ -84,7 +93,5 @@ public class SkillUI : MonoBehaviour
 			});
 			yield return new WaitForSeconds(1.0f);
 		}
-		skillArr[skillnum].skillImage.color = Color.white;
-		yield break;
 	}
 }

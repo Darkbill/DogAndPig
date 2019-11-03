@@ -112,15 +112,18 @@ public class GameMng : MonoBehaviour
 		player.isAim = false;
 		UIMngInGame.Ins.OnSkillDrop();
 		aimSkillID = -1;
-		UIMngInGame.Ins.HightLightSkillSet(false);
 	}
 	public void OffSkillAim()
 	{
 		//에임 필요한 스킬 재발동시 호출, 스킬사용 종료
-		aimSkillID = -1;
 		inputSystem.isSkillDrag = false;
+		if(skillMng.skillDict[aimSkillID].activeFlag)
+		{
+			skillMng.skillDict[aimSkillID].OnDrop();
+		}
+		aimSkillID = -1;
 		player.isAim = false;
 		UIMngInGame.Ins.OffSkillAim();
-		UIMngInGame.Ins.HightLightSkillSet(false);
+		
 	}
 }

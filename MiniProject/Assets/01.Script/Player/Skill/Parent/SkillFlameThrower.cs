@@ -3,7 +3,6 @@
 public class SkillFlameThrower : Skill
 {
 	public Flame flame;
-	private bool activeFlag;
 	#region SkillSetting
 	private float activeTime;
 	enum eFrameThrowerOption
@@ -55,6 +54,7 @@ public class SkillFlameThrower : Skill
 	public override void OnDrop()
 	{
 		base.OnDrop();
+		activeFlag = false;
 		flame.gameObject.SetActive(false);
 	}
 }

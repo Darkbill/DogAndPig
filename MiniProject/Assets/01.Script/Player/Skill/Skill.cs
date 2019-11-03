@@ -8,6 +8,7 @@ public abstract class Skill : MonoBehaviour
 	protected eSkillType target;
 	public float cooldownTime;
 	public float delayTime;
+	public bool activeFlag;
 	abstract public void SkillSetting();
 	public virtual void ActiveSkill()
 	{
