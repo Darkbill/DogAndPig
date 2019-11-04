@@ -49,8 +49,6 @@ public class SkillIceNova : Skill
     private void Update()
     {
         delayTime += Time.deltaTime;
-        if (delayTime >= 5.0f)
-            gameObject.SetActive(false);
         moveset();
     }
 

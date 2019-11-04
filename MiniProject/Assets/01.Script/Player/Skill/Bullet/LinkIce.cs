@@ -1,69 +1,90 @@
 ﻿using GlobalDefine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LinkIce : BulletPlayerSkill
 {
-    public float damage = 0;
-    eAttackType Attacktype = eAttackType.Water;
-    eBuffType bufftype = eBuffType.MoveSlow;
-
-    private int Id = 10;
+	public float damage;
+	eAttackType Attacktype;
+	eBuffType bufftype;
+	private int Id;
     private float per;
-
-    private Vector3 nextPos;
-
-    private int idxnum = 0;
+	private float endTime;
+	private float changeValue;
+	private float speed;
+	private int maxHitCount;
+	private Vector3 nextPos;
 
     private List<Monster> monsterpool;
-
-    public void Setting(int id, float p, float damage)
+	private List<int> hitMonsterPool = new List<int>();
+	public void Setting(int id, float p, float _damage,eAttackType aType, eBuffType bType,float _endTime,float _changeValue,float iceSpeed,int mC)
     {
         Id = id;
         per = p;
-        gameObject.transform.position = GameMng.Ins.player.transform.position +
-            new Vector3(0, GameMng.Ins.player.calStat.size);
-        monsterpool = GameMng.Ins.monsterPool.monsterList;
-        NextPosSet();
-        idxnum = 0;
-    }
-
+		damage = _damage;
+		Attacktype = aType;
+		bufftype = bType;
+		endTime = _endTime;
+		changeValue = _changeValue;
+		speed = iceSpeed;
+		maxHitCount = mC;
+	}
+	public void Setting()
+	{
+		gameObject.SetActive(true);
+		hitMonsterPool.Clear();
+		gameObject.transform.position = GameMng.Ins.player.transform.position +
+								new Vector3(0, GameMng.Ins.player.calStat.size);
+		NextPosSet();
+	}
     private void NextPosSet()
     {
-        nextPos = GameMng.Ins.player.transform.right;
+		monsterpool = GameMng.Ins.monsterPool.monsterList;
+		int index = FindMonster();
+		if (index == -1)
+		{
+			gameObject.SetActive(false);
+			return;
+		}
+		nextPos = (monsterpool[index].transform.position +
+			new Vector3(0, monsterpool[index].monsterData.size) -
+			gameObject.transform.position);
 
-        for (int i = idxnum; i < monsterpool.Count; ++i)
-        {
-            if (monsterpool[i] == null)
-                continue;
-            nextPos = (monsterpool[idxnum].transform.position +
-                        new Vector3(0, monsterpool[idxnum].monsterData.size) -
-                        gameObject.transform.position);
-            break;
-        }
-        
-        float degree = Mathf.Atan2(nextPos.y, nextPos.x) * Mathf.Rad2Deg;
+		float degree = Mathf.Atan2(nextPos.y, nextPos.x) * Mathf.Rad2Deg;
         gameObject.transform.eulerAngles = new Vector3(0, 0, degree);
-
-        ++idxnum;
     }
+	private int FindMonster()
+	{
+		float distance = float.MaxValue;
+		int minDisIndex = -1;
+		for (int i = 0; i < monsterpool.Count; ++i)
+		{
+			if (monsterpool[i] == null || monsterpool[i].active == false) continue;
+			else if (hitMonsterPool.Contains(i)) continue;
+			float m = (gameObject.transform.position - monsterpool[i].transform.position).magnitude;
+			if(distance > m)
+			{
+				minDisIndex = i;
+				distance = m;
+			}
+		}
+		hitMonsterPool.Add(minDisIndex);
+		return minDisIndex;
+	}
 
     private void Update()
     {
-        if (idxnum >= monsterpool.Count)
-        {
-            gameObject.SetActive(false);
-            return;
-        }
-        gameObject.transform.position += gameObject.transform.right * Time.deltaTime * 10;
-
+        gameObject.transform.position += gameObject.transform.right * Time.deltaTime * speed;
     }
 
     public override void Crash(Monster monster)
     {
-        NextPosSet();
-        monster.Damage(Attacktype, damage);
-        monster.OutStateAdd(new ConditionData(bufftype, Id, 10.0f, 500), 1000);
+		monster.Damage(Attacktype, GameMng.Ins.player.calStat.damage, damage, new ConditionData(bufftype, Id, endTime, changeValue), per);
+		if (hitMonsterPool.Count == maxHitCount)
+		{
+			gameObject.SetActive(false);
+			return;
+		}
+		NextPosSet();
     }
 }

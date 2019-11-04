@@ -7,11 +7,14 @@ public class FireArrow : BulletPlayerSkill
 	private float damage;
 	private float speed;
 	private Vector3 dir;
-	public void Setting(eAttackType type,float _damage,float _speed,Vector3 _dir,Vector3 startPos,float zAngle)
+	public void Setting(eAttackType type, float _damage, float _speed)
 	{
 		attackType = type;
 		damage = _damage;
 		speed = _speed;
+	}
+	public void Setting(Vector3 _dir,Vector3 startPos,float zAngle)
+	{
 		dir = _dir;
 		gameObject.transform.eulerAngles = new Vector3(zAngle, 0, 0);
 		transform.position = transform.position = startPos;

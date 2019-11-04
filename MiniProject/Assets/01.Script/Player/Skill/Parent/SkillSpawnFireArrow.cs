@@ -30,6 +30,10 @@ public class SkillSpawnFireArrow : Skill
 		arrowInitTime = skillData.optionArr[(int)eSpawnFireArrowOption.ArrowInitTime];
 		arrowSpeed = skillData.optionArr[(int)eSpawnFireArrowOption.ArrowSpeed];
 		delayTime = cooldownTime;
+		for(int i = 0; i < firArrowList.Count; ++i)
+		{
+			firArrowList[i].Setting(skillType,damage,arrowSpeed);
+		}
 		gameObject.SetActive(false);
 	}
 	#endregion
@@ -68,7 +72,7 @@ public class SkillSpawnFireArrow : Skill
 				{
 					if (firArrowList[i].gameObject.activeSelf == false)
 					{
-						firArrowList[i].Setting(skillType, damage, arrowSpeed, gateParticle.gameObject.transform.right, gateParticle.gameObject.transform.position, gateParticle.gameObject.transform.eulerAngles.z);
+						firArrowList[i].Setting(gateParticle.gameObject.transform.right, gateParticle.gameObject.transform.position, gateParticle.gameObject.transform.eulerAngles.z);
 						break;
 					}
 				}

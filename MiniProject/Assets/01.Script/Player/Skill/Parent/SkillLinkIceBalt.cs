@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+using GlobalDefine;
 public class SkillLinkIceBalt : Skill
 {
     #region SkillSetting
@@ -9,6 +7,12 @@ public class SkillLinkIceBalt : Skill
     {
         Damage,
         CoolTime,
+		ActivePer,
+		BuffType,
+		EndTime,
+		ChangeValue,
+		IceSpeed,
+		MaxHitCount,
     }
     private float damage;
     public override void SkillSetting()
@@ -20,7 +24,12 @@ public class SkillLinkIceBalt : Skill
         damage = skillData.optionArr[(int)eSkillOption.Damage];
         cooldownTime = skillData.optionArr[(int)eSkillOption.CoolTime];
         delayTime = cooldownTime;
-        gameObject.SetActive(false);
+		ice.Setting(skillID, skillData.optionArr[(int)eSkillOption.ActivePer],damage,skillType,
+					(eBuffType)skillData.optionArr[(int)eSkillOption.BuffType], skillData.optionArr[(int)eSkillOption.EndTime],
+					skillData.optionArr[(int)eSkillOption.ChangeValue], skillData.optionArr[(int)eSkillOption.IceSpeed],
+					(int)skillData.optionArr[(int)eSkillOption.MaxHitCount]);
+
+		gameObject.SetActive(false);
     }
     #endregion
     public LinkIce ice;
@@ -34,7 +43,7 @@ public class SkillLinkIceBalt : Skill
     public override void ActiveSkill()
     {
         ice.gameObject.SetActive(true);
-        ice.Setting(skillID, 1000, damage);
+        ice.Setting();
         base.ActiveSkill();
     }
     public override void OnDrag()
@@ -48,7 +57,5 @@ public class SkillLinkIceBalt : Skill
     private void Update()
     {
         delayTime += Time.deltaTime;
-        if (delayTime >= 5.0f)
-            gameObject.SetActive(false);
     }
 }
