@@ -49,7 +49,6 @@ public class SkillFlameThrower : Skill
 	public override void OnDrag()
 	{
 		base.OnDrag();
-		UIMngInGame.Ins.CoolDownAllSkill();
 		ActiveSkill();
 		flame.gameObject.SetActive(true);
 		activeFlag = true;
