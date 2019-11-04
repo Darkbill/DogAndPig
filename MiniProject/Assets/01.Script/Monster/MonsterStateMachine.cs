@@ -6,12 +6,14 @@ public abstract class MonsterStateMachine : MonoBehaviour
 	public Monster monster;
 	public Dictionary<eMonsterState, MonsterState> stateDict = new Dictionary<eMonsterState, MonsterState>();
 	public MonsterState cState;
+	//TODO : 스턴,넉백관련정리 필요
 	public Vector3 knockBackDir;
+	public float knockBackPower;
 	public abstract void ChangeStateKnockBack();
-	public virtual void ChangeStateKnockBack(Vector3 _knockBackDir)
+	public virtual void ChangeStateKnockBack(Vector3 _knockBackDir,float _knockBackPower)
 	{
 		knockBackDir = new Vector3(_knockBackDir.x, _knockBackDir.y,0);
-		
+		knockBackPower = _knockBackPower;
 	}
 	public abstract void ChangeStateStun();
 	public abstract void ChangeStateAttack();

@@ -11,13 +11,13 @@ public class ConditionData
 		sustainmentTime = 0;
 		changeValue = 0;
 	}
-	public ConditionData(eBuffType bT, int sI, float s,float c)
+	public ConditionData(eBuffType bT, int _skillIndex, float _sustainmentTime, float _changeValue)
 	{
 		buffType = bT;
-		skillIndex = sI;
-		sustainmentTime = s;
-		currentTime = s;
-		changeValue = c;
+		skillIndex = _skillIndex;
+		sustainmentTime = _sustainmentTime;
+		currentTime = _sustainmentTime;
+		changeValue = _changeValue;
 	}
 	public void Set(ConditionData conditionData)
 	{

@@ -12,7 +12,7 @@ public class MonsterStateKnockBack : MonsterState
 	public override void OnStart()
 	{
 		monsterObject.ChangeAnimation(eMonsterAnimation.Idle);
-		setspeed = Define.knockBackSpeed;
+		setspeed = Define.knockBackSpeed * monsterObject.monsterStateMachine.knockBackPower;
 		range = monsterObject.transform.position -
 			monsterObject.monsterStateMachine.knockBackDir;
 		range.Normalize();
@@ -20,24 +20,28 @@ public class MonsterStateKnockBack : MonsterState
 
 	public override bool OnTransition()
 	{
+		if (setspeed <= 0)
+		{
+			monsterObject.monsterStateMachine.ChangeStateIdle();
+			return true;
+		}
 		return false;
 	}
 
 	public override void Tick()
 	{
-		if (setspeed > 0)
-			KnockBack();
 		if (OnTransition() == true) return;
+		KnockBack();
 	}
 
 	private void KnockBack()
 	{
 		monsterObject.transform.position += range * Time.deltaTime * setspeed;
-		--setspeed;
+		setspeed -= Time.deltaTime * 100;
 	}
 
 	public override void OnEnd()
 	{
-
+		setspeed = 0;
 	}
 }
