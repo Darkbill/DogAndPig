@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
-
+using GlobalDefine;
 public class MonsterStateKnockBack : MonsterState
 {
-	private float setspeed = 10;
-
-	private Vector3 range = new Vector3();
-
+	private float setspeed;
+	private Vector3 range;
 
 	public MonsterStateKnockBack(Monster o) : base(o)
 	{
@@ -13,10 +11,10 @@ public class MonsterStateKnockBack : MonsterState
 
 	public override void OnStart()
 	{
-		setspeed = 10;
+		monsterObject.ChangeAnimation(eMonsterAnimation.Idle);
+		setspeed = Define.knockBackSpeed;
 		range = monsterObject.transform.position -
-			GameMng.Ins.player.transform.position;
-
+			monsterObject.monsterStateMachine.knockBackDir;
 		range.Normalize();
 	}
 

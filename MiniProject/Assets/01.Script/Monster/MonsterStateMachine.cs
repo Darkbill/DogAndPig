@@ -6,7 +6,13 @@ public abstract class MonsterStateMachine : MonoBehaviour
 	public Monster monster;
 	public Dictionary<eMonsterState, MonsterState> stateDict = new Dictionary<eMonsterState, MonsterState>();
 	public MonsterState cState;
+	public Vector3 knockBackDir;
 	public abstract void ChangeStateKnockBack();
+	public virtual void ChangeStateKnockBack(Vector3 _knockBackDir)
+	{
+		knockBackDir = new Vector3(_knockBackDir.x, _knockBackDir.y,0);
+		
+	}
 	public abstract void ChangeStateStun();
 	public abstract void ChangeStateAttack();
 	public abstract void ChangeStateDead();

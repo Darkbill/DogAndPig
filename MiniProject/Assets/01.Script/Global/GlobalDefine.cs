@@ -15,6 +15,7 @@
 		public const int lobbyStartCount = 3;
 		public const int restartCount = 3;
 		public const int adCount = 3;
+		public const float knockBackSpeed = 10;
 	}
 
     public enum eBossMonsterState

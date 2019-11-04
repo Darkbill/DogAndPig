@@ -1,8 +1,7 @@
 ﻿using GlobalDefine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using GlobalDefine;
 public class Lightning : BulletPlayerSkill
 {
     public float damage = 0;
@@ -56,7 +55,7 @@ public class Lightning : BulletPlayerSkill
         if (SetTimer > 0.3f)
         {
             monster.Damage(Attacktype, damage);
-            monster.OutStateAdd(new ConditionData(bufftype, Id, 10.0f, 500), 1000);
+			if(Rand.Permile(per)) monster.OutStateAdd(new ConditionData(bufftype, Id, 10.0f, 500));
             EndPos = monster.transform.position;
             SplitCheck = true;
             gameObject.SetActive(false);

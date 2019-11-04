@@ -23,6 +23,11 @@ public class MilliMonsterStateMachine : MonsterStateMachine
 	{
 		ChangeState(eMonsterState.KnockBack);
 	}
+	public override void ChangeStateKnockBack(Vector3 _knockBackDir)
+	{
+		base.ChangeStateKnockBack(_knockBackDir);
+		ChangeState(eMonsterState.KnockBack);
+	}
 	public override void ChangeStateStun()
 	{
 		ChangeState(eMonsterState.Stun);

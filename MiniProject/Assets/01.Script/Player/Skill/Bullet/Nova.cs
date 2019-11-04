@@ -49,6 +49,6 @@ public class Nova : BulletPlayerSkill
 	public override void Crash(Monster monster)
 	{
         monster.Damage(Attacktype, damage);
-        monster.OutStateAdd(new ConditionData(bufftype, Id, 10.0f, 500), 1000);
+        if(Rand.Permile(per)) monster.OutStateAdd(new ConditionData(bufftype, Id, 10.0f, 500));
     }
 }
