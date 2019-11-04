@@ -21,6 +21,8 @@ public class SkillHercules : Skill
     private float attackper;
     private float attackrange;
 
+    public GameObject HerculesEffect;
+
     public override void SkillSetting()
     {
         skillID = 4;
@@ -47,12 +49,17 @@ public class SkillHercules : Skill
 	}
 	public override void ActiveSkill()
     {
-        GameMng.Ins.player.AddBuff(new ConditionData(eBuffType.PhysicsStrong, skillID, buftime, -10));
+        base.ActiveSkill();
+        GameMng.Ins.player.AddBuff(new ConditionData(eBuffType.PhysicsStrong, skillID, buftime, damage));
         GameMng.Ins.player.AddBuff(new ConditionData(eBuffType.NockBack, skillID, buftime, 1000));
+        HerculesEffect.SetActive(true);
     }
 
     void Update()
     {
+        HerculesEffect.gameObject.transform.position = GameMng.Ins.player.transform.position;
         delayTime += Time.deltaTime;
+        if (delayTime >= buftime)
+            HerculesEffect.gameObject.SetActive(false);
     }
 }

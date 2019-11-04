@@ -61,13 +61,13 @@ public class SkillFloorFreeze : Skill
 		Vector3 pos = new Vector3(Mathf.Cos(degree), Mathf.Sin(degree), 0);
 		FreezenShot.gameObject.SetActive(true);
 		FreezenShot.transform.position = GameMng.Ins.player.transform.position;
-		FreezenShot.transform.eulerAngles = new Vector3(0, 0, degree + 90);
-		FreezenShot.transform.localScale = new Vector3(width, height / 2, 0);
+		FreezenShot.transform.eulerAngles = new Vector3(0, 0, degree - 90);
+		FreezenShot.transform.localScale = new Vector3(width / 2, height / 4, 0);
 	}
     void Update()
     {
 		delayTime += Time.deltaTime;
-		if (delayTime >= 0.5f)
+		if (delayTime >= 2.0f)
             FreezenShot.gameObject.SetActive(false);
     }
 }
