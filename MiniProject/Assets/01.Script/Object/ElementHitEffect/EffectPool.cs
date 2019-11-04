@@ -15,11 +15,11 @@ public class EffectPool : MonoBehaviour
     private void Awake()
     {
         //TODO : Asset을 불러와서 풀링, 각 속성마다 20개씩 총 100개
-        CreateEffect("TestHitEffect", eAttackType.Physics);
-        CreateEffect("TestHitEffect", eAttackType.Fire);
-        CreateEffect("TestHitEffect", eAttackType.Water);
-        CreateEffect("TestHitEffect", eAttackType.Lightning);
-        CreateEffect("TestHitEffect", eAttackType.Wind);
+        CreateEffect("PhysicsHitEff", eAttackType.Physics);
+        CreateEffect("FireHitEff", eAttackType.Fire);
+        CreateEffect("IceHitEff", eAttackType.Water);
+        CreateEffect("LightningHitEff", eAttackType.Lightning);
+        CreateEffect("WindHitEff", eAttackType.Wind);
 
         CreateHitTargetEff("Target");
     }
