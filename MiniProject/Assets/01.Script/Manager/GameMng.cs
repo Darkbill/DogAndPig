@@ -72,6 +72,7 @@ public class GameMng : MonoBehaviour
 	public void GameOver()
 	{
 		//TODO : 옵저버
+		JsonMng.Ins.playerInfoDataTable.GameOver();
 		skillMng.OffSkill();
 		cameraMove.GameOver();
 	}
@@ -123,6 +124,19 @@ public class GameMng : MonoBehaviour
 		aimSkillID = -1;
 		player.isAim = false;
 		UIMngInGame.Ins.OffSkillAim();
-		
+	}
+	public void ReStart(int count)
+	{
+		if (JsonMng.Ins.playerInfoDataTable.stageLevel > count)
+		{
+			Debug.Log("광고");
+			JsonMng.Ins.playerInfoDataTable.stageLevel -= count;
+		}
+		else
+		{
+			Debug.Log("광고");
+			JsonMng.Ins.playerInfoDataTable.stageLevel = 1;
+		}
+		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
 	}
 }

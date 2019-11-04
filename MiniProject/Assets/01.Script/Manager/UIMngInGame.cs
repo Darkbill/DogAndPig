@@ -41,10 +41,13 @@ public class UIMngInGame : MonoBehaviour
 	/* Image */
 	public Image stickImage;
 	public Image bossHealthGageImage;
+	public Image reStartImage;
 
+	/* Text */
+	public Text adCountText;
 	private Vector3 stickPos; //터치 눌러서 joyStick이 시작한 위치
 	private float stickRadius = 60;
-    public Vector3 dir;
+    private Vector3 dir;
 
 	private void Start()
     {
@@ -56,6 +59,12 @@ public class UIMngInGame : MonoBehaviour
     }
     public void UISetting()
     {
+		int adCount = JsonMng.Ins.playerInfoDataTable.adCount;
+		adCountText.text = string.Format("{0}/{1}", adCount, Define.adCount);
+		if(adCount != Define.adCount)
+		{
+			reStartImage.raycastTarget = false;
+		}
 		playerInfoUI.Setting();
 		skillUI.Setting();
 	}
@@ -174,12 +183,20 @@ public class UIMngInGame : MonoBehaviour
     {
         WaitUI.gameObject.SetActive(true);
     }
-    public void OnClickReStart()
+    public void OnClickReStart3()
     {
-        //테스트코드
-        UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
+		//테스트코드
+		if (JsonMng.Ins.playerInfoDataTable.adCount == Define.adCount)
+		{
+			JsonMng.Ins.playerInfoDataTable.adCount = 0;
+			GameMng.Ins.ReStart(3);
+		}
     }
-    public void OnClickLobby()
+	public void OnClickReStart5()
+	{
+		GameMng.Ins.ReStart(5);
+	}
+	public void OnClickLobby()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Lobby");
     }

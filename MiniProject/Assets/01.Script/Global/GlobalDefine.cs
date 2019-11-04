@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace GlobalDefine
+﻿namespace GlobalDefine
 {
     static class DefineClass
     {
@@ -16,6 +12,9 @@ namespace GlobalDefine
 		public const float upscaleDuration = 2f;
 		public const float standardMoveSpeed = 0.625f;
 		public const float standardAttackSpeed = 1;
+		public const int lobbyStartCount = 3;
+		public const int restartCount = 3;
+		public const int adCount = 3;
 	}
 
     public enum eBossMonsterState

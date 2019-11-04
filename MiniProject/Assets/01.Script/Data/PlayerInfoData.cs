@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using GlobalDefine;
 public class PlayerInfoData
 {
 	public int gold;
@@ -9,7 +9,8 @@ public class PlayerInfoData
 	public int stageLevel;
 	public int playerLevel;
 	public int exp;
-	//TODO : 스테이지정보
+	public int startCount;
+	public int adCount;
 	public PlayerInfoData()
 	{
 	}
@@ -48,5 +49,23 @@ public class PlayerInfoData
 			}
 		}
 		return -1;
+	}
+	public bool StartLobby()
+	{
+		startCount++;
+		if(startCount == Define.lobbyStartCount)
+		{
+			startCount = 0;
+			return true;
+		}
+		return false;
+	}
+	public void GameOver()
+	{
+		if (adCount == Define.adCount)
+		{
+			return;
+		}
+		adCount++;
 	}
 }

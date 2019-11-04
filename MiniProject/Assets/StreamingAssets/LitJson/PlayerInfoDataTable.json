@@ -17,5 +17,7 @@
   ],
   "stageLevel" : 1,
   "playerLevel" : 1,
-  "exp" : 0
+  "exp" : 0,
+  "startCount" : 0,
+  "adCount" : 3
 }
