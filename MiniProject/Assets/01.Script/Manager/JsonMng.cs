@@ -25,18 +25,20 @@ public class JsonMng : MonoBehaviour
 		}
 	}
 	#endregion
-	public Dictionary<int, PlayerData> playerDataTable { get; private set; } = new Dictionary<int, PlayerData>();
 	public Dictionary<int, PlayerSkillData> playerSkillDataTable { get; private set; } = new Dictionary<int, PlayerSkillData>();
 	public Dictionary<int, MonsterData> monsterDataTable { get; private set; } = new Dictionary<int, MonsterData>();
 	public Dictionary<int, MonsterSkillData> monsterSkillDataTable { get; private set; } = new Dictionary<int, MonsterSkillData>();
 	public Dictionary<int, StageDataTable> stageDataTable { get; private set; } = new Dictionary<int, StageDataTable>();
 	public Dictionary<int, EXPData> expDataTable { get; private set; } = new Dictionary<int, EXPData>();
 	public PlayerInfoData playerInfoDataTable { get; private set; } = new PlayerInfoData();
+	public PlayerData playerDataTable { get; private set; } = new PlayerData();
 	private int AllDownCount = 7;
 	private int cDownCount = 0;
 	public bool IsDone
 	{
-		get { if (AllDownCount == cDownCount) return true;
+		get
+		{
+			if (AllDownCount == cDownCount) return true;
 			else return false;
 		}
 	}
@@ -47,27 +49,33 @@ public class JsonMng : MonoBehaviour
 	}
 	public void LoadAll()
 	{
-		StartCoroutine(StartLoadPlayerData());
 		LoadPlayerData();
+		LoadPlayerInfoData();
 		LoadPlayerSkillData();
 		LoadMonsterData();
 		LoadMonsterSkillData();
 		LoadExpDataTable();
 		LoadStageData();
 	}
-	private IEnumerator StartLoadPlayerData()
+	private IEnumerator StartLoadPlayerData<T>(string fileName,T table) where T : class
 	{
-		string path = string.Format("{0}/LitJson/{1}.json", Application.streamingAssetsPath, "PlayerInfoDataTable");
+		string path = string.Format("{0}/LitJson/{1}.json", Application.streamingAssetsPath, fileName);
 		WWW www = new WWW(path);
 		yield return www;
 		string jsonString = www.text;
 		JsonData jsonData = JsonMapper.ToObject(jsonString);
-		playerInfoDataTable = JsonMapper.ToObject<PlayerInfoData>(jsonData.ToJson());
+		table = JsonMapper.ToObject<T>(jsonData.ToJson());
+		//참조왜안되지;
+		if (table is PlayerData)
+		{
+			playerDataTable = table as PlayerData;
+		}
+		else playerInfoDataTable = table as PlayerInfoData;
 		cDownCount++;
 	}
 	private IEnumerator StartLoad<T>(string fileName, Dictionary<int, T> table) where T : TableBase
 	{
-		string path = string.Format("{0}/LitJson/{1}.json",Application.streamingAssetsPath, fileName);
+		string path = string.Format("{0}/LitJson/{1}.json", Application.streamingAssetsPath, fileName);
 		WWW www = new WWW(path);
 		yield return www;
 		string jsonString = www.text;
@@ -78,10 +86,18 @@ public class JsonMng : MonoBehaviour
 			table.Add((int)save.GetTableID(), save);
 		}
 		cDownCount++;
-		if(cDownCount == AllDownCount)
+		if (cDownCount == AllDownCount)
 		{
 			UIMng.Ins.Setting();
 		}
+	}
+	private void LoadPlayerData()
+	{
+		StartCoroutine(StartLoadPlayerData("PlayerDataTable", playerDataTable));
+	}
+	private void LoadPlayerInfoData()
+	{
+		StartCoroutine(StartLoadPlayerData("PlayerInfoDataTable", playerInfoDataTable));
 	}
 	private void LoadExpDataTable()
 	{
@@ -90,10 +106,6 @@ public class JsonMng : MonoBehaviour
 	private void LoadStageData()
 	{
 		StartCoroutine(StartLoad("StageDataTable", stageDataTable));
-	}
-	private void LoadPlayerData()
-	{
-		StartCoroutine(StartLoad("PlayerDataTable", playerDataTable));
 	}
 	private void LoadMonsterData()
 	{
@@ -108,15 +120,15 @@ public class JsonMng : MonoBehaviour
 		StartCoroutine(StartLoad("MonsterSkillDataTable", monsterSkillDataTable));
 	}
 
-    public List<StageDataTable> GetStageData(int stagelevel)
-    {
-        List<StageDataTable> lv = new List<StageDataTable>();
+	public List<StageDataTable> GetStageData(int stagelevel)
+	{
+		List<StageDataTable> lv = new List<StageDataTable>();
 		var en = stageDataTable.GetEnumerator();
 		while (en.MoveNext())
 		{
 			if (en.Current.Value.stageLevel == stagelevel)
 				lv.Add(en.Current.Value);
 		}
-        return lv;
-    }
+		return lv;
+	}
 }

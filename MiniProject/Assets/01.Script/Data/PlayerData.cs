@@ -1,5 +1,5 @@
 ﻿using GlobalDefine;
-public class PlayerData : TableBase
+public class PlayerData
 {
 	public float size;
 	public float healthPoint;
@@ -26,10 +26,6 @@ public class PlayerData : TableBase
 	{
 
 	}
-	public override float GetTableID()
-	{
-		return 1;
-	}
 	public float GetResist(eAttackType attackType)
 	{
 		switch(attackType)
@@ -53,6 +49,6 @@ public class PlayerData : TableBase
     }
 	public int GetHealthPoint(int lv)
 	{
-		return (int)((lv * JsonMng.Ins.playerDataTable[1].healthPoint) + ((lv + 1) * (lv - 1)));
+		return (int)((lv * JsonMng.Ins.playerDataTable.healthPoint) + ((lv + 1) * (lv - 1)));
 	}
 }

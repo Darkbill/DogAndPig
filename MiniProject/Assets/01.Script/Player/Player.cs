@@ -21,12 +21,12 @@ public class Player : MonoBehaviour
 	private Monster attackMonster;
 	public void PlayerSetting()
 	{
-		calStat = JsonMng.Ins.playerDataTable[1];
+		calStat = JsonMng.Ins.playerDataTable;
 		CalculatorStat();
 	}
 	public void CalculatorStat()
 	{
-		calStat = JsonMng.Ins.playerDataTable[1].AddStat(skillStat, conditionList);
+		calStat = JsonMng.Ins.playerDataTable.AddStat(skillStat, conditionList);
 	}
 	public void CalculatorBuffStat()
 	{
