@@ -13,17 +13,20 @@ public class SkillFlameThrower : Skill
 	}
 	private float damage;
 
+	public float ActiveTime { get => activeTime; set => activeTime = value; }
+	public float Damage { get => damage; set => damage = value; }
+
 	public override void SkillSetting()
 	{
 		skillID = 6;
 		PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
 		skillType = skillData.skillType;
 		target = skillData.target;
-		damage = skillData.optionArr[(int)eFrameThrowerOption.Damage];
+		Damage = skillData.optionArr[(int)eFrameThrowerOption.Damage];
 		cooldownTime = skillData.optionArr[(int)eFrameThrowerOption.CoolTime];
-		activeTime = skillData.optionArr[(int)eFrameThrowerOption.ActiveTime];
+		ActiveTime = skillData.optionArr[(int)eFrameThrowerOption.ActiveTime];
 		delayTime = cooldownTime;
-		flame.Setting(skillType, damage);
+		flame.Setting(skillType, Damage);
 		gameObject.SetActive(false);
 	}
 	#endregion
@@ -32,7 +35,7 @@ public class SkillFlameThrower : Skill
 		delayTime += Time.deltaTime;
 		if (activeFlag)
 		{
-			if (delayTime > activeTime)
+			if (delayTime > ActiveTime)
 			{
 				GameMng.Ins.EndSkillAim();
 			}

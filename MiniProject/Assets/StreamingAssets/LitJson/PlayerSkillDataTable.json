@@ -94,14 +94,16 @@
   },
   {
     "skillID": 7,
-    "skillName": "empty",
-    "skillType": 0,
-    "activeType": 0,
-    "target": 0,
+    "skillName": "SpawnFireArrow",
+    "skillType": 2,
+    "activeType": 3,
+    "target": 1,
     "level": 3,
-    "price": 0,
+    "price": 1000,
     "optionArr": [
-      0
+      1,
+      5,
+      3
     ]
   },
   {

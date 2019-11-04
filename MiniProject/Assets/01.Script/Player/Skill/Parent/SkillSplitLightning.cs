@@ -47,7 +47,6 @@ public class SkillSplitLightning : Skill
 	{
 		base.OnButtonDown();
 		ActiveSkill();
-		UIMngInGame.Ins.CoolDownAllSkill();
 	}
 	public override void ActiveSkill()
 	{

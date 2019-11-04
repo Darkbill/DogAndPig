@@ -56,7 +56,6 @@ public class SkillFloorFreeze : Skill
 	{
 		base.OnDrop();
 		ActiveSkill();
-		UIMngInGame.Ins.CoolDownAllSkill();
 		float degree = GameMng.Ins.player.degree;
 		Vector3 pos = new Vector3(Mathf.Cos(degree), Mathf.Sin(degree), 0);
 		FreezenShot.gameObject.SetActive(true);
