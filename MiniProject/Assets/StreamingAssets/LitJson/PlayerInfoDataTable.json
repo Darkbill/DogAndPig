@@ -15,5 +15,7 @@
     5,
     6
   ],
-  "stageLevel" : 1
+  "stageLevel" : 1,
+  "playerLevel" : 1,
+  "exp" : 0
 }

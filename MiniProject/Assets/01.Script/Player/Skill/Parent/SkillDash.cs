@@ -1,5 +1,4 @@
 ﻿using GlobalDefine;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -82,7 +81,7 @@ public class SkillDash : Skill
 
         for(int i = 0;i<hitlst.Count;++i)
         {
-            hitlst[i].Damage(attackType, damage);
+            hitlst[i].Damage(attackType,GameMng.Ins.player.calStat.damage, damage);
         }
     }
 

@@ -1,7 +1,6 @@
 ﻿using GlobalDefine;
 public class PlayerData : TableBase
 {
-	public int level;
 	public float size;
 	public float healthPoint;
 	public float damage;
@@ -29,7 +28,7 @@ public class PlayerData : TableBase
 	}
 	public override float GetTableID()
 	{
-		return level;
+		return 1;
 	}
 	public float GetResist(eAttackType attackType)
 	{

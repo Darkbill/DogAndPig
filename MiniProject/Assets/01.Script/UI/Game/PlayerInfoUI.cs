@@ -18,21 +18,20 @@ public class PlayerInfoUI : MonoBehaviour
 	public Text nextStageText;
 	public void Setting()
 	{
-		levelText.text = GameMng.Ins.player.calStat.level.ToString();
-		healthText.text = string.Format("{0} / {1} ", GameMng.Ins.player.calStat.healthPoint,
-			GameMng.Ins.player.GetFullHP());
-		coinText.text = JsonMng.Ins.playerInfoDataTable.gold.ToString();
+		RenewPlayerInfo();
 		healthGageImagePos = healthGageImage.transform.position;
 	}
 	public void RenewPlayerInfo()
 	{
-		levelText.text = GameMng.Ins.player.calStat.level.ToString();
+		levelText.text = JsonMng.Ins.playerInfoDataTable.playerLevel.ToString();
+		coinText.text = JsonMng.Ins.playerInfoDataTable.gold.ToString();
 		float cHp = GameMng.Ins.player.calStat.healthPoint;
 		if (cHp < 0) cHp = 0;
 		healthText.text = string.Format("{0} / {1} ", cHp,
 			GameMng.Ins.player.GetFullHP());
 		healthGageImage.fillAmount = cHp / GameMng.Ins.player.GetFullHP();
-		stageLevelText.text = GameMng.Ins.stageLevel.ToString();
+		stageLevelText.text = JsonMng.Ins.playerInfoDataTable.stageLevel.ToString();
+		expImage.fillAmount = GameMng.Ins.player.GetEXPFill();
 	}
 	public void DamageToPlayer(int damage)
 	{
@@ -87,7 +86,7 @@ public class PlayerInfoUI : MonoBehaviour
 	}
 	public void StageClear()
 	{
-		stageLevelText.text = GameMng.Ins.stageLevel.ToString();
+		stageLevelText.text = JsonMng.Ins.playerInfoDataTable.stageLevel.ToString();
 		stageLevelText.transform.localScale = new Vector3(2, 2, 2);
 		stageLevelText.transform.DOScale(1, 0.5f);
 		nextStageText.gameObject.SetActive(true);
@@ -98,7 +97,7 @@ public class PlayerInfoUI : MonoBehaviour
 				nextStageText.transform.localScale = Vector3.one;
 				nextStageText.transform.position = new Vector3(nextStageText.transform.position.x - 400, nextStageText.transform.position.y, nextStageText.transform.position.z);
 				nextStageText.gameObject.SetActive(false);
-				GameMng.Ins.StartGame();
+				UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
 			});
 		});
 	}

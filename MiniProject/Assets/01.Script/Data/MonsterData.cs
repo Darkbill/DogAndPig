@@ -41,6 +41,8 @@ public class MonsterData : TableBase
 				return waterResist;
 			case eAttackType.Lightning:
 				return lightningResist;
+			case eAttackType.Wind:
+				return windResist;
 			default:
 				return 0;
 		}

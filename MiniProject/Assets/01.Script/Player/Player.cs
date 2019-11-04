@@ -15,13 +15,10 @@ public class Player : MonoBehaviour
 	public float degree;
 	// * private * //
 	private List<ConditionData> conditionList = new List<ConditionData>();
-    private ConditionData conditionMain = new ConditionData();
+	private ConditionData conditionMain = new ConditionData();
 	private PlayerData skillStat = new PlayerData();
 	private ObjectSetAttack att = new ObjectSetAttack();
-	private int exp = 0;
-    private Vector3 playerMonsterAutoAttackVec = Vector3.right;
-
-
+	private Monster attackMonster;
 	public void PlayerSetting()
 	{
 		calStat = JsonMng.Ins.playerDataTable[1];
@@ -29,7 +26,7 @@ public class Player : MonoBehaviour
 	}
 	public void CalculatorStat()
 	{
-		calStat = JsonMng.Ins.playerDataTable[1].AddStat(skillStat, conditionList, calStat.level);
+		calStat = JsonMng.Ins.playerDataTable[1].AddStat(skillStat, conditionList);
 	}
 	public void CalculatorBuffStat()
 	{
@@ -40,37 +37,28 @@ public class Player : MonoBehaviour
 	}
 	public void ChangePlayerAngle()
 	{
-		if (playerStateMachine.isAttack == false)
+		if (playerStateMachine.isAttack)
 		{
-			if (Mathf.Abs(degree) != 90)
+			Vector3 dir = attackMonster.transform.position - transform.position;
+			degree = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+		}
+		if (Mathf.Abs(degree) != 90)
+		{
+			if (degree > 90 || degree < -90)
 			{
-				if (degree > 90 || degree < -90)
-				{
-					transform.eulerAngles = new Vector3(0, 180, 0);
-				}
-				else
-				{
-					transform.eulerAngles = new Vector3(0, 0, 0);
-				}
+				transform.eulerAngles = new Vector3(0, 180, 0);
+			}
+			else
+			{
+				transform.eulerAngles = new Vector3(0, 0, 0);
 			}
 		}
-		else
-		{
-			AttackCheck();
-		}
+
 	}
 	private void Update()
 	{
 		UpdateBuff(Time.deltaTime);
 		ChangePlayerAngle();
-
-        var monsterPool = GameMng.Ins.monsterPool.monsterList;
-        playerMonsterAutoAttackVec = att.GetFindShortStreet(monsterPool,
-            gameObject.transform.position,
-            calStat.attackRange + 0.3f,
-            gameObject.transform.right.x);
-
-        Debug.DrawRay(gameObject.transform.position + new Vector3(0, 0.3f, 0), playerMonsterAutoAttackVec);
     }
 	#region Damage
 	/* Damage */
@@ -175,19 +163,19 @@ public class Player : MonoBehaviour
 	#endregion
 	public void AddEXP(int _exp)
 	{
-		exp += _exp;
-		if(exp >= JsonMng.Ins.expDataTable[calStat.level+1].requiredExp)
+		JsonMng.Ins.playerInfoDataTable.exp += _exp;
+		if(JsonMng.Ins.playerInfoDataTable.exp >= JsonMng.Ins.expDataTable[GetLevel()+ 1].requiredExp)
 		{
-			int saveEXP = JsonMng.Ins.expDataTable[calStat.level + 1].requiredExp - exp;
+			int saveEXP = JsonMng.Ins.expDataTable[GetLevel() + 1].requiredExp - JsonMng.Ins.playerInfoDataTable.exp;
 			LevelUP();
-			exp = saveEXP;
+			JsonMng.Ins.playerInfoDataTable.exp = saveEXP;
 		}
 	}
 
 	private void LevelUP()
 	{
-		calStat.level++;
-		exp = 0;
+		JsonMng.Ins.playerInfoDataTable.playerLevel++;
+		JsonMng.Ins.playerInfoDataTable.exp = 0;
 		CalculatorStat();
 		UIMngInGame.Ins.RenewPlayerInfo();
 	}
@@ -199,76 +187,86 @@ public class Player : MonoBehaviour
 	}
 	public void AttackStart()
 	{
+		//Attack 쿨타임이 채워지면 공격가능 범위 내에 가장 가까운 적 등록, Attack시작
 		var monsterPool = GameMng.Ins.monsterPool.monsterList;
+		float distance = float.MaxValue;
+		int monsterIndex = -1;
         for (int i = 0; i < monsterPool.Count; ++i)
 		{
 			if (monsterPool[i].active == false) continue;
 
-			if (att.BaseAttack(playerMonsterAutoAttackVec,
-				(monsterPool[i].gameObject.transform.position + new Vector3(0, monsterPool[i].monsterData.size, 0)) - (transform.position + new Vector3(0,0.3f,0)),
-				calStat.attackRange + 0.3f,
+			if (att.BaseAttack(GetForward(),
+				(monsterPool[i].gameObject.transform.position + new Vector3(0, monsterPool[i].monsterData.size, 0)) - (transform.position + new Vector3(0,calStat.size,0)),
+				calStat.attackRange + calStat.size,
 				calStat.attackAngle))
 			{
-				playerStateMachine.attackDelayTime = 0;
-				ChangeAnimation(ePlayerAnimation.Attack);
-				playerStateMachine.isAttack = true;
+				float m = (monsterPool[i].gameObject.transform.position - gameObject.transform.position).magnitude;
+				if (distance > m)
+				{
+					distance = m;
+					monsterIndex = i;
+				}
 			}
+		}
+		if (monsterIndex == -1) return;
+		AttackSet(true);
+		attackMonster = GameMng.Ins.monsterPool.monsterList[monsterIndex];
+	}
+	private void AttackSet(bool isAttack)
+	{
+		if(isAttack)
+		{
+			playerStateMachine.attackDelayTime = 0;
+			ChangeAnimation(ePlayerAnimation.Attack);
+			playerStateMachine.isAttack = true;
+		}
+		else
+		{
+			attackMonster = null;
+			playerStateMachine.ChangeStateIdle();
 		}
 	}
 	public void Attack()
 	{
 		//애니메이션 이벤트 호출
-		var monsterPool = GameMng.Ins.monsterPool.monsterList;
-		for (int i = 0; i < monsterPool.Count; ++i)
+		if(AttackCheck())
 		{
-			if (monsterPool[i].active == false) continue;
-
-			if (att.BaseAttack(playerMonsterAutoAttackVec,
-				(monsterPool[i].transform.position + new Vector3(0, monsterPool[i].monsterData.size, 0)) - (transform.position + new Vector3(0, 0.3f, 0)),
-				calStat.attackRange + 0.3f,
-				calStat.attackAngle))
+			if (Rand.Permile(calStat.knockback))
 			{
-				if (Rand.Permile(calStat.knockback))
-				{
-					monsterPool[i].OutStateAdd(new ConditionData(eBuffType.NockBack, 4, 1, 2), 300);
-				}
-				if (Rand.Permile(calStat.criticalChance))
-				{
-					monsterPool[i].Damage(eAttackType.Physics, calStat.damage * calStat.criticalDamage);
-				}
-				else
-				{
-					monsterPool[i].Damage(eAttackType.Physics, calStat.damage);
-				}
-                GameMng.Ins.HitToEffect(eAttackType.Physics,
-                    monsterPool[i].transform.position + new Vector3(0, monsterPool[i].monsterData.size, 0), 
-                    transform.position + new Vector3(0, calStat.size, 0));
-            }
+				attackMonster.OutStateAdd(new ConditionData(eBuffType.NockBack, 4, 1, 2), 300);
+			}
+			if (Rand.Permile(calStat.criticalChance))
+			{
+				attackMonster.Damage(eAttackType.Physics, calStat.damage * calStat.criticalDamage);
+			}
+			else
+			{
+				attackMonster.Damage(eAttackType.Physics, calStat.damage);
+			}
+			GameMng.Ins.HitToEffect(eAttackType.Physics,
+				attackMonster.transform.position + new Vector3(0, attackMonster.monsterData.size, 0),
+				transform.position + new Vector3(0, calStat.size, 0));
 		}
+		
 		playerStateMachine.ChangeStateIdle();
 	}
 
-	private void AttackCheck()
+	private bool AttackCheck()
 	{
-		int count = 0;
-		var monsterPool = GameMng.Ins.monsterPool.monsterList;
-        for (int i = 0; i < monsterPool.Count; ++i)
+		//Attack시작 부터 종료될 때까지 등록된 몬스터가 존재하는지 체크
+		if (attackMonster == null || attackMonster.active == false)
 		{
-			if (monsterPool[i].active == false) continue;
-
-
-			//TODO : 몬스터 사이즈에 따라 업벡터 수정
-			if (att.BaseAttack(playerMonsterAutoAttackVec,
-				(monsterPool[i].gameObject.transform.position + new Vector3(0, monsterPool[i].monsterData.size, 0)) - (transform.position + new Vector3(0, 0.3f, 0)),
-				calStat.attackRange + 0.3f,
-				calStat.attackAngle))
-			{
-				count++;
-			}
+			AttackSet(false);
+			return false;
 		}
-		if(count == 0)
+		if (att.BaseAttack(GetForward(),
+			(attackMonster.gameObject.transform.position + new Vector3(0, attackMonster.monsterData.size, 0)) - (transform.position + new Vector3(0, calStat.size, 0)),
+			calStat.attackRange + calStat.size,
+			calStat.attackAngle)) return true;
+		else
 		{
-			playerStateMachine.ChangeStateIdle();
+			AttackSet(false);
+			return false;
 		}
 	}
 	public void SetAnimationSpeed(ePlayerAnimation animationType)
@@ -296,10 +294,14 @@ public class Player : MonoBehaviour
 	}
 	public float GetFullHP()
 	{
-		return skillStat.healthPoint + calStat.GetHealthPoint(calStat.level);
+		return skillStat.healthPoint + calStat.GetHealthPoint(GetLevel());
 	}
 	public float GetEXPFill()
 	{
-		return (float)exp / JsonMng.Ins.expDataTable[calStat.level + 1].requiredExp;
+		return (float)JsonMng.Ins.playerInfoDataTable.exp / JsonMng.Ins.expDataTable[GetLevel() + 1].requiredExp;
+	}
+	public int GetLevel()
+	{
+		return JsonMng.Ins.playerInfoDataTable.playerLevel;
 	}
 }

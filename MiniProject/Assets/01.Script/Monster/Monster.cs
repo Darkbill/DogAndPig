@@ -189,8 +189,8 @@ public class Monster : MonoBehaviour
 		monsterStateMachine.ChangeStateDead();
         active = false;
         ColliderOnOff(false);
-        GameMng.Ins.AddGold(GameMng.Ins.stageLevel);
-		GameMng.Ins.AddEXP(GameMng.Ins.stageLevel);
+        GameMng.Ins.AddGold(JsonMng.Ins.playerInfoDataTable.stageLevel);
+		GameMng.Ins.AddEXP(JsonMng.Ins.playerInfoDataTable.stageLevel);
 		GameMng.Ins.monsterPool.DeadMonster(gameObject);
 	}
 

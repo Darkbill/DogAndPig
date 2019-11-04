@@ -1,7 +1,4 @@
 ﻿using GlobalDefine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class Freezen : BulletPlayerSkill
 {
@@ -13,12 +10,13 @@ public class Freezen : BulletPlayerSkill
     private float slow = 0.0f;
 	private float per;
 
-	public void Setting(int id,float mT,float s,float p)
+	public void Setting(int id,float mT,float s,float p,float d)
 	{
 		Id = id;
 		MaxTimer = mT;
 		slow = s;
 		per = p;
+		damage = d;
 	}
 	public override void Crash(Monster monster)
 	{

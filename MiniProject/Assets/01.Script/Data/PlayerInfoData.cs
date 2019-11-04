@@ -7,6 +7,8 @@ public class PlayerInfoData
 	public List<int> setSkillList = new List<int>();
 	public List<int> haveSkillList = new List<int>();
 	public int stageLevel;
+	public int playerLevel;
+	public int exp;
 	//TODO : 스테이지정보
 	public PlayerInfoData()
 	{
