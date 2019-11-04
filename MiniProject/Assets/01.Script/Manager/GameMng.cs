@@ -33,9 +33,13 @@ public class GameMng : MonoBehaviour
 	public int aimSkillID;
 	private void Awake()
 	{
+		LoadGame();
+	}
+	public void LoadGame()
+	{
 		//테스트 코드
 		Time.timeScale = 1;
-		stageLevel = 1;
+		stageLevel = JsonMng.Ins.playerInfoDataTable.stageLevel;
 		player.PlayerSetting();
 		aimSkillID = -1;
 		StartGame();
@@ -58,6 +62,7 @@ public class GameMng : MonoBehaviour
 	}
 	public void AllClear()
 	{
+		JsonMng.Ins.playerInfoDataTable.stageLevel = stageLevel + 1;
 		UIMngInGame.Ins.AllClear();
 	}
 	public void DamageToPlayer(eAttackType attackType, float damage)

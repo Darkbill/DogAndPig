@@ -6,6 +6,7 @@ public class PlayerInfoData
 	public int diamond;
 	public List<int> setSkillList = new List<int>();
 	public List<int> haveSkillList = new List<int>();
+	public int stageLevel;
 	//TODO : 스테이지정보
 	public PlayerInfoData()
 	{

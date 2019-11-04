@@ -3819,9 +3819,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1926497420}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 547203917}
+        m_MethodName: LoadGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11056,7 +11056,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.67
-  m_Text: RESTART
+  m_Text: Next Level
 --- !u!222 &1585815843
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11952,7 +11952,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1cc7b76ffc8cf49198080ed9652de02c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1499722afa9ea47bd9fdb77cef3cf650, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
