@@ -136,14 +136,15 @@
   },
   {
     "skillID": 10,
-    "skillName": "empty",
-    "skillType": 0,
-    "activeType": 0,
-    "target": 0,
+    "skillName": "LinkIceBalt",
+    "skillType": 3,
+    "activeType": 2,
+    "target": 1,
     "level": 3,
-    "price": 0,
+    "price": 2000,
     "optionArr": [
-      0
+      1,
+      5
     ]
   }
 ]

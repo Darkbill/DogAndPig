@@ -4,8 +4,8 @@
   "setSkillList": [
     1,
     2,
-    7,
-    9
+    9,
+    10
   ],
   "haveSkillList": [
     1,
@@ -16,7 +16,8 @@
     6,
     7,
     8,
-    9
+    9,
+    10
   ],
   "stageLevel" : 1,
   "playerLevel" : 1,
