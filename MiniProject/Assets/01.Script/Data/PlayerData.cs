@@ -19,9 +19,6 @@ public class PlayerData
     public float knockback = 0;
     public float stun = 0;
 
-    public bool knockbackAtt = false;
-    public bool stunAtt = false;
-
     public PlayerData()
 	{
 
@@ -42,11 +39,6 @@ public class PlayerData
 				return 0;
 		}
 	}
-    public void ResetAttackType()
-    {
-        knockbackAtt = false;
-        stunAtt = false;
-    }
 	public int GetHealthPoint(int lv)
 	{
 		return (int)((lv * JsonMng.Ins.playerDataTable.healthPoint) + ((lv + 1) * (lv - 1)));

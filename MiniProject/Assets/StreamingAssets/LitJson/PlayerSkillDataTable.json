@@ -123,14 +123,15 @@
   },
   {
     "skillID": 9,
-    "skillName": "empty",
-    "skillType": 0,
-    "activeType": 0,
-    "target": 0,
+    "skillName": "ExPlosion",
+    "skillType": 2,
+    "activeType": 3,
+    "target": 1,
     "level": 3,
-    "price": 0,
+    "price": 2000,
     "optionArr": [
-      0
+      1,
+      5
     ]
   },
   {
