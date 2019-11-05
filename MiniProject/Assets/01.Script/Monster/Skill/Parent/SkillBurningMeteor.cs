@@ -91,14 +91,22 @@ public class SkillBurningMeteor : Skill
 	private void RandomTargetting()
 	{
 		++Count;
-		for (int i = 0; i < MeteorList.Count; ++i)
-		{
-			if (i == 0)
-			{
-                MeteorList[i].transform.position = GameMng.Ins.player.transform.position;
-			}
+        Vector2 mapsiz = new Vector2(DefineClass.MapSizX, DefineClass.MapSizY);
 
-			Vector3 o = new Vector3((float)Rand.Range(-Radius, Radius) / 10, (float)Rand.Range(-Radius, Radius) / 10, 0);
+        for (int i = 0; i < MeteorList.Count; ++i)
+		{
+            Vector3 o = new Vector3();
+            if (i == 0)
+            {
+                MeteorList[i].transform.position = GameMng.Ins.player.transform.position;
+                GameMng.Ins.objectPool.effectPool.GetHitTargetEff(MeteorList[i].transform.position, skillID);
+                if (i == Count - 1)
+                    break;
+                continue;
+            }
+
+            o = new Vector3((float)Rand.Range((int)-mapsiz.x, (int)mapsiz.x) / 10,
+                (float)Rand.Range((int)-mapsiz.y, (int)mapsiz.y) / 10, 0);
             if ((MeteorList[i].transform.position + o).x < -DefineClass.MapSizX / 10 ||
                 (MeteorList[i].transform.position + o).x > DefineClass.MapSizX / 10 ||
                 (MeteorList[i].transform.position + o).y < -DefineClass.MapSizY / 10 ||
@@ -108,7 +116,7 @@ public class SkillBurningMeteor : Skill
 				--i;
 				continue;
 			}
-            MeteorList[i].transform.position += o;
+            MeteorList[i].transform.position = o;
             GameMng.Ins.objectPool.effectPool.GetHitTargetEff(MeteorList[i].transform.position,skillID);
 
 			if (i == Count - 1)
