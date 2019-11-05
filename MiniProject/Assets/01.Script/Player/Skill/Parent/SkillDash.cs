@@ -81,6 +81,7 @@ public class SkillDash : Skill
         for(int i = 0;i<hitlst.Count;++i)
         {
             hitlst[i].Damage(attackType,GameMng.Ins.player.calStat.damage, damage);
+			GameMng.Ins.HitToEffect(attackType, hitlst[i].transform.position, gameObject.transform.position);
         }
     }
 

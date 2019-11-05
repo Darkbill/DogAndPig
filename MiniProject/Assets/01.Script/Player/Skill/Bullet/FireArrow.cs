@@ -7,11 +7,14 @@ public class FireArrow : BulletPlayerSkill
 	private float damage;
 	private float speed;
 	private Vector3 dir;
-	public void Setting(eAttackType type, float _damage, float _speed)
+	private float arrowActiveTime;
+	private float cTime;
+	public void Setting(eAttackType type, float _damage, float _speed,float _arrowActiveTime)
 	{
 		attackType = type;
 		damage = _damage;
 		speed = _speed;
+		arrowActiveTime = _arrowActiveTime;
 		gameObject.SetActive(false);
 	}
 	public void Setting(Vector3 _dir,Vector3 startPos,float zAngle)
@@ -24,12 +27,19 @@ public class FireArrow : BulletPlayerSkill
 	}
 	private void Update()
 	{
+		cTime += Time.deltaTime;
+		if(cTime >= arrowActiveTime)
+		{
+			cTime = 0;
+			gameObject.SetActive(false);
+			return;
+		}
 		gameObject.transform.position += dir * speed * Time.deltaTime;
 	}
 	public override void Crash(Monster monster)
 	{
 		monster.Damage(attackType, GameMng.Ins.player.calStat.damage, damage);
 		gameObject.SetActive(false);
-		//TODO : 피격이펙트
+		GameMng.Ins.HitToEffect(attackType, monster.transform.position, gameObject.transform.position);
 	}
 }

@@ -1,16 +1,14 @@
-﻿using GlobalDefine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class HitBase : MonoBehaviour
-{ 
+{
+	public ParticleSystem particle;
     public void RemoveSet() { gameObject.SetActive(false); }
 
     private void Update()
     {
-        if (!gameObject.GetComponent<ParticleSystem>().isPlaying)
+        if (!particle.isPlaying)
             gameObject.SetActive(false);
     }
 }

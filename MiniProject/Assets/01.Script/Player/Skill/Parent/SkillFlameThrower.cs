@@ -50,7 +50,8 @@ public class SkillFlameThrower : Skill
 		gameObject.SetActive(false);
 	}
 	#endregion
-	void Update()
+
+	private void FixedUpdate()
 	{
 		delayTime += Time.deltaTime;
 		if (activeFlag)
@@ -60,7 +61,7 @@ public class SkillFlameThrower : Skill
 			{
 				GameMng.Ins.EndSkillAim();
 			}
-			if(cTime >= randSpawnTime)
+			if (cTime >= randSpawnTime)
 			{
 				cTime -= randSpawnTime;
 				randSpawnTime = Random.Range(spawnTime - spawnTime * updownScale, spawnTime + spawnTime * updownScale);

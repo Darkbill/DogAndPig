@@ -13,11 +13,13 @@ public class SkillSpawnFireArrow : Skill
 		ActiveTime,
 		ArrowInitTime,
 		ArrowSpeed,
+		ArrowActiveTime,
 	}
 	private float damage;
 	private float activeTime;
 	private float arrowInitTime;
 	private float arrowSpeed;
+	private float arrowActiveTime;
 	public override void SkillSetting()
 	{
 		skillID = 7;
@@ -29,10 +31,11 @@ public class SkillSpawnFireArrow : Skill
 		activeTime = skillData.optionArr[(int)eSpawnFireArrowOption.ActiveTime];
 		arrowInitTime = skillData.optionArr[(int)eSpawnFireArrowOption.ArrowInitTime];
 		arrowSpeed = skillData.optionArr[(int)eSpawnFireArrowOption.ArrowSpeed];
+		arrowActiveTime = skillData.optionArr[(int)eSpawnFireArrowOption.ArrowActiveTime];
 		delayTime = cooldownTime;
 		for(int i = 0; i < firArrowList.Count; ++i)
 		{
-			firArrowList[i].Setting(skillType,damage,arrowSpeed);
+			firArrowList[i].Setting(skillType,damage,arrowSpeed, arrowActiveTime);
 			firArrowList[i].transform.parent = GameMng.Ins.skillMng.transform;
 		}
 		gameObject.SetActive(false);
@@ -51,7 +54,6 @@ public class SkillSpawnFireArrow : Skill
 	public override void OnDrop()
 	{
 		base.OnDrop();
-		Clear();
 		ActiveSkill();
 		CreateGate();
 		StartCoroutine(CreateArrow());
@@ -65,6 +67,7 @@ public class SkillSpawnFireArrow : Skill
 		float cTime = 0;
 		while(delayTime <= activeTime)
 		{
+			if (gameObject.activeSelf == false) yield break;
 			cTime += Time.deltaTime;
 			if(cTime >= arrowInitTime)
 			{
@@ -87,13 +90,6 @@ public class SkillSpawnFireArrow : Skill
 		gateParticle.gameObject.transform.position = GameMng.Ins.player.transform.position;
 		gateParticle.gameObject.transform.eulerAngles = new Vector3(0, 0, GameMng.Ins.player.degree);
 		gateParticle.Play();
-	}
-	private void Clear()
-	{
-		for(int i = 0; i < firArrowList.Count; ++i)
-		{
-			firArrowList[i].gameObject.SetActive(false);
-		}
 	}
 }
 

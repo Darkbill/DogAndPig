@@ -50,5 +50,6 @@ public class Nova : BulletPlayerSkill
 	{
         monster.Damage(Attacktype, damage);
         if(Rand.Permile(per)) monster.OutStateAdd(new ConditionData(bufftype, Id, 10.0f, 500));
-    }
+		GameMng.Ins.HitToEffect(Attacktype, monster.transform.position, gameObject.transform.position);
+	}
 }

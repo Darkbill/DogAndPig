@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using GlobalDefine;
 public class SkillFloorFreeze : Skill
 {
 	#region SkillSetting
@@ -13,6 +13,7 @@ public class SkillFloorFreeze : Skill
 		DebufActivePer,
 		DebugEffectPer,
 		DebufTime,
+		BuffType,
     }
 	private float damage;
 	private float width;
@@ -21,7 +22,7 @@ public class SkillFloorFreeze : Skill
 	private float DebufActivePer;
 	private float DebufEffectPer;
 	private float DebufTime;
-
+	private eBuffType buffType;
 	public override void SkillSetting()
 	{
 		skillID = 3;
@@ -37,7 +38,7 @@ public class SkillFloorFreeze : Skill
 		cooldownTime = skillData.optionArr[(int)eFloorFreezeOption.CoolTime];
 		DebufEffectPer = skillData.optionArr[(int)eFloorFreezeOption.DebugEffectPer];
 		delayTime = cooldownTime;
-        FreezenShot.Setting(skillID, DebufTime, DebufEffectPer, DebufActivePer,damage);
+        FreezenShot.Setting(skillID, DebufTime, DebufEffectPer, DebufActivePer,damage, skillType,buffType);
 		gameObject.SetActive(false);
 	}
 	#endregion
