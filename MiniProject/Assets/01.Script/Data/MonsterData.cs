@@ -25,7 +25,7 @@ public class MonsterData : TableBase
 	{
 
 	}
-	public override float GetTableID()
+	public override int GetTableID()
 	{
 		return monsterID;
 	}

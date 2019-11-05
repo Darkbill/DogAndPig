@@ -39,7 +39,6 @@ public class LevelDesignMng : MonoBehaviour
 	public Text monsterLevel;
 	public Toggle monsterToggle;
 	public Text stageText;
-	public int lastID;
 	private void Awake()
 	{
 		LoadStageData();
@@ -112,7 +111,6 @@ public class LevelDesignMng : MonoBehaviour
 		{
 			if (monsterExamList[i] == null) continue;
 			StageDataTable temp = new StageDataTable();
-			temp.stageID = ++lastID;
 			temp.stageLevel = int.Parse(dropDown.captionText.text);
 			temp.enemyIndex = int.Parse(monsterExamList[i].indexText.text);
 			temp.enemyLevel = int.Parse(monsterExamList[i].levelText.text);
@@ -157,7 +155,6 @@ public class LevelDesignMng : MonoBehaviour
 				temp.Add(save);
 				table.Add(save.stageLevel, temp);
 			}
-			lastID = save.stageID;
 		}
 
 		Setting();

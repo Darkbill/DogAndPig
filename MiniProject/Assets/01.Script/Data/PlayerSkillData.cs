@@ -12,7 +12,7 @@ public class PlayerSkillData : TableBase
 	{
 
 	}
-	public override float GetTableID()
+	public override int GetTableID()
 	{
 		return skillID;
 	}

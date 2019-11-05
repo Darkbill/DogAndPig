@@ -28,7 +28,8 @@ public class JsonMng : MonoBehaviour
 	public Dictionary<int, PlayerSkillData> playerSkillDataTable { get; private set; } = new Dictionary<int, PlayerSkillData>();
 	public Dictionary<int, MonsterData> monsterDataTable { get; private set; } = new Dictionary<int, MonsterData>();
 	public Dictionary<int, MonsterSkillData> monsterSkillDataTable { get; private set; } = new Dictionary<int, MonsterSkillData>();
-	public Dictionary<int, StageDataTable> stageDataTable { get; private set; } = new Dictionary<int, StageDataTable>();
+	public Dictionary<int, List<StageDataTable>> stageDataTable { get; private set; }
+												= new Dictionary<int, List<StageDataTable>>();
 	public Dictionary<int, EXPData> expDataTable { get; private set; } = new Dictionary<int, EXPData>();
 	public PlayerInfoData playerInfoDataTable { get; private set; } = new PlayerInfoData();
 	public PlayerData playerDataTable { get; private set; } = new PlayerData();
@@ -72,6 +73,10 @@ public class JsonMng : MonoBehaviour
 		}
 		else playerInfoDataTable = table as PlayerInfoData;
 		cDownCount++;
+		if (cDownCount == AllDownCount)
+		{
+			UIMng.Ins.Setting();
+		}
 	}
 	private IEnumerator StartLoad<T>(string fileName, Dictionary<int, T> table) where T : TableBase
 	{
@@ -83,7 +88,34 @@ public class JsonMng : MonoBehaviour
 		for (int i = 0; i < jsonData.Count; ++i)
 		{
 			T save = JsonMapper.ToObject<T>(jsonData[i].ToJson());
-			table.Add((int)save.GetTableID(), save);
+			table.Add(save.GetTableID(), save);
+		}
+		cDownCount++;
+		if (cDownCount == AllDownCount)
+		{
+			UIMng.Ins.Setting();
+		}
+	}
+	private IEnumerator StartLoad<T>(string fileName, Dictionary<int,List<T>> table) where T : TableBase
+	{
+		string path = string.Format("{0}/LitJson/{1}.json", Application.streamingAssetsPath, fileName);
+		WWW www = new WWW(path);
+		yield return www;
+		string jsonString = www.text;
+		JsonData jsonData = JsonMapper.ToObject(jsonString);
+		for (int i = 0; i < jsonData.Count; ++i)
+		{
+			T save = JsonMapper.ToObject<T>(jsonData[i].ToJson());
+			if(table.ContainsKey(save.GetTableID()))
+			{
+				table[save.GetTableID()].Add(save);
+			}
+			else
+			{
+				List<T> temp = new List<T>();
+				temp.Add(save);
+				table.Add(save.GetTableID(), temp);
+			}
 		}
 		cDownCount++;
 		if (cDownCount == AllDownCount)
@@ -122,13 +154,6 @@ public class JsonMng : MonoBehaviour
 
 	public List<StageDataTable> GetStageData(int stagelevel)
 	{
-		List<StageDataTable> lv = new List<StageDataTable>();
-		var en = stageDataTable.GetEnumerator();
-		while (en.MoveNext())
-		{
-			if (en.Current.Value.stageLevel == stagelevel)
-				lv.Add(en.Current.Value);
-		}
-		return lv;
+		return stageDataTable[stagelevel];
 	}
 }

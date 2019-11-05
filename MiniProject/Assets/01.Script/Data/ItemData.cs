@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ItemData : TableBase
 {
-	public float itemID;
+	public int itemID;
 	public string itemName;
-	public override float GetTableID()
+	public override int GetTableID()
 	{
 		return itemID;
 	}

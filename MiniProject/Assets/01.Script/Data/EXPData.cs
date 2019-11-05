@@ -3,7 +3,7 @@
 	public int level;
 	public int requiredExp;
 	public int cumulativeExp;
-	public override float GetTableID()
+	public override int GetTableID()
 	{
 		return level;
 	}
