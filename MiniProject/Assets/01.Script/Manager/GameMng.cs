@@ -52,13 +52,11 @@ public class GameMng : MonoBehaviour
 		JsonMng.Ins.playerInfoDataTable.playerLevel = 1;
 		JsonMng.Ins.playerInfoDataTable.exp = 0;
 		AddEXP(exp);
-		UIMngInGame.Ins.RenewPlayerInfo();
 		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
 	}
 	public void StartGame()
 	{
 		monsterPool.StartStage(JsonMng.Ins.playerInfoDataTable.stageLevel);
-		UIMngInGame.Ins.RenewPlayerInfo();
 	}
 	public void StageClear()
 	{

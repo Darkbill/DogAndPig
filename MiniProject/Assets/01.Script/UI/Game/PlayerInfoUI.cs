@@ -16,6 +16,7 @@ public class PlayerInfoUI : MonoBehaviour
 	private Coroutine fillCoroutine;
 	private float saveDamage = 0;
 	public Text nextStageText;
+	public Text expText;
 	public void Setting()
 	{
 		RenewPlayerInfo();
@@ -32,6 +33,11 @@ public class PlayerInfoUI : MonoBehaviour
 		healthGageImage.fillAmount = cHp / GameMng.Ins.player.GetFullHP();
 		stageLevelText.text = JsonMng.Ins.playerInfoDataTable.stageLevel.ToString();
 		expImage.fillAmount = GameMng.Ins.player.GetEXPFill();
+#if UNITY_EDITOR_WIN
+		expText.text = string.Format("{0} / {1}", JsonMng.Ins.playerInfoDataTable.exp + JsonMng.Ins.expDataTable[JsonMng.Ins.playerInfoDataTable.playerLevel].cumulativeExp, (JsonMng.Ins.expDataTable[JsonMng.Ins.playerInfoDataTable.playerLevel + 1].cumulativeExp));
+#else
+		expText.text = string.Format("{0} / {1}", JsonMng.Ins.playerInfoDataTable.exp, (JsonMng.Ins.expDataTable[JsonMng.Ins.playerInfoDataTable.playerLevel + 1].requiredExp));
+#endif
 	}
 	public void DamageToPlayer(int damage)
 	{
