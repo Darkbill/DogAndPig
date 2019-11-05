@@ -12,6 +12,7 @@ public class FireArrow : BulletPlayerSkill
 		attackType = type;
 		damage = _damage;
 		speed = _speed;
+		gameObject.SetActive(false);
 	}
 	public void Setting(Vector3 _dir,Vector3 startPos,float zAngle)
 	{

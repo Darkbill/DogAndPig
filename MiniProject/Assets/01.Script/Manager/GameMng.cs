@@ -28,7 +28,10 @@ public class GameMng : MonoBehaviour
 	public SkillMng skillMng;
 	public ObjectPool objectPool;
 	public InputSystem inputSystem;
+	//테스트코드
 	public int stage;
+	[Range(0, 10700)]
+	public int exp;
 	[HideInInspector]
 	public int aimSkillID;
 	private void Awake()
@@ -45,9 +48,12 @@ public class GameMng : MonoBehaviour
 	}
 	public void ChangeStage()
 	{
-		monsterPool.ResetMonster();
-		monsterPool.StartStage(stage);
+		JsonMng.Ins.playerInfoDataTable.stageLevel = stage;
+		JsonMng.Ins.playerInfoDataTable.playerLevel = 1;
+		JsonMng.Ins.playerInfoDataTable.exp = 0;
+		AddEXP(exp);
 		UIMngInGame.Ins.RenewPlayerInfo();
+		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
 	}
 	public void StartGame()
 	{

@@ -33,6 +33,7 @@ public class SkillSpawnFireArrow : Skill
 		for(int i = 0; i < firArrowList.Count; ++i)
 		{
 			firArrowList[i].Setting(skillType,damage,arrowSpeed);
+			firArrowList[i].transform.parent = GameMng.Ins.skillMng.transform;
 		}
 		gameObject.SetActive(false);
 	}

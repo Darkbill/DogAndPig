@@ -75,7 +75,7 @@
     "attackAngle": 20,
     "healthPoint": 1560,
     "damage": 25,
-    "armor": 16,
+    "armor": 8,
     "physicsResist": 500,
     "fireResist": 700,
     "waterResist": 500,
