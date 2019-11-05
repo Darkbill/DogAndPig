@@ -168,7 +168,7 @@ public class Player : MonoBehaviour
 		{
 			int saveEXP = JsonMng.Ins.expDataTable[GetLevel() + 1].requiredExp - JsonMng.Ins.playerInfoDataTable.exp;
 			LevelUP();
-			JsonMng.Ins.playerInfoDataTable.exp = saveEXP;
+			AddEXP(Mathf.Abs(saveEXP));
 		}
 	}
 
