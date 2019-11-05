@@ -1,32 +1,52 @@
 ﻿using UnityEngine;
-
+using System.Collections.Generic;
 public class SkillFlameThrower : Skill
 {
-	public Flame flame;
+	public List<Flame> flameList;
 	#region SkillSetting
-	private float activeTime;
-	enum eFrameThrowerOption
+
+	enum eFlameThrowerOption
 	{
 		Damage,
 		CoolTime,
 		ActiveTime,
+		SpawnTime,
+		FlameSpeed,
+		UpScaleSpeed,
+		FlameActiveTime,
+		ReducationSpeed,
 	}
 	private float damage;
-
-	public float ActiveTime { get => activeTime; set => activeTime = value; }
-	public float Damage { get => damage; set => damage = value; }
-
+	private float activeTime;
+	private float spawnTime;
+	private float randSpawnTime;
+	private float cTime;
+	private float flameSpeed;
+	private float upScaleSpeed;
+	private float flameActiveTime;
+	private float reducationSpeed;
+	private const float updownScale = 0.1f;
 	public override void SkillSetting()
 	{
 		skillID = 6;
 		PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
 		skillType = skillData.skillType;
 		target = skillData.target;
-		Damage = skillData.optionArr[(int)eFrameThrowerOption.Damage];
-		cooldownTime = skillData.optionArr[(int)eFrameThrowerOption.CoolTime];
-		ActiveTime = skillData.optionArr[(int)eFrameThrowerOption.ActiveTime];
+		damage = skillData.optionArr[(int)eFlameThrowerOption.Damage];
+		cooldownTime = skillData.optionArr[(int)eFlameThrowerOption.CoolTime];
+		activeTime = skillData.optionArr[(int)eFlameThrowerOption.ActiveTime];
+		spawnTime = skillData.optionArr[(int)eFlameThrowerOption.SpawnTime];
+		flameSpeed = skillData.optionArr[(int)eFlameThrowerOption.FlameSpeed];
+		upScaleSpeed = skillData.optionArr[(int)eFlameThrowerOption.UpScaleSpeed];
+		flameActiveTime = skillData.optionArr[(int)eFlameThrowerOption.FlameActiveTime];
+		reducationSpeed = skillData.optionArr[(int)eFlameThrowerOption.ReducationSpeed];
+		randSpawnTime = spawnTime;
 		delayTime = cooldownTime;
-		flame.Setting(skillType, Damage);
+		for (int i = 0; i < flameList.Count; ++i)
+		{
+			flameList[i].Setting(skillType, damage, upScaleSpeed, flameActiveTime,reducationSpeed);
+			flameList[i].transform.parent = GameMng.Ins.skillMng.transform;
+		}
 		gameObject.SetActive(false);
 	}
 	#endregion
@@ -35,9 +55,29 @@ public class SkillFlameThrower : Skill
 		delayTime += Time.deltaTime;
 		if (activeFlag)
 		{
-			if (delayTime > ActiveTime)
+			cTime += Time.deltaTime;
+			if (delayTime > activeTime)
 			{
 				GameMng.Ins.EndSkillAim();
+			}
+			if(cTime >= randSpawnTime)
+			{
+				cTime -= randSpawnTime;
+				randSpawnTime = Random.Range(spawnTime - spawnTime * updownScale, spawnTime + spawnTime * updownScale);
+				CreateFlame();
+			}
+		}
+	}
+	private void CreateFlame()
+	{
+		for(int i = 0; i < flameList.Count; ++i)
+		{
+			if(flameList[i].gameObject.activeSelf == false)
+			{
+				Vector3 lookDir = GameMng.Ins.player.GetForward();
+				lookDir = new Vector3(lookDir.x + Random.Range(-updownScale,updownScale), lookDir.y + Random.Range(-updownScale, updownScale));
+				flameList[i].Setting(GameMng.Ins.player.transform.position,Random.Range(flameSpeed - flameSpeed * updownScale, flameSpeed + flameSpeed * updownScale), lookDir, GameMng.Ins.player.degree);
+				return;
 			}
 		}
 	}
@@ -50,13 +90,11 @@ public class SkillFlameThrower : Skill
 	{
 		base.OnDrag();
 		ActiveSkill();
-		flame.gameObject.SetActive(true);
 		activeFlag = true;
 	}
 	public override void OnDrop()
 	{
 		base.OnDrop();
 		activeFlag = false;
-		flame.gameObject.SetActive(false);
 	}
 }

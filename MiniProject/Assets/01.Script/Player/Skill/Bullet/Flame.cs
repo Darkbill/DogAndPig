@@ -5,27 +5,42 @@ public class Flame : BulletPlayerSkill
 	private float damage;
 	private eAttackType attackType;
 	public BoxCollider2D frameCollider;
-	private float attackTime = 0.1f;
-	private float cTime = 0;
-	public void Setting(eAttackType type,float _damage)
+	private Vector3 dir;
+	private float speed;
+	private float upScaleSpeed;
+	private float activeTime;
+	private float cTime;
+	private float reducationSpeed;
+	private const float startScale = 0.75f;
+	public void Setting(eAttackType type,float _damage, float _upScaleSpeed,float _activeTime,float reSpeed)
 	{
 		damage = _damage;
 		attackType = type;
+		upScaleSpeed = _upScaleSpeed;
+		activeTime = _activeTime;
+		reducationSpeed = reSpeed;
 	}
-	private void OnDisable()
+	public void Setting(Vector3 pos,float _speed,Vector3 _dir,float degree)
 	{
 		cTime = 0;
+		speed = _speed;
+		gameObject.transform.localScale = new Vector3(startScale, startScale, startScale);
+		gameObject.SetActive(true);
+		float size = GameMng.Ins.player.calStat.size;
+		transform.position = pos + GameMng.Ins.player.GetForward() * size + new Vector3(0,size,0);
+		dir = _dir;
+		transform.eulerAngles = new Vector3(0, 0, degree);
 	}
 	private void Update()
 	{
+		gameObject.transform.position += dir * Time.deltaTime * speed;
+		speed -= Time.deltaTime * reducationSpeed;
+		gameObject.transform.localScale += new Vector3(startScale, startScale, startScale) * Time.deltaTime * upScaleSpeed;
 		cTime += Time.deltaTime;
-		if(cTime >= attackTime)
+		if(cTime >= activeTime)
 		{
-			frameCollider.enabled = !frameCollider.enabled;
-			cTime = 0;
+			gameObject.SetActive(false);
 		}
-		gameObject.transform.position = GameMng.Ins.player.transform.position + GameMng.Ins.player.GetForward() * 2f;
-		gameObject.transform.eulerAngles = new Vector3(0, 0, GameMng.Ins.player.degree);
 	}
 	public override void Crash(Monster monster)
 	{
