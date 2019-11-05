@@ -233,7 +233,7 @@ public class Player : MonoBehaviour
 		{
 			if (Rand.Permile(calStat.knockback))
 			{
-				attackMonster.OutStateAdd(new ConditionData(eBuffType.NockBack, 0, 2, 0));
+				attackMonster.OutStateAdd(new ConditionData(eBuffType.NockBack, 0, 0, 2));
 			}
 			if (Rand.Permile(calStat.criticalChance))
 			{

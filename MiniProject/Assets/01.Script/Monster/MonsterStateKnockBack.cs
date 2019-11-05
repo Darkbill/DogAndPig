@@ -13,8 +13,7 @@ public class MonsterStateKnockBack : MonsterState
 	{
 		monsterObject.ChangeAnimation(eMonsterAnimation.Idle);
 		setspeed = Define.knockBackSpeed * monsterObject.monsterStateMachine.knockBackPower;
-		range = monsterObject.transform.position -
-			monsterObject.monsterStateMachine.knockBackDir;
+		range = monsterObject.monsterStateMachine.knockBackDir;
 		range.Normalize();
 	}
 

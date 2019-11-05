@@ -60,18 +60,18 @@ public class Monster : MonoBehaviour
 	//add에서 상태이상 비교하여 삽입.
 	public void OutStateAdd(ConditionData condition, Vector3 knockBackDir = new Vector3())
 	{
-		if (conditionMain != null)
-		{
-			if (conditionMain.buffType == condition.buffType)
-			{
-				if (conditionMain.currentTime < condition.currentTime)
-				{
-					conditionMain = condition;
-					AddConditionlist(conditionMain, knockBackDir);
-				}
-				return;
-			}
-		}
+		//if (conditionMain != null)
+		//{
+		//	if (conditionMain.buffType == condition.buffType)
+		//	{
+		//		if (conditionMain.currentTime < condition.currentTime)
+		//		{
+		//			conditionMain = condition;
+		//			AddConditionlist(conditionMain, knockBackDir);
+		//		}
+		//		return;
+		//	}
+		//}
 		conditionMain = condition;
 		AddConditionlist(conditionMain, knockBackDir);
 	}
@@ -85,7 +85,7 @@ public class Monster : MonoBehaviour
                 GameMng.Ins.monsterPool.SelectEffect(gameObject, condition);
 				break;
 			case eBuffType.NockBack:
-				monsterStateMachine.ChangeStateKnockBack(knockBackDir, condition.sustainmentTime);
+				monsterStateMachine.ChangeStateKnockBack(knockBackDir, condition.changeValue);
 				break;
 		}
 	}
@@ -101,15 +101,15 @@ public class Monster : MonoBehaviour
 				CalculatorStat();
 			}
 		}
-		if (conditionMain != null)
-		{
-			conditionMain.currentTime -= delayTime;
-			if (conditionMain.currentTime <= 0)
-			{
-				conditionMain = null;
-				monsterStateMachine.ChangeStateIdle();
-			}
-		}
+		//if (conditionMain != null)
+		//{
+		//	conditionMain.currentTime -= delayTime;
+		//	if (conditionMain.currentTime <= 0)
+		//	{
+		//		conditionMain = null;
+		//		monsterStateMachine.ChangeStateIdle();
+		//	}
+		//}
 	}
 	public void AddBuff(ConditionData condition)
 	{

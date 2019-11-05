@@ -24,7 +24,7 @@ public class ExplosionFire : BulletPlayerSkill
 	public override void Crash(Monster monster)
 	{
 		monster.Damage(type, GameMng.Ins.player.calStat.damage,damage);
-		monster.OutStateAdd(new ConditionData(eBuffType.NockBack, skillID, 2, 0),transform.position - monster.transform.position);
+		monster.OutStateAdd(new ConditionData(eBuffType.NockBack, skillID, 0, 2), monster.transform.position - transform.position);
 	}
 	private IEnumerator OffCollider()
 	{
