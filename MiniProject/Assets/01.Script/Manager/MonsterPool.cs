@@ -100,11 +100,27 @@ public class MonsterPool : MonoBehaviour
 		GameObject o = Instantiate(Resources.Load(string.Format("Monster/predator Variant_{0}", stageData.enemyIndex), typeof(GameObject))) as GameObject;
 		o.transform.position = new Vector3(stageData.enemyPosX, stageData.enemyPosY, 0);
 		Monster m = o.GetComponent<Monster>();
+        m.Angle = AnglePlayerSetting(m.transform.position);
 		m.monsterData.SetMonsterData(stageData.enemyLevel);
 		monsterList.Add(m);
 		SelectEffect(m.transform.position);
 	}
-	private void SelectEffect(Vector3 pos)
+    private float AnglePlayerSetting(Vector3 pos)
+    {
+        Vector3 rightvec = GameMng.Ins.player.transform.position - pos;
+        float angle = Mathf.Atan2(rightvec.y, rightvec.x) * Mathf.Rad2Deg;
+        if (angle < -90)
+            return Rand.Range(-180, -90);
+        else if (angle < 0)
+            return Rand.Range(-90, 0);
+        else if (angle < 90)
+            return Rand.Range(0, 90);
+        else
+            return Rand.Range(90, 180);
+        //return Mathf.Atan2(rightvec.y, rightvec.x) * Mathf.Rad2Deg;
+    }
+
+    private void SelectEffect(Vector3 pos)
 	{
 		for (int i = 0; i < monsterEffectList.Count; ++i)
 		{
