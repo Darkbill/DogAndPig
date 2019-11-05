@@ -254,7 +254,7 @@ public class Monster : MonoBehaviour
 
         float range = (gameObject.transform.position - playerpos).magnitude;
         if (range > 2) return;
-        if (range < monsterData.attackRange + monsterData.size)
+        if (range < monsterData.attackRange)
             return;
         else
             Angle -= 90;
