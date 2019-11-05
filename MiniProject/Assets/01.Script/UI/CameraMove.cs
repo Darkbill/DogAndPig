@@ -23,9 +23,9 @@ public class CameraMove : MonoBehaviour
 		//랜덤위치 도달시 돌아가게 할 플래그
 		isreturn = false;
 		currentTime = 0;
-		endTime = 0.25f;
+		endTime = 0.1f;
 		//흔들리는 크기
-		magnitube = 0.25f;
+		magnitube = 0.001f;
 		speed = 1;
 		StartCoroutine(StartCameraMove());
 	}
