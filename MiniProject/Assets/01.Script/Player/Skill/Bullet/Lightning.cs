@@ -29,7 +29,7 @@ public class Lightning : BulletPlayerSkill
         SetTimer = 0.0f;
         SplitCnt = splitcnt;
         MaxTimer = SplitCnt;
-        Speed = Rand.Random() % 10 / 3 + 1f;
+        Speed = (Rand.Random() % 10 / 3 + 1f) / 2;
         SetTimer = 0.0f;
     }
 

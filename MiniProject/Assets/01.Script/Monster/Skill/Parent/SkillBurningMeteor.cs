@@ -64,7 +64,7 @@ public class SkillBurningMeteor : Skill
         {
             Meteor o = Instantiate(meteor,
                 GameMng.Ins.player.transform.position,
-                Quaternion.Euler(0, 0, 0),
+                Quaternion.Euler(60, 0, 0),
                 gameObject.transform);
             o.gameObject.SetActive(false);
             MeteorList.Add(o);
@@ -123,6 +123,7 @@ public class SkillBurningMeteor : Skill
             if(!MeteorList[i].gameObject.activeSelf)
             {
                 MeteorList[i].transform.position = pos;
+                MeteorList[i].Setting();
                 MeteorList[i].gameObject.SetActive(true);
                 break;
             }
@@ -131,6 +132,6 @@ public class SkillBurningMeteor : Skill
 	public void EndEvent()
 	{
 		gameObject.SetActive(false);
-		MeteorRun(gameObject.transform.position + new Vector3(0, 0.7f, 0));
+		MeteorRun(gameObject.transform.position);
 	}
 }

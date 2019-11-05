@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using GlobalDefine;
+using System;
 
 public class Monster : MonoBehaviour
 {
@@ -239,7 +240,27 @@ public class Monster : MonoBehaviour
 			collision.GetComponent<BulletPlayerSkill>().Crash(this);
 		}
 	}
-	public void ActiveOff()
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Monster"))
+        {
+            ZigMonsterAngle();
+        }
+    }
+
+    private void ZigMonsterAngle()
+    {
+        Vector3 playerpos = GameMng.Ins.player.transform.position;
+
+        float range = (gameObject.transform.position - playerpos).magnitude;
+        if (range > 2) return;
+        if (range < monsterData.attackRange + monsterData.size)
+            return;
+        else
+            Angle -= 90;
+    }
+
+    public void ActiveOff()
 	{
 		//애니메이션 호출 함수
         Destroy(gameObject);

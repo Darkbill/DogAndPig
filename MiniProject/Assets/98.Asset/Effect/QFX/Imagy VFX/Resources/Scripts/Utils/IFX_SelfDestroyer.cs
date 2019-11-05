@@ -8,7 +8,7 @@ namespace QFX.IFX
         public override void Run()
         {
             base.Run();
-            Destroy(gameObject, LifeTime);
+            //Destroy(gameObject, LifeTime);
         }
     }
 }

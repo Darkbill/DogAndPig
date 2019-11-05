@@ -100,7 +100,7 @@ public class SkillSplitLightning : Skill
 					BulletLst[i].transform.right *
 					Time.deltaTime *
 					BulletLst[i].Speed;
-				StartCoroutine(corrset(i));
+				//StartCoroutine(corrset(i));
 				//                BulletLst[i].transform.eulerAngles += new Vector3(0, 0, randnum);
 			}
 		}

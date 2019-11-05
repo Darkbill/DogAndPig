@@ -9,7 +9,7 @@ public class Targetting : MonoBehaviour
 	public void EndEvent()
     {
         gameObject.SetActive(false);
-		actionDict[skillID](gameObject.transform.position + new Vector3(0, 0.7f, 0));
+		actionDict[skillID](gameObject.transform.position);
     }
 	public static void SetActionDict(int skillID,Action<Vector3> runSkill)
 	{
