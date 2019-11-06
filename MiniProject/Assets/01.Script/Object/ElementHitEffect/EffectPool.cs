@@ -20,7 +20,7 @@ public class EffectPool : MonoBehaviour
         CreateEffect("LightningHitEff", eAttackType.Lightning);
         CreateEffect("WindHitEff", eAttackType.Wind);
 
-        CreateHitTargetEff("Target");
+        CreateHitTargetEff("Targetting");
     }
 
     void CreateEffect(string effectname, eAttackType type)
@@ -53,6 +53,7 @@ public class EffectPool : MonoBehaviour
             o.transform.parent = gameObject.transform;
             o.SetActive(false);
             Targetting eff = o.GetComponent<Targetting>();
+            eff.EndPlaying();
             HitTargetEff.Add(eff);
         }
     }
@@ -66,7 +67,7 @@ public class EffectPool : MonoBehaviour
             if(!effectlist[type][i].gameObject.activeSelf)
             {
                 right.Normalize();
-                effectlist[type][i].transform.position = pos + right * 0.1f + new Vector3(0, siz);
+                effectlist[type][i].transform.position = pos + right * 0.3f + new Vector3(0, siz);
                 effectlist[type][i].gameObject.SetActive(true);
                 return;
             }
@@ -89,6 +90,7 @@ public class EffectPool : MonoBehaviour
                 HitTargetEff[i].transform.position = pos;
 				HitTargetEff[i].skillID = skillID;
 				HitTargetEff[i].gameObject.SetActive(true);
+                HitTargetEff[i].Playing();
                 return;
             }
         }
