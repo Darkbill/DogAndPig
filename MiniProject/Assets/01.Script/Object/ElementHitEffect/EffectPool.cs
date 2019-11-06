@@ -66,7 +66,7 @@ public class EffectPool : MonoBehaviour
             if(!effectlist[type][i].gameObject.activeSelf)
             {
                 right.Normalize();
-                effectlist[type][i].transform.position = pos + right * 0.3f + new Vector3(0, siz);
+                effectlist[type][i].transform.position = pos + right * 0.1f + new Vector3(0, siz);
                 effectlist[type][i].gameObject.SetActive(true);
                 return;
             }

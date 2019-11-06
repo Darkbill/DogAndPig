@@ -19,7 +19,7 @@ public class FireBall : BulletPlayerSkill
 		monster.Damage(attackType, GameMng.Ins.player.calStat.damage, damage);
 		GameMng.Ins.HitToEffect(attackType, 
             monster.transform.position + new Vector3(0, monster.monsterData.size), 
-            gameObject.transform.position + new Vector3(-0.05f, -0.15f),
+            gameObject.transform.position + new Vector3(-0.3f, -0.15f),
             monster.monsterData.size);
 		gameObject.SetActive(false);
 	}

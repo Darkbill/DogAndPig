@@ -46,6 +46,6 @@ public class Flame : BulletPlayerSkill
 	{
 		if (monster.active == false) return;
 		monster.Damage(eAttackType.Fire, GameMng.Ins.player.calStat.damage, damage);
-		GameMng.Ins.HitToEffect(attackType, monster.transform.position, gameObject.transform.position, monster.monsterData.size);
+		GameMng.Ins.HitToEffect(attackType, monster.transform.position, gameObject.transform.position - new Vector3(0.6f, 0), monster.monsterData.size);
 	}
 }
