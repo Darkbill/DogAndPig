@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using GlobalDefine;
 using System.Collections;
+using System.Collections.Generic;
 public class ExplosionFire : BulletPlayerSkill
 {
 	private eAttackType type;
@@ -9,7 +10,7 @@ public class ExplosionFire : BulletPlayerSkill
 	private int skillID;
 	public BoxCollider2D boxCol;
 	public CircleCollider2D circleCol;
-	//private 
+	private List<Monster> hitMonsterList = new List<Monster>();
 	public void Setting(eAttackType _type, float _damage,int _skillID)
 	{
 		type = _type;
@@ -18,6 +19,7 @@ public class ExplosionFire : BulletPlayerSkill
 	}
 	public void StartExPlosion(Vector3 pos)
 	{
+		hitMonsterList.Clear();
 		gameObject.transform.position = pos;
 		gameObject.SetActive(true);
 		explosion.Play();
@@ -25,6 +27,8 @@ public class ExplosionFire : BulletPlayerSkill
 	}
 	public override void Crash(Monster monster)
 	{
+		if (hitMonsterList.Contains(monster)) return;
+		hitMonsterList.Add(monster);
 		monster.Damage(type, GameMng.Ins.player.calStat.damage,damage);
 		monster.OutStateAdd(new ConditionData(eBuffType.NockBack, skillID, 0, 2), monster.transform.position - transform.position);
 	}
