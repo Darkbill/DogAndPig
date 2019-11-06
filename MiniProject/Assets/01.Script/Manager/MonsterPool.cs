@@ -80,7 +80,6 @@ public class MonsterPool : MonoBehaviour
 
 	public void StartStage(int stageLevel)
 	{
-		//스테이지 정보 불러
 		monsterList.Clear();
 		List<StageDataTable> stageDataTable = JsonMng.Ins.GetStageData(stageLevel);
 		activeMonsterCount = stageDataTable.Count;
@@ -165,7 +164,6 @@ public class MonsterPool : MonoBehaviour
 	{
 		return monsterList[bossIndex].monsterData.healthPoint / JsonMng.Ins.monsterDataTable[monsterList[bossIndex].MonsterID].healthPoint;
 	}
-	//TODO : Pooling Test;
 
 	//   public int Stage = 0;
 	//   private int StageMaxMonster = 10;

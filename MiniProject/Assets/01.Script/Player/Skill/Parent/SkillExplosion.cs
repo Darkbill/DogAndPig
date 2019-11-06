@@ -80,7 +80,7 @@ public class SkillExplosion : Skill
 			cTime += Time.deltaTime;
 			changeVec -= copy * (Time.deltaTime / throwTime);
 			thrower.transform.position += dir * Time.deltaTime * m + changeVec;
-			if ((pos - thrower.gameObject.transform.position).magnitude <= 0.1f)
+			if ((pos - thrower.gameObject.transform.position).magnitude <= 0.2f)
 			{
 				thrower.SetActive(false);
 				Explosion(thrower.transform.position);

@@ -75,7 +75,6 @@ public class GameMng : MonoBehaviour
 	}
 	public void GameOver()
 	{
-		//TODO : 옵저버
 		JsonMng.Ins.playerInfoDataTable.GameOver();
 		skillMng.OffSkill();
 		cameraMove.GameOver();

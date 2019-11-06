@@ -43,7 +43,6 @@ public class SkillFloorFreeze : Skill
 	}
 	#endregion
 
-	//TODO : SpriteDummy
 	public Freezen FreezenShot;
 	public override void OnButtonDown()
 	{

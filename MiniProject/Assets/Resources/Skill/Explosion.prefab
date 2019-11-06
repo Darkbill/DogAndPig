@@ -14443,6 +14443,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3908205294897436533}
   - component: {fileID: 5056611314743263890}
+  - component: {fileID: 3467540615251529757}
   - component: {fileID: 819302320419331309}
   m_Layer: 0
   m_Name: ExplosionFire
@@ -14450,7 +14451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3908205294897436533
 Transform:
   m_ObjectHideFlags: 0
@@ -14492,6 +14493,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!58 &3467540615251529757
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6468857964274092803}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.0042930245}
+  serializedVersion: 2
+  m_Radius: 0.2982294
 --- !u!114 &819302320419331309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14506,3 +14523,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 4619181187623391184}
   boxCol: {fileID: 5056611314743263890}
+  circleCol: {fileID: 3467540615251529757}

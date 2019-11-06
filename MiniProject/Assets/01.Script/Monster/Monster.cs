@@ -154,7 +154,7 @@ public class Monster : MonoBehaviour
     #endregion
     public virtual void DamageResult(int d)
 	{
-		if (d < 1) d = 1;
+		if (d < 1) d = 1;	
 		monsterData.healthPoint -= d;
 		UIMngInGame.Ins.damageTextPool.ShowDamage(d, Camera.main.WorldToScreenPoint(gameObject.transform.position));
 		if (monsterData.healthPoint <= 0) Dead();
@@ -240,13 +240,6 @@ public class Monster : MonoBehaviour
 			collision.GetComponent<BulletPlayerSkill>().Crash(this);
 		}
 	}
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Monster"))
-        {
-            ZigMonsterAngle();
-        }
-    }
 
     private void ZigMonsterAngle()
     {

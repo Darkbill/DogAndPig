@@ -42,7 +42,6 @@ public class SkillSplitLightning : Skill
 	}
 	#endregion
 
-	//TODO : SpriteDummy
 	public override void OnButtonDown()
 	{
 		base.OnButtonDown();

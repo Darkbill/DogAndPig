@@ -8,6 +8,8 @@ public class ExplosionFire : BulletPlayerSkill
 	public ParticleSystem explosion;
 	private int skillID;
 	public BoxCollider2D boxCol;
+	public CircleCollider2D circleCol;
+	//private 
 	public void Setting(eAttackType _type, float _damage,int _skillID)
 	{
 		type = _type;
@@ -29,7 +31,9 @@ public class ExplosionFire : BulletPlayerSkill
 	private IEnumerator OffCollider()
 	{
 		boxCol.enabled = true;
+		circleCol.enabled = true;
 		yield return null;
 		boxCol.enabled = false;
+		circleCol.enabled = false;
 	}
 }

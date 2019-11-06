@@ -28,9 +28,6 @@ public class PlayerStateMove : PlayerState
         fHorizontal = Input.GetAxis("Horizontal");
         fVertical = Input.GetAxis("Vertical");
 
-
-        //TODO : Axis를 wasd와 키보드 방향키 분리했음
-        //rightHorizontal이랑 rightVertical에 vec랑 hor값만 세팅해주면 됨.
         rightHorizontal = Input.GetAxis("HorizontalArrow");
         rightVertical = Input.GetAxis("VerticalArrow");
         Debug.DrawRay(playerObject.transform.position, new Vector3(rightHorizontal, rightVertical));

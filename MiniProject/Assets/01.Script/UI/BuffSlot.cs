@@ -22,6 +22,5 @@ public class BuffSlot : MonoBehaviour
 			return;
 		}
 		timerText.text = ((int)t).ToString();
-		
 	}
 }

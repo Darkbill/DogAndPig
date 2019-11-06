@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4670348447271937618}
   - component: {fileID: 4764761183592390404}
   - component: {fileID: 4763645128277373466}
-  - component: {fileID: 4703778587016194744}
   - component: {fileID: -7205107597666782859}
   m_Layer: 0
   m_Name: PhysicsHitEff
@@ -4758,19 +4757,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &4703778587016194744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4672774687244844580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5a92ec89de1aec4281ea738f0693ff1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selfdestruct_in: 1.11
 --- !u!114 &-7205107597666782859
 MonoBehaviour:
   m_ObjectHideFlags: 0
