@@ -35,6 +35,7 @@ public class SkillDash : Skill
     
 
     bool AttackSet = false;
+    public GameObject StartDash;
 
 	public override void OnButtonDown()
 	{
@@ -45,9 +46,11 @@ public class SkillDash : Skill
 	{
 		base.ActiveSkill();
 		Attack.Clear();
+        StartDash.transform.position = GameMng.Ins.player.transform.position;
+        StartDash.GetComponent<ParticleSystem>().Play();
         //테스트 코드
-        
-		GameMng.Ins.player.playerStateMachine.ChangeState(ePlayerState.Dash);
+
+        GameMng.Ins.player.playerStateMachine.ChangeState(ePlayerState.Dash);
         Vector3 direction = GameMng.Ins.player.GetForward();
         for (int i = 0; i < Count; ++i)
 		{

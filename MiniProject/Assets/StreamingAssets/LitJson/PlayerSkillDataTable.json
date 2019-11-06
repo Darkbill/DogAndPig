@@ -161,5 +161,20 @@
       10,
       5
     ]
+  },
+  {
+    "skillID": 11,
+    "skillName": "RoundTrip",
+    "skillType": 1,
+    "activeType": 3,
+    "target": 1,
+    "level": 3,
+    "price": 2000,
+    "optionArr": [
+      12,
+      5,
+      0.5,
+      0.1
+    ]
   }
 ]

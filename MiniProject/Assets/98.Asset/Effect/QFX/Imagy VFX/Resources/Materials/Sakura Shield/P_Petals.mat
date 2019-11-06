@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: P_Petals
   m_Shader: {fileID: 4800000, guid: a13ca4d650bb8004993930780bc9ee16, type: 3}
   m_ShaderKeywords: _ALIGNMENT_Y _CUTOUTFRESNEL_ON
@@ -139,7 +140,7 @@ Material:
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 0, b: 0, a: 1}
-    - _DissolveColor: {r: 0, g: 1.1171656, b: 3.4415908, a: 1}
+    - _DissolveColor: {r: 5.78718, g: 0.73704654, b: 5.4737234, a: 1}
     - _EmisColor: {r: 0.2, g: 0.2, b: 0.2, a: 0}
     - _EmissionColor: {r: 0.8529412, g: 1.1931034, b: 2, a: 1}
     - _GlowColor: {r: 0, g: 0, b: 0, a: 0}
