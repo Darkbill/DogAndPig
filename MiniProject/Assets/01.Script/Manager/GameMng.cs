@@ -63,6 +63,12 @@ public class GameMng : MonoBehaviour
 		JsonMng.Ins.playerInfoDataTable.stageLevel++;
 		UIMngInGame.Ins.StageClear();
 	}
+	public void MonsterDead(int gold,int exp)
+	{
+		AddGold(JsonMng.Ins.playerInfoDataTable.stageLevel);
+		AddEXP(JsonMng.Ins.playerInfoDataTable.stageLevel);
+		monsterPool.DeadMonster();
+	}
 	public void DamageToPlayer(eAttackType attackType, float damage)
 	{
 		player.Damage(attackType, damage);

@@ -44,6 +44,7 @@ public class Flame : BulletPlayerSkill
 	}
 	public override void Crash(Monster monster)
 	{
+		if (monster.active == false) return;
 		monster.Damage(eAttackType.Fire, GameMng.Ins.player.calStat.damage, damage);
 		GameMng.Ins.HitToEffect(attackType, monster.transform.position, gameObject.transform.position);
 	}

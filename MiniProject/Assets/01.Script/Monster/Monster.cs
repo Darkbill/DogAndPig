@@ -190,9 +190,7 @@ public class Monster : MonoBehaviour
 		monsterStateMachine.ChangeStateDead();
         active = false;
         ColliderOnOff(false);
-        GameMng.Ins.AddGold(JsonMng.Ins.playerInfoDataTable.stageLevel);
-		GameMng.Ins.AddEXP(JsonMng.Ins.playerInfoDataTable.stageLevel);
-		GameMng.Ins.monsterPool.DeadMonster(gameObject);
+		GameMng.Ins.MonsterDead(JsonMng.Ins.playerInfoDataTable.stageLevel, JsonMng.Ins.playerInfoDataTable.stageLevel);
 	}
 
     public void ColliderOnOff(bool check) 
@@ -240,8 +238,14 @@ public class Monster : MonoBehaviour
 			collision.GetComponent<BulletPlayerSkill>().Crash(this);
 		}
 	}
-
-    private void ZigMonsterAngle()
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.collider.CompareTag("Monster"))
+		{
+			ZigMonsterAngle();
+		}
+	}
+	private void ZigMonsterAngle()
     {
         Vector3 playerpos = GameMng.Ins.player.transform.position;
 

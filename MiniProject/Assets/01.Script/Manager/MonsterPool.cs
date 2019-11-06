@@ -144,21 +144,13 @@ public class MonsterPool : MonoBehaviour
 		yield return new WaitForSeconds(2.0f);
 		monsterEffectList[num].SetActive(false);
 	}
-	public void DeadMonster(GameObject obj)
+	public void DeadMonster()
 	{
 		activeMonsterCount--;
 		if (activeMonsterCount == 0)
 		{
 			GameMng.Ins.StageClear();
 		}
-		//for (eBuffType i = eBuffType.MoveFast; i < eBuffType.Max; ++i)
-		//{
-		//    for (int j = 0; j < effectlist[i].Count; ++j)
-		//    {
-		//        if (effectlist[i][j].settingObj == obj)
-		//            effectlist[i][j].gameObject.SetActive(false);
-		//    }
-		//}
 	}
 	public float GetBossFill()
 	{
