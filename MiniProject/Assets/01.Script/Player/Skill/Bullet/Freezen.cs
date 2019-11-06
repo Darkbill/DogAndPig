@@ -1,4 +1,5 @@
 ﻿using GlobalDefine;
+using UnityEngine;
 
 public class Freezen : BulletPlayerSkill
 {
@@ -10,6 +11,8 @@ public class Freezen : BulletPlayerSkill
     private float slow = 0.0f;
 	private float per;
 
+    private Vector3 rightvec;
+
 	public void Setting(int id,float mT,float s,float p,float d,eAttackType aType,eBuffType bType)
 	{
 		Id = id;
@@ -19,10 +22,20 @@ public class Freezen : BulletPlayerSkill
 		damage = d;
 		attackType = aType;
 		buffType = bType;
+        
 	}
+
+    public void angleSet(float angle)
+    {
+        rightvec = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle));
+    }
+
 	public override void Crash(Monster monster)
 	{
 		monster.Damage(eAttackType.Water, GameMng.Ins.player.calStat.damage, damage, new ConditionData(buffType, Id, MaxTimer, slow), per);
-		GameMng.Ins.HitToEffect(attackType, monster.transform.position, gameObject.transform.position);
+		GameMng.Ins.HitToEffect(attackType, 
+            monster.transform.position + new Vector3(0, monster.monsterData.size), 
+            GameMng.Ins.player.transform.position + rightvec,
+            monster.monsterData.size);
 	}
 }

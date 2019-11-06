@@ -73,11 +73,11 @@ public class GameMng : MonoBehaviour
 	{
 		player.Damage(attackType, damage);
 	}
-	public void HitToEffect(eAttackType type, Vector3 target, Vector3 pos)
+	public void HitToEffect(eAttackType type, Vector3 target, Vector3 pos, float siz)
 	{
 		//TODO : target - 맞는사람, pos - 공격자
 		//GameMng.Ins.HitToEffect(eAttackType.Physics, GameMng.Ins.player.transform.position + new Vector3(0, 0.3f, 0),transform.position + new Vector3(0, 0.3f, 0));
-		objectPool.effectPool.RunHitAnimation(type, target, pos);
+		objectPool.effectPool.RunHitAnimation(type, target, pos, siz);
 	}
 	public void GameOver()
 	{

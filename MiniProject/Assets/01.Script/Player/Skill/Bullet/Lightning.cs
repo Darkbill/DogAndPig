@@ -54,7 +54,10 @@ public class Lightning : BulletPlayerSkill
         if (SetTimer > 0.3f)
         {
             monster.Damage(Attacktype, damage);
-			GameMng.Ins.HitToEffect(Attacktype, monster.transform.position, gameObject.transform.position);
+			GameMng.Ins.HitToEffect(Attacktype, 
+                monster.transform.position + new Vector3(0, monster.monsterData.size), 
+                gameObject.transform.position,
+                monster.monsterData.size);
 			if (Rand.Permile(per)) monster.OutStateAdd(new ConditionData(bufftype, Id, 10.0f, 500));
             EndPos = monster.transform.position;
             SplitCheck = true;

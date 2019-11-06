@@ -245,7 +245,8 @@ public class Player : MonoBehaviour
 			}
 			GameMng.Ins.HitToEffect(eAttackType.Physics,
 				attackMonster.transform.position + new Vector3(0, attackMonster.monsterData.size, 0),
-				transform.position + new Vector3(0, calStat.size, 0));
+				transform.position + new Vector3(0, calStat.size, 0),
+                attackMonster.monsterData.size);
 		}
 		
 		playerStateMachine.ChangeStateIdle();

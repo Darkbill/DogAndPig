@@ -40,6 +40,9 @@ public class FireArrow : BulletPlayerSkill
 	{
 		monster.Damage(attackType, GameMng.Ins.player.calStat.damage, damage);
 		gameObject.SetActive(false);
-		GameMng.Ins.HitToEffect(attackType, monster.transform.position, gameObject.transform.position);
+		GameMng.Ins.HitToEffect(attackType,
+            monster.transform.position + new Vector3(0, monster.monsterData.size),
+            gameObject.transform.position,
+            monster.monsterData.size);
 	}
 }

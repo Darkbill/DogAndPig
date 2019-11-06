@@ -53,7 +53,8 @@ public class Monster : MonoBehaviour
 			GameMng.Ins.DamageToPlayer(eAttackType.Physics, monsterData.damage);
             GameMng.Ins.HitToEffect(eAttackType.Physics, 
                 GameMng.Ins.player.transform.position + new Vector3(0, GameMng.Ins.player.calStat.size, 0), 
-                transform.position + new Vector3(0, monsterData.size, 0));
+                transform.position + new Vector3(0, monsterData.size, 0),
+                GameMng.Ins.player.calStat.size);
         }
 	}
 	#region Buff

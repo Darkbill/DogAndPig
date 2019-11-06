@@ -80,7 +80,10 @@ public class LinkIce : BulletPlayerSkill
     public override void Crash(Monster monster)
     {
 		monster.Damage(Attacktype, GameMng.Ins.player.calStat.damage, damage, new ConditionData(bufftype, Id, endTime, changeValue), per);
-		GameMng.Ins.HitToEffect(Attacktype, monster.transform.position, gameObject.transform.position);
+		GameMng.Ins.HitToEffect(Attacktype,
+            monster.transform.position + new Vector3(0, monster.monsterData.size),
+            gameObject.transform.position,
+            monster.monsterData.size);
 		if (hitMonsterPool.Count == maxHitCount)
 		{
 			gameObject.SetActive(false);

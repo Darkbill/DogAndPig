@@ -58,7 +58,7 @@ public class EffectPool : MonoBehaviour
     }
 
 
-    public void RunHitAnimation(eAttackType type, Vector3 target, Vector3 pos)
+    public void RunHitAnimation(eAttackType type, Vector3 target, Vector3 pos, float siz)
     {
         Vector3 right = target - pos;
         for (int i = 0;i<effectlist[type].Count;++i)
@@ -66,7 +66,7 @@ public class EffectPool : MonoBehaviour
             if(!effectlist[type][i].gameObject.activeSelf)
             {
                 right.Normalize();
-                effectlist[type][i].transform.position = pos + right * 0.5f;
+                effectlist[type][i].transform.position = pos + right * 0.3f + new Vector3(0, siz);
                 effectlist[type][i].gameObject.SetActive(true);
                 return;
             }

@@ -43,6 +43,7 @@ public class SkillFloorFreeze : Skill
 	}
 	#endregion
 
+	//TODO : SpriteDummy
 	public Freezen FreezenShot;
 	public override void OnButtonDown()
 	{
@@ -57,6 +58,7 @@ public class SkillFloorFreeze : Skill
 		base.OnDrop();
 		ActiveSkill();
 		float degree = GameMng.Ins.player.degree;
+        FreezenShot.angleSet(degree - 90);
 		Vector3 pos = new Vector3(Mathf.Cos(degree), Mathf.Sin(degree), 0);
 		FreezenShot.gameObject.SetActive(true);
 		FreezenShot.transform.position = GameMng.Ins.player.transform.position;
