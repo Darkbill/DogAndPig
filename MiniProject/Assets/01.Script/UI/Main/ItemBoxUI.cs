@@ -15,15 +15,8 @@ public class ItemBoxUI : MonoBehaviour
 		itemImage.sprite = SpriteMng.Ins.itemAtlas.GetSprite(item.itemName);
 		frameImage.sprite = SpriteMng.Ins.frameAtlas.GetSprite(item.itemGradeType.ToString());
 		itemNameText.text = item.itemName;
-		itemBaseInfo.text = string.Format("{0} {1}% 증가", Define.GetPartString(item.upgradeType), (int)(item.changeValue * 100));
-		if (item.changeOption == eSkillOption.CoolTime)
-		{
-			itemSkillInfo.text = string.Format("{0} {1} {2}% 감소", JsonMng.Ins.playerSkillDataTable[item.changeSkill].skillName, item.changeOption.ToString(), (int)(item.changeSkillValue * 100));
-		}
-		else
-		{
-			itemSkillInfo.text = string.Format("{0} {1} {2}% 증가", JsonMng.Ins.playerSkillDataTable[item.changeSkill].skillName, item.changeOption.ToString(), (int)(item.changeSkillValue * 100));
-		}
+		itemBaseInfo.text = Define.GetItemBaseInfoText(item);
+		itemSkillInfo.text = Define.GetItemSkillInfoText(item);
 	
 		gameObject.SetActive(true);
 	}

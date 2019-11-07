@@ -28,20 +28,16 @@ public class InventoryUI : MonoBehaviour
 		for(int i = 0; i < equipSlotUIArr.Length; ++i)
 		{
 			if (equipSlotUIArr[i].item == null) continue;
-			builder.Append(string.Format("{0} {1}% 증가 \n", Define.GetPartString(equipSlotUIArr[i].item.upgradeType), (int)(equipSlotUIArr[i].item.changeValue * 100)));
+			builder.Append(Define.GetItemBaseInfoText(equipSlotUIArr[i].item));
 		}
 		builder.Append("\n");
+		//따로 표기하기위함!
 		for (int i = 0; i < equipSlotUIArr.Length; ++i)
 		{
 			if (equipSlotUIArr[i].item == null) continue;
-			if (equipSlotUIArr[i].item.changeOption == eSkillOption.CoolTime)
-			{
-				builder.Append(string.Format("{0} {1} {2}% 감소", JsonMng.Ins.playerSkillDataTable[equipSlotUIArr[i].item.changeSkill].skillName, equipSlotUIArr[i].item.changeOption.ToString(), (int)(equipSlotUIArr[i].item.changeSkillValue * 100)));
-			}
-			else
-			{
-				builder.Append(string.Format("{0} {1} {2}% 증가", JsonMng.Ins.playerSkillDataTable[equipSlotUIArr[i].item.changeSkill].skillName, equipSlotUIArr[i].item.changeOption.ToString(), (int)(equipSlotUIArr[i].item.changeSkillValue * 100)));
-			}
+
+			builder.Append(Define.GetItemSkillInfoText(equipSlotUIArr[i].item));
+			builder.Append("\n");
 		}
 		infoText.text = builder.ToString();
 	}

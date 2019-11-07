@@ -18,7 +18,6 @@ public class SkillSplitLightning : Skill
 	private float damage;
 	private float sturnper;
 	private float sturntime;
-	private eBuffType buffType;
 	const int MaxCount = 4;
 	const int Angle180 = 180;
 	const int SplitCnt = 5;
@@ -87,7 +86,7 @@ public class SkillSplitLightning : Skill
 					GameMng.Ins.player.transform.position,
 					Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count),// + randnum),
 					gameObject.transform);
-				light.GetComponent<Lightning>().Setting(skillID, SplitCnt, sturnper, damage, skillType, buffType, buffEndTime);
+				light.GetComponent<Lightning>().Setting(skillID, SplitCnt, sturnper, damage, buffEndTime);
 				BulletLst.Add(light.GetComponent<Lightning>());
 				++Count;
 			}
@@ -95,7 +94,7 @@ public class SkillSplitLightning : Skill
 			{
 				BulletLst[i].transform.position = GameMng.Ins.player.transform.position;
 				BulletLst[i].transform.rotation = Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count);// + randnum);
-				BulletLst[i].Setting(skillID, SplitCnt, sturnper, damage,skillType,buffType, buffEndTime);
+				BulletLst[i].Setting(skillID, SplitCnt, sturnper, damage, buffEndTime);
 				BulletLst[i].gameObject.SetActive(true);
 				++Count;
 			}
@@ -144,7 +143,7 @@ public class SkillSplitLightning : Skill
 					Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count + randnum),
 					gameObject.transform);
 				
-				light.GetComponent<Lightning>().Setting(skillID, BulletLst[index].SplitCnt - 1, sturnper, damage, skillType, buffType, buffEndTime);
+				light.GetComponent<Lightning>().Setting(skillID, BulletLst[index].SplitCnt - 1, sturnper, damage, buffEndTime);
 				BulletLst.Add(light.GetComponent<Lightning>());
 				++Count;
 			}
@@ -152,7 +151,7 @@ public class SkillSplitLightning : Skill
 			{
 				BulletLst[i].transform.position = endPos;
 				BulletLst[i].transform.rotation = Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count + randnum);
-				BulletLst[i].Setting(skillID, BulletLst[index].SplitCnt - 1, sturnper, damage, skillType, buffType, buffEndTime);
+				BulletLst[i].Setting(skillID, BulletLst[index].SplitCnt - 1, sturnper, damage, buffEndTime);
 				BulletLst[i].gameObject.SetActive(true);
 				++Count;
 			}

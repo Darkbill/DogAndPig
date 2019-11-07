@@ -4,8 +4,8 @@ using UnityEngine;
 public class Lightning : BulletPlayerSkill
 {
     public float damage = 0;
-	eAttackType Attacktype;
-	eBuffType bufftype;
+	eAttackType Attacktype = eAttackType.Lightning;
+	eBuffType bufftype = eBuffType.Stun;
 
 	private int Id;
     private float MaxTimer = 0.0f;
@@ -23,7 +23,7 @@ public class Lightning : BulletPlayerSkill
 
 	List<Lightning> lightningList = new List<Lightning>();
 
-    public void Setting(int id, int splitcnt, float p, float damage,eAttackType attackType,eBuffType buffType,float _buffEndTime)
+    public void Setting(int id, int splitcnt, float p, float damage,float _buffEndTime)
     {
         Id = id;
         per = p;
@@ -32,8 +32,6 @@ public class Lightning : BulletPlayerSkill
         MaxTimer = SplitCnt;
         Speed = (Rand.Random() % 10 / 3 + 1f) / 2;
         SetTimer = 0.0f;
-		Attacktype = attackType;
-		bufftype = buffType;
 		buffEndTime = _buffEndTime;
 	}
 

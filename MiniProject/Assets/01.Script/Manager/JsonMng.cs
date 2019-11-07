@@ -34,6 +34,7 @@ public class JsonMng : MonoBehaviour
 	public Dictionary<int, ItemData> itemDataTable { get; private set; } = new Dictionary<int, ItemData>();
 	public PlayerInfoData playerInfoDataTable { get; private set; } = new PlayerInfoData();
 	public PlayerData playerDataTable { get; private set; } = new PlayerData();
+	public Dictionary<int, PlayerSkillTextData> playerSkillTextDataTable { get; private set; } = new Dictionary<int, PlayerSkillTextData>();
 	private const int AllDownCount = 8;
 	private int cDownCount = 0;
 	public bool IsDone
@@ -59,7 +60,9 @@ public class JsonMng : MonoBehaviour
 		LoadMonsterSkillData();
 		LoadExpDataTable();
 		LoadStageData();
+		//LoadPlayerSkillTextData();
 	}
+	
 	private IEnumerator StartLoadPlayerData<T>(string fileName,T table) where T : class
 	{
 		string path = string.Format("{0}/LitJson/{1}.json", Application.streamingAssetsPath, fileName);
@@ -78,6 +81,32 @@ public class JsonMng : MonoBehaviour
 		if (cDownCount == AllDownCount)
 		{
 			UIMng.Ins.Setting();
+		}
+	}
+	private IEnumerator StartLoadText<T>(string fileName, Dictionary<int, T> table) where T : TableBase
+	{
+		string path = string.Format("{0}/LitJson/{1}.json", Application.streamingAssetsPath, fileName);
+		WWW www = new WWW(path);
+		yield return www;
+		string jsonString = www.text;
+		try
+		{
+			JsonData jsonData = JsonMapper.ToObject(jsonString);
+			for (int i = 0; i < jsonData.Count; ++i)
+			{
+				T save = JsonMapper.ToObject<T>(jsonData[i].ToJson());
+				table.Add(save.GetTableID(), save);
+			}
+			cDownCount++;
+			if (cDownCount == AllDownCount)
+			{
+				UIMng.Ins.Setting();
+			}
+		}
+		catch
+		{
+			Debug.Log(fileName);
+			Debug.Log(jsonString);
 		}
 	}
 	private IEnumerator StartLoad<T>(string fileName, Dictionary<int, T> table) where T : TableBase
@@ -165,7 +194,10 @@ public class JsonMng : MonoBehaviour
 	{
 		StartCoroutine(StartLoad("MonsterSkillDataTable", monsterSkillDataTable));
 	}
-
+	private void LoadPlayerSkillTextData()
+	{
+		StartCoroutine(StartLoad("PlayerSkillTextDataTable", playerSkillTextDataTable));
+	}
 	public List<StageDataTable> GetStageData(int stagelevel)
 	{
 		return stageDataTable[stagelevel];

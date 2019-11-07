@@ -83,7 +83,25 @@
 					return "";
 			}
 		}
+		public static string GetItemBaseInfoText(ItemData item)
+		{
+			return string.Format("{0} {1}% 증가", GetPartString(item.upgradeType), (int)(item.changeValue * 100));
+		}
+		public static string GetItemSkillInfoText(ItemData item)
+		{
+			if (item.changeOption == eSkillOption.CoolTime)
+			{
+				string optionText = JsonMng.Ins.playerSkillTextDataTable[item.changeSkill].optionTextList[(int)item.changeOption];
+				return string.Format("{0} {1} {2}% 감소", JsonMng.Ins.playerSkillDataTable[item.changeSkill].skillName,
+					optionText, (int)(item.changeSkillValue * 100));
+			}
+			else
+			{
+				return string.Format("{0} {1} {2}% 증가", JsonMng.Ins.playerSkillDataTable[item.changeSkill].skillName, item.changeOption.ToString(), (int)(item.changeSkillValue * 100));
+			}
+		}
 	}
+
     public enum eBossMonsterState
     {
         None = 0,
