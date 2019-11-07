@@ -28,8 +28,6 @@ public class SkillThounderCalling : Skill
         randrange = (int)skillData.optionArr[(int)eThoumderOption.RandRange];
         delayTime = cooldownTime;
         gameObject.SetActive(false);
-
-
     }
 	public override void SetItemBuff(eSkillOption type, float changeValue)
 	{
