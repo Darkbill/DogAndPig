@@ -33,10 +33,10 @@ public class SkillRoundTrip : Skill
     {
         GameMng.Ins.SetSkillAim(skillID);
     }
-    public override void ActiveSkill()
-    {
-        base.ActiveSkill();
-    }
+    //public override void ActiveSkill()
+    //{
+    //    base.ActiveSkill();
+    //}
     public override void OnDrag()
     {
         base.OnDrag();
@@ -45,9 +45,9 @@ public class SkillRoundTrip : Skill
     {
         base.OnDrop();
         ActiveSkill();
-        float degree = GameMng.Ins.player.degree;
-        Vector3 movevec = new Vector3(Mathf.Cos(degree), Mathf.Sin(degree));
-        recognition.Setting(GameMng.Ins.transform.position + movevec, movevec, range);
+        Vector3 movevec = GameMng.Ins.player.GetForward();
+        recognition.gameObject.SetActive(true);
+        recognition.Setting(GameMng.Ins.player.transform.position, movevec, range);
     }
     private void Update()
     {

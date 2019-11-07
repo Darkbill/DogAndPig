@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6015668328455028002
 Transform:
   m_ObjectHideFlags: 0
@@ -4846,11 +4846,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Material: {fileID: 2100000, guid: ccc62c395c619bf4ba0c0990b5cdf5a6, type: 2}
   LifeTime: 0.5
-  Emit: 1
+  Emit: 0
   Widths:
   - 0.8
   - 0.2
-  MinVertexDistance: 0.01
+  MinVertexDistance: 2.37
   PointCount: 100
 --- !u!114 &287950877922598639
 MonoBehaviour:
@@ -4866,6 +4866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   bulletMovevec: {x: 0, y: 0, z: 0}
+  particle: {fileID: 5884815988705359014}
 --- !u!58 &8438650588786549179
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4891,6 +4892,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 767869237058152953}
+  - component: {fileID: 2421393582164960991}
   m_Layer: 0
   m_Name: RoundTrip
   m_TagString: Untagged
@@ -4913,3 +4915,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2421393582164960991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8870265628351769286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93f5ecd8f128ffd4191b094a76d8d8eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillID: 0
+  skillName: 
+  cooldownTime: 0
+  delayTime: 0
+  activeFlag: 0
+  recognition: {fileID: 287950877922598639}

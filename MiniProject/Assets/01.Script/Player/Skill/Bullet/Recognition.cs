@@ -9,12 +9,13 @@ public class Recognition : BulletPlayerSkill
     eAttackType attackType = eAttackType.Physics;
 
     public Vector3 bulletMovevec;
-    private const int speed = 3;
+    private const int speed = 8;
 
     private bool turnOn = false;
     private float maxRange = 0;
     private float pokRange = 0;
 
+    public ParticleSystem particle;
 
     public void Setting(Vector3 pos, Vector3 moveVec, float range)
     {
@@ -22,10 +23,16 @@ public class Recognition : BulletPlayerSkill
         bulletMovevec = moveVec;
         maxRange = range;
         pokRange = 0;
+        particle.Play();
+
+        //TODO : 테스트
+        turnOn = false;
     }
 
     private void Update()
     {
+        if (!particle.isPlaying)
+            gameObject.SetActive(false);
         if(!turnOn)
         {
             gameObject.transform.position += bulletMovevec * speed * Time.deltaTime;
@@ -39,11 +46,13 @@ public class Recognition : BulletPlayerSkill
         else
         {
             gameObject.GetComponent<CircleCollider2D>().enabled = true;
-            Vector3 pos = GameMng.Ins.transform.position - gameObject.transform.position;
+            Vector3 pos = GameMng.Ins.player.transform.position - gameObject.transform.position;
             pos = pos.normalized;
             gameObject.transform.position += pos * speed * Time.deltaTime;
             if ((gameObject.transform.position - GameMng.Ins.player.transform.position).magnitude < GameMng.Ins.player.calStat.size)
+            {
                 gameObject.SetActive(false);
+            }
         }
     }
 
@@ -54,6 +63,5 @@ public class Recognition : BulletPlayerSkill
             monster.transform.position + new Vector3(0, monster.monsterData.size),
             gameObject.transform.position + new Vector3(-0.3f, -0.15f),
             monster.monsterData.size);
-        gameObject.SetActive(false);
     }
 }
