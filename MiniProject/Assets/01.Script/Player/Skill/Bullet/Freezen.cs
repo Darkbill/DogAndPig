@@ -32,7 +32,7 @@ public class Freezen : BulletPlayerSkill
 
 	public override void Crash(Monster monster)
 	{
-		monster.Damage(eAttackType.Water, GameMng.Ins.player.calStat.damage, damage, new ConditionData(buffType, Id, MaxTimer, slow), per);
+		monster.Damage(attackType, GameMng.Ins.player.calStat.damage, damage, new ConditionData(buffType, Id, MaxTimer, slow), per);
 		GameMng.Ins.HitToEffect(attackType, 
             monster.transform.position + new Vector3(0, monster.monsterData.size), 
             GameMng.Ins.player.transform.position + rightvec,

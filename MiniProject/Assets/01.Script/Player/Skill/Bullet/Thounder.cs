@@ -30,7 +30,7 @@ public class Thounder : BulletPlayerSkill
     public override void Crash(Monster monster)
     {
         hit = true;
-        monster.Damage(Attacktype, damage);
+        monster.Damage(Attacktype,GameMng.Ins.player.calStat.damage, damage);
         GameMng.Ins.HitToEffect(Attacktype,
             monster.transform.position + new Vector3(0, monster.monsterData.size),
             gameObject.transform.position,
