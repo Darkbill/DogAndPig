@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 public class PlayerSkillTextData : TableBase
 {
 	public int skillID;
@@ -15,16 +16,24 @@ public class PlayerSkillTextData : TableBase
 	public List<string> optionTextList = new List<string>();
 	public override int GetTableID()
 	{
-		optionTextList.Add(damage);
-		optionTextList.Add(coolTime);
-		optionTextList.Add(activeTime);
-		optionTextList.Add(speed);
-		optionTextList.Add(spawnDelay);
-		optionTextList.Add(spawnActiveTime);
-		optionTextList.Add(buffActivePer);
-		optionTextList.Add(buffEndTime);
-		optionTextList.Add(buffChangeValue);
-
+		byte[] bytesForEncoding = Encoding.UTF8.GetBytes(damage);
+		optionTextList.Add(Encoding.UTF8.GetString(bytesForEncoding));
+		bytesForEncoding = Encoding.UTF8.GetBytes(coolTime);
+		optionTextList.Add(Encoding.UTF8.GetString(bytesForEncoding));
+		bytesForEncoding = Encoding.UTF8.GetBytes(activeTime);
+		optionTextList.Add(Encoding.UTF8.GetString(bytesForEncoding));
+		bytesForEncoding = Encoding.UTF8.GetBytes(speed);
+		optionTextList.Add(Encoding.UTF8.GetString(bytesForEncoding));
+		bytesForEncoding = Encoding.UTF8.GetBytes(spawnDelay);
+		optionTextList.Add(Encoding.UTF8.GetString(bytesForEncoding));
+		bytesForEncoding = Encoding.UTF8.GetBytes(spawnActiveTime);
+		optionTextList.Add(Encoding.UTF8.GetString(bytesForEncoding));
+		bytesForEncoding = Encoding.UTF8.GetBytes(buffActivePer);
+		optionTextList.Add(Encoding.UTF8.GetString(bytesForEncoding));
+		bytesForEncoding = Encoding.UTF8.GetBytes(buffEndTime);
+		optionTextList.Add(Encoding.UTF8.GetString(bytesForEncoding));
+		bytesForEncoding = Encoding.UTF8.GetBytes(buffChangeValue);
+		optionTextList.Add(Encoding.UTF8.GetString(bytesForEncoding));
 		return skillID;
 	}
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using LitJson;
+using System.Text;
 
 public class JsonMng : MonoBehaviour
 {
@@ -60,7 +61,7 @@ public class JsonMng : MonoBehaviour
 		LoadMonsterSkillData();
 		LoadExpDataTable();
 		LoadStageData();
-		//LoadPlayerSkillTextData();
+		LoadPlayerSkillTextData();
 	}
 	
 	private IEnumerator StartLoadPlayerData<T>(string fileName,T table) where T : class
@@ -81,32 +82,6 @@ public class JsonMng : MonoBehaviour
 		if (cDownCount == AllDownCount)
 		{
 			UIMng.Ins.Setting();
-		}
-	}
-	private IEnumerator StartLoadText<T>(string fileName, Dictionary<int, T> table) where T : TableBase
-	{
-		string path = string.Format("{0}/LitJson/{1}.json", Application.streamingAssetsPath, fileName);
-		WWW www = new WWW(path);
-		yield return www;
-		string jsonString = www.text;
-		try
-		{
-			JsonData jsonData = JsonMapper.ToObject(jsonString);
-			for (int i = 0; i < jsonData.Count; ++i)
-			{
-				T save = JsonMapper.ToObject<T>(jsonData[i].ToJson());
-				table.Add(save.GetTableID(), save);
-			}
-			cDownCount++;
-			if (cDownCount == AllDownCount)
-			{
-				UIMng.Ins.Setting();
-			}
-		}
-		catch
-		{
-			Debug.Log(fileName);
-			Debug.Log(jsonString);
 		}
 	}
 	private IEnumerator StartLoad<T>(string fileName, Dictionary<int, T> table) where T : TableBase
