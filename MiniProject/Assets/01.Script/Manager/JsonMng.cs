@@ -36,7 +36,7 @@ public class JsonMng : MonoBehaviour
 	public PlayerInfoData playerInfoDataTable { get; private set; } = new PlayerInfoData();
 	public PlayerData playerDataTable { get; private set; } = new PlayerData();
 	public Dictionary<int, PlayerSkillTextData> playerSkillTextDataTable { get; private set; } = new Dictionary<int, PlayerSkillTextData>();
-	private const int AllDownCount = 8;
+	private const int AllDownCount = 9;
 	private int cDownCount = 0;
 	public bool IsDone
 	{

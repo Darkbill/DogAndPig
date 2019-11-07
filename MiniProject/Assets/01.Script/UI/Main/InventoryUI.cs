@@ -29,8 +29,9 @@ public class InventoryUI : MonoBehaviour
 		{
 			if (equipSlotUIArr[i].item == null) continue;
 			builder.Append(Define.GetItemBaseInfoText(equipSlotUIArr[i].item));
+			builder.Append("\n");
 		}
-		builder.Append("\n");
+		
 		//따로 표기하기위함!
 		for (int i = 0; i < equipSlotUIArr.Length; ++i)
 		{

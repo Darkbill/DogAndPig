@@ -119,7 +119,6 @@ public class Monster : MonoBehaviour
 		if (index != -1)
 		{
 			conditionList[index].Set(condition);
-            GameMng.Ins.monsterPool.SelectEffect(gameObject, condition);
             return;
 		}
 		else conditionList.Add(condition);
