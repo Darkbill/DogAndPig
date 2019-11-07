@@ -91,13 +91,14 @@
 		{
 			if (item.changeOption == eSkillOption.CoolTime)
 			{
-				string optionText = JsonMng.Ins.playerSkillTextDataTable[item.changeSkill].optionTextList[(int)item.changeOption];
+				string optionText = JsonMng.Ins.playerSkillTextDataTable[item.changeSkill].optionTextList[(int)item.changeOption-1];
 				return string.Format("{0} {1} {2}% 감소", JsonMng.Ins.playerSkillDataTable[item.changeSkill].skillName,
 					optionText, (int)(item.changeSkillValue * 100));
 			}
 			else
 			{
-				return string.Format("{0} {1} {2}% 증가", JsonMng.Ins.playerSkillDataTable[item.changeSkill].skillName, item.changeOption.ToString(), (int)(item.changeSkillValue * 100));
+				string optionText = JsonMng.Ins.playerSkillTextDataTable[item.changeSkill].optionTextList[(int)item.changeOption-1];
+				return string.Format("{0} {1} {2}% 증가", JsonMng.Ins.playerSkillDataTable[item.changeSkill].skillName, optionText, (int)(item.changeSkillValue * 100));
 			}
 		}
 	}
