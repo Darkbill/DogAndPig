@@ -16,8 +16,74 @@
 		public const int restartCount = 3;
 		public const int adCount = 3;
 		public const float knockBackSpeed = 5;
+		public const int inventoryCount = 9;
+		public static eItemGradeType GetGrade()
+		{
+			int per = Rand.Range(0, 1000);
+			if (per <= 700)
+			{
+				return eItemGradeType.Normal;
+			}
+			else if (per <= 900)
+			{
+				return eItemGradeType.Rare;
+			}
+			else if (per <= 990)
+			{
+				return eItemGradeType.Unique;
+			}
+			else
+			{
+				return eItemGradeType.Legend;
+			}
+		}
+		public static float GetChangeValue(eItemGradeType type)
+		{
+			switch (type)
+			{
+				case eItemGradeType.Normal:
+					return UnityEngine.Random.Range(0.1f, 0.3f);
+				case eItemGradeType.Rare:
+					return UnityEngine.Random.Range(0.3f, 0.4f);
+				case eItemGradeType.Unique:
+					return UnityEngine.Random.Range(0.4f, 0.6f);
+				case eItemGradeType.Legend:
+					return UnityEngine.Random.Range(0.6f, 0.7f);
+				default:
+					return 0;
+			}
+		}
+		public static string GetPartString(eUpgradeType type)
+		{
+			switch (type)
+			{
+				case eUpgradeType.Damage:
+					return "데미지";
+				case eUpgradeType.Armor:
+					return "방어력";
+				case eUpgradeType.CriticalChance:
+					return "크리티컬 확률";
+				case eUpgradeType.CriticalDamage:
+					return "크리티컬 데미지";
+				case eUpgradeType.FireResist:
+					return "화염 저항";
+				case eUpgradeType.HP:
+					return "체력";
+				case eUpgradeType.KnockBack:
+					return "넉백 확률";
+				case eUpgradeType.PhysicsResist:
+					return "물리 저항";
+				case eUpgradeType.Speed:
+					return "이동 속도";
+				case eUpgradeType.WaterResist:
+					return "물 저항";
+				case eUpgradeType.WindResist:
+					return "바람 저항";
+				default:
+					return "";
+			}
+		}
 	}
-
     public enum eBossMonsterState
     {
         None = 0,
@@ -127,7 +193,58 @@
 		Buy = 0,
 		Set,
 		Remove,
+		Equip,
+		EquitTakeOff,
 	}
+	public enum eItemType
+	{
+		Head,
+		Neck,
+		Hand,
+		Ring,
+	}
+	public enum eItemGradeType
+	{
+		None = 0,
+		Normal,
+		Rare,
+		Unique,
+		Legend,
+		Max,
+	}
+	public enum eUpgradeType
+	{
+		None = 0,
+		HP,
+		Damage,
+		Speed,
+		CriticalChance,
+		CriticalDamage,
+		Armor,
+		KnockBack,
+		PhysicsResist,
+		FireResist,
+		WaterResist,
+		WindResist,
+	}
+
+	/// <summary>
+	/// 테스트
+	/// </summary>
+	public enum eSkillOption
+	{
+		None,
+		Damage,
+		CoolTime,
+		ActiveTime,
+		Speed,
+		SpawnDelay,
+		SpawnActveTime,
+		BuffActivePer,
+		BuffEndTime,
+		BuffChangeValue,
+	}
+
 	static public class Rand // 만분율 기준 0~9999까지 저장
 	{
 		private static int Index = 0;

@@ -10,7 +10,7 @@ public class Flame : BulletPlayerSkill
 	private float upScaleSpeed;
 	private float activeTime;
 	private float cTime;
-	private float reducationSpeed;
+	private float dropSpeed;
 	private const float startScale = 0.75f;
 	public void Setting(eAttackType type,float _damage, float _upScaleSpeed,float _activeTime,float reSpeed)
 	{
@@ -18,7 +18,7 @@ public class Flame : BulletPlayerSkill
 		attackType = type;
 		upScaleSpeed = _upScaleSpeed;
 		activeTime = _activeTime;
-		reducationSpeed = reSpeed;
+		dropSpeed = reSpeed;
 	}
 	public void Setting(Vector3 pos,float _speed,Vector3 _dir,float degree)
 	{
@@ -34,7 +34,7 @@ public class Flame : BulletPlayerSkill
 	private void Update()
 	{
 		gameObject.transform.position += dir * Time.deltaTime * speed;
-		speed -= Time.deltaTime * reducationSpeed;
+		speed -= Time.deltaTime * dropSpeed;
 		gameObject.transform.localScale += new Vector3(startScale, startScale, startScale) * Time.deltaTime * upScaleSpeed;
 		cTime += Time.deltaTime;
 		if(cTime >= activeTime)

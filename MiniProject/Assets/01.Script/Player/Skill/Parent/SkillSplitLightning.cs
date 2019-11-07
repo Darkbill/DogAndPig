@@ -10,20 +10,19 @@ public class SkillSplitLightning : Skill
 	enum eFloorFreezeOption
 	{
 		Damage,
-		Duration,
 		SturnPer,
 		SturnTime,
 		CoolTime,
+		EndTime,
 	}
 	private float damage;
-	private float duration;
 	private float sturnper;
 	private float sturntime;
-
+	private eBuffType buffType;
 	const int MaxCount = 4;
 	const int Angle180 = 180;
 	const int SplitCnt = 5;
-
+	private float buffEndTime;
 	public List<Lightning> BulletLst = new List<Lightning>();
 	public GameObject lightning;
 
@@ -34,11 +33,33 @@ public class SkillSplitLightning : Skill
 		skillType = skillData.skillType;
 		target = skillData.target;
 		damage = skillData.optionArr[(int)eFloorFreezeOption.Damage];
-		duration = skillData.optionArr[(int)eFloorFreezeOption.Duration];
 		sturnper = skillData.optionArr[(int)eFloorFreezeOption.SturnPer];
 		sturntime = skillData.optionArr[(int)eFloorFreezeOption.SturnPer];
 		cooldownTime = skillData.optionArr[(int)eFloorFreezeOption.CoolTime];
+		buffEndTime = skillData.optionArr[(int)eFloorFreezeOption.EndTime];
 		delayTime = cooldownTime;
+	}
+	public override void SetItemBuff(eSkillOption type, float changeValue)
+	{
+		switch (type)
+		{
+			case eSkillOption.Damage:
+				damage += damage * changeValue;
+				break;
+			case eSkillOption.CoolTime:
+				cooldownTime -= cooldownTime * changeValue;
+				break;
+			case eSkillOption.BuffActivePer:
+				sturnper += sturnper * changeValue;
+				break;
+			case eSkillOption.BuffEndTime:
+				sturntime += sturntime * changeValue;
+				break;
+		}
+	}
+	public override void SetBullet()
+	{
+
 	}
 	#endregion
 
@@ -66,7 +87,7 @@ public class SkillSplitLightning : Skill
 					GameMng.Ins.player.transform.position,
 					Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count),// + randnum),
 					gameObject.transform);
-				light.GetComponent<Lightning>().Setting(skillID, SplitCnt, sturnper, damage);
+				light.GetComponent<Lightning>().Setting(skillID, SplitCnt, sturnper, damage, skillType, buffType, buffEndTime);
 				BulletLst.Add(light.GetComponent<Lightning>());
 				++Count;
 			}
@@ -74,7 +95,7 @@ public class SkillSplitLightning : Skill
 			{
 				BulletLst[i].transform.position = GameMng.Ins.player.transform.position;
 				BulletLst[i].transform.rotation = Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count);// + randnum);
-				BulletLst[i].Setting(skillID, SplitCnt, sturnper, damage);
+				BulletLst[i].Setting(skillID, SplitCnt, sturnper, damage,skillType,buffType, buffEndTime);
 				BulletLst[i].gameObject.SetActive(true);
 				++Count;
 			}
@@ -99,8 +120,6 @@ public class SkillSplitLightning : Skill
 					BulletLst[i].transform.right *
 					Time.deltaTime *
 					BulletLst[i].Speed;
-				//StartCoroutine(corrset(i));
-				//                BulletLst[i].transform.eulerAngles += new Vector3(0, 0, randnum);
 			}
 		}
 	}
@@ -124,10 +143,8 @@ public class SkillSplitLightning : Skill
 					endPos,
 					Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count + randnum),
 					gameObject.transform);
-				light.GetComponent<Lightning>().Setting(skillID,
-					BulletLst[index].SplitCnt - 1,
-					sturnper,
-					damage);
+				
+				light.GetComponent<Lightning>().Setting(skillID, BulletLst[index].SplitCnt - 1, sturnper, damage, skillType, buffType, buffEndTime);
 				BulletLst.Add(light.GetComponent<Lightning>());
 				++Count;
 			}
@@ -135,7 +152,7 @@ public class SkillSplitLightning : Skill
 			{
 				BulletLst[i].transform.position = endPos;
 				BulletLst[i].transform.rotation = Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count + randnum);
-				BulletLst[i].Setting(skillID, BulletLst[index].SplitCnt - 1, sturnper, damage);
+				BulletLst[i].Setting(skillID, BulletLst[index].SplitCnt - 1, sturnper, damage, skillType, buffType, buffEndTime);
 				BulletLst[i].gameObject.SetActive(true);
 				++Count;
 			}

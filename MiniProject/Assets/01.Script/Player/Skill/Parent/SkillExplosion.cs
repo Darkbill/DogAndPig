@@ -1,35 +1,57 @@
 ﻿using UnityEngine;
 using System.Collections;
+using GlobalDefine;
 public class SkillExplosion : Skill
 {
 	public ExplosionFire explosionFire;
 	public GameObject thrower;
 	#region SkillSetting
-	enum eSkillOption
+	enum eExplosionSkillOption
 	{
 		Damage,
 		CoolTime,
 		ThrowTime,
 		UpScale,
+		KnockBackPower,
 	}
 	private float damage;
 	private float throwTime;
 	private float upScale;
+	private float knockBackPower;
 	public override void SkillSetting()
 	{
 		skillID = 9;
 		PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
 		skillType = skillData.skillType;
 		target = skillData.target;
-		damage = skillData.optionArr[(int)eSkillOption.Damage];
-		cooldownTime = skillData.optionArr[(int)eSkillOption.CoolTime];
-		throwTime = skillData.optionArr[(int)eSkillOption.ThrowTime];
-		upScale = skillData.optionArr[(int)eSkillOption.UpScale];
+		damage = skillData.optionArr[(int)eExplosionSkillOption.Damage];
+		cooldownTime = skillData.optionArr[(int)eExplosionSkillOption.CoolTime];
+		throwTime = skillData.optionArr[(int)eExplosionSkillOption.ThrowTime];
+		upScale = skillData.optionArr[(int)eExplosionSkillOption.UpScale];
+		knockBackPower = skillData.optionArr[(int)eExplosionSkillOption.KnockBackPower];
 		delayTime = cooldownTime;
-		explosionFire.Setting(skillType, damage,skillID);
 		gameObject.SetActive(false);
 	}
-#endregion
+	public override void SetItemBuff(eSkillOption optionType, float changeValue)
+	{
+		switch (optionType)
+		{
+			case eSkillOption.Damage:
+				damage += damage * changeValue;
+				break;
+			case eSkillOption.CoolTime:
+				cooldownTime -= cooldownTime * changeValue;
+				break;
+			case eSkillOption.BuffChangeValue:
+				knockBackPower += knockBackPower * changeValue;
+				break;
+		}
+	}
+	public override void SetBullet()
+	{
+		explosionFire.Setting(skillType, damage, skillID, knockBackPower);
+	}
+	#endregion
 	//실제 쿨타임 도는 타이밍에 ActiveSkill();
 	public override void OnButtonDown()
 	{

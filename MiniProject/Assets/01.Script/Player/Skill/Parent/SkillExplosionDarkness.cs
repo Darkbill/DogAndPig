@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using GlobalDefine;
 
 public class SkillExplosionDarkness : Skill
 {
     #region SkillSetting
-    enum eSkillOption
+    enum eDarkSkillOption
     {
         Damage,
         CoolTime,
@@ -20,15 +19,31 @@ public class SkillExplosionDarkness : Skill
         PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
         skillType = skillData.skillType;
         target = skillData.target;
-        damage = skillData.optionArr[(int)eSkillOption.Damage];
-        cooldownTime = skillData.optionArr[(int)eSkillOption.CoolTime];
-        maxChargeTime = skillData.optionArr[(int)eSkillOption.MaxCharageTime];
+        damage = skillData.optionArr[(int)eDarkSkillOption.Damage];
+        cooldownTime = skillData.optionArr[(int)eDarkSkillOption.CoolTime];
+        maxChargeTime = skillData.optionArr[(int)eDarkSkillOption.MaxCharageTime];
         delayTime = cooldownTime;
         gameObject.SetActive(false);
     }
-    #endregion
+	public override void SetItemBuff(eSkillOption type, float changeValue)
+	{
+		switch (type)
+		{
+			case eSkillOption.Damage:
+				damage += damage * changeValue;
+				break;
+			case eSkillOption.CoolTime:
+				cooldownTime -= cooldownTime * changeValue;
+				break;
+		}
+	}
+	public override void SetBullet()
+	{
 
-    public ExplosionDarkness explosiondarkness;
+	}
+	#endregion
+
+	public ExplosionDarkness explosiondarkness;
     public GameObject charge;
 
     private float chargetime = 0.0f;

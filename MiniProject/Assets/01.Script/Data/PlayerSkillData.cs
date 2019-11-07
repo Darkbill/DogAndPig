@@ -8,6 +8,7 @@ public class PlayerSkillData : TableBase
 	public eAttackType skillType;
 	public eSkillType target;
 	public float[] optionArr;
+	public int[] changeAbleOption;
 	public PlayerSkillData()
 	{
 

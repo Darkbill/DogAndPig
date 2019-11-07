@@ -16,6 +16,20 @@ public class SkillMng : MonoBehaviour
 			skill.SkillSetting();
 			skillDict.Add(JsonMng.Ins.playerSkillDataTable[playerSkillArr[i]].skillID,skill);
 		}
+		var equip = JsonMng.Ins.playerInfoDataTable.equipItemList;
+		for(int i = 0; i < equip.Length; ++i)
+		{
+			if (equip[i] == null) continue;
+			if(skillDict.ContainsKey(equip[i].changeSkill))
+			{
+				skillDict[equip[i].changeSkill].SetItemBuff(equip[i].changeOption, equip[i].changeSkillValue);
+			}
+		}
+		var eM = skillDict.GetEnumerator();
+		while(eM.MoveNext())
+		{
+			eM.Current.Value.SetBullet();
+		}
 	}
 	public void OffSkill()
 	{

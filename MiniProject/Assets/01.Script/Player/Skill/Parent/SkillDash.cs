@@ -26,6 +26,22 @@ public class SkillDash : Skill
 		delayTime = cooldownTime;
 		gameObject.SetActive(false);
     }
+	public override void SetItemBuff(eSkillOption type, float changeValue)
+	{
+		switch (type)
+		{
+			case eSkillOption.Damage:
+				damage += damage * changeValue;
+				break;
+			case eSkillOption.CoolTime:
+				cooldownTime -= cooldownTime * changeValue;
+				break;
+		}
+	}
+	public override void SetBullet()
+	{
+
+	}
 	#endregion
 
 	public Alter Bullet;

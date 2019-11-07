@@ -7,6 +7,47 @@ public static class ExtensionMethod
         #region PlayerDataSetting
         PlayerData stat = new PlayerData();
 		int level = JsonMng.Ins.playerInfoDataTable.playerLevel;
+		var equip = JsonMng.Ins.playerInfoDataTable.equipItemList;
+		for (int i = 0; i < equip.Length; ++i)
+		{
+			if (equip[i] == null) continue;
+			switch (equip[i].upgradeType)
+			{
+				case eUpgradeType.Damage:
+					levelStat.damage += levelStat.damage * equip[i].changeValue;
+					break;
+				case eUpgradeType.Armor:
+					levelStat.armor += levelStat.armor * equip[i].changeValue;
+					break;
+				case eUpgradeType.CriticalChance:
+					levelStat.criticalChance += levelStat.criticalChance * equip[i].changeValue;
+					break;
+				case eUpgradeType.CriticalDamage:
+					levelStat.criticalDamage += levelStat.criticalDamage * equip[i].changeValue;
+					break;
+				case eUpgradeType.FireResist:
+					levelStat.fireResist += levelStat.fireResist * equip[i].changeValue;
+					break;
+				case eUpgradeType.HP:
+					levelStat.healthPoint += levelStat.healthPoint * equip[i].changeValue;
+					break;
+				case eUpgradeType.KnockBack:
+					levelStat.knockback += levelStat.knockback * equip[i].changeValue;
+					break;
+				case eUpgradeType.PhysicsResist:
+					levelStat.physicsResist += levelStat.physicsResist * equip[i].changeValue;
+					break;
+				case eUpgradeType.Speed:
+					levelStat.moveSpeed += levelStat.moveSpeed * equip[i].changeValue;
+					break;
+				case eUpgradeType.WaterResist:
+					levelStat.waterResist += levelStat.waterResist * equip[i].changeValue;
+					break;
+				case eUpgradeType.WindResist:
+					levelStat.windResist += levelStat.windResist * equip[i].changeValue;
+					break;
+			}
+		}
 		stat.size = levelStat.size;
 		stat.healthPoint = levelStat.GetHealthPoint(level) + skillStat.healthPoint;
 		stat.damage = (levelStat.damage * level) + skillStat.damage;
@@ -22,6 +63,8 @@ public static class ExtensionMethod
 		stat.windResist = levelStat.windResist + skillStat.windResist;
 		stat.waterResist = levelStat.waterResist + skillStat.waterResist;
 		stat.lightningResist = levelStat.lightningResist + skillStat.lightningResist;
+
+
         #endregion
 
         float stunMaxtime = 0;
@@ -125,6 +168,20 @@ public static class ExtensionMethod
 		m.windResist = original.windResist;
 		m.lightningResist = original.lightningResist;
 		m.skillIndex = original.skillIndex;
+		return m;
+	}
+	public static ItemData Copy(this ItemData original)
+	{
+		ItemData m = new ItemData();
+		m.changeOption = original.changeOption;
+		m.changeSkill = original.changeSkill;
+		m.changeSkillValue = original.changeSkillValue;
+		m.changeValue = original.changeValue;
+		m.itemGradeType = original.itemGradeType;
+		m.itemID = original.itemID;
+		m.itemName = original.itemName;
+		m.itemType = original.itemType;
+		m.upgradeType = original.upgradeType;
 		return m;
 	}
 	public static List<T> ToList<T>(this Dictionary<int, T> dict)

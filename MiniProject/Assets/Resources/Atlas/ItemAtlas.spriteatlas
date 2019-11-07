@@ -29,11 +29,60 @@ SpriteAtlas:
       enableRotation: 1
       enableTightPacking: 1
     variantMultiplier: 1
-    packables: []
-    totalSpriteSurfaceArea: 0
+    packables:
+    - {fileID: 2800000, guid: 8689a038270e94f47827e1e27b3294af, type: 3}
+    - {fileID: 2800000, guid: de6209d42d07b430fb3ae2389b035e94, type: 3}
+    - {fileID: 2800000, guid: e6084810573ca4fb49e9b52e50897240, type: 3}
+    - {fileID: 2800000, guid: 75440cffd4c314d3089a8134f3840aaa, type: 3}
+    - {fileID: 2800000, guid: 6316d69de3f3c475885703b8d4242892, type: 3}
+    - {fileID: 2800000, guid: 366846e71bbe24a99a4a4f46dbf5c369, type: 3}
+    - {fileID: 2800000, guid: bbfb229357cc3446eb05b8dfc4afec27, type: 3}
+    - {fileID: 2800000, guid: 18d982571144e4c01a589c44f16d6690, type: 3}
+    - {fileID: 2800000, guid: 7e0c2f01524304da88aecaf60bbbe028, type: 3}
+    - {fileID: 2800000, guid: cb2e8ba68b8c244a69443cc87c834075, type: 3}
+    - {fileID: 2800000, guid: 913216725d88144a7b74ec22857c5fa1, type: 3}
+    - {fileID: 2800000, guid: a419bba62f02d46c78f4b0848ddcc006, type: 3}
+    - {fileID: 2800000, guid: 13f57f019757f4d86839ccc57559d2f3, type: 3}
+    - {fileID: 2800000, guid: d419025095c9c41bd8f833ec36af88a6, type: 3}
+    - {fileID: 2800000, guid: 75440cffd4c314d3089a8134f3840aaa, type: 3}
+    - {fileID: 2800000, guid: 272195c3ac52e4152983a62fd302e806, type: 3}
+    - {fileID: 2800000, guid: 949fad4969ec34f93939beaa2447b76b, type: 3}
+    totalSpriteSurfaceArea: 531760
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites: []
-  m_PackedSpriteNamesToIndex: []
+  m_PackedSprites:
+  - {fileID: 21300000, guid: e6084810573ca4fb49e9b52e50897240, type: 3}
+  - {fileID: 21300000, guid: d419025095c9c41bd8f833ec36af88a6, type: 3}
+  - {fileID: 21300000, guid: 7e0c2f01524304da88aecaf60bbbe028, type: 3}
+  - {fileID: 21300000, guid: 13f57f019757f4d86839ccc57559d2f3, type: 3}
+  - {fileID: 21300000, guid: 913216725d88144a7b74ec22857c5fa1, type: 3}
+  - {fileID: 21300000, guid: bbfb229357cc3446eb05b8dfc4afec27, type: 3}
+  - {fileID: 21300000, guid: 272195c3ac52e4152983a62fd302e806, type: 3}
+  - {fileID: 21300000, guid: de6209d42d07b430fb3ae2389b035e94, type: 3}
+  - {fileID: 21300000, guid: cb2e8ba68b8c244a69443cc87c834075, type: 3}
+  - {fileID: 21300000, guid: a419bba62f02d46c78f4b0848ddcc006, type: 3}
+  - {fileID: 21300000, guid: 18d982571144e4c01a589c44f16d6690, type: 3}
+  - {fileID: 21300000, guid: 366846e71bbe24a99a4a4f46dbf5c369, type: 3}
+  - {fileID: 21300000, guid: 8689a038270e94f47827e1e27b3294af, type: 3}
+  - {fileID: 21300000, guid: 949fad4969ec34f93939beaa2447b76b, type: 3}
+  - {fileID: 21300000, guid: 6316d69de3f3c475885703b8d4242892, type: 3}
+  - {fileID: 21300000, guid: 75440cffd4c314d3089a8134f3840aaa, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Crown
+  - Sword
+  - icon_sandglass
+  - icon_shield_D
+  - icon_shield_B
+  - icon_pickax
+  - icon_talaria
+  - icon_anvil
+  - Sheild
+  - icon_shield_C
+  - icon_scroll
+  - icon_laurel
+  - None
+  - icon_trophy
+  - icon_horner
+  - icon_sword_B
   m_Tag: ItemAtlas
   m_IsVariant: 0

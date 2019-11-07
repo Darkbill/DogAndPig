@@ -34,7 +34,7 @@ public class SkillSlotUI : MonoBehaviour
 	{
 		if (changeFlag)
 		{
-			int sI = UIMng.Ins.selectSkillID;
+			int sI = UIMng.Ins.selectID;
 			int findIndex = JsonMng.Ins.playerInfoDataTable.FindSkill(sI);
 			if(findIndex != -1 && skillID != 0)
 			{

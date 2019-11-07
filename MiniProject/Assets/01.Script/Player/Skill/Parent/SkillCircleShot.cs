@@ -24,11 +24,29 @@ public class SkillCircleShot : Skill
         BulletSetting();
 		delayTime = cooldownTime;
 		gameObject.SetActive(false);
-        for (int i = 0; i < BulletLst.Count; ++i)
-        {
-            BulletLst[i].damage = damage;
-        }
     }
+	public override void SetItemBuff(eSkillOption type, float changeValue)
+	{
+		switch (type)
+		{
+			case eSkillOption.Damage:
+				damage += damage * changeValue;
+				break;
+			case eSkillOption.CoolTime:
+				cooldownTime -= cooldownTime * changeValue;
+				break;
+			case eSkillOption.ActiveTime:
+				endTime += endTime * changeValue;
+				break;
+		}
+	}
+	public override void SetBullet()
+	{
+		for (int i = 0; i < BulletLst.Count; ++i)
+		{
+			BulletLst[i].damage = damage;
+		}
+	}
 	#endregion
 	const int Angle180 = 180;
 	const int BulletRotationAngle = 30;

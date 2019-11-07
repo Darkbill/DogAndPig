@@ -172,16 +172,16 @@ public class Monster : MonoBehaviour
 			switch (conditionList[i].buffType)
 			{
 				case eBuffType.MoveFast:
-					monsterData.moveSpeed += conditionList[i].changeValue;
+					monsterData.moveSpeed += monsterData.moveSpeed * conditionList[i].changeValue;
 					break;
 				case eBuffType.MoveSlow:
-					monsterData.moveSpeed -= conditionList[i].changeValue;
+					monsterData.moveSpeed -= monsterData.moveSpeed * conditionList[i].changeValue;
 					break;
 				case eBuffType.PhysicsStrong:
-					monsterData.damage += conditionList[i].changeValue;
+					monsterData.damage += monsterData.damage * conditionList[i].changeValue;
 					break;
 				case eBuffType.PhysicsWeek:
-					monsterData.damage -= conditionList[i].changeValue;
+					monsterData.damage -= monsterData.damage * conditionList[i].changeValue;
 					break;
 			}
 		}

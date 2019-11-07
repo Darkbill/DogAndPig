@@ -4,8 +4,8 @@ public class SkillFloorFreeze : Skill
 {
 	#region SkillSetting
 	enum eFloorFreezeOption
-    {
-        Damage,
+	{
+		Damage,
 		Width,
 		Height,
 		CoolTime,
@@ -14,7 +14,8 @@ public class SkillFloorFreeze : Skill
 		DebugEffectPer,
 		DebufTime,
 		BuffType,
-    }
+		ActiveTime,
+	}
 	private float damage;
 	private float width;
 	private float height;
@@ -22,6 +23,7 @@ public class SkillFloorFreeze : Skill
 	private float DebufActivePer;
 	private float DebufEffectPer;
 	private float DebufTime;
+	private float activeTime;
 	private eBuffType buffType;
 	public override void SkillSetting()
 	{
@@ -37,13 +39,40 @@ public class SkillFloorFreeze : Skill
 		height = skillData.optionArr[(int)eFloorFreezeOption.Height];
 		cooldownTime = skillData.optionArr[(int)eFloorFreezeOption.CoolTime];
 		DebufEffectPer = skillData.optionArr[(int)eFloorFreezeOption.DebugEffectPer];
+		buffType = (eBuffType)skillData.optionArr[(int)eFloorFreezeOption.BuffType];
+		activeTime = skillData.optionArr[(int)eFloorFreezeOption.ActiveTime];
 		delayTime = cooldownTime;
-        FreezenShot.Setting(skillID, DebufTime, DebufEffectPer, DebufActivePer,damage, skillType,buffType);
 		gameObject.SetActive(false);
 	}
+	public override void SetItemBuff(eSkillOption type, float changeValue)
+	{
+		switch (type)
+		{
+			case eSkillOption.Damage:
+				damage += damage * changeValue;
+				break;
+			case eSkillOption.CoolTime:
+				cooldownTime -= cooldownTime * changeValue;
+				break;
+			case eSkillOption.BuffActivePer:
+				DebufActivePer += DebufActivePer * changeValue;
+				break;
+			case eSkillOption.BuffChangeValue:
+				DebufEffectPer += DebufEffectPer * changeValue;
+				break;
+			case eSkillOption.BuffEndTime:
+				DebufTime += DebufTime * changeValue;
+				break;
+			case eSkillOption.ActiveTime:
+				activeTime += activeTime * changeValue;
+				break;
+		}
+	}
+	public override void SetBullet()
+	{
+		FreezenShot.Setting(skillID, DebufTime, DebufEffectPer, DebufActivePer, damage, skillType, buffType);
+	}
 	#endregion
-
-	//TODO : SpriteDummy
 	public Freezen FreezenShot;
 	public override void OnButtonDown()
 	{
@@ -58,17 +87,17 @@ public class SkillFloorFreeze : Skill
 		base.OnDrop();
 		ActiveSkill();
 		float degree = GameMng.Ins.player.degree;
-        FreezenShot.angleSet(degree - 90);
+		FreezenShot.angleSet(degree - 90);
 		Vector3 pos = new Vector3(Mathf.Cos(degree), Mathf.Sin(degree), 0);
 		FreezenShot.gameObject.SetActive(true);
 		FreezenShot.transform.position = GameMng.Ins.player.transform.position;
 		FreezenShot.transform.eulerAngles = new Vector3(0, 0, degree - 90);
 		FreezenShot.transform.localScale = new Vector3(width / 2, height / 4, 0);
 	}
-    void Update()
-    {
+	void Update()
+	{
 		delayTime += Time.deltaTime;
-		if (delayTime >= 1.0f)
-            FreezenShot.gameObject.SetActive(false);
-    }
+		if (delayTime >= activeTime)
+			FreezenShot.gameObject.SetActive(false);
+	}
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using GlobalDefine;
 public class SkillSpawnFireArrow : Skill
 {
 	public ParticleSystem gateParticle;
@@ -20,6 +21,27 @@ public class SkillSpawnFireArrow : Skill
 	private float arrowInitTime;
 	private float arrowSpeed;
 	private float arrowActiveTime;
+	public override void SetItemBuff(eSkillOption type,float changeValue)
+	{
+		switch(type)
+		{
+			case eSkillOption.Damage:
+				damage += damage * changeValue;
+				break;
+			case eSkillOption.CoolTime:
+				cooldownTime -= cooldownTime * changeValue;
+				break;
+			case eSkillOption.ActiveTime:
+				activeTime += activeTime * changeValue;
+				break;
+			case eSkillOption.SpawnDelay:
+				arrowInitTime += arrowInitTime * changeValue;
+				break;
+			case eSkillOption.Speed:
+				arrowSpeed += arrowSpeed * changeValue;
+				break;
+		}
+	}
 	public override void SkillSetting()
 	{
 		skillID = 7;
@@ -33,12 +55,15 @@ public class SkillSpawnFireArrow : Skill
 		arrowSpeed = skillData.optionArr[(int)eSpawnFireArrowOption.ArrowSpeed];
 		arrowActiveTime = skillData.optionArr[(int)eSpawnFireArrowOption.ArrowActiveTime];
 		delayTime = cooldownTime;
-		for(int i = 0; i < firArrowList.Count; ++i)
+		gameObject.SetActive(false);
+	}
+	public override void SetBullet()
+	{
+		for (int i = 0; i < firArrowList.Count; ++i)
 		{
-			firArrowList[i].Setting(skillType,damage,arrowSpeed, arrowActiveTime);
+			firArrowList[i].Setting(skillType, damage, arrowSpeed, arrowActiveTime);
 			firArrowList[i].transform.parent = GameMng.Ins.skillMng.transform;
 		}
-		gameObject.SetActive(false);
 	}
 	#endregion
 	//실제 쿨타임 도는 타이밍에 ActiveSkill();

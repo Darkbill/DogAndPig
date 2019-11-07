@@ -1,0 +1,35 @@
+[
+  {
+    "itemID": 1,
+    "itemName": "Sword",
+    "itemType": 2,
+    "itemGradeType": 0,
+    "upgradeType": 2,
+    "changeValue": 0,
+    "changeSkill": 0,
+    "changeOption": 0,
+    "changeSkillValue": 0
+  },
+  {
+    "itemID": 2,
+    "itemName": "Crown",
+    "itemType": 0,
+    "itemGradeType": 0,
+    "upgradeType": 4,
+    "changeValue": 0,
+    "changeSkill": 0,
+    "changeOption": 0,
+    "changeSkillValue": 0
+  },
+  {
+    "itemID": 3,
+    "itemName": "Sheild",
+    "itemType": 2,
+    "itemGradeType": 0,
+    "upgradeType": 1,
+    "changeValue": 0,
+    "changeSkill": 0,
+    "changeOption": 0,
+    "changeSkillValue": 0
+  }
+]

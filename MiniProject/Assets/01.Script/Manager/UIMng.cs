@@ -31,9 +31,11 @@ public class UIMng : MonoBehaviour
 	public Text diamondText;
 	public SkillInfoUI skillInfoUI;
 	public SkillBuyUI skillBuyUI;
+	public InventoryUI inventoryUI;
+
 	public GameObject[] boxArr;
 	public GameObject clickBox;
-	public int selectSkillID;
+	public int selectID;
 
 	/* Setting */
 	private void Start()
@@ -56,7 +58,7 @@ public class UIMng : MonoBehaviour
 	}
 	public void ReNew()
 	{
-		selectSkillID = 0;
+		selectID = 0;
 		clickBox.gameObject.SetActive(false);
 		OffSelectBox();
 		shopUI.ReNew();
@@ -79,7 +81,20 @@ public class UIMng : MonoBehaviour
 			clickBox.gameObject.SetActive(false);
 			shopUI.ChangeSelectFlag(false);
 		}
-		selectSkillID = sI;
+		selectID = sI;
+		for (int i = 0; i < boxArr.Length; ++i)
+		{
+			if (i == (int)type)
+			{
+				boxArr[i].gameObject.SetActive(true);
+				boxArr[i].gameObject.transform.position = Input.mousePosition;
+			}
+			else boxArr[i].gameObject.SetActive(false);
+		}
+	}
+	public void onClickItem(int sI, eBoxType type)
+	{
+		selectID = sI;
 		for (int i = 0; i < boxArr.Length; ++i)
 		{
 			if (i == (int)type)
@@ -100,21 +115,21 @@ public class UIMng : MonoBehaviour
 	public void OnClickSkillInfo()
 	{
 		OffSelectBox();
-		skillInfoUI.ShowSkillInfo(selectSkillID);
+		skillInfoUI.ShowSkillInfo(selectID);
 	}
 
 	public void OnClickSkillBuyUI()
 	{
 		OffSelectBox();
-		skillBuyUI.ShowSkillInfo(selectSkillID);
+		skillBuyUI.ShowSkillInfo(selectID);
 	}
 	public void OnClickBuySkill()
 	{
-		JsonMng.Ins.playerInfoDataTable.haveSkillList.Add(selectSkillID);
-		if (JsonMng.Ins.playerInfoDataTable.gold >= JsonMng.Ins.playerSkillDataTable[selectSkillID].price)
+		JsonMng.Ins.playerInfoDataTable.haveSkillList.Add(selectID);
+		if (JsonMng.Ins.playerInfoDataTable.gold >= JsonMng.Ins.playerSkillDataTable[selectID].price)
 		{
-			JsonMng.Ins.playerInfoDataTable.gold -= JsonMng.Ins.playerSkillDataTable[selectSkillID].price;
-			shopUI.infinityScoll.BuySkill(selectSkillID);
+			JsonMng.Ins.playerInfoDataTable.gold -= JsonMng.Ins.playerSkillDataTable[selectID].price;
+			shopUI.infinityScoll.BuySkill(selectID);
 			ReNew();
 		}
 		else
@@ -124,7 +139,7 @@ public class UIMng : MonoBehaviour
 	}
 	public void OnClickRemoveSkill()
 	{
-		JsonMng.Ins.playerInfoDataTable.RemoveSkill(selectSkillID);
+		JsonMng.Ins.playerInfoDataTable.RemoveSkill(selectID);
 		ReNew();
 	}
 	public void OnClickSetSkill()
@@ -132,5 +147,30 @@ public class UIMng : MonoBehaviour
 		OffSelectBox();
 		clickBox.gameObject.SetActive(true);
 		shopUI.ChangeSelectFlag(true);
+	}
+	public void OnClickItemInfo()
+	{
+		OffSelectBox();
+		inventoryUI.ShowItemInfo(selectID);
+	}
+	public void OnClickItemRemove()
+	{
+		OffSelectBox();
+		inventoryUI.RemoveItem(selectID);
+	}
+	public void OnClickEquipItem()
+	{
+		OffSelectBox();
+		inventoryUI.EquipItem(selectID);
+	}
+	public void OnClickTakeOffItem()
+	{
+		OffSelectBox();
+		inventoryUI.TakeOffItem(selectID);
+	}
+	public void OnClickEquipItemInfo()
+	{
+		OffSelectBox();
+		inventoryUI.ShowEquipItemInfo(selectID);
 	}
 }

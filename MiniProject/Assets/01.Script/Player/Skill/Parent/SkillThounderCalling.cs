@@ -1,13 +1,11 @@
 ﻿using GlobalDefine;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class SkillThounderCalling : Skill
 {
     #region SkillSetting
-    enum eSkillOption
+    enum eThoumderOption
     {
         Damage,
         CoolTime,
@@ -24,21 +22,37 @@ public class SkillThounderCalling : Skill
         PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
         skillType = skillData.skillType;
         target = skillData.target;
-        damage = skillData.optionArr[(int)eSkillOption.Damage];
-        cooldownTime = skillData.optionArr[(int)eSkillOption.CoolTime];
-        maxcount = skillData.optionArr[(int)eSkillOption.MaxCount];
-        randrange = (int)skillData.optionArr[(int)eSkillOption.RandRange];
+        damage = skillData.optionArr[(int)eThoumderOption.Damage];
+        cooldownTime = skillData.optionArr[(int)eThoumderOption.CoolTime];
+        maxcount = skillData.optionArr[(int)eThoumderOption.MaxCount];
+        randrange = (int)skillData.optionArr[(int)eThoumderOption.RandRange];
         delayTime = cooldownTime;
         gameObject.SetActive(false);
 
-        for(int i = 0;i<thounderlist.Count;++i)
-        {
-            thounderlist[i].Setting(skillID, 0, damage);
-        }
-    }
-    #endregion
 
-    public List<Thounder> thounderlist = new List<Thounder>();
+    }
+	public override void SetItemBuff(eSkillOption type, float changeValue)
+	{
+		switch (type)
+		{
+			case eSkillOption.Damage:
+				damage += damage * changeValue;
+				break;
+			case eSkillOption.CoolTime:
+				cooldownTime -= cooldownTime * changeValue;
+				break;
+		}
+	}
+	public override void SetBullet()
+	{
+		for (int i = 0; i < thounderlist.Count; ++i)
+		{
+			thounderlist[i].Setting(skillID, 0, damage);
+		}
+	}
+	#endregion
+
+	public List<Thounder> thounderlist = new List<Thounder>();
     private int count = 0;
     private Vector3 startpos = new Vector3();
     private bool skillOn = false;

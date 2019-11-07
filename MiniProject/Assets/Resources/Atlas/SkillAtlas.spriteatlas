@@ -42,7 +42,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: f629049ae45b6467f938450db1d27152, type: 3}
     - {fileID: 2800000, guid: ca347efc54a03479b87b087138fabdc8, type: 3}
     - {fileID: 2800000, guid: ea80504c77a464afa8c3a16653da8622, type: 3}
-    totalSpriteSurfaceArea: 44096
+    totalSpriteSurfaceArea: 48192
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -54,6 +54,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: f6d624c8ab23148679448509b4638c2b, type: 3}
   - {fileID: 21300000, guid: f629049ae45b6467f938450db1d27152, type: 3}
   - {fileID: 21300000, guid: cb856e3be79db0c4c9076dc88b1aba79, type: 3}
+  - {fileID: 21300000, guid: ea80504c77a464afa8c3a16653da8622, type: 3}
   - {fileID: 21300000, guid: ca347efc54a03479b87b087138fabdc8, type: 3}
   - {fileID: 21300000, guid: fbad407dd3fa2420786fc50d50e13319, type: 3}
   - {fileID: 21300000, guid: 505686de691fe4424b41721f9d75d80a, type: 3}
@@ -61,11 +62,12 @@ SpriteAtlas:
   - Skill_8
   - Skill_1
   - Skill_2
-  - Skill_5
   - Skill_4
+  - Skill_5
   - Skill_7
   - Skill_9
   - Skill_0
+  - Skill_11
   - Skill_10
   - Skill_6
   - Skill_3

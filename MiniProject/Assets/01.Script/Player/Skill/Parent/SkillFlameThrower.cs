@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using GlobalDefine;
 public class SkillFlameThrower : Skill
 {
 	public List<Flame> flameList;
@@ -14,7 +15,7 @@ public class SkillFlameThrower : Skill
 		FlameSpeed,
 		UpScaleSpeed,
 		FlameActiveTime,
-		ReducationSpeed,
+		DropSpeed,
 	}
 	private float damage;
 	private float activeTime;
@@ -24,7 +25,7 @@ public class SkillFlameThrower : Skill
 	private float flameSpeed;
 	private float upScaleSpeed;
 	private float flameActiveTime;
-	private float reducationSpeed;
+	private float dropSpeed;
 	private const float updownScale = 0.1f;
 	public override void SkillSetting()
 	{
@@ -39,15 +40,33 @@ public class SkillFlameThrower : Skill
 		flameSpeed = skillData.optionArr[(int)eFlameThrowerOption.FlameSpeed];
 		upScaleSpeed = skillData.optionArr[(int)eFlameThrowerOption.UpScaleSpeed];
 		flameActiveTime = skillData.optionArr[(int)eFlameThrowerOption.FlameActiveTime];
-		reducationSpeed = skillData.optionArr[(int)eFlameThrowerOption.ReducationSpeed];
+		dropSpeed = skillData.optionArr[(int)eFlameThrowerOption.DropSpeed];
 		randSpawnTime = spawnTime;
 		delayTime = cooldownTime;
+		gameObject.SetActive(false);
+	}
+	public override void SetItemBuff(eSkillOption type, float changeValue)
+	{
+		switch (type)
+		{
+			case eSkillOption.Damage:
+				damage += damage * changeValue;
+				break;
+			case eSkillOption.CoolTime:
+				cooldownTime -= cooldownTime * changeValue;
+				break;
+			case eSkillOption.ActiveTime:
+				activeTime += activeTime * changeValue;
+				break;
+		}
+	}
+	public override void SetBullet()
+	{
 		for (int i = 0; i < flameList.Count; ++i)
 		{
-			flameList[i].Setting(skillType, damage, upScaleSpeed, flameActiveTime,reducationSpeed);
+			flameList[i].Setting(skillType, damage, upScaleSpeed, flameActiveTime, dropSpeed);
 			flameList[i].transform.parent = GameMng.Ins.skillMng.transform;
 		}
-		gameObject.SetActive(false);
 	}
 	#endregion
 

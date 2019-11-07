@@ -197,7 +197,7 @@ namespace QFX.IFX
 
         private void OnDestroy()
         {
-            Destroy(_trailObj.gameObject);
+            //Destroy(_trailObj.gameObject);
         }
 
         private class Point

@@ -26,6 +26,9 @@ public abstract class Skill : MonoBehaviour
 		}
 		return delayTime / cooldownTime;
 	}
+	//각 스킬별 변화가능한 옵션 추가 계산
+	public abstract void SetItemBuff(eSkillOption optionType, float changeValue);
+	public abstract void SetBullet();
 	public virtual void OnButtonDown()
 	{
 		Debug.Log("스킬 시작");

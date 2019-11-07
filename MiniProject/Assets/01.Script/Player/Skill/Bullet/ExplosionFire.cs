@@ -11,11 +11,13 @@ public class ExplosionFire : BulletPlayerSkill
 	public BoxCollider2D boxCol;
 	public CircleCollider2D circleCol;
 	private List<Monster> hitMonsterList = new List<Monster>();
-	public void Setting(eAttackType _type, float _damage,int _skillID)
+	private float knockBackPower;
+	public void Setting(eAttackType _type, float _damage,int _skillID, float _knockBackPower)
 	{
 		type = _type;
 		damage = _damage;
 		skillID = _skillID;
+		knockBackPower = _knockBackPower;
 	}
 	public void StartExPlosion(Vector3 pos)
 	{
@@ -30,7 +32,7 @@ public class ExplosionFire : BulletPlayerSkill
 		if (hitMonsterList.Contains(monster)) return;
 		hitMonsterList.Add(monster);
 		monster.Damage(type, GameMng.Ins.player.calStat.damage,damage);
-		monster.OutStateAdd(new ConditionData(eBuffType.NockBack, skillID, 0, 2), monster.transform.position - transform.position);
+		monster.OutStateAdd(new ConditionData(eBuffType.NockBack, skillID, 0, knockBackPower), monster.transform.position - transform.position);
 	}
 	private IEnumerator OffCollider()
 	{

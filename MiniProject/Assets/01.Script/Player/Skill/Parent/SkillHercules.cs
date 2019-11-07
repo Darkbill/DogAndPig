@@ -1,6 +1,4 @@
 ﻿using GlobalDefine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SkillHercules : Skill
@@ -8,38 +6,47 @@ public class SkillHercules : Skill
     #region SkillSetting
     enum eHerculesOption
     {
-        BufIndex,
         Damage,
         BufTime,
-        AttackPer,
-        AttackRange,
-        ColTime,
+        CoolTime,
+		KnockBackPer,
     }
-    private float bufindex;
     private float damage;
     private float buftime;
-    private float attackper;
-    private float attackrange;
-
+	private float activePer;
     public GameObject HerculesEffect;
-
+	
     public override void SkillSetting()
     {
         skillID = 4;
         PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
-
-
         skillType = skillData.skillType;
         target = skillData.target;
-
-        bufindex = skillData.optionArr[(int)eHerculesOption.BufIndex];
         damage = skillData.optionArr[(int)eHerculesOption.Damage];
         buftime= skillData.optionArr[(int)eHerculesOption.BufTime];
-        attackper = skillData.optionArr[(int)eHerculesOption.AttackPer];
-        attackrange = skillData.optionArr[(int)eHerculesOption.AttackRange];
-        cooldownTime = skillData.optionArr[(int)eHerculesOption.ColTime];
-        delayTime = cooldownTime;
+        cooldownTime = skillData.optionArr[(int)eHerculesOption.CoolTime];
+		activePer = skillData.optionArr[(int)eHerculesOption.KnockBackPer];
+		delayTime = cooldownTime;
     }
+	public override void SetItemBuff(eSkillOption type, float changeValue)
+	{
+		switch (type)
+		{
+			case eSkillOption.Damage:
+				damage += damage * changeValue;
+				break;
+			case eSkillOption.CoolTime:
+				cooldownTime -= cooldownTime * changeValue;
+				break;
+			case eSkillOption.BuffActivePer:
+				activePer += activePer * changeValue;
+				break;
+		}
+	}
+	public override void SetBullet()
+	{
+
+	}
 	#endregion
 	public override void OnButtonDown()
 	{
@@ -50,7 +57,7 @@ public class SkillHercules : Skill
     {
         base.ActiveSkill();
         GameMng.Ins.player.AddBuff(new ConditionData(eBuffType.PhysicsStrong, skillID, buftime, damage));
-        GameMng.Ins.player.AddBuff(new ConditionData(eBuffType.NockBack, skillID, buftime, 1000));
+        GameMng.Ins.player.AddBuff(new ConditionData(eBuffType.NockBack, skillID, buftime, activePer));
         HerculesEffect.SetActive(true);
     }
 

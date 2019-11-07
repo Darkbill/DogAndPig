@@ -31,9 +31,10 @@ public class JsonMng : MonoBehaviour
 	public Dictionary<int, List<StageDataTable>> stageDataTable { get; private set; }
 												= new Dictionary<int, List<StageDataTable>>();
 	public Dictionary<int, EXPData> expDataTable { get; private set; } = new Dictionary<int, EXPData>();
+	public Dictionary<int, ItemData> itemDataTable { get; private set; } = new Dictionary<int, ItemData>();
 	public PlayerInfoData playerInfoDataTable { get; private set; } = new PlayerInfoData();
 	public PlayerData playerDataTable { get; private set; } = new PlayerData();
-	private int AllDownCount = 7;
+	private const int AllDownCount = 8;
 	private int cDownCount = 0;
 	public bool IsDone
 	{
@@ -53,6 +54,7 @@ public class JsonMng : MonoBehaviour
 		LoadPlayerData();
 		LoadPlayerInfoData();
 		LoadPlayerSkillData();
+		LoadItemData();
 		LoadMonsterData();
 		LoadMonsterSkillData();
 		LoadExpDataTable();
@@ -84,16 +86,24 @@ public class JsonMng : MonoBehaviour
 		WWW www = new WWW(path);
 		yield return www;
 		string jsonString = www.text;
-		JsonData jsonData = JsonMapper.ToObject(jsonString);
-		for (int i = 0; i < jsonData.Count; ++i)
+		try
 		{
-			T save = JsonMapper.ToObject<T>(jsonData[i].ToJson());
-			table.Add(save.GetTableID(), save);
+			JsonData jsonData = JsonMapper.ToObject(jsonString);
+			for (int i = 0; i < jsonData.Count; ++i)
+			{
+				T save = JsonMapper.ToObject<T>(jsonData[i].ToJson());
+				table.Add(save.GetTableID(), save);
+			}
+			cDownCount++;
+			if (cDownCount == AllDownCount)
+			{
+				UIMng.Ins.Setting();
+			}
 		}
-		cDownCount++;
-		if (cDownCount == AllDownCount)
+		catch
 		{
-			UIMng.Ins.Setting();
+			Debug.Log(fileName);
+			Debug.Log(jsonString);
 		}
 	}
 	private IEnumerator StartLoad<T>(string fileName, Dictionary<int,List<T>> table) where T : TableBase
@@ -122,6 +132,10 @@ public class JsonMng : MonoBehaviour
 		{
 			UIMng.Ins.Setting();
 		}
+	}
+	private void LoadItemData()
+	{
+		StartCoroutine(StartLoad("ItemDataTable", itemDataTable));
 	}
 	private void LoadPlayerData()
 	{
@@ -155,5 +169,18 @@ public class JsonMng : MonoBehaviour
 	public List<StageDataTable> GetStageData(int stagelevel)
 	{
 		return stageDataTable[stagelevel];
+	}
+	public int GetRandomSkillIndex()
+	{
+		int maxCount = playerSkillDataTable.Count;
+		int cCount = 0;
+		int endCount = Random.Range(1, maxCount);
+		var e = playerSkillDataTable.GetEnumerator();
+		while(cCount != endCount)
+		{
+			cCount++;
+			e.MoveNext();
+		}
+		return e.Current.Value.skillID;
 	}
 }

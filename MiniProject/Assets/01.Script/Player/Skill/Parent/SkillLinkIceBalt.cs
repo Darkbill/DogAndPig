@@ -3,7 +3,7 @@ using GlobalDefine;
 public class SkillLinkIceBalt : Skill
 {
     #region SkillSetting
-    enum eSkillOption
+    enum eIceBaltSkillOption
     {
         Damage,
         CoolTime,
@@ -15,24 +15,59 @@ public class SkillLinkIceBalt : Skill
 		MaxHitCount,
     }
     private float damage;
-    public override void SkillSetting()
+	private float buffActivePer;
+	private float buffEndTime;
+	private float buffChangeValue;
+	private eBuffType buffType;
+	private float iceSpeed;
+	private int maxHitCount;
+	public override void SkillSetting()
     {
         skillID = 10;
         PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
         skillType = skillData.skillType;
         target = skillData.target;
-        damage = skillData.optionArr[(int)eSkillOption.Damage];
-        cooldownTime = skillData.optionArr[(int)eSkillOption.CoolTime];
+        damage = skillData.optionArr[(int)eIceBaltSkillOption.Damage];
+        cooldownTime = skillData.optionArr[(int)eIceBaltSkillOption.CoolTime];
         delayTime = cooldownTime;
-		ice.Setting(skillID, skillData.optionArr[(int)eSkillOption.ActivePer],damage,skillType,
-					(eBuffType)skillData.optionArr[(int)eSkillOption.BuffType], skillData.optionArr[(int)eSkillOption.EndTime],
-					skillData.optionArr[(int)eSkillOption.ChangeValue], skillData.optionArr[(int)eSkillOption.IceSpeed],
-					(int)skillData.optionArr[(int)eSkillOption.MaxHitCount]);
-
+		buffActivePer = skillData.optionArr[(int)eIceBaltSkillOption.ActivePer];
+		buffEndTime = skillData.optionArr[(int)eIceBaltSkillOption.EndTime];
+		buffChangeValue = skillData.optionArr[(int)eIceBaltSkillOption.ChangeValue];
+		buffType = (eBuffType)skillData.optionArr[(int)eIceBaltSkillOption.BuffType];
+		iceSpeed = skillData.optionArr[(int)eIceBaltSkillOption.IceSpeed];
+		maxHitCount = (int)skillData.optionArr[(int)eIceBaltSkillOption.MaxHitCount];
 		gameObject.SetActive(false);
     }
-    #endregion
-    public LinkIce ice;
+	public override void SetItemBuff(eSkillOption optionType, float changeValue)
+	{
+		switch (optionType)
+		{
+			case eSkillOption.Damage:
+				damage += damage * changeValue;
+				break;
+			case eSkillOption.CoolTime:
+				cooldownTime -= cooldownTime * changeValue;
+				break;
+			case eSkillOption.BuffActivePer:
+				buffActivePer += buffActivePer * changeValue;
+				break;
+			case eSkillOption.BuffEndTime:
+				buffEndTime += buffEndTime * changeValue;
+				break;
+			case eSkillOption.BuffChangeValue:
+				changeValue += changeValue * changeValue;
+				break;
+		}
+	}
+	public override void SetBullet()
+	{
+		ice.Setting(skillID, buffActivePer, damage, skillType,
+			buffType, buffEndTime, buffChangeValue,
+			iceSpeed,
+			maxHitCount);
+	}
+	#endregion
+	public LinkIce ice;
 
     //실제 쿨타임 도는 타이밍에 ActiveSkill();
     public override void OnButtonDown()

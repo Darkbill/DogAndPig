@@ -50,12 +50,17 @@ public class SkillBurningMeteor : Skill
 	{
 		base.ActiveSkill();
 	}
-
+	public override void SetBullet()
+	{
+	}
 	private void FinishAttack()
 	{
 
 	}
-
+	
+	public override void SetItemBuff(eSkillOption optionType, float changeValue)
+	{
+	}
 	private void Awake()
 	{
 		Targetting.SetActionDict(skillID, MeteorRun);

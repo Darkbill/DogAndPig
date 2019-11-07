@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using GlobalDefine;
 
 public class SkillRoundTrip : Skill
 {
     #region SkillSetting
-    enum eSkillOption
+    enum eTripSkillOption
     {
         Damage,
         CoolTime,
@@ -19,15 +18,34 @@ public class SkillRoundTrip : Skill
         PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
         skillType = skillData.skillType;
         target = skillData.target;
-        damage = skillData.optionArr[(int)eSkillOption.Damage];
-        cooldownTime = skillData.optionArr[(int)eSkillOption.CoolTime];
-        range = skillData.optionArr[(int)eSkillOption.Range];
+        damage = skillData.optionArr[(int)eTripSkillOption.Damage];
+        cooldownTime = skillData.optionArr[(int)eTripSkillOption.CoolTime];
+        range = skillData.optionArr[(int)eTripSkillOption.Range];
         delayTime = cooldownTime;
         gameObject.SetActive(false);
     }
-    #endregion
+	public override void SetItemBuff(eSkillOption optionType, float changeValue)
+	{
+		switch (optionType)
+		{
+			case eSkillOption.Damage:
+				damage += damage * changeValue;
+				break;
+			case eSkillOption.CoolTime:
+				cooldownTime -= cooldownTime * changeValue;
+				break;
+			case eSkillOption.ActiveTime:
+				range += range * changeValue;
+				break;
+		}
+	}
+	public override void SetBullet()
+	{
 
-    public Recognition recognition;
+	}
+	#endregion
+
+	public Recognition recognition;
     //실제 쿨타임 도는 타이밍에 ActiveSkill();
     public override void OnButtonDown()
     {
