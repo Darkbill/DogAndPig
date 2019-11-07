@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using GlobalDefine;
+using System.Collections.Generic;
+
 public class SkillFloorFreeze : Skill
 {
 	#region SkillSetting
@@ -37,11 +39,12 @@ public class SkillFloorFreeze : Skill
 		DebufTime = skillData.optionArr[(int)eFloorFreezeOption.DebufTime];
 		width = skillData.optionArr[(int)eFloorFreezeOption.Width];
 		height = skillData.optionArr[(int)eFloorFreezeOption.Height];
-		cooldownTime = skillData.optionArr[(int)eFloorFreezeOption.CoolTime];
+        cooldownTime = skillData.optionArr[(int)eFloorFreezeOption.CoolTime];
 		DebufEffectPer = skillData.optionArr[(int)eFloorFreezeOption.DebugEffectPer];
 		buffType = (eBuffType)skillData.optionArr[(int)eFloorFreezeOption.BuffType];
 		activeTime = skillData.optionArr[(int)eFloorFreezeOption.ActiveTime];
 		delayTime = cooldownTime;
+        FreezenShot[0].transform.parent = GameMng.Ins.skillMng.transform;
 		gameObject.SetActive(false);
 	}
 	public override void SetItemBuff(eSkillOption type, float changeValue)
@@ -70,10 +73,17 @@ public class SkillFloorFreeze : Skill
 	}
 	public override void SetBullet()
 	{
-		FreezenShot.Setting(skillID, DebufTime, DebufEffectPer, DebufActivePer, damage, skillType, buffType);
+        for(int i = 0;i<FreezenShot.Count;++i)
+    		FreezenShot[i].Setting(skillID, DebufTime, DebufEffectPer, DebufActivePer, damage, skillType, buffType);
 	}
+    public void SetCreateBullet()
+    {
+        Freezen obj = Instantiate(FreezenShot[0], GameMng.Ins.skillMng.transform);
+        obj.gameObject.SetActive(false);
+        FreezenShot.Add(obj);
+    }
 	#endregion
-	public Freezen FreezenShot;
+	public List<Freezen> FreezenShot = new List<Freezen>();
 	public override void OnButtonDown()
 	{
 		GameMng.Ins.SetSkillAim(skillID);
@@ -84,20 +94,34 @@ public class SkillFloorFreeze : Skill
 	}
 	public override void OnDrop()
 	{
-		base.OnDrop();
-		ActiveSkill();
-		float degree = GameMng.Ins.player.degree;
-		FreezenShot.angleSet(degree - 90);
-		Vector3 pos = new Vector3(Mathf.Cos(degree), Mathf.Sin(degree), 0);
-		FreezenShot.gameObject.SetActive(true);
-		FreezenShot.transform.position = GameMng.Ins.player.transform.position;
-		FreezenShot.transform.eulerAngles = new Vector3(0, 0, degree - 90);
-		FreezenShot.transform.localScale = new Vector3(width / 2, height / 4, 0);
-	}
+        float degree = GameMng.Ins.player.degree;
+        Vector3 pos = new Vector3(Mathf.Cos(degree), Mathf.Sin(degree), 0);
+        for (int i = 0; i < FreezenShot.Count; ++i)
+        {
+            if (FreezenShot[i].gameObject.activeSelf)
+                continue;
+            base.OnDrop();
+            ActiveSkill();
+            FreezenShot[i].angleSet(degree - 90);
+            FreezenShot[i].gameObject.SetActive(true);
+            FreezenShot[i].transform.position = GameMng.Ins.player.transform.position;
+            FreezenShot[i].transform.eulerAngles = new Vector3(0, 0, degree - 90);
+            FreezenShot[i].transform.localScale = new Vector3(width / 2, height / 4, 0);
+            return;
+        }
+        base.OnDrop();
+        ActiveSkill();
+        Freezen o = Instantiate(FreezenShot[0], GameMng.Ins.skillMng.transform);
+        o.angleSet(degree - 90);
+        o.Setting(skillID, DebufTime, DebufEffectPer, DebufActivePer, damage, skillType, buffType);
+        o.gameObject.SetActive(true);
+        o.transform.position = GameMng.Ins.player.transform.position;
+        o.transform.eulerAngles = new Vector3(0, 0, degree - 90);
+        o.transform.localScale = new Vector3(width / 2, height / 4, 0);
+        FreezenShot.Add(o);
+    }
 	void Update()
 	{
 		delayTime += Time.deltaTime;
-		if (delayTime >= activeTime)
-			FreezenShot.gameObject.SetActive(false);
 	}
 }

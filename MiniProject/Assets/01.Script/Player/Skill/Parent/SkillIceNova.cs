@@ -62,6 +62,7 @@ public class SkillIceNova : Skill
         gameObject.transform.position = GameMng.Ins.player.transform.position +
             new Vector3(0, GameMng.Ins.player.calStat.size * 3);
         nova.transform.position = GameMng.Ins.player.transform.position;
+        nova.transform.parent = GameMng.Ins.skillMng.transform;
         nova.gameObject.SetActive(true);
         base.ActiveSkill();
     }

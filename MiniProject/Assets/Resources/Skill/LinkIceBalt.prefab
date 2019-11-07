@@ -49,7 +49,8 @@ MonoBehaviour:
   cooldownTime: 0
   delayTime: 0
   activeFlag: 0
-  ice: {fileID: 8333719771384521457}
+  ice:
+  - {fileID: 8333719771384521457}
 --- !u!1 &7626717104934366609
 GameObject:
   m_ObjectHideFlags: 0

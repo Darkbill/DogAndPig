@@ -12,6 +12,7 @@ public class Freezen : BulletPlayerSkill
 	private float per;
 
     private Vector3 rightvec;
+    public ParticleSystem system;
 
 	public void Setting(int id,float mT,float s,float p,float d,eAttackType aType,eBuffType bType)
 	{
@@ -24,6 +25,12 @@ public class Freezen : BulletPlayerSkill
 		buffType = bType;
         
 	}
+
+    private void Update()
+    {
+        if (!system.isPlaying)
+            gameObject.SetActive(false);
+    }
 
     public void angleSet(float angle)
     {

@@ -27,6 +27,10 @@ public class SkillThounderCalling : Skill
         maxcount = skillData.optionArr[(int)eThoumderOption.MaxCount];
         randrange = (int)skillData.optionArr[(int)eThoumderOption.RandRange];
         delayTime = cooldownTime;
+        for(int i = 0;i<thounderlist.Count;++i)
+        {
+            thounderlist[i].transform.parent = GameMng.Ins.skillMng.transform;
+        }
         gameObject.SetActive(false);
     }
 	public override void SetItemBuff(eSkillOption type, float changeValue)

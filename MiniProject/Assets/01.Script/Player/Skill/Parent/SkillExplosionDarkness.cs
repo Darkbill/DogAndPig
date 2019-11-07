@@ -23,6 +23,7 @@ public class SkillExplosionDarkness : Skill
         cooldownTime = skillData.optionArr[(int)eDarkSkillOption.CoolTime];
         maxChargeTime = skillData.optionArr[(int)eDarkSkillOption.MaxCharageTime];
         delayTime = cooldownTime;
+        explosiondarkness.transform.parent = GameMng.Ins.skillMng.transform;
         gameObject.SetActive(false);
     }
 	public override void SetItemBuff(eSkillOption type, float changeValue)
@@ -42,6 +43,8 @@ public class SkillExplosionDarkness : Skill
 
 	}
 	#endregion
+
+
 
 	public ExplosionDarkness explosiondarkness;
     public GameObject charge;

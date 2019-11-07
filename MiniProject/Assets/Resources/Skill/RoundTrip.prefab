@@ -4932,4 +4932,5 @@ MonoBehaviour:
   cooldownTime: 0
   delayTime: 0
   activeFlag: 0
-  recognition: {fileID: 287950877922598639}
+  recognition:
+  - {fileID: 287950877922598639}

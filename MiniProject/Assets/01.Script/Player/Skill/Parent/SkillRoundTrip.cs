@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using GlobalDefine;
+using System.Collections.Generic;
 
 public class SkillRoundTrip : Skill
 {
@@ -22,7 +23,9 @@ public class SkillRoundTrip : Skill
         cooldownTime = skillData.optionArr[(int)eTripSkillOption.CoolTime];
         range = skillData.optionArr[(int)eTripSkillOption.Range];
         delayTime = cooldownTime;
+        gameObject.transform.parent = GameMng.Ins.skillMng.transform;
         gameObject.SetActive(false);
+        recognition[0].transform.parent = GameMng.Ins.skillMng.transform;
     }
 	public override void SetItemBuff(eSkillOption optionType, float changeValue)
 	{
@@ -43,9 +46,9 @@ public class SkillRoundTrip : Skill
 	{
 
 	}
-	#endregion
+    #endregion
 
-	public Recognition recognition;
+    public List<Recognition> recognition = new List<Recognition>();
     //실제 쿨타임 도는 타이밍에 ActiveSkill();
     public override void OnButtonDown()
     {
@@ -63,9 +66,20 @@ public class SkillRoundTrip : Skill
     {
         base.OnDrop();
         ActiveSkill();
+
         Vector3 movevec = GameMng.Ins.player.GetForward();
-        recognition.gameObject.SetActive(true);
-        recognition.Setting(GameMng.Ins.player.transform.position, movevec, range);
+        for (int i = 0;i< recognition.Count;++i)
+        {
+            if (recognition[i].gameObject.activeSelf) continue;
+            recognition[i].gameObject.SetActive(true);
+            recognition[i].Setting(GameMng.Ins.player.transform.position, movevec, range);
+            return;
+        }
+
+        Recognition o = Instantiate(recognition[0], GameMng.Ins.skillMng.transform);
+        o.gameObject.SetActive(true);
+        o.Setting(GameMng.Ins.player.transform.position, movevec, range);
+        recognition.Add(o);
     }
     private void Update()
     {

@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2315870331355503943
 Transform:
   m_ObjectHideFlags: 0
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  system: {fileID: 2493911463324331482}
 --- !u!61 &1572095734793305828
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28930,4 +28931,5 @@ MonoBehaviour:
   cooldownTime: 0
   delayTime: 0
   activeFlag: 0
-  FreezenShot: {fileID: 7825211935882307050}
+  FreezenShot:
+  - {fileID: 7825211935882307050}

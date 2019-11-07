@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using GlobalDefine;
+using System.Collections.Generic;
+
 public class SkillLinkIceBalt : Skill
 {
     #region SkillSetting
@@ -37,6 +39,7 @@ public class SkillLinkIceBalt : Skill
 		iceSpeed = skillData.optionArr[(int)eIceBaltSkillOption.IceSpeed];
 		maxHitCount = (int)skillData.optionArr[(int)eIceBaltSkillOption.MaxHitCount];
 		gameObject.SetActive(false);
+        ice[0].transform.parent = GameMng.Ins.skillMng.transform;
     }
 	public override void SetItemBuff(eSkillOption optionType, float changeValue)
 	{
@@ -61,13 +64,13 @@ public class SkillLinkIceBalt : Skill
 	}
 	public override void SetBullet()
 	{
-		ice.Setting(skillID, buffActivePer, damage, skillType,
+		ice[0].Setting(skillID, buffActivePer, damage, skillType,
 			buffType, buffEndTime, buffChangeValue,
 			iceSpeed,
 			maxHitCount);
 	}
 	#endregion
-	public LinkIce ice;
+	public List<LinkIce> ice = new List<LinkIce>();
 
     //실제 쿨타임 도는 타이밍에 ActiveSkill();
     public override void OnButtonDown()
@@ -77,8 +80,22 @@ public class SkillLinkIceBalt : Skill
     }
     public override void ActiveSkill()
     {
-        ice.gameObject.SetActive(true);
-        ice.Setting();
+        for(int i = 0;i<ice.Count;++i)
+        {
+            if (ice[i].gameObject.activeSelf) continue;
+            ice[i].gameObject.SetActive(true);
+            ice[i].Setting();
+            base.ActiveSkill();
+            return;
+        }
+        LinkIce o = Instantiate(ice[0], GameMng.Ins.skillMng.transform);
+        o.gameObject.SetActive(true);
+        o.Setting(skillID, buffActivePer, damage, skillType,
+            buffType, buffEndTime, buffChangeValue,
+            iceSpeed,
+            maxHitCount);
+        ice.Add(o);
+
         base.ActiveSkill();
     }
     public override void OnDrag()
