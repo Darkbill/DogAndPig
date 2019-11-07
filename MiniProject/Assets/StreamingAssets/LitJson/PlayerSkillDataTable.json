@@ -233,16 +233,11 @@
     "skillType": 1,
     "activeType": 3,
     "target": 1,
-    "level": 3,
     "price": 2000,
     "optionArr": [
       12,
       5,
       3
-    ],
-    "changeAbleOption": [
-      1,
-      2
     ]
   },
   {
@@ -251,17 +246,12 @@
     "skillType": 1,
     "activeType": 3,
     "target": 1,
-    "level": 3,
     "price": 2000,
     "optionArr": [
       12,
       6,
       5,
       10
-    ],
-    "changeAbleOption": [
-      1,
-      2
     ]
   }
 ]

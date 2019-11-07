@@ -4,7 +4,7 @@ using GlobalDefine;
 using System.Text;
 public class InventoryUI : MonoBehaviour
 {
-	public EquipSlotUI[] equipSlotUIArr;
+	public ItemSlotUI[] equipSlotUIArr;
 	public ItemSlotUI[] itemSlotUIArr;
 	public ItemBoxUI itemBoxUI;
 	public ItemInfoUI itemInfoUI;

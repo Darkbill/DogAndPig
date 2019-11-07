@@ -3,6 +3,12 @@ using UnityEngine.UI;
 using GlobalDefine;
 public class ItemSlotUI : MonoBehaviour
 {
+	public enum eItemSlotType
+	{
+		Equip,
+		Have,
+	}
+	public eItemSlotType itemSlotType;
 	public ItemData item;
 	public Image frameImage;
 	public Image itemImage;
@@ -25,6 +31,11 @@ public class ItemSlotUI : MonoBehaviour
 	public void OnClickItem()
 	{
 		if (item == null) return;
-		UIMng.Ins.onClickItem(slotIndex, eBoxType.Equip);
+
+		if (itemSlotType == eItemSlotType.Have)
+		{
+			UIMng.Ins.onClickItem(slotIndex, eBoxType.Equip);
+		}
+		else UIMng.Ins.onClickItem(slotIndex, eBoxType.EquitTakeOff);
 	}
 }
