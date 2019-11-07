@@ -226,5 +226,34 @@
       2,
       3
     ]
+  },
+    {
+    "skillID": 12,
+    "skillName": "ExplosionDarkness",
+    "skillType": 1,
+    "activeType": 3,
+    "target": 1,
+    "level": 3,
+    "price": 2000,
+    "optionArr": [
+      12,
+      5,
+      3
+    ]
+  },
+  {
+    "skillID": 13,
+    "skillName": "ThounderCalling",
+    "skillType": 1,
+    "activeType": 3,
+    "target": 1,
+    "level": 3,
+    "price": 2000,
+    "optionArr": [
+      12,
+      6,
+      5,
+      10
+    ]
   }
 ]
