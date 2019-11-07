@@ -68,7 +68,7 @@ public class SkillFloorFreeze : Skill
     void Update()
     {
 		delayTime += Time.deltaTime;
-		if (delayTime >= 2.0f)
+		if (delayTime >= 1.0f)
             FreezenShot.gameObject.SetActive(false);
     }
 }
