@@ -13,6 +13,7 @@ public class SkillExplosionDarkness : Skill
     private float damage;
     private float maxChargeTime;
     private bool DragStart = false;
+    private float chargeSpeed = 1.0f;
     public override void SkillSetting()
     {
         skillID = 12;
@@ -36,7 +37,10 @@ public class SkillExplosionDarkness : Skill
 			case eSkillOption.CoolTime:
 				cooldownTime -= cooldownTime * changeValue;
 				break;
-		}
+            case eSkillOption.BuffChangeValue:
+                chargeSpeed = changeValue;
+                break;
+        }
 	}
 	public override void SetBullet()
 	{
@@ -85,7 +89,7 @@ public class SkillExplosionDarkness : Skill
         if(DragStart)
         {
             if (chargetime < maxChargeTime)
-                chargetime += Time.deltaTime;
+                chargetime += Time.deltaTime * chargeSpeed;
             charge.transform.position = GameMng.Ins.player.transform.position;
         }
     }

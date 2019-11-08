@@ -187,7 +187,8 @@ public class Monster : MonoBehaviour
     }
 	public virtual void Dead()
 	{
-		monsterStateMachine.ChangeStateDead();
+        GameMng.Ins.objectPool.goodmng.RunningSelect(1, 3, gameObject.transform.position);
+        monsterStateMachine.ChangeStateDead();
         active = false;
         ColliderOnOff(false);
 		GameMng.Ins.MonsterDead(GameMng.stageLevel, GameMng.stageLevel);
