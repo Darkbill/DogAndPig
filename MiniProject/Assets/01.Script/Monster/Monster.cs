@@ -190,7 +190,7 @@ public class Monster : MonoBehaviour
 		monsterStateMachine.ChangeStateDead();
         active = false;
         ColliderOnOff(false);
-		GameMng.Ins.MonsterDead(JsonMng.Ins.playerInfoDataTable.stageLevel, JsonMng.Ins.playerInfoDataTable.stageLevel);
+		GameMng.Ins.MonsterDead(GameMng.stageLevel, GameMng.stageLevel);
 	}
 
     public void ColliderOnOff(bool check) 

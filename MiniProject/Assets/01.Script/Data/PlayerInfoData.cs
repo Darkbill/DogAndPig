@@ -8,7 +8,7 @@ public class PlayerInfoData
 	public List<int> haveSkillList = new List<int>();
 	public List<ItemData> haveItemList = new List<ItemData>();
 	public ItemData[] equipItemList = new ItemData[4];
-	public int stageLevel;
+	public int clearLevel;
 	public int playerLevel;
 	public int exp;
 	public int startCount;

@@ -31,7 +31,7 @@ public class PlayerInfoUI : MonoBehaviour
 		healthText.text = string.Format("{0} / {1} ", cHp,
 			GameMng.Ins.player.GetFullHP());
 		healthGageImage.fillAmount = cHp / GameMng.Ins.player.GetFullHP();
-		stageLevelText.text = JsonMng.Ins.playerInfoDataTable.stageLevel.ToString();
+		stageLevelText.text = GameMng.stageLevel.ToString();
 		expImage.fillAmount = GameMng.Ins.player.GetEXPFill();
 #if UNITY_EDITOR_WIN
 		expText.text = string.Format("{0} / {1}", JsonMng.Ins.playerInfoDataTable.exp + JsonMng.Ins.expDataTable[JsonMng.Ins.playerInfoDataTable.playerLevel].cumulativeExp, (JsonMng.Ins.expDataTable[JsonMng.Ins.playerInfoDataTable.playerLevel + 1].cumulativeExp));
@@ -92,7 +92,7 @@ public class PlayerInfoUI : MonoBehaviour
 	}
 	public void StageClear()
 	{
-		stageLevelText.text = JsonMng.Ins.playerInfoDataTable.stageLevel.ToString();
+		stageLevelText.text = GameMng.stageLevel.ToString();
 		stageLevelText.transform.localScale = new Vector3(2, 2, 2);
 		stageLevelText.transform.DOScale(1, 0.5f);
 		nextStageText.gameObject.SetActive(true);

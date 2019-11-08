@@ -29,8 +29,8 @@ public class JsonMng : MonoBehaviour
 	public Dictionary<int, PlayerSkillData> playerSkillDataTable { get; private set; } = new Dictionary<int, PlayerSkillData>();
 	public Dictionary<int, MonsterData> monsterDataTable { get; private set; } = new Dictionary<int, MonsterData>();
 	public Dictionary<int, MonsterSkillData> monsterSkillDataTable { get; private set; } = new Dictionary<int, MonsterSkillData>();
-	public Dictionary<int, List<StageDataTable>> stageDataTable { get; private set; }
-												= new Dictionary<int, List<StageDataTable>>();
+	public Dictionary<int, Dictionary<int, List<StageDataTable>>> stageDataTable { get; private set; }
+												= new Dictionary<int, Dictionary<int, List<StageDataTable>>>();
 	public Dictionary<int, EXPData> expDataTable { get; private set; } = new Dictionary<int, EXPData>();
 	public Dictionary<int, ItemData> itemDataTable { get; private set; } = new Dictionary<int, ItemData>();
 	public PlayerInfoData playerInfoDataTable { get; private set; } = new PlayerInfoData();
@@ -110,7 +110,7 @@ public class JsonMng : MonoBehaviour
 			Debug.Log(jsonString);
 		}
 	}
-	private IEnumerator StartLoad<T>(string fileName, Dictionary<int,List<T>> table) where T : TableBase
+	private IEnumerator StartLoad<T>(string fileName, Dictionary<int,Dictionary<int,List<T>>> table) where T : StageDataTable
 	{
 		string path = string.Format("{0}/LitJson/{1}.json", Application.streamingAssetsPath, fileName);
 		WWW www = new WWW(path);
@@ -122,13 +122,24 @@ public class JsonMng : MonoBehaviour
 			T save = JsonMapper.ToObject<T>(jsonData[i].ToJson());
 			if(table.ContainsKey(save.GetTableID()))
 			{
-				table[save.GetTableID()].Add(save);
+				if(table[save.GetTableID()].ContainsKey(save.GetStageID()))
+				{
+					table[save.GetTableID()][save.GetStageID()].Add(save);
+				}
+				else
+				{
+					List<T> temp = new List<T>();
+					temp.Add(save);
+					table[save.GetTableID()].Add(save.GetStageID(), temp);
+				}
 			}
 			else
 			{
+				Dictionary<int, List<T>> tempDic = new Dictionary<int, List<T>>();
 				List<T> temp = new List<T>();
 				temp.Add(save);
-				table.Add(save.GetTableID(), temp);
+				tempDic.Add(save.GetStageID(), temp);
+				table.Add(save.GetTableID(), tempDic);
 			}
 		}
 		cDownCount++;
@@ -173,9 +184,9 @@ public class JsonMng : MonoBehaviour
 	{
 		StartCoroutine(StartLoad("PlayerSkillTextDataTable", playerSkillTextDataTable));
 	}
-	public List<StageDataTable> GetStageData(int stagelevel)
+	public List<StageDataTable> GetStageData(int worldLevel,int stagelevel)
 	{
-		return stageDataTable[stagelevel];
+		return stageDataTable[worldLevel][stagelevel];
 	}
 	public int GetRandomSkillIndex()
 	{

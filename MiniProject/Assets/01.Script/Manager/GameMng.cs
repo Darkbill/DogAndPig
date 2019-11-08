@@ -29,7 +29,8 @@ public class GameMng : MonoBehaviour
 	public ObjectPool objectPool;
 	public InputSystem inputSystem;
 	//테스트코드
-	public int stage;
+	public static int stageLevel = 1;
+	public static int worldLevel = 1;
 	[Range(0, 10700)]
 	public int exp;
 	[HideInInspector]
@@ -48,7 +49,6 @@ public class GameMng : MonoBehaviour
 	}
 	public void ChangeStage()
 	{
-		JsonMng.Ins.playerInfoDataTable.stageLevel = stage;
 		JsonMng.Ins.playerInfoDataTable.playerLevel = 1;
 		JsonMng.Ins.playerInfoDataTable.exp = 0;
 		AddEXP(exp);
@@ -56,17 +56,23 @@ public class GameMng : MonoBehaviour
 	}
 	public void StartGame()
 	{
-		monsterPool.StartStage(JsonMng.Ins.playerInfoDataTable.stageLevel);
+		monsterPool.StartStage(worldLevel, stageLevel);
 	}
 	public void StageClear()
 	{
-		JsonMng.Ins.playerInfoDataTable.stageLevel++;
+		stageLevel++;
 		UIMngInGame.Ins.StageClear();
+	}
+	public void WorldClear()
+	{
+		JsonMng.Ins.playerInfoDataTable.clearLevel++;
+		UIMngInGame.Ins.AllClear();
+		//TODO : 클리어보상
 	}
 	public void MonsterDead(int gold,int exp)
 	{
-		AddGold(JsonMng.Ins.playerInfoDataTable.stageLevel);
-		AddEXP(JsonMng.Ins.playerInfoDataTable.stageLevel);
+		//AddGold(stagel);
+		//AddEXP(JsonMng.Ins.playerInfoDataTable.stageLevel);
 		monsterPool.DeadMonster();
 	}
 	public void DamageToPlayer(eAttackType attackType, float damage)
@@ -136,16 +142,16 @@ public class GameMng : MonoBehaviour
 	}
 	public void ReStart(int count)
 	{
-		if (JsonMng.Ins.playerInfoDataTable.stageLevel > count)
-		{
-			Debug.Log("광고");
-			JsonMng.Ins.playerInfoDataTable.stageLevel -= count;
-		}
-		else
-		{
-			Debug.Log("광고");
-			JsonMng.Ins.playerInfoDataTable.stageLevel = 1;
-		}
-		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
+		//if (JsonMng.Ins.playerInfoDataTable.stageLevel > count)
+		//{
+		//	Debug.Log("광고");
+		//	JsonMng.Ins.playerInfoDataTable.stageLevel -= count;
+		//}
+		//else
+		//{
+		//	Debug.Log("광고");
+		//	JsonMng.Ins.playerInfoDataTable.stageLevel = 1;
+		//}
+		//UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
 	}
 }

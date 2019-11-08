@@ -8,8 +8,8 @@ public class BossMonster : Monster
 		monsterStateMachine.ChangeStateDead();
 		active = false;
         ColliderOnOff(false);
-		GameMng.Ins.AddGold(JsonMng.Ins.playerInfoDataTable.stageLevel);
-		GameMng.Ins.AddEXP(JsonMng.Ins.playerInfoDataTable.stageLevel);
+		//GameMng.Ins.AddGold(JsonMng.Ins.playerInfoDataTable.stageLevel);
+		//GameMng.Ins.AddEXP(JsonMng.Ins.playerInfoDataTable.stageLevel);
 		BossSkill01.SkillButtonOff();
     }
 	public override void DamageResult(int d)
@@ -35,6 +35,6 @@ public class BossMonster : Monster
     }
 	public void AllClear()
 	{
-		GameMng.Ins.StageClear();
+		GameMng.Ins.WorldClear();
 	}
 }

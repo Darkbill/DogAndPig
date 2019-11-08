@@ -1,5 +1,6 @@
 ﻿public class StageDataTable : TableBase
 {
+	public int worldLevel;
 	public int stageLevel;
 	public int enemyIndex;
 	public int enemyLevel;
@@ -9,14 +10,19 @@
 
 	public override int GetTableID()
 	{
+		return worldLevel;
+	}
+	public int GetStageID()
+	{
 		return stageLevel;
 	}
 	public StageDataTable()
 	{
 
 	}
-	public StageDataTable(int sL,int eI,int eL,float eX,float eY,int b)
+	public StageDataTable(int wL, int sL,int eI,int eL,float eX,float eY,int b)
 	{
+		worldLevel = wL;
 		stageLevel = sL;
 		enemyIndex = eI;
 		enemyLevel = eL;

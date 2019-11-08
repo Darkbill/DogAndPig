@@ -30,8 +30,10 @@ public class SpriteMng : MonoBehaviour
 		itemAtlas = Resources.Load(string.Format("Atlas/{0}","ItemAtlas"), typeof(SpriteAtlas)) as SpriteAtlas;
 		skillAtlas = Resources.Load(string.Format("Atlas/{0}", "SkillAtlas"), typeof(SpriteAtlas)) as SpriteAtlas;
 		frameAtlas = Resources.Load(string.Format("Atlas/{0}", "FrameAtlas"), typeof(SpriteAtlas)) as SpriteAtlas;
+		stageAtlas = Resources.Load(string.Format("Atlas/{0}", "StageAtlas"), typeof(SpriteAtlas)) as SpriteAtlas;
 	}
 	public SpriteAtlas itemAtlas;
 	public SpriteAtlas skillAtlas;
 	public SpriteAtlas frameAtlas;
+	public SpriteAtlas stageAtlas;
 }

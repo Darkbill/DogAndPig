@@ -1,5 +1,4 @@
 ﻿using GlobalDefine;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -78,10 +77,10 @@ public class MonsterPool : MonoBehaviour
 		}
 	}
 
-	public void StartStage(int stageLevel)
+	public void StartStage(int worldLevel, int stageLevel)
 	{
 		monsterList.Clear();
-		List<StageDataTable> stageDataTable = JsonMng.Ins.GetStageData(stageLevel);
+		List<StageDataTable> stageDataTable = JsonMng.Ins.GetStageData(worldLevel, stageLevel);
 		activeMonsterCount = stageDataTable.Count;
 		for (int i = 0; i < stageDataTable.Count; ++i)
 		{

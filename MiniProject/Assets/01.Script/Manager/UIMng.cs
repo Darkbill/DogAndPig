@@ -66,14 +66,6 @@ public class UIMng : MonoBehaviour
 	}
 
 	/* 버튼호출 */
-	public void ClickGameStart()
-	{
-		if(JsonMng.Ins.playerInfoDataTable.StartLobby())
-		{
-			Debug.Log("광고");
-		}
-		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
-	}
 	public void OnClickSkill(int sI,eBoxType type)
 	{
 		if(clickBox.gameObject.activeSelf)
