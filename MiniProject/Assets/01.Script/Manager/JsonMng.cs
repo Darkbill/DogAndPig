@@ -201,4 +201,10 @@ public class JsonMng : MonoBehaviour
 		}
 		return e.Current.Value.skillID;
 	}
+	public void SavePlayerInfo()
+	{
+		string path = string.Format("{0}/LitJson/{1}.json", Application.streamingAssetsPath, "PlayerInfoDataTable");
+		JsonData data = JsonMapper.ToJson(playerInfoDataTable);
+		System.IO.File.WriteAllText(path, data.ToString());
+	}
 }

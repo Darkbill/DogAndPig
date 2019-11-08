@@ -71,6 +71,7 @@ public class GameMng : MonoBehaviour
 	public void WorldClear()
 	{
 		JsonMng.Ins.playerInfoDataTable.clearLevel++;
+		worldLevel++;
 		stageLevel = 1;
 		UIMngInGame.Ins.AllClear();
 		//TODO : 클리어보상
