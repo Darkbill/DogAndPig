@@ -29,8 +29,8 @@ public class GameMng : MonoBehaviour
 	public ObjectPool objectPool;
 	public InputSystem inputSystem;
 	//테스트코드
-	public static int stageLevel = 1;
-	public static int worldLevel = 1;
+	public static int stageLevel;
+	public static int worldLevel;
 	[Range(0, 10700)]
 	public int exp;
 	[HideInInspector]
