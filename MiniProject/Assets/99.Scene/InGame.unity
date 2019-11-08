@@ -4421,7 +4421,6 @@ MonoBehaviour:
   skillMng: {fileID: 912548249}
   objectPool: {fileID: 1941382473}
   inputSystem: {fileID: 979259865}
-  stage: 0
   exp: 0
   aimSkillID: 0
 --- !u!4 &547203918
@@ -13528,6 +13527,7 @@ MonoBehaviour:
   goldbase: {fileID: 8304289640050984520, guid: 3b565427635ca42448ce1dd3eded9b23,
     type: 3}
   diabase: {fileID: 6761658058912853457, guid: 4ac5b0efc0ebb124e8d038376b64a665, type: 3}
+  expbase: {fileID: 6296015179423868152, guid: eca20f05e26b76842a7070ccc9dfa637, type: 3}
 --- !u!1 &1995194140
 GameObject:
   m_ObjectHideFlags: 0

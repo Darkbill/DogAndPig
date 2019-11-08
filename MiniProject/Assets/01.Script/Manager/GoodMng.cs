@@ -7,10 +7,14 @@ public class GoodMng : MonoBehaviour
     public List<GoodBase> goodlist = new List<GoodBase>();
     private const int goldpoolCnt = 80;
     private const int diamonspoolCnt = 20;
+
+    private const int experienceCnt = 100;
+
     //TODO : Gold 80 / Dia 20 pooling
 
     public Gold goldbase;
     public Diamond diabase;
+    public Experience expbase;
 
     private void Awake()
     {
@@ -28,20 +32,34 @@ public class GoodMng : MonoBehaviour
             o.gameObject.SetActive(false);
             goodlist.Add(o);
         }
+        for(int i = 0;i<experienceCnt;++i)
+        {
+            Experience o = Instantiate(expbase, gameObject.transform);
+            o.BaseSetting(3);
+            o.gameObject.SetActive(false);
+            goodlist.Add(o);
+        }
     }
 
     public void RunningSelect(int id, int count, Vector3 startpos)
     {
         float cnt = count;
-
+        int maxcnt = 7;
+        int rangecnt = 0;
         for (int i = 0; i < goodlist.Count; ++i)
         {
             if (cnt <= 0) break;
+            if(maxcnt <= 0)
+            {
+                ++rangecnt;
+                maxcnt = 7;
+            }
             if (goodlist[i].goodid == id && !goodlist[i].gameObject.activeSelf)
             {
                 goodlist[i].gameObject.SetActive(true);
-                goodlist[i].Running(startpos, 1.0f);
+                goodlist[i].Running(startpos, 0.5f + 0.5f * rangecnt, 3);
                 --cnt;
+                maxcnt--;
             }
         }
     }

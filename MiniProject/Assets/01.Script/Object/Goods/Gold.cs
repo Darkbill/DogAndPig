@@ -10,20 +10,14 @@ public class Gold : GoodBase
         base.BaseSetting(id);
     }
 
-    public override void Running(Vector3 startpos, float range)
+    public override void Running(Vector3 startpos, float range, int amnt)
     {
-        base.Running(startpos, range);
+        base.Running(startpos, range, amnt);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public override void OnTriggetEntetObject()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameMng.Ins.AddGold(amount);
+        base.OnTriggetEntetObject();
     }
 }

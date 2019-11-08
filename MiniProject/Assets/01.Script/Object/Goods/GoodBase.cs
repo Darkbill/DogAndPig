@@ -7,6 +7,7 @@ using GlobalDefine;
 public class GoodBase : MonoBehaviour
 {
     public int goodid { get; private set; }
+    public int amount = 0;
     //TODO : id 1 = coin 2 = dia
 
     public virtual void BaseSetting(int id)
@@ -14,7 +15,7 @@ public class GoodBase : MonoBehaviour
         goodid = id;
     }
 
-    public virtual void Running(Vector3 startpos, float range)
+    public virtual void Running(Vector3 startpos, float range, int amnt)
     {
         gameObject.transform.position = startpos;
 
@@ -22,28 +23,22 @@ public class GoodBase : MonoBehaviour
         Vector3 endpos = new Vector3(Mathf.Cos(randnum * Mathf.Deg2Rad), Mathf.Sin(randnum * Mathf.Deg2Rad)) * range;
 
         gameObject.transform.DOMove(endpos + startpos, 0.5f, false);
+        amount = amnt;
     }
 
     public virtual void ClearRunning()
     {
-
+        gameObject.transform.DOMove(GameMng.Ins.player.transform.position, 0.5f, false);
     }
 
-    public virtual void Crash(Player player)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+            OnTriggetEntetObject();
+    }
+
+    public virtual void OnTriggetEntetObject()
     {
         gameObject.SetActive(false);
-        //TODO : 돈이 올라가는 정도 표시 - 호출
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

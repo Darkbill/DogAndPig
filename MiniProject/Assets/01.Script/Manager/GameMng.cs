@@ -60,7 +60,8 @@ public class GameMng : MonoBehaviour
 	}
 	public void StageClear()
 	{
-		stageLevel++;
+        GameMng.Ins.objectPool.goodmng.AllRunningSelect();
+        stageLevel++;
 		UIMngInGame.Ins.StageClear();
 	}
 	public void WorldClear()

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Diamond : GoodBase
+public class Experience : GoodBase
 {
     public override void BaseSetting(int id)
     {
@@ -16,6 +16,7 @@ public class Diamond : GoodBase
 
     public override void OnTriggetEntetObject()
     {
+        GameMng.Ins.AddEXP(GameMng.stageLevel);
         //GameMng.Ins.AddGold(amount);
         base.OnTriggetEntetObject();
     }
