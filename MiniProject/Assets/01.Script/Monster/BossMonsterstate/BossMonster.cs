@@ -9,6 +9,7 @@ public class BossMonster : Monster
 		active = false;
         ColliderOnOff(false);
         GameMng.Ins.objectPool.goodmng.RunningSelect(1, 10, gameObject.transform.position);
+        GameMng.Ins.objectPool.goodmng.RunningSelect(2, 5, gameObject.transform.position);
         //GameMng.Ins.AddGold(JsonMng.Ins.playerInfoDataTable.stageLevel);
         //GameMng.Ins.AddEXP(JsonMng.Ins.playerInfoDataTable.stageLevel);
         BossSkill01.SkillButtonOff();
