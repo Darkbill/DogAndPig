@@ -31,7 +31,14 @@ public class GoodBase : MonoBehaviour
         gameObject.transform.DOMove(
             gameObject.transform.position + new Vector3(0, 0.5f), 0.5f, false).OnComplete(()=> 
             {
-                gameObject.transform.DOMove(GameMng.Ins.player.transform.position, 0.5f, false);
+                gameObject.transform.DOMove(GameMng.Ins.player.transform.position, 0.5f, false).OnComplete(()=> 
+                { 
+                    if(gameObject.activeSelf)
+                    {
+                        OnTriggetEntetObject();
+                        gameObject.SetActive(false);
+                    }
+                });
             });
     }
 
