@@ -38818,3 +38818,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillID: 0
+  effectSystem: {fileID: 1996162245732875479}

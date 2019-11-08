@@ -11931,7 +11931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goodlist: []
-  goldbase: {fileID: 8304289640050984520, guid: 3b565427635ca42448ce1dd3eded9b23,
+  goldbase: {fileID: 4545322965133001493, guid: 4e4fa3173eccb4a49af0e688c25ff6ab,
     type: 3}
   diabase: {fileID: 6761658058912853457, guid: 4ac5b0efc0ebb124e8d038376b64a665, type: 3}
   expbase: {fileID: 6296015179423868152, guid: eca20f05e26b76842a7070ccc9dfa637, type: 3}

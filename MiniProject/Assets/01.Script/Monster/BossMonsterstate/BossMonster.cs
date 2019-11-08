@@ -8,9 +8,10 @@ public class BossMonster : Monster
 		monsterStateMachine.ChangeStateDead();
 		active = false;
         ColliderOnOff(false);
-		//GameMng.Ins.AddGold(JsonMng.Ins.playerInfoDataTable.stageLevel);
-		//GameMng.Ins.AddEXP(JsonMng.Ins.playerInfoDataTable.stageLevel);
-		BossSkill01.SkillButtonOff();
+        GameMng.Ins.objectPool.goodmng.RunningSelect(1, 10, gameObject.transform.position);
+        //GameMng.Ins.AddGold(JsonMng.Ins.playerInfoDataTable.stageLevel);
+        //GameMng.Ins.AddEXP(JsonMng.Ins.playerInfoDataTable.stageLevel);
+        BossSkill01.SkillButtonOff();
     }
 	public override void DamageResult(int d)
 	{

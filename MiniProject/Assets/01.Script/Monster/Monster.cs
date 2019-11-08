@@ -190,7 +190,6 @@ public class Monster : MonoBehaviour
         //TODO : RunningSelect
         //1: Type, 2:Count, 3:StartPos
         GameMng.Ins.objectPool.goodmng.RunningSelect(1, 10, gameObject.transform.position);
-        GameMng.Ins.objectPool.goodmng.RunningSelect(3, 10, gameObject.transform.position);
         monsterStateMachine.ChangeStateDead();
         active = false;
         ColliderOnOff(false);
@@ -223,18 +222,6 @@ public class Monster : MonoBehaviour
 				break;
 		}
 	}
-	//TODO : 넉백관련 몬스터 코드는 일단 주석처리..
-	/*
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.collider.CompareTag("Wall"))
-        {
-            gameObject.GetComponent<MilliMonsterStateMachine>().
-                ChangeState(eMilliMonsterState.Move);
-        }
-    }
-
-    //*/
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if(collision.CompareTag("Bullet"))

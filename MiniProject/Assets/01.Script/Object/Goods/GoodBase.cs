@@ -22,13 +22,17 @@ public class GoodBase : MonoBehaviour
         float randnum = Rand.Range(-180, 180);
         Vector3 endpos = new Vector3(Mathf.Cos(randnum * Mathf.Deg2Rad), Mathf.Sin(randnum * Mathf.Deg2Rad)) * range;
 
-        gameObject.transform.DOMove(endpos + startpos, 0.5f, false);
+        gameObject.transform.DOLocalJump(endpos + startpos, 0.5f, 1, 0.5f, false);
         amount = amnt;
     }
 
     public virtual void ClearRunning()
     {
-        gameObject.transform.DOMove(GameMng.Ins.player.transform.position, 0.5f, false);
+        gameObject.transform.DOMove(
+            gameObject.transform.position + new Vector3(0, 0.5f), 0.5f, false).OnComplete(()=> 
+            {
+                gameObject.transform.DOMove(GameMng.Ins.player.transform.position, 0.5f, false);
+            });
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -40,5 +44,10 @@ public class GoodBase : MonoBehaviour
     public virtual void OnTriggetEntetObject()
     {
         gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        
     }
 }
