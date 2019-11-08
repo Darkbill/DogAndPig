@@ -31,10 +31,6 @@ public class StageSlotUI : MonoBehaviour
 	public void OnClickStage()
 	{
 		//TODO : 전 스테이지일 경우 무조건 광고
-		if (JsonMng.Ins.playerInfoDataTable.StartLobby())
-		{
-			Debug.Log("광고");
-		}
 		GameMng.worldLevel = worldID;
 		GameMng.stageLevel = 1;
 		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");

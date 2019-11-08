@@ -12,7 +12,6 @@ public class PlayerInfoData
 	public int playerLevel;
 	public int exp;
 	public int startCount;
-	public int adCount;
 	public PlayerInfoData()
 	{
 	}
@@ -52,7 +51,7 @@ public class PlayerInfoData
 		}
 		return -1;
 	}
-	public bool StartLobby()
+	public bool StartGame()
 	{
 		startCount++;
 		if(startCount == Define.lobbyStartCount)
@@ -61,14 +60,6 @@ public class PlayerInfoData
 			return true;
 		}
 		return false;
-	}
-	public void GameOver()
-	{
-		if (adCount == Define.adCount)
-		{
-			return;
-		}
-		adCount++;
 	}
 	public void RemoveItem(int index)
 	{
