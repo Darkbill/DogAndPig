@@ -23,7 +23,7 @@ public class BossMonster : Monster
 	}
     public void ChangeRandomMove()
     {
-        transform.position = new ConfirmationArea().TargetSetting(transform.position);
+        transform.position = new ConfirmationArea().RangeRandomResult(transform.position, 2.0f);
         ColliderOnOff(true);
     }
     public void AttackStart()

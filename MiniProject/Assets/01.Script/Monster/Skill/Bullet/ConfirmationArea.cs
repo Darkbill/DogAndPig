@@ -7,7 +7,7 @@ public class ConfirmationArea
 {
     public Vector3 target;
     private float range = 2;
-
+    //TODO : 해당 메소드들은 몬스터한테만 사용가능. 플레이어 사용x
     public Vector3 TargetSetting(Vector3 pos)
     {
         Vector3 set = pos - GameMng.Ins.player.transform.position;
@@ -27,6 +27,25 @@ public class ConfirmationArea
         set = Quaternion.Euler(0, 0, -90) * set;
         if (CheckForAreaMap(set + pos))
             return set + pos;
+
+        return Vector3.zero;
+    }
+
+    public Vector3 RangeRandomResult(Vector3 pos, float range)
+    {
+        float randnum = Rand.Range(-180, 180);
+
+        Vector3 set = Quaternion.Euler(0, 0, randnum) * Vector3.right * range;
+
+        if(CheckForAreaMap(pos + (set)))
+            return pos + set;
+
+        for(int i = 0;i<3;++i)
+        {
+            set = Quaternion.Euler(0, 0, 90) * set;
+            if (CheckForAreaMap(pos + set))
+                return pos + set;
+        }
 
         return Vector3.zero;
     }

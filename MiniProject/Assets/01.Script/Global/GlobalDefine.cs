@@ -2,7 +2,7 @@
 {
     static class DefineClass
     {
-        public const float MapSizX = 60;
+        public const float MapSizX = 50;
         public const float MapSizY = 35;
     }
 	static public class Define

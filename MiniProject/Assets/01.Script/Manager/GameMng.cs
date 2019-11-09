@@ -28,7 +28,7 @@ public class GameMng : MonoBehaviour
 	public SkillMng skillMng;
 	public ObjectPool objectPool;
 	public InputSystem inputSystem;
-	public GameObject portal;
+	public Portal portal;
 	//테스트코드
 	public static int stageLevel;
 	public static int worldLevel;
@@ -68,7 +68,7 @@ public class GameMng : MonoBehaviour
 	{
         objectPool.goodmng.AllRunningSelect();
         stageLevel++;
-		portal.gameObject.SetActive(true);
+        portal.NextStagePotal();
 	}
 	public void WorldClear()
 	{
