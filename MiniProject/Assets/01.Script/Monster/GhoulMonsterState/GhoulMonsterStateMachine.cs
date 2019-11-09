@@ -22,7 +22,12 @@ public class GhoulMonsterStateMachine : MonsterStateMachine
 	{
 		ChangeState(eMonsterState.KnockBack);
 	}
-	public override void ChangeStateStun()
+    public override void ChangeStateKnockBack(Vector3 _knockBackDir, float knockBackPower)
+    {
+        base.ChangeStateKnockBack(_knockBackDir, knockBackPower);
+        ChangeState(eMonsterState.KnockBack);
+    }
+    public override void ChangeStateStun()
 	{
 		ChangeState(eMonsterState.Stun);
 	}

@@ -19,7 +19,26 @@ public class MonsterStateKnockBack : MonsterState
 
 	public override bool OnTransition()
 	{
-		if (setspeed <= 0)
+        //TODO : right, left, up, down vec
+        Ray2D[] rayarray = new Ray2D[4];
+        rayarray[0] = new Ray2D(monsterObject.transform.position + new Vector3(0, monsterObject.monsterData.size),
+            Vector3.right);
+        rayarray[1] = new Ray2D(monsterObject.transform.position + new Vector3(0, monsterObject.monsterData.size),
+            -Vector3.right);
+        rayarray[2] = new Ray2D(monsterObject.transform.position + new Vector3(0, monsterObject.monsterData.size),
+            Vector3.up);
+        rayarray[3] = new Ray2D(monsterObject.transform.position + new Vector3(0, monsterObject.monsterData.size),
+            -Vector3.up);
+
+        foreach(Ray2D ray in rayarray)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 0.5f, 1 << LayerMask.NameToLayer("Wall"));
+            if (hit.collider == null) break;
+            if (hit.collider.CompareTag("Wall"))
+                return true;
+        }
+
+        if (setspeed <= 0)
 		{
 			monsterObject.monsterStateMachine.ChangeStateIdle();
 			return true;
