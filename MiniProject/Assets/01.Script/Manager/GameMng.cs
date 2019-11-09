@@ -72,6 +72,7 @@ public class GameMng : MonoBehaviour
 	}
 	public void WorldClear()
 	{
+		Time.timeScale = 0;
 		JsonMng.Ins.playerInfoDataTable.clearLevel++;
 		worldLevel++;
 		stageLevel = 1;
@@ -102,11 +103,17 @@ public class GameMng : MonoBehaviour
 		JsonMng.Ins.playerInfoDataTable.AddGold(gold);
 		UIMngInGame.Ins.AddGold(gold);
 	}
+	public void AddDiamond(int dia)
+	{
+		JsonMng.Ins.playerInfoDataTable.AddGold(dia);
+		UIMngInGame.Ins.AddDiamond(dia);
+	}
 	public void AddEXP(int exp)
 	{
 		player.AddEXP(exp);
 		UIMngInGame.Ins.AddEXP();
 	}
+
 	public void ActiveSkill(int skillID)
 	{
 		skillMng.skillDict[skillID].OnButtonDown();

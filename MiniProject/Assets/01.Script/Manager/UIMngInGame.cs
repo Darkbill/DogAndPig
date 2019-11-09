@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using GlobalDefine;
 using DG.Tweening;
 
 public class UIMngInGame : MonoBehaviour
@@ -195,6 +193,10 @@ public class UIMngInGame : MonoBehaviour
     {
 		playerInfoUI.AddGold(gold);
     }
+	public void AddDiamond(int dia)
+	{
+		playerInfoUI.AddDiamond(dia);
+	}
 	public void AddEXP()
 	{
 		playerInfoUI.AddEXP();

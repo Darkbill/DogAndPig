@@ -9,13 +9,16 @@ public class PlayerInfoUI : MonoBehaviour
 	public Text coinText;
 	public Text levelText;
 	public Text stageLevelText;
+	public Text expText;
+	public Text diaText;
 	public Image healthGageImage;
 	public Image coinImage;
+	public Image diamondImage;
 	public Image expImage;
 	private Vector3 healthGageImagePos;
 	private Coroutine fillCoroutine;
 	private float saveDamage = 0;
-	public Text expText;
+
 	public void Setting()
 	{
 		RenewPlayerInfo();
@@ -25,6 +28,7 @@ public class PlayerInfoUI : MonoBehaviour
 	{
 		levelText.text = JsonMng.Ins.playerInfoDataTable.playerLevel.ToString();
 		coinText.text = JsonMng.Ins.playerInfoDataTable.gold.ToString();
+		diaText.text = JsonMng.Ins.playerInfoDataTable.diamond.ToString();
 		float cHp = GameMng.Ins.player.calStat.healthPoint;
 		if (cHp < 0) cHp = 0;
 		healthText.text = string.Format("{0} / {1} ", cHp,
@@ -83,6 +87,15 @@ public class PlayerInfoUI : MonoBehaviour
 		coinText.text = c.ToString();
 		coinImage.transform.DOScale(Define.upscaleDuration, 0.1f).OnComplete(() => {
 			coinImage.transform.DOScale(1, 0.3f);
+		});
+	}
+	public void AddDiamond(int dia)
+	{
+		int c = int.Parse(diaText.text);
+		c += dia;
+		diaText.text = c.ToString();
+		diamondImage.transform.DOScale(Define.upscaleDuration, 0.1f).OnComplete(() => {
+			diamondImage.transform.DOScale(1, 0.3f);
 		});
 	}
 	public void AddEXP()

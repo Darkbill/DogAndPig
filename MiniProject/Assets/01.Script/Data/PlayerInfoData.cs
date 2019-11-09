@@ -39,6 +39,10 @@ public class PlayerInfoData
 	{
 		gold += _gold;
 	}
+	public void AddDiamond(int _dia)
+	{
+		diamond += _dia;
+	}
 	public int FindSkill(int skillID)
 	{
 		for (int i = 0; i < setSkillList.Count; ++i)

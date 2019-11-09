@@ -16,7 +16,7 @@ public class Diamond : GoodBase
 
     public override void OnTriggetEntetObject()
     {
-        //GameMng.Ins.AddGold(amount);
+        GameMng.Ins.AddDiamond(amount);
         base.OnTriggetEntetObject();
     }
 }
