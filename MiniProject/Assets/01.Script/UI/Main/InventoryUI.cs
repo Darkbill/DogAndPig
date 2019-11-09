@@ -93,6 +93,7 @@ public class InventoryUI : MonoBehaviour
 		if (JsonMng.Ins.playerInfoDataTable.gold >= 100)
 		{
 			JsonMng.Ins.playerInfoDataTable.gold -= 100;
+			UIMng.Ins.ReNew();
 			ItemData item = new ItemData();
 			int itemID = Random.Range(1, 4);
 			item = JsonMng.Ins.itemDataTable[itemID];

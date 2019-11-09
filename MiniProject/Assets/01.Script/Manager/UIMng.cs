@@ -63,6 +63,7 @@ public class UIMng : MonoBehaviour
 		OffSelectBox();
 		shopUI.ReNew();
 		SetBaseUI();
+		inventoryUI.Renew();
 	}
 
 	/* 버튼호출 */

@@ -24,7 +24,6 @@ public class ItemBoxUI : MonoBehaviour
 	public void GetItem()
 	{
 		JsonMng.Ins.playerInfoDataTable.haveItemList.Add(item.Copy());
-		UIMng.Ins.ReNew();
 		UIMng.Ins.inventoryUI.Renew();
 	}
 }
