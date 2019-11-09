@@ -37,8 +37,8 @@ public class SkillExplosionDarkness : Skill
 			case eSkillOption.CoolTime:
 				cooldownTime -= cooldownTime * changeValue;
 				break;
-            case eSkillOption.BuffChangeValue:
-                chargeSpeed = changeValue;
+            case eSkillOption.Speed:
+                chargeSpeed += chargeSpeed * changeValue;
                 break;
         }
 	}
