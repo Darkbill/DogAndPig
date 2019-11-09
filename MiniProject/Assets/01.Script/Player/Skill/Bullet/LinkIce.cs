@@ -1,4 +1,5 @@
 ﻿using GlobalDefine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -75,6 +76,12 @@ public class LinkIce : BulletPlayerSkill
     private void Update()
     {
         gameObject.transform.position += gameObject.transform.right * Time.deltaTime * speed;
+        StartCoroutine(Continuing());
+    }
+    private IEnumerator Continuing()
+    {
+        yield return new WaitForSeconds(1.5f);
+        gameObject.SetActive(false);
     }
 
     public override void Crash(Monster monster)

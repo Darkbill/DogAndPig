@@ -9,7 +9,7 @@ public class Meteor : MonoBehaviour
     public void Setting()
     {
         gameObject.GetComponent<ParticleSystem>().Play();
-        gameObject.GetComponent<CircleCollider2D>().Equals(true);
+        gameObject.GetComponent<CircleCollider2D>().enabled = true;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,8 +22,8 @@ public class Meteor : MonoBehaviour
     [Obsolete]
     private void Update()
     {
-        if (gameObject.GetComponent<ParticleSystem>().duration > 0.5f)
-            gameObject.GetComponent<CircleCollider2D>().Equals(false);
+        if (gameObject.GetComponent<ParticleSystem>().duration > 0.6f)
+            gameObject.GetComponent<CircleCollider2D>().enabled = false;
         if (gameObject.GetComponent<ParticleSystem>().isPlaying == false)
             gameObject.SetActive(false);
     }

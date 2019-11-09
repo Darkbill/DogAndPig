@@ -9,6 +9,7 @@ public class GoodMng : MonoBehaviour
     private const int diamonspoolCnt = 20;
 
     private const int experienceCnt = 100;
+    private const int rangeMaxCnt = 7;
 
     //TODO : Gold 80 / Dia 20 pooling
 
@@ -44,7 +45,7 @@ public class GoodMng : MonoBehaviour
     public void RunningSelect(int id, int count, Vector3 startpos)
     {
         float cnt = count;
-        int maxcnt = 7;
+        int maxcnt = rangeMaxCnt;
         int rangecnt = 0;
         for (int i = 0; i < goodlist.Count; ++i)
         {
@@ -52,7 +53,7 @@ public class GoodMng : MonoBehaviour
             if(maxcnt <= 0)
             {
                 ++rangecnt;
-                maxcnt = 7;
+                maxcnt = rangeMaxCnt;
             }
             if (goodlist[i].goodid == id && !goodlist[i].gameObject.activeSelf)
             {

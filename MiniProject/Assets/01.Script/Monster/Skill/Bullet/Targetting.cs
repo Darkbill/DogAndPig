@@ -9,12 +9,6 @@ public class Targetting : MonoBehaviour
 
     public ParticleSystem effectSystem;
 
-	//public void EndEvent()
- //   {
- //       gameObject.SetActive(false);
-	//	actionDict[skillID](gameObject.transform.position);
- //   }
-
     public void Playing()
     {
         effectSystem.Play();
