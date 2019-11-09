@@ -28,6 +28,7 @@ public class GameMng : MonoBehaviour
 	public SkillMng skillMng;
 	public ObjectPool objectPool;
 	public InputSystem inputSystem;
+	public GameObject portal;
 	//테스트코드
 	public static int stageLevel;
 	public static int worldLevel;
@@ -46,10 +47,10 @@ public class GameMng : MonoBehaviour
 		player.PlayerSetting();
 		aimSkillID = -1;
 		StartGame();
-		if (JsonMng.Ins.playerInfoDataTable.StartGame())
-		{
-			Debug.Log("광고");
-		}
+		//if (JsonMng.Ins.playerInfoDataTable.StartGame())
+		//{
+		//	Debug.Log("광고");
+		//}
 	}
 	public void ChangeStage()
 	{
@@ -60,13 +61,14 @@ public class GameMng : MonoBehaviour
 	}
 	public void StartGame()
 	{
+		UIMngInGame.Ins.StageStart();
 		monsterPool.StartStage(worldLevel, stageLevel);
 	}
 	public void StageClear()
 	{
-        GameMng.Ins.objectPool.goodmng.AllRunningSelect();
+        objectPool.goodmng.AllRunningSelect();
         stageLevel++;
-		UIMngInGame.Ins.StageClear();
+		portal.gameObject.SetActive(true);
 	}
 	public void WorldClear()
 	{

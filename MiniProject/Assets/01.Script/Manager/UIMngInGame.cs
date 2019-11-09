@@ -41,6 +41,7 @@ public class UIMngInGame : MonoBehaviour
 	/* Image */
 	public Image stickImage;
 	public Image bossHealthGageImage;
+	public Image fade;
 
 	private Vector3 stickPos; //터치 눌러서 joyStick이 시작한 위치
 	private float stickRadius = 60;
@@ -214,8 +215,20 @@ public class UIMngInGame : MonoBehaviour
 		bossInfo.gameObject.SetActive(false);
 		ClearUI.gameObject.SetActive(true);
 	}
-	public void StageClear()
+	public void StageStart()
 	{
-		playerInfoUI.StageClear();
+		Fade(false);
+		playerInfoUI.StageStart();
+	}
+	public void Fade(bool fadeFlag)
+	{
+		if(fadeFlag)
+		{
+			fade.DOColor(Color.black, 0.25f).OnComplete(() => { UnityEngine.SceneManagement.SceneManager.LoadScene("InGame"); });
+		}
+		else
+		{
+			fade.DOColor(Color.clear, 0.25f);
+		}
 	}
 }

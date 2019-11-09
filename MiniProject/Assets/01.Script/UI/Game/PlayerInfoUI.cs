@@ -15,7 +15,6 @@ public class PlayerInfoUI : MonoBehaviour
 	private Vector3 healthGageImagePos;
 	private Coroutine fillCoroutine;
 	private float saveDamage = 0;
-	public Text nextStageText;
 	public Text expText;
 	public void Setting()
 	{
@@ -90,21 +89,11 @@ public class PlayerInfoUI : MonoBehaviour
 	{
 		expImage.fillAmount = GameMng.Ins.player.GetEXPFill();
 	}
-	public void StageClear()
+	public void StageStart()
 	{
 		stageLevelText.text = GameMng.stageLevel.ToString();
 		stageLevelText.transform.localScale = new Vector3(2, 2, 2);
 		stageLevelText.transform.DOScale(1, 0.5f);
-		nextStageText.gameObject.SetActive(true);
-		nextStageText.gameObject.transform.DOMoveX(nextStageText.transform.position.x + 400, 0.4f).OnComplete(() => {
-			nextStageText.gameObject.transform.DOScale(2, 1f);
-			nextStageText.DOColor(new Color(1, 1, 1, 0), 1f).OnComplete(() => {
-				nextStageText.color = Color.white;
-				nextStageText.transform.localScale = Vector3.one;
-				nextStageText.transform.position = new Vector3(nextStageText.transform.position.x - 400, nextStageText.transform.position.y, nextStageText.transform.position.z);
-				nextStageText.gameObject.SetActive(false);
-				UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
-			});
-		});
+		//TODO : NextStage연출
 	}
 }
