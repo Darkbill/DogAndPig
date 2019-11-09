@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using GlobalDefine;
 using System.Text;
+using System.Collections.Generic;
 public class InventoryUI : MonoBehaviour
 {
 	public ItemSlotUI[] equipSlotUIArr;
@@ -24,22 +25,44 @@ public class InventoryUI : MonoBehaviour
 	private void ShowInfo()
 	{
 		StringBuilder builder = new StringBuilder();
-		//TODO : 중복효과 텍스트 합치기
+		
 		for(int i = 0; i < equipSlotUIArr.Length; ++i)
 		{
 			if (equipSlotUIArr[i].item == null) continue;
 			builder.Append(Define.GetItemBaseInfoText(equipSlotUIArr[i].item));
 			builder.Append("\n");
 		}
-		
+
 		//따로 표기하기위함!
+		//효과가 겹치는 아이템 설명 합치기
+
+		Dictionary<KeyValuePair<int, eSkillOption>, float> skillInfo = new Dictionary<KeyValuePair<int, eSkillOption>, float>();
 		for (int i = 0; i < equipSlotUIArr.Length; ++i)
 		{
 			if (equipSlotUIArr[i].item == null) continue;
-
-			builder.Append(Define.GetItemSkillInfoText(equipSlotUIArr[i].item));
+			int changeSkillID = equipSlotUIArr[i].item.changeSkill;
+			eSkillOption changeSkillOption = equipSlotUIArr[i].item.changeOption;
+			KeyValuePair<int, eSkillOption> cOption = new KeyValuePair<int, eSkillOption>(changeSkillID,changeSkillOption);
+			if(skillInfo.ContainsKey(cOption))
+			{
+				skillInfo[cOption] += equipSlotUIArr[i].item.changeSkillValue;
+			}
+			else
+			{
+				skillInfo.Add(new KeyValuePair<int, eSkillOption>(changeSkillID, changeSkillOption), equipSlotUIArr[i].item.changeSkillValue);
+			}
+		}
+		var e = skillInfo.GetEnumerator();
+		while(e.MoveNext())
+		{
+			ItemData item = new ItemData();
+			item.changeSkill = e.Current.Key.Key;
+			item.changeOption = e.Current.Key.Value;
+			item.changeSkillValue = e.Current.Value;
+			builder.Append(Define.GetItemSkillInfoText(item));
 			builder.Append("\n");
 		}
+		
 		infoText.text = builder.ToString();
 	}
 	public void Setting()
