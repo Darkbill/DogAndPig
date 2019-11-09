@@ -105,7 +105,7 @@ public class GameMng : MonoBehaviour
 	}
 	public void AddDiamond(int dia)
 	{
-		JsonMng.Ins.playerInfoDataTable.AddGold(dia);
+		JsonMng.Ins.playerInfoDataTable.AddDiamond(dia);
 		UIMngInGame.Ins.AddDiamond(dia);
 	}
 	public void AddEXP(int exp)
