@@ -1,27 +1,21 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using GlobalDefine;
-using System;
 
 public class Monster : MonoBehaviour
 {
 	public MonsterData monsterData;
 	public MonsterStateMachine monsterStateMachine;
-	public int MonsterID = 1;
 	private List<ConditionData> conditionList = new List<ConditionData>();
     private ConditionData conditionMain = new ConditionData();
     public Animator monsterAnimator;
 	protected ObjectSetAttack att = new ObjectSetAttack();
     public float Angle = 0;
 	public bool active;
+	public int MonsterID = 1;
 	private void Awake()
 	{
 		MonsterSetting();
-    }
-
-    internal void Damage(object attacktype, float damage1, object damage2, ConditionData conditionData, object per)
-    {
-        throw new NotImplementedException();
     }
 
     private void MonsterSetting()
@@ -64,22 +58,8 @@ public class Monster : MonoBehaviour
         }
 	}
 	#region Buff
-	//TODO : State 따로관리 stun과 nockback  스턴,넉백관련정리
-	//add에서 상태이상 비교하여 삽입.
 	public void OutStateAdd(ConditionData condition, Vector3 knockBackDir = new Vector3())
 	{
-		//if (conditionMain != null)
-		//{
-		//	if (conditionMain.buffType == condition.buffType)
-		//	{
-		//		if (conditionMain.currentTime < condition.currentTime)
-		//		{
-		//			conditionMain = condition;
-		//			AddConditionlist(conditionMain, knockBackDir);
-		//		}
-		//		return;
-		//	}
-		//}
 		conditionMain = condition;
 		AddConditionlist(conditionMain, knockBackDir);
 	}
@@ -109,15 +89,6 @@ public class Monster : MonoBehaviour
 				CalculatorStat();
 			}
 		}
-		//if (conditionMain != null)
-		//{
-		//	conditionMain.currentTime -= delayTime;
-		//	if (conditionMain.currentTime <= 0)
-		//	{
-		//		conditionMain = null;
-		//		monsterStateMachine.ChangeStateIdle();
-		//	}
-		//}
 	}
 	public void AddBuff(ConditionData condition)
 	{
@@ -156,17 +127,27 @@ public class Monster : MonoBehaviour
 		}
 		DamageResult((int)d);
 	}
-    
-    #endregion
-    public virtual void DamageResult(int d)
+	public virtual void DamageResult(int d)
 	{
-		if (d < 1) d = 1;	
+		if (d < 1) d = 1;
 		monsterData.healthPoint -= d;
 		UIMngInGame.Ins.damageTextPool.ShowDamage(d, Camera.main.WorldToScreenPoint(gameObject.transform.position));
 		if (monsterData.healthPoint <= 0) Dead();
 		GameMng.Ins.cameraMove.OnStart();
 	}
-	
+	public virtual void Dead()
+	{
+		//TODO : RunningSelect
+		//1: Type, 2:Count, 3:StartPos
+		GameMng.Ins.objectPool.goodmng.RunningSelect(1, 10, gameObject.transform.position);
+		monsterStateMachine.ChangeStateDead();
+		active = false;
+		ColliderOnOff(false);
+		GameMng.Ins.MonsterDead();
+		GameMng.Ins.AddEXP(GameMng.stageLevel);
+	}
+	#endregion
+
 	private void CalculatorStat()
 	{
 		float cHP = monsterData.healthPoint;
@@ -191,17 +172,7 @@ public class Monster : MonoBehaviour
 			}
 		}
     }
-	public virtual void Dead()
-	{
-		//TODO : RunningSelect
-		//1: Type, 2:Count, 3:StartPos
-		GameMng.Ins.objectPool.goodmng.RunningSelect(1, 10, gameObject.transform.position);
-		monsterStateMachine.ChangeStateDead();
-		active = false;
-		ColliderOnOff(false);
-		GameMng.Ins.MonsterDead();
-		GameMng.Ins.AddEXP(GameMng.stageLevel);
-	}
+
 
     public void ColliderOnOff(bool check) 
     { 
@@ -212,7 +183,6 @@ public class Monster : MonoBehaviour
     {
         monsterAnimator.SetInteger("Action", (int)animationType);
 		SetAnimationSpeed(animationType);
-
 	}
 	public void SetAnimationSpeed(eMonsterAnimation animationType)
 	{
