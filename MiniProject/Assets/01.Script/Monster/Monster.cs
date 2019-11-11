@@ -18,7 +18,13 @@ public class Monster : MonoBehaviour
 	{
 		MonsterSetting();
     }
-	private void MonsterSetting()
+
+    internal void Damage(object attacktype, float damage1, object damage2, ConditionData conditionData, object per)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void MonsterSetting()
 	{
 		monsterData = JsonMng.Ins.monsterDataTable[MonsterID].Copy();
 		active = true;

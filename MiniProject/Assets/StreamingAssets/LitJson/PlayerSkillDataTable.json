@@ -264,5 +264,21 @@
       1,
       2
     ]
+  },
+  {
+    "skillID": 14,
+    "skillName": "WaterPrison",
+    "skillType": 1,
+    "activeType": 3,
+    "target": 1,
+    "price": 2000,
+    "optionArr": [
+      12,
+      6
+    ],
+    "changeAbleOption": [
+      1,
+      2
+    ]
   }
 ]
