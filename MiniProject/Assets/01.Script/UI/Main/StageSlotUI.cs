@@ -25,6 +25,7 @@ public class StageSlotUI : MonoBehaviour
 				break;
 			case eStageType.Lock:
 				stageIconImage.sprite = SpriteMng.Ins.stageAtlas.GetSprite(string.Format("Lock"));
+				GetComponent<Button>().enabled = false;
 				break;
 		}
 	}

@@ -184,9 +184,9 @@ public class JsonMng : MonoBehaviour
 	{
 		StartCoroutine(StartLoad("PlayerSkillTextDataTable", playerSkillTextDataTable));
 	}
-	public List<StageDataTable> GetStageData(int worldLevel,int stagelevel)
+	public Dictionary<int,List<StageDataTable>> GetWorldData(int worldLevel)
 	{
-		return stageDataTable[worldLevel][stagelevel];
+		return stageDataTable[worldLevel];
 	}
 	public int GetRandomSkillIndex()
 	{

@@ -21,9 +21,9 @@ public class SkillSpawnFireArrow : Skill
 	private float arrowInitTime;
 	private float arrowSpeed;
 	private float arrowActiveTime;
-	public override void SetItemBuff(eSkillOption type,float changeValue)
+	public override void SetItemBuff(eSkillOption type, float changeValue)
 	{
-		switch(type)
+		switch (type)
 		{
 			case eSkillOption.Damage:
 				damage += damage * changeValue;
@@ -65,6 +65,13 @@ public class SkillSpawnFireArrow : Skill
 			firArrowList[i].transform.parent = GameMng.Ins.skillMng.transform;
 		}
 	}
+	public override void OffSkill()
+	{
+		for (int i = 0; i < firArrowList.Count; ++i)
+		{
+			firArrowList[i].gameObject.SetActive(false);
+		}
+	}
 	#endregion
 	//실제 쿨타임 도는 타이밍에 ActiveSkill();
 	public override void OnButtonDown()
@@ -90,11 +97,11 @@ public class SkillSpawnFireArrow : Skill
 	private IEnumerator CreateArrow()
 	{
 		float cTime = 0;
-		while(delayTime <= activeTime)
+		while (delayTime <= activeTime)
 		{
 			if (gameObject.activeSelf == false) yield break;
 			cTime += Time.deltaTime;
-			if(cTime >= arrowInitTime)
+			if (cTime >= arrowInitTime)
 			{
 				cTime -= arrowInitTime;
 				for (int i = 0; i < firArrowList.Count; ++i)

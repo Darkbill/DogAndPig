@@ -193,13 +193,14 @@ public class Monster : MonoBehaviour
     }
 	public virtual void Dead()
 	{
-        //TODO : RunningSelect
-        //1: Type, 2:Count, 3:StartPos
-        GameMng.Ins.objectPool.goodmng.RunningSelect(1, 10, gameObject.transform.position);
-        monsterStateMachine.ChangeStateDead();
-        active = false;
-        ColliderOnOff(false);
-		GameMng.Ins.MonsterDead(GameMng.stageLevel, GameMng.stageLevel);
+		//TODO : RunningSelect
+		//1: Type, 2:Count, 3:StartPos
+		GameMng.Ins.objectPool.goodmng.RunningSelect(1, 10, gameObject.transform.position);
+		monsterStateMachine.ChangeStateDead();
+		active = false;
+		ColliderOnOff(false);
+		GameMng.Ins.MonsterDead();
+		GameMng.Ins.AddEXP(GameMng.stageLevel);
 	}
 
     public void ColliderOnOff(bool check) 

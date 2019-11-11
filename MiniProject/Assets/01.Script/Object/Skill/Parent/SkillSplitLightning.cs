@@ -37,9 +37,9 @@ public class SkillSplitLightning : Skill
 		cooldownTime = skillData.optionArr[(int)eFloorFreezeOption.CoolTime];
 		buffEndTime = skillData.optionArr[(int)eFloorFreezeOption.EndTime];
 		delayTime = cooldownTime;
-        for(int i = 0;i<BulletLst.Count;++i)
-            BulletLst[i].transform.parent = GameMng.Ins.skillMng.transform;
-    }
+		for (int i = 0; i < BulletLst.Count; ++i)
+			BulletLst[i].transform.parent = GameMng.Ins.skillMng.transform;
+	}
 	public override void SetItemBuff(eSkillOption type, float changeValue)
 	{
 		switch (type)
@@ -62,6 +62,13 @@ public class SkillSplitLightning : Skill
 	{
 
 	}
+	public override void OffSkill()
+	{
+		for (int i = 0; i < BulletLst.Count; ++i)
+		{
+			BulletLst[i].gameObject.SetActive(false);
+		}
+	}
 	#endregion
 
 	public override void OnButtonDown()
@@ -70,7 +77,7 @@ public class SkillSplitLightning : Skill
 		ActiveSkill();
 	}
 	public override void ActiveSkill()
-	{	
+	{
 		base.ActiveSkill();
 		int randnum = Rand.Random() % 90;
 		CreateAndPoolBullet(randnum);
@@ -87,9 +94,9 @@ public class SkillSplitLightning : Skill
 					lightning,
 					GameMng.Ins.player.transform.position,
 					Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count));
-                light.transform.parent = GameMng.Ins.skillMng.transform;
+				light.transform.parent = GameMng.Ins.skillMng.transform;
 
-                light.GetComponent<Lightning>().Setting(skillID, SplitCnt, sturnper, damage, buffEndTime);
+				light.GetComponent<Lightning>().Setting(skillID, SplitCnt, sturnper, damage, buffEndTime);
 				BulletLst.Add(light.GetComponent<Lightning>());
 				++Count;
 			}
@@ -144,9 +151,9 @@ public class SkillSplitLightning : Skill
 					lightning,
 					endPos,
 					Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count + randnum));
-                light.transform.parent = GameMng.Ins.skillMng.transform;
+				light.transform.parent = GameMng.Ins.skillMng.transform;
 
-                light.GetComponent<Lightning>().Setting(skillID, BulletLst[index].SplitCnt - 1, sturnper, damage, buffEndTime);
+				light.GetComponent<Lightning>().Setting(skillID, BulletLst[index].SplitCnt - 1, sturnper, damage, buffEndTime);
 				BulletLst.Add(light.GetComponent<Lightning>());
 				++Count;
 			}

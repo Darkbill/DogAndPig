@@ -68,6 +68,13 @@ public class SkillFlameThrower : Skill
 			flameList[i].transform.parent = GameMng.Ins.skillMng.transform;
 		}
 	}
+	public override void OffSkill()
+	{
+		for (int i = 0; i < flameList.Count; ++i)
+		{
+			flameList[i].gameObject.SetActive(false);
+		}
+	}
 	#endregion
 
 	private void FixedUpdate()
@@ -90,13 +97,13 @@ public class SkillFlameThrower : Skill
 	}
 	private void CreateFlame()
 	{
-		for(int i = 0; i < flameList.Count; ++i)
+		for (int i = 0; i < flameList.Count; ++i)
 		{
-			if(flameList[i].gameObject.activeSelf == false)
+			if (flameList[i].gameObject.activeSelf == false)
 			{
 				Vector3 lookDir = GameMng.Ins.player.GetForward();
-				lookDir = new Vector3(lookDir.x + Random.Range(-updownScale,updownScale), lookDir.y + Random.Range(-updownScale, updownScale));
-				flameList[i].Setting(GameMng.Ins.player.transform.position,Random.Range(flameSpeed - flameSpeed * updownScale, flameSpeed + flameSpeed * updownScale), lookDir, GameMng.Ins.player.degree);
+				lookDir = new Vector3(lookDir.x + Random.Range(-updownScale, updownScale), lookDir.y + Random.Range(-updownScale, updownScale));
+				flameList[i].Setting(GameMng.Ins.player.transform.position, Random.Range(flameSpeed - flameSpeed * updownScale, flameSpeed + flameSpeed * updownScale), lookDir, GameMng.Ins.player.degree);
 				return;
 			}
 		}

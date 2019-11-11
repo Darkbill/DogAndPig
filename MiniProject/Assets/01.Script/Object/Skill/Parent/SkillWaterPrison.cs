@@ -58,8 +58,14 @@ public class SkillWaterPrison : Skill
         ActiveSkill();
         WaterSet();
     }
-
-    private void WaterSet()
+	public override void OffSkill()
+	{
+		for (int i = 0; i < waterlist.Count; ++i)
+		{
+			waterlist[i].gameObject.SetActive(false);
+		}
+	}
+	private void WaterSet()
     {
         Vector3 movevec = GameMng.Ins.player.GetForward();
         for (int i = 0; i < waterlist.Count; ++i)

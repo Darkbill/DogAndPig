@@ -51,6 +51,10 @@ public class SkillExplosion : Skill
 	{
 		explosionFire.Setting(skillType, damage, skillID, knockBackPower);
 	}
+	public override void OffSkill()
+	{
+		explosionFire.gameObject.SetActive(false);
+	}
 	#endregion
 	//실제 쿨타임 도는 타이밍에 ActiveSkill();
 	public override void OnButtonDown()
@@ -89,7 +93,7 @@ public class SkillExplosion : Skill
 		Vector3 changeVec = new Vector3(0, upScale, 0);
 		Vector3 copy = new Vector3(0, upScale, 0);
 		dir.Normalize();
-		while(cTime <= throwTime)
+		while (cTime <= throwTime)
 		{
 			cTime += Time.deltaTime;
 			changeVec -= copy * (Time.deltaTime / throwTime);

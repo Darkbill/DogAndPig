@@ -4,7 +4,6 @@ using UnityEngine;
 public class SkillMng : MonoBehaviour
 {
 	public Dictionary<int, Skill> skillDict = new Dictionary<int, Skill>();
-    public Dictionary<int, BulletPlayerSkill> bulletDict = new Dictionary<int, BulletPlayerSkill>();
 	private void Awake()
 	{
 		var playerSkillArr = JsonMng.Ins.playerInfoDataTable.setSkillList;
@@ -37,12 +36,10 @@ public class SkillMng : MonoBehaviour
 		var e = skillDict.GetEnumerator();
 		while(e.MoveNext())
 		{
-			e.Current.Value.gameObject.SetActive(false);
+			if(e.Current.Value.gameObject.activeSelf)
+			{
+				e.Current.Value.OffSkill();
+			}
 		}
 	}
-
-    private void AddBullet()
-    {
-        
-    }
 }

@@ -44,13 +44,13 @@ public class GameMng : MonoBehaviour
 	{
 		//테스트 코드
 		Time.timeScale = 1;
-		player.PlayerSetting();
 		aimSkillID = -1;
-		StartGame();
-		//if (JsonMng.Ins.playerInfoDataTable.StartGame())
-		//{
-		//	Debug.Log("광고");
-		//}
+		player.PlayerSetting();
+		WorldStart();
+		if (JsonMng.Ins.playerInfoDataTable.StartGame())
+		{
+			Debug.Log("광고");
+		}
 	}
 	public void ChangeStage()
 	{
@@ -59,27 +59,36 @@ public class GameMng : MonoBehaviour
 		AddEXP(exp);
 		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
 	}
-	public void StartGame()
-	{
-		UIMngInGame.Ins.StageStart();
-		monsterPool.StartStage(worldLevel, stageLevel);
-	}
 	public void StageClear()
 	{
         objectPool.goodmng.AllRunningSelect();
-        stageLevel++;
         portal.NextStagePotal();
+	}
+	public void StartStage()
+	{
+		stageLevel++;
+		skillMng.OffSkill();
+		OffSkillAim();
+		monsterPool.StartStage(stageLevel);
+		UIMngInGame.Ins.StageStart();
+	}
+	public void ContinueStage()
+	{
+		//TODO : 플레이어 부활
+	}
+	public void WorldStart()
+	{
+		UIMngInGame.Ins.StageStart();
+		monsterPool.WorldStart(worldLevel);
+		stageLevel = 1;
 	}
 	public void WorldClear()
 	{
 		Time.timeScale = 0;
 		JsonMng.Ins.playerInfoDataTable.clearLevel++;
-		worldLevel++;
-		stageLevel = 1;
 		UIMngInGame.Ins.AllClear();
-		//TODO : 클리어보상
 	}
-	public void MonsterDead(int gold,int exp)
+	public void MonsterDead()
 	{
 		monsterPool.DeadMonster();
 	}
@@ -89,14 +98,12 @@ public class GameMng : MonoBehaviour
 	}
 	public void HitToEffect(eAttackType type, Vector3 target, Vector3 pos, float siz)
 	{
-		//TODO : target - 맞는사람, pos - 공격자
-		//GameMng.Ins.HitToEffect(eAttackType.Physics, GameMng.Ins.player.transform.position + new Vector3(0, 0.3f, 0),transform.position + new Vector3(0, 0.3f, 0));
 		objectPool.effectPool.RunHitAnimation(type, target, pos, siz);
 	}
 	public void GameOver()
 	{
-		skillMng.OffSkill();
 		cameraMove.GameOver();
+		skillMng.OffSkill();
 	}
 	public void AddGold(int gold)
 	{
@@ -113,7 +120,6 @@ public class GameMng : MonoBehaviour
 		player.AddEXP(exp);
 		UIMngInGame.Ins.AddEXP();
 	}
-
 	public void ActiveSkill(int skillID)
 	{
 		skillMng.skillDict[skillID].OnButtonDown();
@@ -144,6 +150,7 @@ public class GameMng : MonoBehaviour
 	public void OffSkillAim()
 	{
 		//에임 필요한 스킬 재발동시 호출, 스킬사용 종료
+		if (aimSkillID == -1) return;
 		inputSystem.isSkillDrag = false;
 		if(skillMng.skillDict[aimSkillID].activeFlag)
 		{

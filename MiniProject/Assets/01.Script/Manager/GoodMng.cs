@@ -15,7 +15,6 @@ public class GoodMng : MonoBehaviour
 
     public Gold goldbase;
     public Diamond diabase;
-    public Experience expbase;
 
     private void Awake()
     {
@@ -30,13 +29,6 @@ public class GoodMng : MonoBehaviour
         {
             Diamond o = Instantiate(diabase, gameObject.transform);
             o.BaseSetting(2);
-            o.gameObject.SetActive(false);
-            goodlist.Add(o);
-        }
-        for(int i = 0;i<experienceCnt;++i)
-        {
-            Experience o = Instantiate(expbase, gameObject.transform);
-            o.BaseSetting(3);
             o.gameObject.SetActive(false);
             goodlist.Add(o);
         }

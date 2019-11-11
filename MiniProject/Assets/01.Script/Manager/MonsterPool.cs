@@ -6,10 +6,11 @@ using UnityEngine;
 public class MonsterPool : MonoBehaviour
 {
 	public List<Monster> monsterList = new List<Monster>();
+	public Dictionary<int, List<StageDataTable>> worldData = new Dictionary<int, List<StageDataTable>>();
 	public List<GameObject> monsterEffectList = new List<GameObject>();
 	public int bossIndex = -1;
+	private int spawnMonsterCount = 0;
 	private int activeMonsterCount;
-
 	private const int poolSiz = 20;
 
 	Dictionary<eBuffType, List<BuffBase>> effectlist = new Dictionary<eBuffType, List<BuffBase>>();
@@ -52,13 +53,6 @@ public class MonsterPool : MonoBehaviour
 		}
 	}
 
-	public void ResetMonster()
-	{
-		for(int i = 0; i < monsterList.Count; ++i)
-		{
-			Destroy(monsterList[i].gameObject);
-		}
-	}
 	public void SelectEffect(GameObject monsterobj, ConditionData data)
 	{
 		for (int i = 0; i < effectlist[data.buffType].Count; ++i)
@@ -76,16 +70,32 @@ public class MonsterPool : MonoBehaviour
 			}
 		}
 	}
-
-	public void StartStage(int worldLevel, int stageLevel)
+	public void WorldStart(int worldLevel)
 	{
+		//월드 시작시 해당 월드 모든 몬스터 생성해서 저장
 		monsterList.Clear();
-		List<StageDataTable> stageDataTable = JsonMng.Ins.GetStageData(worldLevel, stageLevel);
+		worldData = JsonMng.Ins.GetWorldData(worldLevel);
+		var i = worldData.GetEnumerator();
+		while(i.MoveNext())
+		{
+			var stageList = i.Current.Value;
+			for(int j = 0; j < stageList.Count; ++j)
+			{
+				CreateMonster(stageList[j]);
+			}
+		}
+		StartStage(1);
+	}
+	public void StartStage(int stageLevel)
+	{
+		List<StageDataTable> stageDataTable = worldData[stageLevel];
 		activeMonsterCount = stageDataTable.Count;
 		for (int i = 0; i < stageDataTable.Count; ++i)
 		{
-			CreateMonster(stageDataTable[i]);
-			if (stageDataTable[i].boss == 1) SetBossInfo(i);
+			monsterList[spawnMonsterCount].gameObject.SetActive(true);
+			SelectEffect(monsterList[spawnMonsterCount].transform.position);
+			if (stageDataTable[i].boss == 1) SetBossInfo(spawnMonsterCount);
+			spawnMonsterCount++;
 		}
 	}
 	private void SetBossInfo(int _bossIndex)
@@ -100,11 +110,12 @@ public class MonsterPool : MonoBehaviour
 		Monster m = o.GetComponent<Monster>();
         m.Angle = AnglePlayerSetting(m.transform.position);
 		m.monsterData.SetMonsterData(stageData.enemyLevel);
+		m.gameObject.SetActive(false);
 		monsterList.Add(m);
-		SelectEffect(m.transform.position);
 	}
     private float AnglePlayerSetting(Vector3 pos)
     {
+		//4분활 위치별 플레이어 바라보도록 Angle변경
         Vector3 rightvec = GameMng.Ins.player.transform.position - pos;
         float angle = Mathf.Atan2(rightvec.y, rightvec.x) * Mathf.Rad2Deg;
         if (angle < -90)
@@ -115,7 +126,6 @@ public class MonsterPool : MonoBehaviour
             return Rand.Range(0, 90);
         else
             return Rand.Range(90, 180);
-        //return Mathf.Atan2(rightvec.y, rightvec.x) * Mathf.Rad2Deg;
     }
 
     private void SelectEffect(Vector3 pos)
@@ -155,72 +165,5 @@ public class MonsterPool : MonoBehaviour
 	{
 		return monsterList[bossIndex].monsterData.healthPoint / JsonMng.Ins.monsterDataTable[monsterList[bossIndex].MonsterID].healthPoint;
 	}
-
-	//   public int Stage = 0;
-	//   private int StageMaxMonster = 10;
-	//   const int MapSizX = 40;
-	//   const int MapSizY = 20;
-
-	//   int MonsterMaxCounting = 0;
-
-	//public List<Monster> monsterList = new List<Monster>();
-	//   private float worldtimer = 0;
-	//   public Monster MilliMonsterBase;
-
-	//   private void Awake()
-	//   {
-
-	//   }
-
-	//   private void Update()
-	//   {
-	//       if (Input.GetKeyDown("p"))
-	//           NextStage();
-
-	//       SponMonster(Time.deltaTime);
-	//   }
-
-	//   private void SponMonster(float deltaTime)
-	//   {
-	//       worldtimer += deltaTime;
-	//       if(worldtimer >= (float)StageMaxMonster / (float)Stage)
-	//       {
-	//           worldtimer = 0.0f;
-	//           for (int i = 0; i < monsterList.Count; ++i)
-	//           {
-	//               if(!monsterList[i].gameObject.activeSelf && MonsterMaxCounting > 0)
-	//               {
-	//                   --MonsterMaxCounting;
-	//                   float setx = Rand.Range(-MapSizX, MapSizX) / 10;
-	//                   float sety = Rand.Range(-MapSizY, MapSizY) / 10;
-
-	//                   monsterList[i].transform.position = new Vector3(setx, sety, -3);
-	//                   monsterList[i].transform.rotation = Quaternion.Euler(0, 0, Rand.Range(-180, 180));
-	//                   monsterList[i].gameObject.SetActive(true);
-	//                   //몬스터 초기화..
-	//                   break;
-	//               }
-	//           }
-	//       }
-	//   }
-
-	//   public void NextStage()
-	//   {
-	//       ++Stage;
-	//       StageMaxCounting();
-	//       ReloadObject();
-	//       //몬스터 다음 레벨 초기화
-	//   }
-
-	//   private void ReloadObject()
-	//   {
-	//       for (int i = 0; i < monsterList.Count; ++i)
-	//           monsterList[i].gameObject.SetActive(false);
-	//   }
-
-	//   public void StageMaxCounting()
-	//   {
-	//       MonsterMaxCounting = Stage * StageMaxMonster;
-	//   }
 
 }

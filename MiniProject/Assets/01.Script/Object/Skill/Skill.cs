@@ -19,7 +19,7 @@ public abstract class Skill : MonoBehaviour
 	public float GetDelay()
 	{
 		float t = delayTime / cooldownTime;
-		if(t >= 1)
+		if (t >= 1)
 		{
 			gameObject.SetActive(false);
 			return 1;
@@ -29,6 +29,8 @@ public abstract class Skill : MonoBehaviour
 	//각 스킬별 변화가능한 옵션 추가 계산
 	public abstract void SetItemBuff(eSkillOption optionType, float changeValue);
 	public abstract void SetBullet();
+
+
 	public virtual void OnButtonDown()
 	{
 		Debug.Log("스킬 시작");
@@ -41,4 +43,5 @@ public abstract class Skill : MonoBehaviour
 	{
 		Debug.Log("마우스 드랍");
 	}
+	public abstract void OffSkill();
 }

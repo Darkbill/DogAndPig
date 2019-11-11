@@ -176,11 +176,16 @@ public class UIMngInGame : MonoBehaviour
     public void OnClickContinue()
     {
 		Debug.Log("광고");
-		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
+		GameMng.Ins.ContinueStage();
 	}
 	public void OnClickReStart()
 	{
 		GameMng.stageLevel = 1;
+		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
+	}
+	public void OnClickNextLevel()
+	{
+		GameMng.worldLevel++;
 		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
 	}
 	public void OnClickLobby()
@@ -226,7 +231,7 @@ public class UIMngInGame : MonoBehaviour
 	{
 		if(fadeFlag)
 		{
-			fade.DOColor(Color.black, 0.25f).OnComplete(() => { UnityEngine.SceneManagement.SceneManager.LoadScene("InGame"); });
+			fade.DOColor(Color.black, 0.25f).OnComplete(() => { GameMng.Ins.StartStage(); });
 		}
 		else
 		{

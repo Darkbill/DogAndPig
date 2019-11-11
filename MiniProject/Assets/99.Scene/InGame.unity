@@ -3574,7 +3574,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1341116297}
-        m_MethodName: OnClickReStart
+        m_MethodName: OnClickNextLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12125,7 +12125,6 @@ MonoBehaviour:
   goldbase: {fileID: 4545322965133001493, guid: 4e4fa3173eccb4a49af0e688c25ff6ab,
     type: 3}
   diabase: {fileID: 6415741208981266272, guid: f13645536cef4ee4e8503f2ac53a2853, type: 3}
-  expbase: {fileID: 6296015179423868152, guid: eca20f05e26b76842a7070ccc9dfa637, type: 3}
 --- !u!1 &1995194140
 GameObject:
   m_ObjectHideFlags: 0
@@ -38178,7 +38177,7 @@ Transform:
   m_GameObject: {fileID: 9214245829053109505}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 9208006804393315965}
   - {fileID: 9208012635965652699}
@@ -38283,10 +38282,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   col: {fileID: 9214245829053109507}
   portalCreateEffectSystem: {fileID: 7172661538129153569}
-  mainEffect:
-  - {fileID: 9214245829053109505}
-  - {fileID: 9214169442381274563}
-  - {fileID: 9212862524583866229}
 --- !u!58 &9214245829053109507
 CircleCollider2D:
   m_ObjectHideFlags: 0

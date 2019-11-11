@@ -57,7 +57,9 @@ public class SkillBurningMeteor : Skill
 	{
 
 	}
-	
+	public override void OffSkill()
+	{
+	}
 	public override void SetItemBuff(eSkillOption optionType, float changeValue)
 	{
 	}
