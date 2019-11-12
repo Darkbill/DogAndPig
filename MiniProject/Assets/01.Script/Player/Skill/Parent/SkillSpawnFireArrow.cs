@@ -112,6 +112,10 @@ public class SkillSpawnFireArrow : Skill
 						break;
 					}
 				}
+				FireArrow o = Instantiate(firArrowList[0], GameMng.Ins.skillMng.transform);
+				firArrowList.Add(o);
+				o.Setting(skillType, damage, arrowSpeed, arrowActiveTime);
+				o.Setting(gateParticle.gameObject.transform.right, gateParticle.gameObject.transform.position, gateParticle.gameObject.transform.eulerAngles.z);
 			}
 			yield return null;
 		}

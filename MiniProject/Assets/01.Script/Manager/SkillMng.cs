@@ -36,10 +36,7 @@ public class SkillMng : MonoBehaviour
 		var e = skillDict.GetEnumerator();
 		while(e.MoveNext())
 		{
-			if(e.Current.Value.gameObject.activeSelf)
-			{
-				e.Current.Value.OffSkill();
-			}
+			e.Current.Value.OffSkill();
 		}
 	}
 }

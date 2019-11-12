@@ -49,7 +49,9 @@ public class SkillExplosion : Skill
 	}
 	public override void SetBullet()
 	{
+		//TODO : 이것도 추가생성
 		explosionFire.Setting(skillType, damage, skillID, knockBackPower);
+		explosionFire.gameObject.transform.parent = GameMng.Ins.skillMng.transform;
 	}
 	public override void OffSkill()
 	{
