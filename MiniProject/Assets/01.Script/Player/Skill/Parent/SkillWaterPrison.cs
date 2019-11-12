@@ -44,6 +44,7 @@ public class SkillWaterPrison : Skill
     #endregion
 
     public List<WaterBall> waterlist = new List<WaterBall>();
+    public List<WaterBallHit> waterhitlist = new List<WaterBallHit>();
     public WaterPrison prison;
     //실제 쿨타임 도는 타이밍에 ActiveSkill();
     public override void OnButtonDown()
