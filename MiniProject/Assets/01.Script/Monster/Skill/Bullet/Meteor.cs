@@ -6,24 +6,26 @@ using UnityEngine;
 public class Meteor : MonoBehaviour
 {
     public Vector3 pos = new Vector3();
+    private const float radius = 0.8f;
+    private const float damage = 10.0f;
     public void Setting()
     {
         gameObject.GetComponent<ParticleSystem>().Play();
-        gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        OnPlayerEnterHit();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnPlayerEnterHit()
     {
-        if (collision.CompareTag("Player"))
+        float range = (gameObject.transform.position - GameMng.Ins.player.transform.position).magnitude;
+        if(range < radius)
         {
-            collision.GetComponent<Player>().Damage(GlobalDefine.eAttackType.Fire, 10);
+            GameMng.Ins.player.Damage(GlobalDefine.eAttackType.Fire, damage);
         }
     }
 
     [Obsolete]
     private void Update()
     {
-        if (gameObject.GetComponent<ParticleSystem>().duration > 0.6f)
-            gameObject.GetComponent<CircleCollider2D>().enabled = false;
         if (gameObject.GetComponent<ParticleSystem>().isPlaying == false)
             gameObject.SetActive(false);
     }

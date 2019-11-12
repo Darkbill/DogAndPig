@@ -95,12 +95,6 @@ public class SupporterIsLightning : BulletPlayerSkill
 
     public override void Crash(Monster monster)
     {
-        
-    }
-
-    public override void CrashOfIn(Monster monster)
-    {
-        base.CrashOfIn(monster);
         if (!monsterlist.Contains(monster) && monster != null)
             monsterlist.Add(monster);
     }

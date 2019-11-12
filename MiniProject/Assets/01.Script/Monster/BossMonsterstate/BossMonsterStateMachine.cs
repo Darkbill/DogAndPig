@@ -34,4 +34,9 @@ public class BossMonsterStateMachine : StateMachine
 	{
 		return;
 	}
+
+    public void ChangeStateSkillAttack()
+    {
+        ChangeState(eMonsterState.SkillAttack);
+    }
 }
