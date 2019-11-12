@@ -111,7 +111,6 @@ public class SkillFloorFreeze : Skill
 			FreezenShot[i].gameObject.SetActive(true);
 			FreezenShot[i].transform.position = GameMng.Ins.player.transform.position;
 			FreezenShot[i].transform.eulerAngles = new Vector3(0, 0, degree - 90);
-			FreezenShot[i].transform.localScale = new Vector3(width / 2, height / 4, 0);
 			return;
 		}
 		base.OnDrop();
@@ -122,7 +121,6 @@ public class SkillFloorFreeze : Skill
 		o.gameObject.SetActive(true);
 		o.transform.position = GameMng.Ins.player.transform.position;
 		o.transform.eulerAngles = new Vector3(0, 0, degree - 90);
-		o.transform.localScale = new Vector3(width / 2, height / 4, 0);
 		FreezenShot.Add(o);
 	}
 	void Update()

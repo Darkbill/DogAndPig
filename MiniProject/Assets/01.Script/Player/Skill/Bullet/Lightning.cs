@@ -14,11 +14,12 @@ public class Lightning : BulletPlayerSkill
 
     public Vector3 MoveVec;
     public Vector3 EndPos;
-    public bool SplitCheck = false;
     public int SplitCnt;
     public float Speed;
 	private float buffEndTime;
 	private float buffActivePer;
+
+    private const float splitCnt = 4;
 
 
 	List<Lightning> lightningList = new List<Lightning>();
@@ -38,6 +39,7 @@ public class Lightning : BulletPlayerSkill
     private void Update()
     {
         SetTimer += Time.deltaTime;
+        gameObject.transform.position += gameObject.transform.right * Time.deltaTime * Speed;
         if (SetTimer >= MaxTimer)
             gameObject.SetActive(false);
     }
@@ -52,8 +54,36 @@ public class Lightning : BulletPlayerSkill
                 monster.monsterData.size);
 			if (Rand.Permile(per)) monster.OutStateAdd(new ConditionData(bufftype, Id, buffEndTime, 0));
             EndPos = monster.transform.position;
-            SplitCheck = true;
+            int randnum = Rand.Random() % 90;
+            CreateAndPoolBullet(randnum);
             gameObject.SetActive(false);
         }
 	}
+
+    private void CreateAndPoolBullet(int randnum)
+    {
+        int Count = 0;
+        for (int i = 0; Count < splitCnt; ++i)
+        {
+            if (lightningList.Count == i)
+            {
+                Lightning light = Instantiate(
+                    this,
+                    gameObject.transform.position,
+                    Quaternion.Euler(0, 0, 180 * 2 / 4 * Count + randnum));
+                light.transform.parent = GameMng.Ins.skillMng.transform;
+                light.Setting(Id, SplitCnt - 1, per, damage, buffEndTime);
+                lightningList.Add(light);
+                ++Count;
+            }
+            if (!lightningList[i].gameObject.activeSelf)
+            {
+                lightningList[i].transform.position = gameObject.transform.position;
+                lightningList[i].transform.rotation = Quaternion.Euler(0, 0, 180 * 2 / 4 * Count + randnum);
+                lightningList[i].Setting(Id, SplitCnt - 1, per, damage, buffEndTime);
+                lightningList[i].gameObject.SetActive(true);
+                ++Count;
+            }
+        }
+    }
 }

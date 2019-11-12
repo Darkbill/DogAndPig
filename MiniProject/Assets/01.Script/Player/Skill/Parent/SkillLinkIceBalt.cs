@@ -64,14 +64,16 @@ public class SkillLinkIceBalt : Skill
 	}
 	public override void SetBullet()
 	{
-		ice[0].Setting(skillID, buffActivePer, damage, skillType,
-			buffType, buffEndTime, buffChangeValue,
-			iceSpeed,
-			maxHitCount);
+        foreach (LinkIce o in ice)
+            o.Setting(skillID, buffActivePer, damage, skillType,
+            buffType, buffEndTime, buffChangeValue,
+            iceSpeed,
+            maxHitCount);
 	}
 	public override void OffSkill()
 	{
-
+        foreach (LinkIce o in ice)
+            o.gameObject.SetActive(false);
 	}
 	#endregion
 	public List<LinkIce> ice = new List<LinkIce>();
@@ -88,19 +90,18 @@ public class SkillLinkIceBalt : Skill
 		{
 			if (ice[i].gameObject.activeSelf) continue;
 			ice[i].gameObject.SetActive(true);
-			ice[i].Setting();
-			base.ActiveSkill();
+            ice[i].Setting();//TODO : 해당 세팅은 고정값 세팅이 아님 ㅎㅎ;
+            base.ActiveSkill();
 			return;
 		}
 		LinkIce o = Instantiate(ice[0], GameMng.Ins.skillMng.transform);
 		o.gameObject.SetActive(true);
-		o.Setting(skillID, buffActivePer, damage, skillType,
-			buffType, buffEndTime, buffChangeValue,
-			iceSpeed,
-			maxHitCount);
-		ice.Add(o);
+        o.Setting();
+        ice.Add(o);
+        SetBullet();
+        
 
-		base.ActiveSkill();
+        base.ActiveSkill();
 	}
 	public override void OnDrag()
 	{

@@ -28,13 +28,16 @@ public class Freezen : BulletPlayerSkill
 
     private void Update()
     {
-        if (!system.isPlaying)
+        if (system.time > 1.0f)
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        if(!system.isPlaying)
             gameObject.SetActive(false);
     }
 
     public void angleSet(float angle)
     {
         rightvec = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle));
+        gameObject.GetComponent<BoxCollider2D>().enabled = true;
     }
 
 	public override void Crash(Monster monster)

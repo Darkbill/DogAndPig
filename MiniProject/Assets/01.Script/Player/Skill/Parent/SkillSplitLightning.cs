@@ -60,7 +60,10 @@ public class SkillSplitLightning : Skill
 	}
 	public override void SetBullet()
 	{
-
+        foreach(Lightning o in BulletLst)
+        {
+            o.Setting(skillID, SplitCnt, sturnper, damage, buffEndTime);
+        }
 	}
 	public override void OffSkill()
 	{
@@ -96,16 +99,16 @@ public class SkillSplitLightning : Skill
 					Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count));
 				light.transform.parent = GameMng.Ins.skillMng.transform;
 
-				light.GetComponent<Lightning>().Setting(skillID, SplitCnt, sturnper, damage, buffEndTime);
 				BulletLst.Add(light.GetComponent<Lightning>());
-				++Count;
+                SetBullet();
+                ++Count;
 			}
 			if (!BulletLst[i].gameObject.activeSelf)
 			{
 				BulletLst[i].transform.position = GameMng.Ins.player.transform.position;
 				BulletLst[i].transform.rotation = Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count);
-				BulletLst[i].Setting(skillID, SplitCnt, sturnper, damage, buffEndTime);
-				BulletLst[i].gameObject.SetActive(true);
+                SetBullet();
+                BulletLst[i].gameObject.SetActive(true);
 				++Count;
 			}
 		}
@@ -116,13 +119,6 @@ public class SkillSplitLightning : Skill
 		delayTime += Time.deltaTime;
 		for (int i = 0; i < BulletLst.Count; ++i)
 		{
-			int randnum = Rand.Range(-5, 5) * 5;
-			if (BulletLst[i].SplitCheck && BulletLst[i].SplitCnt > 0)
-			{
-				BulletLst[i].SplitCheck = false;
-				CreateBullet(BulletLst[i].EndPos, i);
-				continue;
-			}
 			if (BulletLst[i].gameObject.activeSelf)
 			{
 				BulletLst[i].transform.position +=
@@ -170,7 +166,7 @@ public class SkillSplitLightning : Skill
 
 	private void OnDisable()
 	{
-		for (int i = 0; i < BulletLst.Count; ++i)
-			BulletLst[i].gameObject.SetActive(false);
+		//for (int i = 0; i < BulletLst.Count; ++i)
+		//	BulletLst[i].gameObject.SetActive(false);
 	}
 }

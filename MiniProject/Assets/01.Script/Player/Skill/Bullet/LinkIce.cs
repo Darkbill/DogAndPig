@@ -60,7 +60,7 @@ public class LinkIce : BulletPlayerSkill
 		int minDisIndex = -1;
 		for (int i = 0; i < monsterpool.Count; ++i)
 		{
-			if (monsterpool[i] == null || monsterpool[i].active == false) continue;
+			if (monsterpool[i] == null || monsterpool[i].active == false || !monsterpool[i].gameObject.activeSelf) continue;
 			else if (hitMonsterPool.Contains(i)) continue;
 			float m = (gameObject.transform.position - monsterpool[i].transform.position).magnitude;
 			if(distance > m)
