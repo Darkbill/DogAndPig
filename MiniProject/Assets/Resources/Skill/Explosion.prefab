@@ -24,12 +24,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 48689043367959855}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
-  m_Father: {fileID: 3591006371824193697}
-  m_RootOrder: 1
+  m_Father: {fileID: 3908205294897436533}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6114339662681022422
 SpriteRenderer:
@@ -109,7 +109,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3908205294897436533}
-  - {fileID: 3970530481694475280}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -130,8 +129,8 @@ MonoBehaviour:
   cooldownTime: 0
   delayTime: 0
   activeFlag: 0
-  explosionFire: {fileID: 819302320419331309}
-  thrower: {fileID: 48689043367959855}
+  explosionFireList:
+  - {fileID: 819302320419331309}
 --- !u!1 &4817916395274984844
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4815937491237927860
 Transform:
   m_ObjectHideFlags: 0
@@ -164,7 +163,7 @@ Transform:
   - {fileID: 4815485430778896288}
   - {fileID: 4813049300575591174}
   m_Father: {fileID: 3908205294897436533}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &4619181187623391184
 ParticleSystem:
@@ -14463,6 +14462,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 3970530481694475280}
   - {fileID: 4815937491237927860}
   m_Father: {fileID: 3591006371824193697}
   m_RootOrder: 0
@@ -14474,7 +14474,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6468857964274092803}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -14500,7 +14500,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6468857964274092803}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -14524,3 +14524,4 @@ MonoBehaviour:
   explosion: {fileID: 4619181187623391184}
   boxCol: {fileID: 5056611314743263890}
   circleCol: {fileID: 3467540615251529757}
+  thrower: {fileID: 48689043367959855}

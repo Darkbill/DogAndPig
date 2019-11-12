@@ -11,6 +11,7 @@ public abstract class StateMachine : MonoBehaviour
 	{
 		knockBackDir = new Vector3(_knockBackDir.x, _knockBackDir.y, 0);
 		knockBackPower = _knockBackPower;
+		ChangeState(eMonsterState.KnockBack);
 	}
 	public virtual void ChangeStateStun()
 	{

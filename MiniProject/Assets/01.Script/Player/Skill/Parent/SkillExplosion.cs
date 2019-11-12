@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 using GlobalDefine;
+using System.Collections.Generic;
 public class SkillExplosion : Skill
 {
-	public ExplosionFire explosionFire;
-	public GameObject thrower;
+	public List<ExplosionFire> explosionFireList = new List<ExplosionFire>();
+
 	#region SkillSetting
 	enum eExplosionSkillOption
 	{
@@ -49,13 +49,17 @@ public class SkillExplosion : Skill
 	}
 	public override void SetBullet()
 	{
-		//TODO : 이것도 추가생성
-		explosionFire.Setting(skillType, damage, skillID, knockBackPower);
-		explosionFire.gameObject.transform.parent = GameMng.Ins.skillMng.transform;
+		for (int i = 0; i < explosionFireList.Count; ++i)
+		{
+			explosionFireList[i].Setting(skillType, damage, skillID, knockBackPower,throwTime,upScale);
+		}
 	}
 	public override void OffSkill()
 	{
-		explosionFire.gameObject.SetActive(false);
+		for (int i = 0; i < explosionFireList.Count; ++i)
+		{
+			explosionFireList[i].ActiveOff();
+		}
 	}
 	#endregion
 	//실제 쿨타임 도는 타이밍에 ActiveSkill();
@@ -67,54 +71,30 @@ public class SkillExplosion : Skill
 	public override void OnDrag()
 	{
 		base.OnDrag();
-		explosionFire.gameObject.SetActive(false);
 	}
 	public override void OnDrop()
 	{
 		base.OnDrop();
 		ActiveSkill();
-		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		mousePos = new Vector3(mousePos.x, mousePos.y, 0);
-		StartCoroutine(Throw(mousePos));
+		GetActiveAbleExplosion().StartThrow();
 	}
 	private void Update()
 	{
 		delayTime += Time.deltaTime;
 	}
-	public void Explosion(Vector3 pos)
+
+	private ExplosionFire GetActiveAbleExplosion()
 	{
-		explosionFire.StartExPlosion(pos);
-	}
-	IEnumerator Throw(Vector3 pos)
-	{
-		thrower.SetActive(true);
-		thrower.gameObject.transform.position = GameMng.Ins.player.transform.position + new Vector3(0, GameMng.Ins.player.calStat.size, 0);
-		Vector3 dir = pos - thrower.gameObject.transform.position;
-		float m = dir.magnitude;
-		float cTime = 0;
-		Vector3 changeVec = new Vector3(0, upScale, 0);
-		Vector3 copy = new Vector3(0, upScale, 0);
-		dir.Normalize();
-		while (cTime <= throwTime)
+		for (int i = 0; i < explosionFireList.Count; ++i)
 		{
-			cTime += Time.deltaTime;
-			changeVec -= copy * (Time.deltaTime / throwTime);
-			thrower.transform.position += dir * Time.deltaTime * m + changeVec;
-			yield return null;
-		}
-		changeVec = Vector3.zero;
-		while (true)
-		{
-			cTime += Time.deltaTime;
-			changeVec -= copy * (Time.deltaTime / throwTime);
-			thrower.transform.position += dir * Time.deltaTime * m + changeVec;
-			if ((pos - thrower.gameObject.transform.position).magnitude <= 0.2f)
+			if (explosionFireList[i].gameObject.activeSelf == false)
 			{
-				thrower.SetActive(false);
-				Explosion(thrower.transform.position);
-				yield break;
+				return explosionFireList[i];
 			}
-			else yield return null;
 		}
+		GameObject o = Instantiate(explosionFireList[0].gameObject);
+		o.GetComponent<ExplosionFire>().Setting(skillType, damage, skillID, knockBackPower, throwTime, upScale);
+		explosionFireList.Add(o.GetComponent<ExplosionFire>());
+		return explosionFireList[explosionFireList.Count - 1];
 	}
 }

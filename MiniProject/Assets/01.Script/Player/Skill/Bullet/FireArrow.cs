@@ -17,11 +17,11 @@ public class FireArrow : BulletPlayerSkill
 		arrowActiveTime = _arrowActiveTime;
 		gameObject.SetActive(false);
 	}
-	public void Setting(Vector3 _dir,Vector3 startPos,float zAngle)
+	public void Setting(GameObject gate)
 	{
-		dir = _dir;
-		gameObject.transform.eulerAngles = new Vector3(zAngle, 0, 0);
-		transform.position = transform.position = startPos;
+		dir = gate.transform.right;
+		gameObject.transform.eulerAngles = new Vector3(gate.transform.eulerAngles.z, 0, 0);
+		transform.position = gate.transform.position;
 		transform.position += new Vector3(dir.y * Random.Range(-0.5f, 0.5f), dir.x * Random.Range(-0.5f, 0.5f), 0);
 		gameObject.SetActive(true);
 	}

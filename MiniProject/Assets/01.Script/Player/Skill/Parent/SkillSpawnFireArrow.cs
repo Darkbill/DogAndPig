@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using GlobalDefine;
 public class SkillSpawnFireArrow : Skill
 {
-	public ParticleSystem gateParticle;
-	public List<FireArrow> firArrowList;
+	public List<FireArrowGate> gateParticleList = new List<FireArrowGate>();
+
 	#region SkillSetting
 	enum eSpawnFireArrowOption
 	{
@@ -59,17 +59,16 @@ public class SkillSpawnFireArrow : Skill
 	}
 	public override void SetBullet()
 	{
-		for (int i = 0; i < firArrowList.Count; ++i)
+		for (int i = 0; i < gateParticleList.Count; ++i)
 		{
-			firArrowList[i].Setting(skillType, damage, arrowSpeed, arrowActiveTime);
-			firArrowList[i].transform.parent = GameMng.Ins.skillMng.transform;
+			gateParticleList[i].Setting(activeTime, arrowInitTime, skillType,damage,arrowSpeed,arrowActiveTime);
 		}
 	}
 	public override void OffSkill()
 	{
-		for (int i = 0; i < firArrowList.Count; ++i)
+		for (int i = 0; i < gateParticleList.Count; ++i)
 		{
-			firArrowList[i].gameObject.SetActive(false);
+			gateParticleList[i].OffSkill();
 		}
 	}
 	#endregion
@@ -88,44 +87,30 @@ public class SkillSpawnFireArrow : Skill
 		base.OnDrop();
 		ActiveSkill();
 		CreateGate();
-		StartCoroutine(CreateArrow());
 	}
 	private void Update()
 	{
 		delayTime += Time.deltaTime;
 	}
-	private IEnumerator CreateArrow()
-	{
-		float cTime = 0;
-		while (delayTime <= activeTime)
-		{
-			if (gameObject.activeSelf == false) yield break;
-			cTime += Time.deltaTime;
-			if (cTime >= arrowInitTime)
-			{
-				cTime -= arrowInitTime;
-				for (int i = 0; i < firArrowList.Count; ++i)
-				{
-					if (firArrowList[i].gameObject.activeSelf == false)
-					{
-						firArrowList[i].Setting(gateParticle.gameObject.transform.right, gateParticle.gameObject.transform.position, gateParticle.gameObject.transform.eulerAngles.z);
-						break;
-					}
-				}
-				FireArrow o = Instantiate(firArrowList[0], GameMng.Ins.skillMng.transform);
-				firArrowList.Add(o);
-				o.Setting(skillType, damage, arrowSpeed, arrowActiveTime);
-				o.Setting(gateParticle.gameObject.transform.right, gateParticle.gameObject.transform.position, gateParticle.gameObject.transform.eulerAngles.z);
-			}
-			yield return null;
-		}
-	}
+
 	private void CreateGate()
 	{
-		gateParticle.gameObject.SetActive(true);
-		gateParticle.gameObject.transform.position = GameMng.Ins.player.transform.position;
-		gateParticle.gameObject.transform.eulerAngles = new Vector3(0, 0, GameMng.Ins.player.degree);
-		gateParticle.Play();
+		GetAciveAbleGate().StartGate();
 	}
+	private FireArrowGate GetAciveAbleGate()
+	{
+		for(int i = 0; i < gateParticleList.Count; ++i)
+		{
+			if(gateParticleList[i].gameObject.activeSelf == false)
+			{
+				return gateParticleList[i];
+			}
+		}
+		GameObject o = Instantiate(gateParticleList[0].gameObject);
+		o.GetComponent<FireArrowGate>().Setting(activeTime, arrowInitTime, skillType, damage, arrowSpeed, arrowActiveTime);
+		gateParticleList.Add(o.GetComponent<FireArrowGate>());
+		return gateParticleList[gateParticleList.Count - 1];
+	}
+
 }
 
