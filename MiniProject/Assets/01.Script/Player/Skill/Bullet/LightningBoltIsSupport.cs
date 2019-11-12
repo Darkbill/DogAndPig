@@ -24,7 +24,8 @@ public class LightningBoltIsSupport : MonoBehaviour
 
         gameObject.transform.eulerAngles = new Vector3(0, 0, angle - 90);
         setTimer = 0.0f;
-    }
+		gameObject.SetActive(true);
+	}
     private void Update()
     {
         setTimer += Time.deltaTime;

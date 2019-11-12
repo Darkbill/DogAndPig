@@ -1,5 +1,4 @@
 ﻿using GlobalDefine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,7 +26,6 @@ public class SkillSupporterIsLightning : Skill
         attackspeed = skillData.optionArr[(int)eSupporterIsLightningSkillOption.AttackSpeed];
         skillendtime = skillData.optionArr[(int)eSupporterIsLightningSkillOption.SkillEndTime];
         delayTime = cooldownTime;
-        supporter[0].gameObject.transform.parent = GameMng.Ins.skillMng.transform;
         gameObject.SetActive(false);
     }
 
@@ -78,19 +76,14 @@ public class SkillSupporterIsLightning : Skill
         for(int i = 0;i<supporter.Count;++i)
         {
             if (supporter[i].gameObject.activeSelf) continue;
-            SetBullet();
             supporter[i].SetPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            supporter[i].gameObject.SetActive(true);
-            supporter[i].StartSupporterAttack();
             return;
         }
 
         SupporterIsLightning o = Instantiate(supporter[0], GameMng.Ins.skillMng.transform);
         supporter.Add(o);
-        SetBullet();
-        o.SetPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        o.gameObject.SetActive(true);
-        o.StartSupporterAttack();
+		o.Setting(skillID, damage, attackspeed, skillendtime);
+		o.SetPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
     private void Update()
     {

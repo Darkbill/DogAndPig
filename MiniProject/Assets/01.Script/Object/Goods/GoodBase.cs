@@ -61,14 +61,20 @@ public class GoodBase : MonoBehaviour
         {
             gameObject.transform.DOMove(gameObject.transform.position + new Vector3(0, 0.5f), 0.5f, false).OnComplete(() =>
             {
-                StartCoroutine(MovSetRuttine());
+				if (gameObject.activeSelf)
+				{
+					StartCoroutine(MovSetRuttine());
+				}
             });
             setground = false;
             return;
         }
         else if((startPos - GameMng.Ins.player.transform.position).magnitude < 2 && setground && !setclear)
         {
-            StartCoroutine(MovSetRuttine());
+			if (gameObject.activeSelf)
+			{
+				StartCoroutine(MovSetRuttine());
+			}
         }
     }
 

@@ -7,7 +7,6 @@ public class SupporterIsLightning : BulletPlayerSkill
 {
     public float damage = 0;
     eAttackType Attacktype = eAttackType.Lightning;
-    eBuffType bufftype = eBuffType.Stun;
 
     private int Id;
     private float MaxTimer = 0.0f;
@@ -27,8 +26,14 @@ public class SupporterIsLightning : BulletPlayerSkill
         MaxTimer = _EndTime;
         Speed = _speed;
         damage = _damage;
+		gameObject.transform.parent = GameMng.Ins.skillMng.transform;
     }
-    public void SetPosition(Vector3 pos) { pos.z = 0; gameObject.transform.position = pos; setTimer = 0.0f; }
+    public void SetPosition(Vector3 pos)
+	{
+		pos.z = 0; gameObject.transform.position = pos; setTimer = 0.0f;
+		gameObject.SetActive(true);
+		StartSupporterAttack();
+	}
 
     public void StartSupporterAttack(){ StartCoroutine(MonsterLightningAttack()); }
 
@@ -60,7 +65,6 @@ public class SupporterIsLightning : BulletPlayerSkill
                 continue;
             }
             lightningList[i].Setting(Id, monsterlist[i].transform.position, gameObject.transform.position);
-            lightningList[i].gameObject.SetActive(true);
             SetDamage(monsterlist[i]);
         }
         monsterlist.Clear();
@@ -74,9 +78,8 @@ public class SupporterIsLightning : BulletPlayerSkill
 
     private void CreateBullet(Vector3 pos)
     {
-        LightningBoltIsSupport o = Instantiate(lightningbase, GameMng.Ins.skillMng.transform);
+        LightningBoltIsSupport o = Instantiate(lightningbase, gameObject.transform);
         o.Setting(Id, pos, gameObject.transform.position);
-        o.gameObject.SetActive(true);
         lightningList.Add(o);
     }
 
