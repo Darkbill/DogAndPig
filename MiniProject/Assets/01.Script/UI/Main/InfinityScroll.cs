@@ -146,9 +146,8 @@ public class InfinityScroll : MonoBehaviour
 		{
 			GameObject o = Instantiate(itemExam.gameObject, gameObject.transform);
 			contentList.Add(o.GetComponent<ContentItem>());
-			Rect r = o.GetComponent<RectTransform>().rect;
-			Vector2 pos = new Vector2(r.width * i + (leftPadding * (i + 1)) + (r.width / 2),
-									  r.height / 2);
+			Vector2 pos = new Vector2(itemSize.width * i + (leftPadding * (i + 1)) + (itemSize.width / 2),
+									  itemSize.height / 2);
 			o.GetComponent<RectTransform>().localPosition = pos;
 			o.gameObject.SetActive(false);
 		}
@@ -157,7 +156,7 @@ public class InfinityScroll : MonoBehaviour
 
 	private void SetItemList()
 	{
-		if (itemList.Count < showCount)
+		if (itemList.Count <= showCount)
 		{
 			scrollView.GetComponent<ScrollRect>().vertical = false;
 			for (int i = 0; i < itemList.Count; ++i)

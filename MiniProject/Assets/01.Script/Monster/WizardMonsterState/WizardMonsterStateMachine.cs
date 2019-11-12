@@ -31,32 +31,4 @@ public class WizardMonsterStateMachine : StateMachine
 			ChangeStateMove();
 		}
 	}
-	public override void ChangeStateKnockBack()
-    {
-        ChangeState(eMonsterState.KnockBack);
-    }
-    public override void ChangeStateStun()
-    {
-        ChangeState(eMonsterState.Stun);
-    }
-    public override void ChangeStateAttack()
-    {
-        ChangeState(eMonsterState.Attack);
-    }
-    public override void ChangeStateDead()
-    {
-        ChangeState(eMonsterState.Dead);
-    }
-    public override void ChangeStateIdle()
-    {
-        ChangeState(eMonsterState.Idle);
-    }
-    public override void ChangeStateMove()
-    {
-        ChangeState(eMonsterState.Move);
-    }
-    public override void ChangeStateDamage()
-    {
-        ChangeState(eMonsterState.Damage);
-    }
 }

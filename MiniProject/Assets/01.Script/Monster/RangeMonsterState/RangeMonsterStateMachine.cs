@@ -29,37 +29,4 @@ public class RangeMonsterStateMachine : StateMachine
 			ChangeStateMove();
 		}
 	}
-	public override void ChangeStateKnockBack()
-	{
-		ChangeState(eMonsterState.KnockBack);
-	}
-    public override void ChangeStateKnockBack(Vector3 _knockBackDir, float knockBackPower)
-    {
-        base.ChangeStateKnockBack(_knockBackDir, knockBackPower);
-        ChangeState(eMonsterState.KnockBack);
-    }
-    public override void ChangeStateStun()
-	{
-		ChangeState(eMonsterState.Stun);
-	}
-	public override void ChangeStateAttack()
-	{
-		ChangeState(eMonsterState.Attack);
-	}
-	public override void ChangeStateDead()
-	{
-		ChangeState(eMonsterState.Dead);
-	}
-	public override void ChangeStateIdle()
-	{
-		base.ChangeStateIdle();
-	}
-	public override void ChangeStateMove()
-	{
-		base.ChangeStateMove();
-	}
-	public override void ChangeStateDamage()
-	{
-		ChangeState(eMonsterState.Damage);
-	}
 }

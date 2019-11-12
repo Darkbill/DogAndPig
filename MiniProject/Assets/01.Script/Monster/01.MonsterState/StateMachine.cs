@@ -7,15 +7,23 @@ public abstract class StateMachine : MonoBehaviour
 	public MonsterStateBase cState;
 	public Vector3 knockBackDir;
 	public float knockBackPower;
-	public abstract void ChangeStateKnockBack();
 	public virtual void ChangeStateKnockBack(Vector3 _knockBackDir, float _knockBackPower)
 	{
 		knockBackDir = new Vector3(_knockBackDir.x, _knockBackDir.y, 0);
 		knockBackPower = _knockBackPower;
 	}
-	public abstract void ChangeStateStun();
-	public abstract void ChangeStateAttack();
-	public abstract void ChangeStateDead();
+	public virtual void ChangeStateStun()
+	{
+		ChangeState(eMonsterState.Stun);
+	}
+	public virtual void ChangeStateAttack()
+	{
+		ChangeState(eMonsterState.Attack);
+	}
+	public virtual void ChangeStateDead()
+	{
+		ChangeState(eMonsterState.Dead);
+	}
 	public virtual void ChangeStateIdle()
 	{
 		ChangeState(eMonsterState.Idle);
@@ -25,8 +33,14 @@ public abstract class StateMachine : MonoBehaviour
 	{
 		ChangeState(eMonsterState.Move);
 	}
-	public abstract void ChangeStateDamage();
-	public abstract void Setting();
+	public void ChangeState(eMonsterState stateType)
+	{
+		if (cState.monsterObject.active == false) return;
+		cState.OnEnd();
+		cState = stateDict[stateType];
+		cState.OnStart();
+	}
+	
 	private void Awake()
 	{
 		Setting();
@@ -39,13 +53,8 @@ public abstract class StateMachine : MonoBehaviour
 			UpdateState();
 		}
 	}
+	public abstract void Setting();
 	public abstract void UpdateState();
 
-	public virtual void ChangeState(eMonsterState stateType)
-	{
-		if (cState.monsterObject.active == false) return;
-		cState.OnEnd();
-		cState = stateDict[stateType];
-		cState.OnStart();
-	}
+
 }

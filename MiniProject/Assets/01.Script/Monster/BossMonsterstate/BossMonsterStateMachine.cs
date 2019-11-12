@@ -8,7 +8,6 @@ public class BossMonsterStateMachine : StateMachine
     {
         monster.BossSkill01 = Instantiate(Resources.Load(string.Format("Skill_FireBullet"), 
             typeof(SkillBurningMeteor)) as SkillBurningMeteor);
-
         stateDict.Add(eMonsterState.Idle, new MonsterStateIdle(monster));
         stateDict.Add(eMonsterState.Move, new MonsterStateMove(monster));
         stateDict.Add(eMonsterState.SkillAttack, new BossMonsterStateSkillAttack(monster));
@@ -27,36 +26,12 @@ public class BossMonsterStateMachine : StateMachine
 			return;
 		}
 	}
-	public override void ChangeStateKnockBack()
-	{
-		return;
-	}
 	public override void ChangeStateStun()
 	{
 		return;
 	}
-	public override void ChangeStateAttack()
-	{
-        ChangeState(eMonsterState.Attack);
-	}
-	public override void ChangeStateDead()
-	{
-		ChangeState(eMonsterState.Dead);
-	}
-	public override void ChangeStateIdle()
-	{
-		base.ChangeStateIdle();
-	}
-	public override void ChangeStateMove()
-	{
-		base.ChangeStateMove();
-	}
-	public override void ChangeStateDamage()
+	public override void ChangeStateKnockBack(Vector3 _knockBackDir, float _knockBackPower)
 	{
 		return;
 	}
-    public void ChangeStateSkillOn()
-    {
-        ChangeState(eMonsterState.SkillAttack);
-    }
 }

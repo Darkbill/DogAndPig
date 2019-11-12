@@ -29,37 +29,4 @@ public class MeleeMonsterStateMachine : StateMachine
 			ChangeStateMove();
 		}
 	}
-	public override void ChangeStateKnockBack(Vector3 _knockBackDir, float _knockBackPower)
-	{
-		knockBackDir = new Vector3(_knockBackDir.x, _knockBackDir.y, 0);
-		knockBackPower = _knockBackPower;
-	}
-	public override void ChangeStateKnockBack()
-	{
-		
-	}
-	public override void ChangeStateIdle()
-	{
-		ChangeState(eMonsterState.Idle);
-	}
-	public override void ChangeStateMove()
-	{
-		ChangeState(eMonsterState.Move);
-	}
-	public override void ChangeStateStun()
-	{
-		ChangeState(eMonsterState.Stun);
-	}
-	public override void ChangeStateAttack()
-	{
-		ChangeState(eMonsterState.Attack);
-	}
-	public override void ChangeStateDead()
-	{
-		ChangeState(eMonsterState.Dead);
-	}
-	public override void ChangeStateDamage()
-	{
-		ChangeState(eMonsterState.Damage);
-	}
 }
