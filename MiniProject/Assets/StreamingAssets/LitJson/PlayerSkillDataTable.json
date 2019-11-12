@@ -280,5 +280,23 @@
       1,
       2
     ]
+  },
+  {
+    "skillID": 15,
+    "skillName": "LightningSupport",
+    "skillType": 1,
+    "activeType": 3,
+    "target": 1,
+    "price": 2000,
+    "optionArr": [
+      12,
+      10,
+      1,
+      10
+    ],
+    "changeAbleOption": [
+      1,
+      2
+    ]
   }
 ]
