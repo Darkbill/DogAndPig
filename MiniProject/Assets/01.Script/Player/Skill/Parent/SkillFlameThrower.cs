@@ -106,11 +106,12 @@ public class SkillFlameThrower : Skill
 				flameList[i].Setting(GameMng.Ins.player.transform.position, Random.Range(flameSpeed - flameSpeed * updownScale, flameSpeed + flameSpeed * updownScale), lookDir, GameMng.Ins.player.degree);
 				return;
 			}
+		}
 		Flame o = Instantiate(flameList[0], GameMng.Ins.skillMng.transform);
 			flameList.Add(o);
 			o.Setting(skillType, damage, upScaleSpeed, flameActiveTime, dropSpeed);
 			o.Setting(GameMng.Ins.player.transform.position, Random.Range(flameSpeed - flameSpeed * updownScale, flameSpeed + flameSpeed * updownScale), GameMng.Ins.player.GetForward(), GameMng.Ins.player.degree);
-		}
+		
 	}
 	public override void OnButtonDown()
 	{

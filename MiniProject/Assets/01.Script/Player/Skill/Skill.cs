@@ -33,15 +33,15 @@ public abstract class Skill : MonoBehaviour
 
 	public virtual void OnButtonDown()
 	{
-		Debug.Log("스킬 시작");
+
 	}
 	public virtual void OnDrag()
 	{
-		Debug.Log("드래그 시작");
+
 	}
 	public virtual void OnDrop()
 	{
-		Debug.Log("마우스 드랍");
+
 	}
 	public abstract void OffSkill();
 }

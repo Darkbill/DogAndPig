@@ -43,7 +43,7 @@ public class Lightning : BulletPlayerSkill
     }
 	public override void Crash(Monster monster)
 	{
-        if (SetTimer > 0.3f)
+        if (SetTimer > 0.5f)
         {
             monster.Damage(Attacktype, GameMng.Ins.player.calStat.damage,damage);
 			GameMng.Ins.HitToEffect(Attacktype, 
