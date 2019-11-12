@@ -211,10 +211,19 @@ public class Monster : MonoBehaviour
 	{
 		if (collision.CompareTag("Bullet"))
 		{
-			collision.GetComponent<BulletPlayerSkill>().Crash(this);
+			collision.GetComponent<BulletPlayerSkill>().CrashStay(this);
 		}
 	}
-	private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Bullet"))
+        {
+            collision.GetComponent<BulletPlayerSkill>().Crash(this);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.collider.CompareTag("Monster"))
 		{

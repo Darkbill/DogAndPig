@@ -11,16 +11,15 @@ public class WaterBall : BulletPlayerSkill
     private int skillid;
     private float damage;
 
-    public void Setting(int id, Vector3 _pos, float _damage)
+    public void Setting(int id, float _damage)
     {
         skillid = id;
-        moveset = _pos;
         damage = _damage;
         gameObject.GetComponent<ParticleSystem>().Play();
         gameObject.transform.position = GameMng.Ins.player.transform.position;
-        HitCheck = false;
-        hit.AttackCheck = true;
     }
+
+    public void BulletBase(Vector3 pos) { moveset = pos; HitCheck = false; hit.AttackCheck = true; }
 
     private void Update()
     {

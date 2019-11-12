@@ -37,8 +37,10 @@ public class SkillWaterPrison : Skill
     }
     public override void SetBullet()
     {
-
+        foreach(WaterBall o in waterlist)
+            o.Setting(skillID, damage);
     }
+
     #endregion
 
     public List<WaterBall> waterlist = new List<WaterBall>();
@@ -60,10 +62,9 @@ public class SkillWaterPrison : Skill
     }
 	public override void OffSkill()
 	{
-		for (int i = 0; i < waterlist.Count; ++i)
-		{
-			waterlist[i].gameObject.SetActive(false);
-		}
+        foreach (WaterBall o in waterlist)
+            o.gameObject.SetActive(false);
+        prison.gameObject.SetActive(false);
 	}
 	private void WaterSet()
     {
@@ -72,13 +73,15 @@ public class SkillWaterPrison : Skill
         {
             if (waterlist[i].gameObject.activeSelf) continue;
             waterlist[i].gameObject.SetActive(true);
-            waterlist[i].Setting(skillID, movevec, damage);
+            SetBullet();
+            waterlist[i].BulletBase(movevec);
             return;
         }
 
         WaterBall o = Instantiate(waterlist[0], GameMng.Ins.skillMng.transform);
         o.gameObject.SetActive(true);
-        o.Setting(skillID, movevec, damage);
+        SetBullet();
+        o.BulletBase(movevec);
         waterlist.Add(o);
     }
     private void WaterHitSet()

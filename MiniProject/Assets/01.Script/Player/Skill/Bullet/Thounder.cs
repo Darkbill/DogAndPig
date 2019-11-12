@@ -12,7 +12,7 @@ public class Thounder : BulletPlayerSkill
 
     public ParticleSystem particle;
 
-    public void Setting(int id, float siz, float dmg)
+    public void Setting(int id, float dmg)
     {
         Id = id;
         damage = dmg;

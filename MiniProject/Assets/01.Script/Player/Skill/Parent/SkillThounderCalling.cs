@@ -47,17 +47,13 @@ public class SkillThounderCalling : Skill
 	}
 	public override void SetBullet()
 	{
-		for (int i = 0; i < thounderlist.Count; ++i)
-		{
-			thounderlist[i].Setting(skillID, 0, damage);
-		}
+        foreach (Thounder o in thounderlist)
+            o.Setting(skillID, damage);
 	}
 	public override void OffSkill()
 	{
-		for (int i = 0; i < thounderlist.Count; ++i)
-		{
-			thounderlist[i].gameObject.SetActive(false);
-		}
+        foreach (Thounder o in thounderlist)
+            o.gameObject.SetActive(false);
 	}
 	#endregion
 
@@ -105,8 +101,8 @@ public class SkillThounderCalling : Skill
 
 		for (int i = 1; i < thounderlist.Count; ++i)
 		{
-			float randx = Rand.Range(-randrange, randrange) / 10;
-			float randy = Rand.Range(-randrange, randrange) / 10;
+			float randx = (float)Rand.Range(-randrange, randrange) / 10.0f;
+			float randy = (float)Rand.Range(-randrange, randrange) / 10.0f;
 			if (count + 1 <= i)
 				break;
 			thounderlist[i].transform.position =
@@ -116,8 +112,8 @@ public class SkillThounderCalling : Skill
 			thounderlist[i].isPlay();
 		}
 		++count;
-		float x = Rand.Range(-randrange, randrange) / 10;
-		float y = Rand.Range(-randrange, randrange) / 10;
+		float x = (float)Rand.Range(-randrange, randrange) / 10.0f;
+		float y = (float)Rand.Range(-randrange, randrange) / 10.0f;
 		startpos = startpos + new Vector3(x, y);
 		skillOn = false;
 		StartCoroutine(SkillHitCheck());

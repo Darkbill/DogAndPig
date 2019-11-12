@@ -27,9 +27,8 @@ public class SupporterIsLightning : BulletPlayerSkill
         MaxTimer = _EndTime;
         Speed = _speed;
         damage = _damage;
-        setTimer = 0.0f;
     }
-    public void SetPosition(Vector3 pos) { pos.z = 0; gameObject.transform.position = pos; }
+    public void SetPosition(Vector3 pos) { pos.z = 0; gameObject.transform.position = pos; setTimer = 0.0f; }
 
     public void StartSupporterAttack(){ StartCoroutine(MonsterLightningAttack()); }
 
@@ -95,6 +94,11 @@ public class SupporterIsLightning : BulletPlayerSkill
 
     public override void Crash(Monster monster)
     {
+        
+    }
+    public override void CrashStay(Monster monster)
+    {
+        base.CrashStay(monster);
         if (!monsterlist.Contains(monster) && monster != null)
             monsterlist.Add(monster);
     }
