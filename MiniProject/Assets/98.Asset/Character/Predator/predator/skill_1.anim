@@ -9099,7 +9099,7 @@ AnimationClip:
   - time: 0.6666667
     functionName: AttackCheckEnd
     data: 
-    objectReferenceParameter: {fileID: 11500000, guid: 7b80ae76c30804d469524c3a6e43233d,
+    objectReferenceParameter: {fileID: 11500000, guid: 9b9eb191f6078c34f8cb4c57b69df32b,
       type: 3}
     floatParameter: 0
     intParameter: 0
@@ -9107,8 +9107,7 @@ AnimationClip:
   - time: 0.93333334
     functionName: ChangeStateIdle
     data: 
-    objectReferenceParameter: {fileID: 11500000, guid: 46f64bf4dcc20fd43b9bc4c456d4dfd5,
-      type: 3}
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
