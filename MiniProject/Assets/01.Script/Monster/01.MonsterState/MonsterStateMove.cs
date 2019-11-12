@@ -47,13 +47,15 @@ public class MonsterStateMove : MonsterStateBase
 		if (degreeToPlayer > 180) { degreeToPlayer -= 360; }
 		else if (degreeToPlayer < -180) { degreeToPlayer += 360; }
 
-		if (degreeToPlayer < 0)
-			monsterObject.Angle +=
-				Time.deltaTime * monsterObject.monsterData.rotationSpeed;
-		else
-			monsterObject.Angle -=
-				Time.deltaTime * monsterObject.monsterData.rotationSpeed;
-
+		if (Mathf.Abs(degreeToPlayer) > 1)
+		{
+			if (degreeToPlayer < 0)
+				monsterObject.Angle +=
+					Time.deltaTime * monsterObject.monsterData.rotationSpeed;
+			else
+				monsterObject.Angle -=
+					Time.deltaTime * monsterObject.monsterData.rotationSpeed;
+		}
 		if (directionToPlayer.magnitude > monsterObject.monsterData.attackRange)
 		{
 			monsterObject.gameObject.transform.position +=
