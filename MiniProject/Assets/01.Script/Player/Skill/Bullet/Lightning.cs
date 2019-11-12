@@ -41,17 +41,6 @@ public class Lightning : BulletPlayerSkill
         if (SetTimer >= MaxTimer)
             gameObject.SetActive(false);
     }
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.CompareTag("Monster") && SetTimer > 0.3f)
-    //    {
-    //        collision.GetComponent<Monster>().Damage(Attacktype, damage);
-    //        collision.GetComponent<Monster>().OutStateAdd(new ConditionData(bufftype, Id, 10.0f, 500), 1000);
-    //        EndPos = collision.transform.position;
-    //        SplitCheck = true;
-    //        gameObject.SetActive(false);
-    //    }
-    //}
 	public override void Crash(Monster monster)
 	{
         if (SetTimer > 0.3f)

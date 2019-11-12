@@ -1,13 +1,13 @@
 ﻿using GlobalDefine;
-public class GhoulMonsterStateAttack : MonsterState
+public class MonsterStateStun : MonsterStateBase
 {
-	public GhoulMonsterStateAttack(GhoulMonster o) : base(o)
+	public MonsterStateStun(Monster o) : base(o)
 	{
 
 	}
 	public override void OnStart()
 	{
-		monsterObject.ChangeAnimation(eMonsterAnimation.Attack);
+		monsterObject.ChangeAnimation(eMonsterAnimation.Idle);
 	}
 
 	public override bool OnTransition()
@@ -21,6 +21,6 @@ public class GhoulMonsterStateAttack : MonsterState
 	}
 	public override void OnEnd()
 	{
-		monsterObject.monsterStateMachine.delayTime = 0;
+
 	}
 }

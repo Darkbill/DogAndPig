@@ -1,25 +1,37 @@
 ﻿using GlobalDefine;
 
-public class WizardMonsterStateMachine : MonsterStateMachine
+public class WizardMonsterStateMachine : StateMachine
 {
-
+	public WizardMonster monster;
 	public override void Setting()
     {
-        WizardMonster o = gameObject.GetComponent<WizardMonster>();
 
-        stateDict.Add(eMonsterState.Idle, new MonsterStateIdle(o));
-        stateDict.Add(eMonsterState.Move, new WizardMonsterStateMove(o));
-        stateDict.Add(eMonsterState.SkillAttack, new WizardMonsterStateSkillAttack(o));
-        stateDict.Add(eMonsterState.Attack, new WizardMonsterStateAttack(o));
-
-        stateDict.Add(eMonsterState.Damage, new MonsterStateDamage(o));
-        stateDict.Add(eMonsterState.Dead, new MonsterStateDead(o));
-        stateDict.Add(eMonsterState.Stun, new MonsterStateStun(o));
-        stateDict.Add(eMonsterState.KnockBack, new MonsterStateKnockBack(o));
+        stateDict.Add(eMonsterState.Idle, new MonsterStateIdle(monster));
+        stateDict.Add(eMonsterState.Move, new MonsterStateMove(monster));
+        stateDict.Add(eMonsterState.SkillAttack, new WizardMonsterStateSkillAttack(monster));
+        stateDict.Add(eMonsterState.Attack, new MonsterStateAttack(monster));
+        stateDict.Add(eMonsterState.Dead, new MonsterStateDead(monster));
+        stateDict.Add(eMonsterState.Stun, new MonsterStateStun(monster));
+        stateDict.Add(eMonsterState.KnockBack, new MonsterStateKnockBack(monster));
         cState = stateDict[eMonsterState.Idle];
         cState.OnStart();
     }
-    public override void ChangeStateKnockBack()
+	public override void UpdateState()
+	{
+		if (monster.AttackDistanceCheck())
+		{
+			if (monster.AttackDelayCheck())
+			{
+				ChangeStateAttack();
+				return;
+			}
+		}
+		else
+		{
+			ChangeStateMove();
+		}
+	}
+	public override void ChangeStateKnockBack()
     {
         ChangeState(eMonsterState.KnockBack);
     }
@@ -29,7 +41,6 @@ public class WizardMonsterStateMachine : MonsterStateMachine
     }
     public override void ChangeStateAttack()
     {
-        delayTime = 0;
         ChangeState(eMonsterState.Attack);
     }
     public override void ChangeStateDead()

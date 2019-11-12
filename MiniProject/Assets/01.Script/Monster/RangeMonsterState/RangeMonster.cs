@@ -3,7 +3,7 @@ public class RangeMonster : Monster
 {
 	public GameObject arrowImage;
 	private Vector3 arrowDir;
-	public override bool AttackCheckStart()
+	public override bool AttackCheck()
 	{
 		Vector3 directionToPlayer = GameMng.Ins.player.transform.position - gameObject.transform.position;
 		if (att.BaseAttack(GetForward(), directionToPlayer, monsterData.attackRange, monsterData.attackAngle))

@@ -1,15 +1,15 @@
-﻿using GlobalDefine;
-public class RangeMonsterStateAttack : MonsterState
+﻿using UnityEngine;
+using GlobalDefine;
+public class MonsterStateAttack : MonsterStateBase
 {
-	public RangeMonsterStateAttack(RangeMonster o) : base(o)
+	public MonsterStateAttack(Monster o) : base(o)
 	{
 
 	}
 	public override void OnStart()
 	{
 		monsterObject.ChangeAnimation(eMonsterAnimation.Attack);
-        monsterObject.AttackCheckStart();
-    }
+	}
 
 	public override bool OnTransition()
 	{
@@ -22,6 +22,6 @@ public class RangeMonsterStateAttack : MonsterState
 	}
 	public override void OnEnd()
 	{
-		monsterObject.monsterStateMachine.delayTime = 0;
+		monsterObject.delayTime = 0;
 	}
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using GlobalDefine;
-public class MonsterStateKnockBack : MonsterState
+public class MonsterStateKnockBack : MonsterStateBase
 {
 	private float setspeed;
 	private Vector3 range;
@@ -12,8 +12,8 @@ public class MonsterStateKnockBack : MonsterState
 	public override void OnStart()
 	{
 		monsterObject.ChangeAnimation(eMonsterAnimation.Idle);
-		setspeed = Define.knockBackSpeed * monsterObject.monsterStateMachine.knockBackPower;
-		range = monsterObject.monsterStateMachine.knockBackDir;
+		setspeed = Define.knockBackSpeed * monsterObject.StateMachine.knockBackPower;
+		range = monsterObject.StateMachine.knockBackDir;
 		range.Normalize();
 	}
 
@@ -40,7 +40,7 @@ public class MonsterStateKnockBack : MonsterState
 
         if (setspeed <= 0)
 		{
-			monsterObject.monsterStateMachine.ChangeStateIdle();
+			monsterObject.StateMachine.ChangeStateIdle();
 			return true;
 		}
 		return false;

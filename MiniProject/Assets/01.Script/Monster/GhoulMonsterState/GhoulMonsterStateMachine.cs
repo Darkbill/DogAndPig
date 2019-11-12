@@ -1,22 +1,35 @@
 ﻿using UnityEngine;
 using GlobalDefine;
-public class GhoulMonsterStateMachine : MonsterStateMachine
+public class GhoulMonsterStateMachine : StateMachine
 {
+	public GhoulMonster monster;
 	public override void Setting()
 	{
-		GhoulMonster o = gameObject.GetComponent<GhoulMonster>();
 
-		stateDict.Add(eMonsterState.Idle, new MonsterStateIdle(o));
-		stateDict.Add(eMonsterState.Move, new GhoulMonsterStateMove(o));
-		stateDict.Add(eMonsterState.SkillAttack, new GhoulMonsterStateSkillAttack(o));
-		stateDict.Add(eMonsterState.Attack, new GhoulMonsterStateAttack(o));
-
-		stateDict.Add(eMonsterState.Damage, new MonsterStateDamage(o));
-		stateDict.Add(eMonsterState.Dead, new MonsterStateDead(o));
-		stateDict.Add(eMonsterState.Stun, new MonsterStateStun(o));
-		stateDict.Add(eMonsterState.KnockBack, new MonsterStateKnockBack(o));
+		stateDict.Add(eMonsterState.Idle, new MonsterStateIdle(monster));
+		stateDict.Add(eMonsterState.Move, new MonsterStateMove(monster));
+		stateDict.Add(eMonsterState.SkillAttack, new GhoulMonsterStateSkillAttack(monster));
+		stateDict.Add(eMonsterState.Attack, new MonsterStateAttack(monster));
+		stateDict.Add(eMonsterState.Dead, new MonsterStateDead(monster));
+		stateDict.Add(eMonsterState.Stun, new MonsterStateStun(monster));
+		stateDict.Add(eMonsterState.KnockBack, new MonsterStateKnockBack(monster));
 		cState = stateDict[eMonsterState.Idle];
 		cState.OnStart();
+	}
+	public override void UpdateState()
+	{
+		if (monster.AttackDistanceCheck())
+		{
+			if (monster.AttackDelayCheck())
+			{
+				ChangeStateAttack();
+				return;
+			}
+		}
+		else
+		{
+			ChangeStateMove();
+		}
 	}
 	public override void ChangeStateKnockBack()
 	{

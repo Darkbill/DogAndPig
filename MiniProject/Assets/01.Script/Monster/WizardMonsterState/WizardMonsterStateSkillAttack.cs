@@ -1,6 +1,6 @@
 ﻿using GlobalDefine;
 
-public class WizardMonsterStateSkillAttack : MonsterState
+public class WizardMonsterStateSkillAttack : MonsterStateBase
 {
     public WizardMonsterStateSkillAttack(WizardMonster o) : base(o)
     {

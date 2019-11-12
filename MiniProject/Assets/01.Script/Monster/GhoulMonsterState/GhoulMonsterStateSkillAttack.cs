@@ -1,5 +1,5 @@
 ﻿using GlobalDefine;
-public class GhoulMonsterStateSkillAttack : MonsterState
+public class GhoulMonsterStateSkillAttack : MonsterStateBase
 {
 	public GhoulMonsterStateSkillAttack(GhoulMonster o) : base(o)
 	{

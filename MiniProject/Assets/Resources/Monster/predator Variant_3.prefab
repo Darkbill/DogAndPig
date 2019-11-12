@@ -412,11 +412,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aff259b09b47fc40b84a9a862b084e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterStateMachine: {fileID: 5413393266409656398}
-  MonsterID: 3
+  StateMachine: {fileID: 5413393266409656398}
   monsterAnimator: {fileID: 6625716320231236523}
   Angle: 0
   active: 0
+  MonsterID: 3
+  delayTime: 0
 --- !u!114 &5413393266409656398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,8 +430,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9aff3001241c74ebc84089c2853a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockBackDir: {x: 0, y: 0, z: 0}
+  knockBackPower: 0
   monster: {fileID: 4094268267863638655}
-  delayTime: 0
 --- !u!1 &6531256141796860291
 GameObject:
   m_ObjectHideFlags: 0

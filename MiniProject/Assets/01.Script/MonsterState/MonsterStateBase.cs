@@ -1,7 +1,7 @@
-﻿public abstract class MonsterState
+﻿public abstract class MonsterStateBase
 {
 	public Monster monsterObject;
-	public MonsterState(Monster o)
+	public MonsterStateBase(Monster o)
 	{
 		monsterObject = o;
 	}

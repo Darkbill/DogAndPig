@@ -1,9 +1,7 @@
 ﻿using GlobalDefine;
 
-public class BossMonsterStateSkillAttack : MonsterState
+public class BossMonsterStateSkillAttack : MonsterStateBase
 {
-
-
     public BossMonsterStateSkillAttack(BossMonster o) : base(o)
     {
 

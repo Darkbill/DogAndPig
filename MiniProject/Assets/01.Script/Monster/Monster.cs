@@ -5,20 +5,21 @@ using GlobalDefine;
 public class Monster : MonoBehaviour
 {
 	public MonsterData monsterData;
-	public MonsterStateMachine monsterStateMachine;
+	public StateMachine StateMachine;
 	private List<ConditionData> conditionList = new List<ConditionData>();
-    private ConditionData conditionMain = new ConditionData();
-    public Animator monsterAnimator;
+	private ConditionData conditionMain = new ConditionData();
+	public Animator monsterAnimator;
 	protected ObjectSetAttack att = new ObjectSetAttack();
-    public float Angle = 0;
+	public float Angle = 0;
 	public bool active;
 	public int MonsterID = 1;
+	public float delayTime = 0;
 	private void Awake()
 	{
 		MonsterSetting();
-    }
+	}
 
-    private void MonsterSetting()
+	private void MonsterSetting()
 	{
 		monsterData = JsonMng.Ins.monsterDataTable[MonsterID].Copy();
 		active = true;
@@ -26,19 +27,37 @@ public class Monster : MonoBehaviour
 	private void Update()
 	{
 		UpdateBuff(Time.deltaTime);
+		delayTime += Time.deltaTime;
+		if (Angle > 180) { Angle -= 360; }
+		else if (Angle < -180) { Angle += 360; }
 
-        if (Angle > 180) { Angle -= 360; }
-        else if (Angle < -180) { Angle += 360; }
-
-        if (Angle > -90 && Angle <= 90)
-            gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
-        else
-            gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
-    }   
-	public virtual bool AttackCheckStart()
+		if (Angle > -90 && Angle <= 90)
+			gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+		else
+			gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
+	}
+	#region StateCheck
+	public bool AttackDelayCheck()
+	{
+		if (delayTime >= Define.standardAttackSpeed / monsterData.attackSpeed)
+		{
+			return true;
+		}
+		return false;
+	}
+	public virtual bool AttackCheck()
 	{
 		Vector3 directionToPlayer = GameMng.Ins.player.transform.position - gameObject.transform.position;
 		if (att.BaseAttack(GetForward(), directionToPlayer, monsterData.attackRange, monsterData.attackAngle))
+		{
+			return true;
+		}
+		return false;
+	}
+	public bool AttackDistanceCheck()
+	{
+		Vector3 directionToPlayer = GameMng.Ins.player.transform.position - gameObject.transform.position;
+		if (directionToPlayer.magnitude <= monsterData.attackRange)
 		{
 			return true;
 		}
@@ -48,15 +67,17 @@ public class Monster : MonoBehaviour
 	{
 		//애니메이션 호출 함수
 		Vector3 directionToPlayer = GameMng.Ins.player.transform.position - gameObject.transform.position;
-		if(att.BaseAttack(GetForward(), directionToPlayer,monsterData.attackRange,monsterData.attackAngle))
+		if (att.BaseAttack(GetForward(), directionToPlayer, monsterData.attackRange, monsterData.attackAngle))
 		{
 			GameMng.Ins.DamageToPlayer(eAttackType.Physics, monsterData.damage);
-            GameMng.Ins.HitToEffect(eAttackType.Physics, 
-                GameMng.Ins.player.transform.position + new Vector3(0, GameMng.Ins.player.calStat.size, 0), 
-                transform.position + new Vector3(0, monsterData.size, 0),
-                GameMng.Ins.player.calStat.size);
-        }
+			GameMng.Ins.HitToEffect(eAttackType.Physics,
+				GameMng.Ins.player.transform.position + new Vector3(0, GameMng.Ins.player.calStat.size, 0),
+				transform.position + new Vector3(0, monsterData.size, 0),
+				GameMng.Ins.player.calStat.size);
+		}
 	}
+	#endregion
+
 	#region Buff
 	public void OutStateAdd(ConditionData condition, Vector3 knockBackDir = new Vector3())
 	{
@@ -64,16 +85,16 @@ public class Monster : MonoBehaviour
 		AddConditionlist(conditionMain, knockBackDir);
 	}
 
-	private void AddConditionlist(ConditionData condition,Vector3 knockBackDir = new Vector3())
+	private void AddConditionlist(ConditionData condition, Vector3 knockBackDir = new Vector3())
 	{
 		switch (condition.buffType)
 		{
 			case eBuffType.Stun:
-				monsterStateMachine.ChangeStateStun();
-                GameMng.Ins.monsterPool.SelectEffect(gameObject, condition);
+				StateMachine.ChangeStateStun();
+				GameMng.Ins.monsterPool.SelectEffect(gameObject, condition);
 				break;
 			case eBuffType.NockBack:
-				monsterStateMachine.ChangeStateKnockBack(knockBackDir, condition.changeValue);
+				StateMachine.ChangeStateKnockBack(knockBackDir, condition.changeValue);
 				break;
 		}
 	}
@@ -96,34 +117,34 @@ public class Monster : MonoBehaviour
 		if (index != -1)
 		{
 			conditionList[index].Set(condition);
-            return;
+			return;
 		}
 		else conditionList.Add(condition);
-        GameMng.Ins.monsterPool.SelectEffect(gameObject, condition);
+		GameMng.Ins.monsterPool.SelectEffect(gameObject, condition);
 
-        CalculatorStat();
+		CalculatorStat();
 
 	}
-#endregion
+	#endregion
 	#region MonsterDamageSet
 	public void Damage(eAttackType attackType, float damage)
 	{
-        float d = (damage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
+		float d = (damage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
 		DamageResult((int)d);
 	}
-	public void Damage(eAttackType attackType, float damage,float skillDamage)
+	public void Damage(eAttackType attackType, float damage, float skillDamage)
 	{
 		float d = (damage + skillDamage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
 		DamageResult((int)d);
 	}
-	public void Damage(eAttackType attackType, float PlayerDmage, float skillDamage, ConditionData condition,float activePer)
+	public void Damage(eAttackType attackType, float PlayerDmage, float skillDamage, ConditionData condition, float activePer)
 	{
-		float d = (PlayerDmage +  skillDamage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
+		float d = (PlayerDmage + skillDamage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
 		bool isBuff = monsterData.GetResist(attackType).GetBuff(activePer);
 		if (isBuff)
 		{
 			AddBuff(condition);
-            CalculatorStat();
+			CalculatorStat();
 		}
 		DamageResult((int)d);
 	}
@@ -140,7 +161,7 @@ public class Monster : MonoBehaviour
 		//TODO : RunningSelect
 		//1: Type, 2:Count, 3:StartPos
 		GameMng.Ins.objectPool.goodmng.RunningSelect(1, 10, gameObject.transform.position);
-		monsterStateMachine.ChangeStateDead();
+		StateMachine.ChangeStateDead();
 		active = false;
 		ColliderOnOff(false);
 		GameMng.Ins.MonsterDead();
@@ -171,17 +192,17 @@ public class Monster : MonoBehaviour
 					break;
 			}
 		}
-    }
+	}
 
 
-    public void ColliderOnOff(bool check) 
-    { 
-        gameObject.GetComponent<CircleCollider2D>().enabled = check; 
-    }
+	public void ColliderOnOff(bool check)
+	{
+		gameObject.GetComponent<CircleCollider2D>().enabled = check;
+	}
 
-    public void ChangeAnimation(eMonsterAnimation animationType)
-    {
-        monsterAnimator.SetInteger("Action", (int)animationType);
+	public void ChangeAnimation(eMonsterAnimation animationType)
+	{
+		monsterAnimator.SetInteger("Action", (int)animationType);
 		SetAnimationSpeed(animationType);
 	}
 	public void SetAnimationSpeed(eMonsterAnimation animationType)
@@ -199,23 +220,14 @@ public class Monster : MonoBehaviour
 				break;
 		}
 	}
-	private void OnTriggerEnter2D(Collider2D collision)
+	private void OnTriggerStay2D(Collider2D collision)
 	{
-		if(collision.CompareTag("Bullet"))
+		if (collision.CompareTag("Bullet"))
 		{
 			collision.GetComponent<BulletPlayerSkill>().Crash(this);
 		}
 	}
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Bullet"))
-        {
-            collision.GetComponent<BulletPlayerSkill>().CrashOfIn(this);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.collider.CompareTag("Monster"))
 		{
@@ -223,24 +235,24 @@ public class Monster : MonoBehaviour
 		}
 	}
 	private void ZigMonsterAngle()
-    {
-        Vector3 playerpos = GameMng.Ins.player.transform.position;
-
-        float range = (gameObject.transform.position - playerpos).magnitude;
-        if (range > 2) return;
-        if (range < monsterData.attackRange)
-            return;
-        else
-            Angle -= 90;
-    }
-
-    public void ActiveOff()
 	{
-		//애니메이션 호출 함수
-        Destroy(gameObject);
+		Vector3 playerpos = GameMng.Ins.player.transform.position;
+
+		float range = (gameObject.transform.position - playerpos).magnitude;
+		if (range > 2) return;
+		if (range < monsterData.attackRange)
+			return;
+		else
+			Angle -= 90;
 	}
 
-    public ConditionData ConditionMainGet() { return conditionMain; }
+	public void ActiveOff()
+	{
+		//애니메이션 호출 함수
+		Destroy(gameObject);
+	}
+
+	public ConditionData ConditionMainGet() { return conditionMain; }
 
 	/* 계산용 */
 	public Vector3 GetForward()

@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using GlobalDefine;
 
-public class MilliMonsterStateMove : MonsterState
+public class MonsterStateMove : MonsterStateBase
 {
 	Vector2 directionToPlayer;
 	float degreeToPlayer;
 	Vector3 ownerDirection = new Vector3(1, 0, 0);
 
-	public MilliMonsterStateMove(MilliMonster o) : base(o)
+	public MonsterStateMove(Monster o) : base(o)
 	{
 	}
 
@@ -18,9 +18,9 @@ public class MilliMonsterStateMove : MonsterState
 
 	public override bool OnTransition()
 	{
-		if (monsterObject.monsterStateMachine.IsAttack() && monsterObject.AttackCheckStart())
+		if (monsterObject.AttackDelayCheck() && monsterObject.AttackCheck())
 		{
-			monsterObject.monsterStateMachine.ChangeStateAttack();
+			monsterObject.StateMachine.ChangeStateIdle();
 			return true;
 		}
 
@@ -63,7 +63,7 @@ public class MilliMonsterStateMove : MonsterState
 		}
 		else
 		{
-			monsterObject.monsterStateMachine.ChangeStateIdle();
+			monsterObject.StateMachine.ChangeStateIdle();
 		}
 	}
 }

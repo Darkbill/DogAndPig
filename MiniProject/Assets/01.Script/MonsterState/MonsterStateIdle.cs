@@ -1,6 +1,6 @@
 ﻿using GlobalDefine;
 using UnityEngine;
-public class MonsterStateIdle : MonsterState
+public class MonsterStateIdle : MonsterStateBase
 {
 	public MonsterStateIdle(Monster o) : base(o)
 	{
@@ -13,23 +13,12 @@ public class MonsterStateIdle : MonsterState
 
 	public override bool OnTransition()
 	{
-		Vector3 directionToPlayer = GameMng.Ins.player.transform.position - monsterObject.gameObject.transform.position;
-		if(directionToPlayer.magnitude > monsterObject.monsterData.attackRange)
-		{
-			monsterObject.monsterStateMachine.ChangeStateMove();
-			return true;
-		}
 		return false;
 	}
 
 	public override void Tick()
 	{
 		if (OnTransition() == true) return;
-
-		if (monsterObject.monsterStateMachine.IsAttack())
-		{
-			monsterObject.monsterStateMachine.ChangeStateAttack();
-		}
 		ChangeDegree();
 	}
 	public void ChangeDegree()

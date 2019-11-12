@@ -83,11 +83,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8cc8efefd9a6c741a4daf86effd11e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterStateMachine: {fileID: 1914031176555088524}
-  MonsterID: 2
+  StateMachine: {fileID: 1914031176555088524}
   monsterAnimator: {fileID: 2000058706956065321}
   Angle: 0
   active: 0
+  MonsterID: 2
+  delayTime: 0
   arrowImage: {fileID: 1914882145660415869}
 --- !u!114 &1914031176555088524
 MonoBehaviour:
@@ -101,8 +102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce85e126da859e74d95eee9895afb50d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockBackDir: {x: 0, y: 0, z: 0}
+  knockBackPower: 0
   monster: {fileID: 1914031176555088531}
-  delayTime: 0
 --- !u!58 &1914031176555088514
 CircleCollider2D:
   m_ObjectHideFlags: 0

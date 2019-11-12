@@ -3128,9 +3128,9 @@ GameObject:
   - component: {fileID: 773810023031710307}
   - component: {fileID: 8397322103210786718}
   - component: {fileID: 2392609898033909369}
-  - component: {fileID: 3201317389122142696}
-  - component: {fileID: 4381809342251501383}
   - component: {fileID: 8820420223198703492}
+  - component: {fileID: 6665178796235424353}
+  - component: {fileID: 4661690696246315018}
   m_Layer: 0
   m_Name: predator Variant_1
   m_TagString: Monster
@@ -3209,37 +3209,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3201317389122142696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8820420223198703547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62ddf69626ec22948988cd117f7eb0b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monster: {fileID: 4381809342251501383}
-  delayTime: 0
---- !u!114 &4381809342251501383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8820420223198703547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce475e88dd94bf843af530a6e8e3e583, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monsterStateMachine: {fileID: 3201317389122142696}
-  MonsterID: 1
-  monsterAnimator: {fileID: 773810023031710307}
-  Angle: 0
-  active: 0
 --- !u!58 &8820420223198703492
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3256,6 +3225,39 @@ CircleCollider2D:
   m_Offset: {x: -17.505169, y: 81.076546}
   serializedVersion: 2
   m_Radius: 71.44197
+--- !u!114 &6665178796235424353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8820420223198703547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b9eb191f6078c34f8cb4c57b69df32b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StateMachine: {fileID: 4661690696246315018}
+  monsterAnimator: {fileID: 773810023031710307}
+  Angle: 0
+  active: 0
+  MonsterID: 1
+  delayTime: 0
+--- !u!114 &4661690696246315018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8820420223198703547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be7cd8200896bb4aa79724f6bebdbf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockBackDir: {x: 0, y: 0, z: 0}
+  knockBackPower: 0
+  monster: {fileID: 6665178796235424353}
 --- !u!1 &8903398899085625986
 GameObject:
   m_ObjectHideFlags: 0
