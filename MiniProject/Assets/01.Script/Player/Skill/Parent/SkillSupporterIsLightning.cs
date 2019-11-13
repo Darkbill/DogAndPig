@@ -79,14 +79,14 @@ public class SkillSupporterIsLightning : Skill
         for(int i = 0;i<supporter.Count;++i)
         {
             if (supporter[i].gameObject.activeSelf) continue;
-            supporter[i].SetPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            supporter[i].SystemSetting(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             return;
         }
 
         SupporterIsLightning o = Instantiate(supporter[0], GameMng.Ins.skillMng.transform);
         supporter.Add(o);
 		o.Setting(skillID, damage, attackspeed, skillendtime);
-		o.SetPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+		o.SystemSetting(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
     private void Update()
     {

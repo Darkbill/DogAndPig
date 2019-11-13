@@ -28,7 +28,7 @@ public class Lightning : BulletPlayerSkill
 		buffEndTime = _buffEndTime;
 		gameObject.SetActive(false);
 	}
-	public void Setting(Vector3 pos,Quaternion angle, int splitcnt)
+	public void SystemSetting(Vector3 pos,Quaternion angle, int splitcnt)
 	{
         Speed = (Rand.Random() % 10 / 3 + 1f) / 2;
         gameObject.transform.position = pos;
@@ -71,7 +71,7 @@ public class Lightning : BulletPlayerSkill
             {
                 GameObject light = Instantiate(gameObject, GameMng.Ins.skillMng.transform);
                 light.GetComponent<Lightning>().Setting(Id, per, damage, buffEndTime);
-                light.GetComponent<Lightning>().Setting(gameObject.transform.position,
+                light.GetComponent<Lightning>().SystemSetting(gameObject.transform.position,
                                     Quaternion.Euler(0, 0, 180 * 2 / 4 * Count + randnum),
                                     SplitCnt - 1);
                 lightningList.Add(light.GetComponent<Lightning>());
@@ -79,7 +79,7 @@ public class Lightning : BulletPlayerSkill
             }
             if (!lightningList[i].gameObject.activeSelf)
             {
-                lightningList[i].Setting(gameObject.transform.position, 
+                lightningList[i].SystemSetting(gameObject.transform.position, 
                     Quaternion.Euler(0, 0, 180 * 2 / 4 * Count + randnum), 
                     SplitCnt - 1);
                 ++Count;

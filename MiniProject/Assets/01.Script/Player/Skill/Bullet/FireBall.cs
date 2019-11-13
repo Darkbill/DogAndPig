@@ -23,7 +23,7 @@ public class FireBall : BulletPlayerSkill
 		gameObject.transform.parent = GameMng.Ins.skillMng.transform;
 		gameObject.SetActive(false);
 	}
-	public void Setting(Vector3 pos,Vector3 moveVec,Vector3 angle)
+	public void SystemSetting(Vector3 pos,Vector3 moveVec,Vector3 angle)
 	{
 		delayTime = 0;
 		gameObject.transform.position = pos;

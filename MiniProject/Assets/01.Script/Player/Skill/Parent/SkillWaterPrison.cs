@@ -21,7 +21,6 @@ public class SkillWaterPrison : Skill
         gameObject.transform.parent = GameMng.Ins.skillMng.transform;
         gameObject.SetActive(false);
         waterlist[0].transform.parent = GameMng.Ins.skillMng.transform;
-        prison.transform.parent = GameMng.Ins.skillMng.transform;
     }
     public override void SetItemBuff(eSkillOption optionType, float changeValue)
     {
@@ -39,15 +38,16 @@ public class SkillWaterPrison : Skill
     }
 	public override void OffSkill()
 	{
-		foreach (WaterBall o in waterlist)
-			o.gameObject.SetActive(false);
-		prison.gameObject.SetActive(false);
+        foreach (WaterBall o in waterlist)
+        {
+            o.gameObject.SetActive(false);
+            o.hit.gameObject.SetActive(false);
+            o.prison.gameObject.SetActive(false);
+        }
 	}
 	#endregion
 	//TODO : 성민형 과제
 	public List<WaterBall> waterlist = new List<WaterBall>();
-    public List<WaterBallHit> waterhitlist = new List<WaterBallHit>();
-    public WaterPrison prison;
     //실제 쿨타임 도는 타이밍에 ActiveSkill();
     public override void OnButtonDown()
     {
@@ -71,37 +71,18 @@ public class SkillWaterPrison : Skill
         {
             if (waterlist[i].gameObject.activeSelf) continue;
             waterlist[i].gameObject.SetActive(true);
-            SetBullet();
-            waterlist[i].BulletBase(movevec);
+            waterlist[i].SystemSetting(movevec);
+
             return;
         }
-
         WaterBall o = Instantiate(waterlist[0], GameMng.Ins.skillMng.transform);
         o.gameObject.SetActive(true);
-		//값세팅
-        SetBullet();
-        o.BulletBase(movevec);
+        o.Setting(skillID, damage);
+        o.SystemSetting(movevec);
         waterlist.Add(o);
     }
-    private void WaterHitSet()
-    {
-        if (prison.gameObject.activeSelf)
-            return;
-        for(int i = 0;i<waterlist.Count;++i)
-        {
-            if(waterlist[i].HitCheck && !waterlist[i].hit.AttackCheck)
-            {
-                prison.transform.position = waterlist[i].transform.position;
-                prison.gameObject.SetActive(true);
-                waterlist[i].HitCheck = false;
-                return;
-            }
-        }
-    }
-
     private void Update()
     {
         delayTime += Time.deltaTime;
-        WaterHitSet();
     }
 }

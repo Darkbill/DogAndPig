@@ -76,13 +76,13 @@ public class SkillRoundTrip : Skill
 		for (int i = 0; i < recognition.Count; ++i)
 		{
 			if (recognition[i].gameObject.activeSelf) continue;
-			recognition[i].Setting(GameMng.Ins.player.transform.position, movevec);
+			recognition[i].SystemSetting(GameMng.Ins.player.transform.position, movevec);
 			return;
 		}
 
 		Recognition o = Instantiate(recognition[0], GameMng.Ins.skillMng.transform);
 		o.Setting(damage, tripSpeed, range);
-		o.Setting(GameMng.Ins.player.transform.position, movevec);
+		o.SystemSetting(GameMng.Ins.player.transform.position, movevec);
 		recognition.Add(o);
 	}
 	private void Update()

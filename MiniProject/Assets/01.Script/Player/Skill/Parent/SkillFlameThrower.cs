@@ -101,14 +101,14 @@ public class SkillFlameThrower : Skill
 			{
 				Vector3 lookDir = GameMng.Ins.player.GetForward();
 				lookDir = new Vector3(lookDir.x + Random.Range(-updownScale, updownScale), lookDir.y + Random.Range(-updownScale, updownScale));
-				flameList[i].Setting(GameMng.Ins.player.transform.position, Random.Range(flameSpeed - flameSpeed * updownScale, flameSpeed + flameSpeed * updownScale), lookDir, GameMng.Ins.player.degree);
+				flameList[i].SystemSetting(GameMng.Ins.player.transform.position, Random.Range(flameSpeed - flameSpeed * updownScale, flameSpeed + flameSpeed * updownScale), lookDir, GameMng.Ins.player.degree);
 				return;
 			}
 		}
 		Flame o = Instantiate(flameList[0], GameMng.Ins.skillMng.transform);
 			flameList.Add(o);
 			o.Setting(damage, upScaleSpeed, flameActiveTime, dropSpeed);
-			o.Setting(GameMng.Ins.player.transform.position, Random.Range(flameSpeed - flameSpeed * updownScale, flameSpeed + flameSpeed * updownScale), GameMng.Ins.player.GetForward(), GameMng.Ins.player.degree);
+			o.SystemSetting(GameMng.Ins.player.transform.position, Random.Range(flameSpeed - flameSpeed * updownScale, flameSpeed + flameSpeed * updownScale), GameMng.Ins.player.GetForward(), GameMng.Ins.player.degree);
 		
 	}
 	public override void OnButtonDown()

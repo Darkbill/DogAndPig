@@ -19,7 +19,7 @@ public class Flame : BulletPlayerSkill
 		activeTime = _activeTime;
 		dropSpeed = reSpeed;
 	}
-	public void Setting(Vector3 pos,float _speed,Vector3 _dir,float degree)
+	public void SystemSetting(Vector3 pos,float _speed,Vector3 _dir,float degree)
 	{
 		cTime = 0;
 		speed = _speed;

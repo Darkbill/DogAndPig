@@ -89,7 +89,7 @@ public class SkillSplitLightning : Skill
 			{
 				GameObject light = Instantiate(lightning, GameMng.Ins.skillMng.transform);
 				light.GetComponent<Lightning>().Setting(skillID, sturnper, damage, buffEndTime);
-				light.GetComponent<Lightning>().Setting(GameMng.Ins.player.transform.position, 
+				light.GetComponent<Lightning>().SystemSetting(GameMng.Ins.player.transform.position, 
                     Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count),
                     SplitCnt);
                 BulletLst.Add(light.GetComponent<Lightning>());
@@ -97,7 +97,7 @@ public class SkillSplitLightning : Skill
 			}
 			if (!BulletLst[i].gameObject.activeSelf)
 			{
-				BulletLst[i].Setting(GameMng.Ins.player.transform.position, 
+				BulletLst[i].SystemSetting(GameMng.Ins.player.transform.position, 
                     Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count),
                     SplitCnt);
 				++Count;

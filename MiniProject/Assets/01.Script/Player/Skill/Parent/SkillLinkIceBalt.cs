@@ -85,7 +85,7 @@ public class SkillLinkIceBalt : Skill
 		{
 			if (ice[i].gameObject.activeSelf) continue;
 			ice[i].gameObject.SetActive(true);
-			ice[i].Setting();//TODO : 해당 세팅은 고정값 세팅이 아님 ㅎㅎ;
+			ice[i].SystemSetting();//TODO : 해당 세팅은 고정값 세팅이 아님 ㅎㅎ;
 			base.ActiveSkill();
 			return;
 		}
@@ -93,7 +93,7 @@ public class SkillLinkIceBalt : Skill
 		o.Setting(skillID, buffActivePer, damage, buffEndTime, buffChangeValue,
 		   iceSpeed,
 		   maxHitCount);
-		o.Setting();
+		o.SystemSetting();
 		ice.Add(o);
 	}
 	private void Update()

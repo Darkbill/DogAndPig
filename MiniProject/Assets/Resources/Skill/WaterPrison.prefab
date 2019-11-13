@@ -29,7 +29,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3529349538916878221}
-  - {fileID: 5739834904923991617}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -52,9 +51,6 @@ MonoBehaviour:
   activeFlag: 0
   waterlist:
   - {fileID: 209215420049142209}
-  waterhitlist: []
-  prison:
-  - {fileID: 2511328198719576893}
 --- !u!1 &1053848237740358493
 GameObject:
   m_ObjectHideFlags: 0
@@ -38537,6 +38533,7 @@ Transform:
   - {fileID: 3529306983206439229}
   - {fileID: 3523313488184100061}
   - {fileID: 1056707066783919533}
+  - {fileID: 5739834904923991617}
   m_Father: {fileID: 683913850500404257}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -43376,6 +43373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HitCheck: 0
   hit: {fileID: 6071830982337637868}
+  prison: {fileID: 2511328198719576893}
 --- !u!1 &3526301918771480983
 GameObject:
   m_ObjectHideFlags: 0
@@ -48241,16 +48239,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5740968809557678771}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.49}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.49000007, z: 0}
+  m_LocalScale: {x: 3.5, y: 1.7500005, z: 3.500001}
   m_Children:
   - {fileID: 5739778014017327535}
   - {fileID: 5739666346738265303}
   - {fileID: 5744457024645762835}
   - {fileID: 5739741449600759087}
-  m_Father: {fileID: 683913850500404257}
-  m_RootOrder: 1
+  m_Father: {fileID: 3529349538916878221}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &5578288496864008145
 ParticleSystem:

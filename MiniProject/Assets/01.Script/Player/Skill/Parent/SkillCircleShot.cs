@@ -89,7 +89,7 @@ public class SkillCircleShot : Skill
 				Vector3 pos = radian * bulletstartpos +
 					GameMng.Ins.player.transform.position;
 				Vector3 moveVec = radian * bulletstartvec;
-				BulletLst[i].Setting(pos, moveVec, new Vector3(30, 0, -90));
+				BulletLst[i].SystemSetting(pos, moveVec, new Vector3(30, 0, -90));
 				++count;
 				continue;
 			}
@@ -100,7 +100,7 @@ public class SkillCircleShot : Skill
 					GameMng.Ins.player.transform.position;
 				Vector3 moveVec = radian * bulletstartvec;
 				o.Setting(damage, fireSpeed, endTime, duration);
-				o.Setting(pos, moveVec, new Vector3(30, 0, -90));
+				o.SystemSetting(pos, moveVec, new Vector3(30, 0, -90));
 				BulletLst.Add(o);
 				++count;
 			}

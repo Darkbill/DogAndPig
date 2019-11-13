@@ -24,7 +24,7 @@ public class Recognition : BulletPlayerSkill
 		gameObject.SetActive(false);
 
 	}
-	public void Setting(Vector3 pos, Vector3 moveVec)
+	public void SystemSetting(Vector3 pos, Vector3 moveVec)
     {
 		gameObject.SetActive(true);
 		gameObject.transform.position = pos;

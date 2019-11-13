@@ -29,7 +29,7 @@ public class LinkIce : BulletPlayerSkill
 		maxHitCount = mC;
 		gameObject.SetActive(false);
 	}
-	public void Setting()
+	public void SystemSetting()
 	{
 		gameObject.SetActive(true);
 		hitMonsterPool.Clear();

@@ -1,4 +1,5 @@
 ﻿using GlobalDefine;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Thounder : BulletPlayerSkill
@@ -7,21 +8,27 @@ public class Thounder : BulletPlayerSkill
     eAttackType Attacktype = eAttackType.Lightning;
     public bool hit = false;
 
-    public ParticleSystem particle;
+    public List<ParticleSystem> particle = new List<ParticleSystem>();
 
     public void Setting(float dmg)
     {
         damage = dmg;
-		gameObject.transform.parent = GameMng.Ins.skillMng.transform;
         hit = false;
 		gameObject.SetActive(false);
     }
 
-    public void isPlay() { particle.Play(); }
+    public void SettingSystem(Vector3 pos) 
+    {
+        pos.z = 0;
+        gameObject.transform.position = pos;
+        gameObject.SetActive(true);
+        foreach (ParticleSystem p in particle)
+            p.Play();
+    }
 
     private void Update()
     {
-        if (!particle.isPlaying)
+        if (!particle[0].isPlaying)
             gameObject.SetActive(false);
     }
 

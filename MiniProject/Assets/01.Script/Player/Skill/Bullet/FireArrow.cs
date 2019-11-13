@@ -17,7 +17,7 @@ public class FireArrow : BulletPlayerSkill
 		arrowActiveTime = _arrowActiveTime;
 		gameObject.SetActive(false);
 	}
-	public void Setting(GameObject gate)
+	public void SystemSetting(GameObject gate)
 	{
 		dir = gate.transform.right;
 		gameObject.transform.eulerAngles = new Vector3(gate.transform.eulerAngles.z, 0, 0);
