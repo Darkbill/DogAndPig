@@ -9,20 +9,20 @@ public class SkillExplosionDarkness : Skill
 		Damage,
 		CoolTime,
 		MaxCharageTime,
+		ChargeSpeed,
 	}
 	private float damage;
 	private float maxChargeTime;
 	private bool DragStart = false;
-	private float chargeSpeed = 1.0f;
+	private float chargeSpeed;
 	public override void SkillSetting()
 	{
 		skillID = 12;
 		PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
-		skillType = skillData.skillType;
-		target = skillData.target;
 		damage = skillData.optionArr[(int)eDarkSkillOption.Damage];
 		cooldownTime = skillData.optionArr[(int)eDarkSkillOption.CoolTime];
 		maxChargeTime = skillData.optionArr[(int)eDarkSkillOption.MaxCharageTime];
+		chargeSpeed = skillData.optionArr[(int)eDarkSkillOption.ChargeSpeed];
 		delayTime = cooldownTime;
 		explosiondarkness.transform.parent = GameMng.Ins.skillMng.transform;
 		gameObject.SetActive(false);
@@ -44,7 +44,7 @@ public class SkillExplosionDarkness : Skill
 	}
 	public override void SetBullet()
 	{
-
+		explosiondarkness.Setting(skillID, chargetime, damage);
 	}
 	#endregion
 
@@ -57,15 +57,10 @@ public class SkillExplosionDarkness : Skill
 	{
 		GameMng.Ins.SetSkillAim(skillID);
 		chargetime = 0.0f;
-		ActiveSkill();
 	}
 	public override void OffSkill()
 	{
 		explosiondarkness.gameObject.SetActive(false);
-	}
-	public override void ActiveSkill()
-	{
-		base.ActiveSkill();
 	}
 	public override void OnDrag()
 	{
@@ -83,7 +78,7 @@ public class SkillExplosionDarkness : Skill
 		explosiondarkness.gameObject.transform.position = GameMng.Ins.player.transform.position +
 			new Vector3(0, GameMng.Ins.player.calStat.size);
 		explosiondarkness.gameObject.SetActive(true);
-		explosiondarkness.Setting(skillID, chargetime, damage);
+		ActiveSkill();
 	}
 	private void Update()
 	{

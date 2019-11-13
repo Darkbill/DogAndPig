@@ -29,8 +29,6 @@ public class SkillSplitLightning : Skill
 	{
 		skillID = 5;
 		PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
-		skillType = skillData.skillType;
-		target = skillData.target;
 		damage = skillData.optionArr[(int)eFloorFreezeOption.Damage];
 		sturnper = skillData.optionArr[(int)eFloorFreezeOption.SturnPer];
 		sturntime = skillData.optionArr[(int)eFloorFreezeOption.SturnPer];
@@ -78,10 +76,6 @@ public class SkillSplitLightning : Skill
 	{
 		base.OnButtonDown();
 		ActiveSkill();
-	}
-	public override void ActiveSkill()
-	{
-		base.ActiveSkill();
 		int randnum = Rand.Random() % 90;
 		CreateAndPoolBullet(randnum);
 	}
@@ -94,79 +88,22 @@ public class SkillSplitLightning : Skill
 			if (BulletLst.Count == i)
 			{
 				GameObject light = Instantiate(
-					lightning,
-					GameMng.Ins.player.transform.position,
-					Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count));
-				light.transform.parent = GameMng.Ins.skillMng.transform;
-
+									lightning,
+									GameMng.Ins.player.transform.position,
+									Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count), GameMng.Ins.skillMng.transform);
+				light.GetComponent<Lightning>().Setting(skillID, SplitCnt, sturnper, damage, buffEndTime);
 				BulletLst.Add(light.GetComponent<Lightning>());
-                SetBullet();
-                ++Count;
+				++Count;
 			}
 			if (!BulletLst[i].gameObject.activeSelf)
 			{
-				BulletLst[i].transform.position = GameMng.Ins.player.transform.position;
-				BulletLst[i].transform.rotation = Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count);
-                SetBullet();
-                BulletLst[i].gameObject.SetActive(true);
+				BulletLst[i].Setting(GameMng.Ins.player.transform.position, Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count));
 				++Count;
 			}
 		}
 	}
-
 	void Update()
 	{
 		delayTime += Time.deltaTime;
-		for (int i = 0; i < BulletLst.Count; ++i)
-		{
-			if (BulletLst[i].gameObject.activeSelf)
-			{
-				BulletLst[i].transform.position +=
-					BulletLst[i].transform.right *
-					Time.deltaTime *
-					BulletLst[i].Speed;
-			}
-		}
-	}
-	private IEnumerator corrset(int num)
-	{
-		yield return new WaitForSeconds(1.0f);
-		int randnum = Rand.Range(-5, 5) * 5;
-		BulletLst[num].transform.eulerAngles += new Vector3(0, 0, randnum);
-	}
-	private void CreateBullet(Vector3 endPos, int index)
-	{
-		int randnum = Rand.Random() % 90;
-		int Count = 0;
-
-		for (int i = 0; Count < MaxCount; ++i)
-		{
-			if (BulletLst.Count == i)
-			{
-				GameObject light = Instantiate(
-					lightning,
-					endPos,
-					Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count + randnum));
-				light.transform.parent = GameMng.Ins.skillMng.transform;
-
-				light.GetComponent<Lightning>().Setting(skillID, BulletLst[index].SplitCnt - 1, sturnper, damage, buffEndTime);
-				BulletLst.Add(light.GetComponent<Lightning>());
-				++Count;
-			}
-			if (!BulletLst[i].gameObject.activeSelf)
-			{
-				BulletLst[i].transform.position = endPos;
-				BulletLst[i].transform.rotation = Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count + randnum);
-				BulletLst[i].Setting(skillID, BulletLst[index].SplitCnt - 1, sturnper, damage, buffEndTime);
-				BulletLst[i].gameObject.SetActive(true);
-				++Count;
-			}
-		}
-	}
-
-	private void OnDisable()
-	{
-		//for (int i = 0; i < BulletLst.Count; ++i)
-		//	BulletLst[i].gameObject.SetActive(false);
 	}
 }

@@ -4,25 +4,42 @@ using System.Collections;
 
 public class FireBall : BulletPlayerSkill
 {
-    public float damage = 0;
+    public float damage;
     eAttackType attackType = eAttackType.Fire;
 
     public Vector3 BulletMovVec;
     public float angle;
     private bool rotateset = false;
-    private float speed = 5;
-
-	public void Setting(Vector3 pos,Vector3 moveVec)
+	private float speed;
+	private float duration;
+	private float durationTime; //쉴드유지시간
+	private float delayTime;
+	public void Setting(float _damage, float _speed, float _duration, float _durationTime)
 	{
+		damage = _damage;
+		speed = _speed;
+		duration = _duration;
+		durationTime = _durationTime;
+		gameObject.transform.parent = GameMng.Ins.skillMng.transform;
+		gameObject.SetActive(false);
+	}
+	public void Setting(Vector3 pos,Vector3 moveVec,Vector3 angle)
+	{
+		delayTime = 0;
 		gameObject.transform.position = pos;
+		gameObject.transform.eulerAngles = angle;
 		BulletMovVec = moveVec;
 		gameObject.SetActive(true);
-        StartCoroutine(setSkill());
         rotateset = false;
 	}
 
     private void Update()
     {
+		if (delayTime >= duration)
+		{
+			gameObject.SetActive(false);
+		}
+		delayTime += Time.deltaTime;
         StartCoroutine(CircleSet());
         if(!rotateset)
         {
@@ -35,7 +52,7 @@ public class FireBall : BulletPlayerSkill
 
     private IEnumerator CircleSet()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(durationTime);
         rotateset = true;
     }
     public override void Crash(Monster monster)

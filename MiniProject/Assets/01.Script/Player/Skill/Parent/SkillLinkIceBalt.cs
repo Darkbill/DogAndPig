@@ -10,7 +10,6 @@ public class SkillLinkIceBalt : Skill
 		Damage,
 		CoolTime,
 		ActivePer,
-		BuffType,
 		EndTime,
 		ChangeValue,
 		IceSpeed,
@@ -20,22 +19,18 @@ public class SkillLinkIceBalt : Skill
 	private float buffActivePer;
 	private float buffEndTime;
 	private float buffChangeValue;
-	private eBuffType buffType;
 	private float iceSpeed;
 	private int maxHitCount;
 	public override void SkillSetting()
 	{
 		skillID = 10;
 		PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
-		skillType = skillData.skillType;
-		target = skillData.target;
 		damage = skillData.optionArr[(int)eIceBaltSkillOption.Damage];
 		cooldownTime = skillData.optionArr[(int)eIceBaltSkillOption.CoolTime];
 		delayTime = cooldownTime;
 		buffActivePer = skillData.optionArr[(int)eIceBaltSkillOption.ActivePer];
 		buffEndTime = skillData.optionArr[(int)eIceBaltSkillOption.EndTime];
 		buffChangeValue = skillData.optionArr[(int)eIceBaltSkillOption.ChangeValue];
-		buffType = (eBuffType)skillData.optionArr[(int)eIceBaltSkillOption.BuffType];
 		iceSpeed = skillData.optionArr[(int)eIceBaltSkillOption.IceSpeed];
 		maxHitCount = (int)skillData.optionArr[(int)eIceBaltSkillOption.MaxHitCount];
 		gameObject.SetActive(false);
@@ -65,8 +60,7 @@ public class SkillLinkIceBalt : Skill
 	public override void SetBullet()
 	{
         foreach (LinkIce o in ice)
-            o.Setting(skillID, buffActivePer, damage, skillType,
-            buffType, buffEndTime, buffChangeValue,
+            o.Setting(skillID, buffActivePer, damage, buffEndTime, buffChangeValue,
             iceSpeed,
             maxHitCount);
 	}
@@ -83,33 +77,24 @@ public class SkillLinkIceBalt : Skill
 	{
 		base.OnButtonDown();
 		ActiveSkill();
+		BaltActive();
 	}
-	public override void ActiveSkill()
+	private void BaltActive()
 	{
 		for (int i = 0; i < ice.Count; ++i)
 		{
 			if (ice[i].gameObject.activeSelf) continue;
 			ice[i].gameObject.SetActive(true);
-            ice[i].Setting();//TODO : 해당 세팅은 고정값 세팅이 아님 ㅎㅎ;
-            base.ActiveSkill();
+			ice[i].Setting();//TODO : 해당 세팅은 고정값 세팅이 아님 ㅎㅎ;
+			base.ActiveSkill();
 			return;
 		}
 		LinkIce o = Instantiate(ice[0], GameMng.Ins.skillMng.transform);
-		o.gameObject.SetActive(true);
-        o.Setting();
-        ice.Add(o);
-        SetBullet();
-        
-
-        base.ActiveSkill();
-	}
-	public override void OnDrag()
-	{
-		base.OnDrag();
-	}
-	public override void OnDrop()
-	{
-		base.OnDrop();
+		o.Setting(skillID, buffActivePer, damage, buffEndTime, buffChangeValue,
+		   iceSpeed,
+		   maxHitCount);
+		o.Setting();
+		ice.Add(o);
 	}
 	private void Update()
 	{

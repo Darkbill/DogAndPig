@@ -46,8 +46,6 @@ public class SkillSpawnFireArrow : Skill
 	{
 		skillID = 7;
 		PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
-		skillType = skillData.skillType;
-		target = skillData.target;
 		damage = skillData.optionArr[(int)eSpawnFireArrowOption.Damage];
 		cooldownTime = skillData.optionArr[(int)eSpawnFireArrowOption.CoolTime];
 		activeTime = skillData.optionArr[(int)eSpawnFireArrowOption.ActiveTime];
@@ -61,7 +59,7 @@ public class SkillSpawnFireArrow : Skill
 	{
 		for (int i = 0; i < gateParticleList.Count; ++i)
 		{
-			gateParticleList[i].Setting(activeTime, arrowInitTime, skillType,damage,arrowSpeed,arrowActiveTime);
+			gateParticleList[i].Setting(activeTime, arrowInitTime,damage,arrowSpeed,arrowActiveTime);
 		}
 	}
 	public override void OffSkill()
@@ -107,7 +105,7 @@ public class SkillSpawnFireArrow : Skill
 			}
 		}
 		GameObject o = Instantiate(gateParticleList[0].gameObject);
-		o.GetComponent<FireArrowGate>().Setting(activeTime, arrowInitTime, skillType, damage, arrowSpeed, arrowActiveTime);
+		o.GetComponent<FireArrowGate>().Setting(activeTime, arrowInitTime, damage, arrowSpeed, arrowActiveTime);
 		gateParticleList.Add(o.GetComponent<FireArrowGate>());
 		return gateParticleList[gateParticleList.Count - 1];
 	}

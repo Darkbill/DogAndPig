@@ -20,8 +20,6 @@ public class Lightning : BulletPlayerSkill
 	private float buffActivePer;
 
     private const float splitCnt = 4;
-
-
 	List<Lightning> lightningList = new List<Lightning>();
 
     public void Setting(int id, int splitcnt, float p, float damage,float _buffEndTime)
@@ -34,8 +32,14 @@ public class Lightning : BulletPlayerSkill
         Speed = (Rand.Random() % 10 / 3 + 1f) / 2;
         SetTimer = 0.0f;
 		buffEndTime = _buffEndTime;
+		gameObject.SetActive(false);
 	}
-
+	public void Setting(Vector3 pos,Quaternion angle)
+	{
+		gameObject.transform.position = pos;
+		gameObject.transform.rotation = angle;
+		gameObject.SetActive(true);
+	}
     private void Update()
     {
         SetTimer += Time.deltaTime;

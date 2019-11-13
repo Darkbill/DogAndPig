@@ -10,18 +10,19 @@ public class SkillRoundTrip : Skill
 		Damage,
 		CoolTime,
 		Range,
+		tripSpeed,
 	}
 	private float damage;
 	private float range;
+	private float tripSpeed;
 	public override void SkillSetting()
 	{
 		skillID = 11;
 		PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
-		skillType = skillData.skillType;
-		target = skillData.target;
 		damage = skillData.optionArr[(int)eTripSkillOption.Damage];
 		cooldownTime = skillData.optionArr[(int)eTripSkillOption.CoolTime];
 		range = skillData.optionArr[(int)eTripSkillOption.Range];
+		tripSpeed = skillData.optionArr[(int)eTripSkillOption.tripSpeed];
 		delayTime = cooldownTime;
 		gameObject.transform.parent = GameMng.Ins.skillMng.transform;
 		gameObject.SetActive(false);
@@ -40,11 +41,17 @@ public class SkillRoundTrip : Skill
 			case eSkillOption.ActiveTime:
 				range += range * changeValue;
 				break;
+			case eSkillOption.Speed:
+				tripSpeed += tripSpeed * changeValue;
+				break;
 		}
 	}
 	public override void SetBullet()
 	{
-
+		foreach(Recognition i in recognition)
+		{
+			i.Setting(damage, tripSpeed, range);
+		}
 	}
 	public override void OffSkill()
 	{
@@ -61,14 +68,6 @@ public class SkillRoundTrip : Skill
 	{
 		GameMng.Ins.SetSkillAim(skillID);
 	}
-	//public override void ActiveSkill()
-	//{
-	//    base.ActiveSkill();
-	//}
-	public override void OnDrag()
-	{
-		base.OnDrag();
-	}
 	public override void OnDrop()
 	{
 		base.OnDrop();
@@ -78,14 +77,13 @@ public class SkillRoundTrip : Skill
 		for (int i = 0; i < recognition.Count; ++i)
 		{
 			if (recognition[i].gameObject.activeSelf) continue;
-			recognition[i].gameObject.SetActive(true);
-			recognition[i].Setting(GameMng.Ins.player.transform.position, movevec, range);
+			recognition[i].Setting(GameMng.Ins.player.transform.position, movevec);
 			return;
 		}
 
 		Recognition o = Instantiate(recognition[0], GameMng.Ins.skillMng.transform);
-		o.gameObject.SetActive(true);
-		o.Setting(GameMng.Ins.player.transform.position, movevec, range);
+		o.Setting(damage, tripSpeed, range);
+		o.Setting(GameMng.Ins.player.transform.position, movevec);
 		recognition.Add(o);
 	}
 	private void Update()

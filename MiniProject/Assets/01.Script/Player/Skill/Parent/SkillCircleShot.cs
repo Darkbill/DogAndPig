@@ -8,27 +8,27 @@ public class SkillCircleShot : Skill
 	{
 		Damage,
 		EndTimer,
-		CoolTime
+		CoolTime,
+		fireSpeed,
+		fireDuration,
 	}
-	private float damage = 0;//Damage
-	private float endTime = 0;//AllTimer
+	private float damage;
+	private float endTime;//AllTimer
+	private float fireSpeed;
+	private float duration;
 	public override void SkillSetting()
 	{
 		skillID = 2;
 		PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
-		skillType = skillData.skillType;
-		target = skillData.target;
 		damage = skillData.optionArr[(int)eCircleShotOption.Damage];
 		endTime = skillData.optionArr[(int)eCircleShotOption.EndTimer];
 		cooldownTime = skillData.optionArr[(int)eCircleShotOption.CoolTime];
+		fireSpeed = skillData.optionArr[(int)eCircleShotOption.fireSpeed];
+		duration = skillData.optionArr[(int)eCircleShotOption.fireDuration];
 		BulletSetting();
 		delayTime = cooldownTime;
 		gameObject.SetActive(false);
-		for (int i = 0; i < BulletLst.Count; ++i)
-		{
-			BulletLst[i].gameObject.SetActive(false);
-			BulletLst[i].transform.parent = GameMng.Ins.skillMng.transform;
-		}
+
 	}
 	public override void SetItemBuff(eSkillOption type, float changeValue)
 	{
@@ -40,8 +40,8 @@ public class SkillCircleShot : Skill
 			case eSkillOption.CoolTime:
 				cooldownTime -= cooldownTime * changeValue;
 				break;
-			case eSkillOption.ActiveTime:
-				endTime += endTime * changeValue;
+			case eSkillOption.Speed:
+				fireSpeed += fireSpeed * changeValue;
 				break;
 		}
 	}
@@ -49,7 +49,7 @@ public class SkillCircleShot : Skill
 	{
 		for (int i = 0; i < BulletLst.Count; ++i)
 		{
-			BulletLst[i].damage = damage;
+			BulletLst[i].Setting(damage, fireSpeed, endTime, duration);	
 		}
 	}
 	public override void OffSkill()
@@ -89,9 +89,7 @@ public class SkillCircleShot : Skill
 				Vector3 pos = radian * bulletstartpos +
 					GameMng.Ins.player.transform.position;
 				Vector3 moveVec = radian * bulletstartvec;
-				BulletLst[i].Setting(pos, moveVec);
-				BulletLst[i].transform.eulerAngles = new Vector3(30, 0, -90);
-				BulletLst[i].gameObject.SetActive(true);
+				BulletLst[i].Setting(pos, moveVec, new Vector3(30, 0, -90));
 				++count;
 				continue;
 			}
@@ -101,9 +99,8 @@ public class SkillCircleShot : Skill
 				Vector3 pos = radian * bulletstartpos +
 					GameMng.Ins.player.transform.position;
 				Vector3 moveVec = radian * bulletstartvec;
-				o.Setting(pos, moveVec);
-				o.transform.eulerAngles = new Vector3(30, 0, -90);
-				o.gameObject.SetActive(true);
+				o.Setting(damage, fireSpeed, endTime, duration);
+				o.Setting(pos, moveVec, new Vector3(30, 0, -90));
 				BulletLst.Add(o);
 				++count;
 			}

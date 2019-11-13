@@ -11,12 +11,11 @@ public class FireArrowGate : MonoBehaviour
 	private float damage;
 	private float arrowSpeed;
 	private float arrowActiveTime;
-	private eAttackType skillType;
-	public void Setting(float _activeTime, float _arrowInitTime, eAttackType _skillType, float _damage, float _arrowSpeed, float _arrowActiveTime)
+	private eAttackType skillType = eAttackType.Fire;
+	public void Setting(float _activeTime, float _arrowInitTime, float _damage, float _arrowSpeed, float _arrowActiveTime)
 	{
 		activeTime = _activeTime;
 		arrowInitTime = _arrowInitTime;
-		skillType = _skillType;
 		damage = _damage;
 		arrowSpeed = _arrowSpeed;
 		arrowActiveTime = _arrowActiveTime;

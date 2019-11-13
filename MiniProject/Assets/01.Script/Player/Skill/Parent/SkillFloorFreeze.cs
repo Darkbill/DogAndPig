@@ -15,7 +15,6 @@ public class SkillFloorFreeze : Skill
 		DebufActivePer,
 		DebugEffectPer,
 		DebufTime,
-		BuffType,
 		ActiveTime,
 	}
 	private float damage;
@@ -26,13 +25,10 @@ public class SkillFloorFreeze : Skill
 	private float DebufEffectPer;
 	private float DebufTime;
 	private float activeTime;
-	private eBuffType buffType;
 	public override void SkillSetting()
 	{
 		skillID = 3;
 		PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
-		skillType = skillData.skillType;
-		target = skillData.target;
 		damage = skillData.optionArr[(int)eFloorFreezeOption.Damage];
 		DebufIndex = skillData.optionArr[(int)eFloorFreezeOption.DebufIndex];
 		DebufActivePer = skillData.optionArr[(int)eFloorFreezeOption.DebufActivePer];
@@ -41,7 +37,6 @@ public class SkillFloorFreeze : Skill
 		height = skillData.optionArr[(int)eFloorFreezeOption.Height];
 		cooldownTime = skillData.optionArr[(int)eFloorFreezeOption.CoolTime];
 		DebufEffectPer = skillData.optionArr[(int)eFloorFreezeOption.DebugEffectPer];
-		buffType = (eBuffType)skillData.optionArr[(int)eFloorFreezeOption.BuffType];
 		activeTime = skillData.optionArr[(int)eFloorFreezeOption.ActiveTime];
 		delayTime = cooldownTime;
 		FreezenShot[0].transform.parent = GameMng.Ins.skillMng.transform;
@@ -74,28 +69,18 @@ public class SkillFloorFreeze : Skill
 	public override void SetBullet()
 	{
 		for (int i = 0; i < FreezenShot.Count; ++i)
-			FreezenShot[i].Setting(skillID, DebufTime, DebufEffectPer, DebufActivePer, damage, skillType, buffType);
+			FreezenShot[i].Setting(skillID, DebufTime, DebufEffectPer, DebufActivePer, damage);
 	}
 	public override void OffSkill()
 	{
 		for (int i = 0; i < FreezenShot.Count; ++i)
 			FreezenShot[i].gameObject.SetActive(false);
 	}
-	public void SetCreateBullet()
-	{
-		Freezen obj = Instantiate(FreezenShot[0], GameMng.Ins.skillMng.transform);
-		obj.gameObject.SetActive(false);
-		FreezenShot.Add(obj);
-	}
 	#endregion
 	public List<Freezen> FreezenShot = new List<Freezen>();
 	public override void OnButtonDown()
 	{
 		GameMng.Ins.SetSkillAim(skillID);
-	}
-	public override void OnDrag()
-	{
-		base.OnDrag();
 	}
 	public override void OnDrop()
 	{
@@ -107,20 +92,13 @@ public class SkillFloorFreeze : Skill
 				continue;
 			base.OnDrop();
 			ActiveSkill();
-			FreezenShot[i].angleSet(degree - 90);
-			FreezenShot[i].gameObject.SetActive(true);
-			FreezenShot[i].transform.position = GameMng.Ins.player.transform.position;
-			FreezenShot[i].transform.eulerAngles = new Vector3(0, 0, degree - 90);
+			FreezenShot[i].angleSet(degree - 90, GameMng.Ins.player.transform.position);
 			return;
 		}
-		base.OnDrop();
 		ActiveSkill();
 		Freezen o = Instantiate(FreezenShot[0], GameMng.Ins.skillMng.transform);
-		o.angleSet(degree - 90);
-		o.Setting(skillID, DebufTime, DebufEffectPer, DebufActivePer, damage, skillType, buffType);
-		o.gameObject.SetActive(true);
-		o.transform.position = GameMng.Ins.player.transform.position;
-		o.transform.eulerAngles = new Vector3(0, 0, degree - 90);
+		o.Setting(skillID, DebufTime, DebufEffectPer, DebufActivePer, damage);
+		o.angleSet(degree - 90, GameMng.Ins.player.transform.position);
 		FreezenShot.Add(o);
 	}
 	void Update()

@@ -30,7 +30,7 @@ public class Nova : BulletPlayerSkill
         collider2d.size = new Vector2(0, 0);
     }
 
-    [System.Obsolete]
+
     private void FixedUpdate()
     {
         if(effectCnt >= 5)

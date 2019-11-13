@@ -10,15 +10,14 @@ public class ExplosionFire : BulletPlayerSkill
 	public GameObject thrower;
 
 	private List<Monster> hitMonsterList = new List<Monster>();
-	private eAttackType type;
+	private eAttackType type = eAttackType.Fire;
 	private float damage;
 	private int skillID;
 	private float knockBackPower;
 	private float throwTime;
 	private float upScale;
-	public void Setting(eAttackType _type, float _damage,int _skillID, float _knockBackPower,float _throwTime,float _upScale)
+	public void Setting(float _damage,int _skillID, float _knockBackPower,float _throwTime,float _upScale)
 	{
-		type = _type;
 		damage = _damage;
 		skillID = _skillID;
 		knockBackPower = _knockBackPower;

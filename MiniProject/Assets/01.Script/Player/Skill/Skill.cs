@@ -4,8 +4,6 @@ public abstract class Skill : MonoBehaviour
 {
 	public int skillID;
 	public string skillName;
-	protected eAttackType skillType;
-	protected eSkillType target;
 	public float cooldownTime;
 	public float delayTime;
 	public bool activeFlag;

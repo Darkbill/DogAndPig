@@ -4,19 +4,17 @@ using UnityEngine;
 public class Thounder : BulletPlayerSkill
 {
     public float damage = 0;
-    eAttackType Attacktype = eAttackType.Fire;
-    eBuffType bufftype = eBuffType.NockBack;
-
-    private int Id = 13;
+    eAttackType Attacktype = eAttackType.Lightning;
     public bool hit = false;
 
     public ParticleSystem particle;
 
-    public void Setting(int id, float dmg)
+    public void Setting(float dmg)
     {
-        Id = id;
         damage = dmg;
+		gameObject.transform.parent = GameMng.Ins.skillMng.transform;
         hit = false;
+		gameObject.SetActive(false);
     }
 
     public void isPlay() { particle.Play(); }

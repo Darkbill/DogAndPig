@@ -31,8 +31,6 @@ public class SkillFlameThrower : Skill
 	{
 		skillID = 6;
 		PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
-		skillType = skillData.skillType;
-		target = skillData.target;
 		damage = skillData.optionArr[(int)eFlameThrowerOption.Damage];
 		cooldownTime = skillData.optionArr[(int)eFlameThrowerOption.CoolTime];
 		activeTime = skillData.optionArr[(int)eFlameThrowerOption.ActiveTime];
@@ -64,7 +62,7 @@ public class SkillFlameThrower : Skill
 	{
 		for (int i = 0; i < flameList.Count; ++i)
 		{
-			flameList[i].Setting(skillType, damage, upScaleSpeed, flameActiveTime, dropSpeed);
+			flameList[i].Setting(damage, upScaleSpeed, flameActiveTime, dropSpeed);
 			flameList[i].transform.parent = GameMng.Ins.skillMng.transform;
 		}
 	}
@@ -109,7 +107,7 @@ public class SkillFlameThrower : Skill
 		}
 		Flame o = Instantiate(flameList[0], GameMng.Ins.skillMng.transform);
 			flameList.Add(o);
-			o.Setting(skillType, damage, upScaleSpeed, flameActiveTime, dropSpeed);
+			o.Setting(damage, upScaleSpeed, flameActiveTime, dropSpeed);
 			o.Setting(GameMng.Ins.player.transform.position, Random.Range(flameSpeed - flameSpeed * updownScale, flameSpeed + flameSpeed * updownScale), GameMng.Ins.player.GetForward(), GameMng.Ins.player.degree);
 		
 	}

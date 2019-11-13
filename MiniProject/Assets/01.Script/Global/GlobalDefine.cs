@@ -89,6 +89,7 @@
 		}
 		public static string GetItemSkillInfoText(ItemData item)
 		{
+			//TODO : 쿨타임말고 감소 옵션 또 있었던거같은데
 			if (item.changeOption == eSkillOption.CoolTime)
 			{
 				string optionText = JsonMng.Ins.playerSkillTextDataTable[item.changeSkill].optionTextList[(int)item.changeOption-1];
@@ -200,12 +201,6 @@
         NockBack,
 		Stun,
 		Max,
-	}
-	public enum eSkillType
-	{
-		None = 0,
-		Other,
-		Self,
 	}
 	public enum eBoxType
 	{

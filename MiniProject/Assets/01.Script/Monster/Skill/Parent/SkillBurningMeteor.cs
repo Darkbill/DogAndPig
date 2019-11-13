@@ -23,11 +23,8 @@ public class SkillBurningMeteor : Skill
 		MonsterSkillData skillData = JsonMng.Ins.monsterSkillDataTable[skillID];
 		skillName = JsonMng.Ins.monsterSkillDataTable[skillID].skillName;
 		decal = skillData.decal;
-		skillType = skillData.skillType;
-		target = skillData.target;
 		damage = skillData.optionArr[(int)eOption.Damage];
 		delayTime = cooldownTime;
-		target = skillData.target;
 		cooldownTime = skillData.optionArr[(int)eOption.CoolDown];
 		delayTime = cooldownTime;
 		damage = skillData.optionArr[(int)eOption.Damage];

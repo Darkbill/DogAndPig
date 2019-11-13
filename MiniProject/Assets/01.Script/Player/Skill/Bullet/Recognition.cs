@@ -9,24 +9,29 @@ public class Recognition : BulletPlayerSkill
     eAttackType attackType = eAttackType.Physics;
 
     public Vector3 bulletMovevec;
-    private const int speed = 8;
+    private float speed;
 
     private bool turnOn = false;
-    private float maxRange = 0;
+    private float maxRange;
     private float pokRange = 0;
 
     public ParticleSystem particle;
+	public void Setting(float _damage,float _speed,float _maxRange)
+	{
+		damage = _damage;
+		speed = _speed;
+		maxRange = _maxRange;
+		gameObject.SetActive(false);
 
-    public void Setting(Vector3 pos, Vector3 moveVec, float range)
+	}
+	public void Setting(Vector3 pos, Vector3 moveVec)
     {
         gameObject.transform.position = pos;
         bulletMovevec = moveVec;
-        maxRange = range;
         pokRange = 0;
         particle.Play();
-
-        //TODO : 테스트
         turnOn = false;
+		gameObject.SetActive(true);
     }
 
     private void Update()

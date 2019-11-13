@@ -4,8 +4,8 @@ using UnityEngine;
 public class Freezen : BulletPlayerSkill
 {
     public float damage = 0;
-	eBuffType buffType;
-	eAttackType attackType;
+	eBuffType buffType = eBuffType.MoveSlow;
+	eAttackType attackType = eAttackType.Water;
     private int Id = 0;
     private float MaxTimer = 10.0f;
     private float slow = 0.0f;
@@ -14,16 +14,14 @@ public class Freezen : BulletPlayerSkill
     private Vector3 rightvec;
     public ParticleSystem system;
 
-	public void Setting(int id,float mT,float s,float p,float d,eAttackType aType,eBuffType bType)
+	public void Setting(int id,float mT,float s,float p,float d)
 	{
 		Id = id;
 		MaxTimer = mT;
 		slow = s;
 		per = p;
 		damage = d;
-		attackType = aType;
-		buffType = bType;
-        
+		gameObject.SetActive(false);
 	}
 
     private void Update()
@@ -34,11 +32,14 @@ public class Freezen : BulletPlayerSkill
             gameObject.SetActive(false);
     }
 
-    public void angleSet(float angle)
+    public void angleSet(float angle,Vector3 pos)
     {
         rightvec = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle));
         gameObject.GetComponent<BoxCollider2D>().enabled = true;
-    }
+		gameObject.transform.position = pos;
+		gameObject.transform.eulerAngles = new Vector3(0, 0, angle);
+		gameObject.SetActive(true);
+	}
 
 	public override void Crash(Monster monster)
 	{

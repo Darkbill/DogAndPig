@@ -12,15 +12,10 @@ public class SkillDash : Skill
 		coolTime,
 	}
 
-	eAttackType attackType = eAttackType.Wind;
-	private float damage;
-	List<Monster> Attack = new List<Monster>();
 	public override void SkillSetting()
 	{
 		skillID = 1;
 		PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
-		skillType = skillData.skillType;
-		target = skillData.target;
 		damage = skillData.optionArr[(int)eDashOption.Damage];
 		cooldownTime = skillData.optionArr[(int)eDashOption.coolTime];
 		delayTime = cooldownTime;
@@ -50,17 +45,18 @@ public class SkillDash : Skill
 	#endregion
 
 	public Alter Bullet;
-
-	private const int Count = 10;
 	public List<Alter> alterList = new List<Alter>();
-
-
-	bool AttackSet = false;
 	public GameObject StartDash;
+	private bool AttackSet = false;
+	private float damage;
+	private const int Count = 10;
+	private eAttackType attackType = eAttackType.Wind;
 
+
+
+	List<Monster> Attack = new List<Monster>();
 	public override void OnButtonDown()
 	{
-		base.OnButtonDown();
 		ActiveSkill();
 	}
 	public override void ActiveSkill()
@@ -70,7 +66,6 @@ public class SkillDash : Skill
 		StartDash.transform.position = GameMng.Ins.player.transform.position;
 		StartDash.GetComponent<ParticleSystem>().Play();
 		//테스트 코드
-
 		GameMng.Ins.player.playerStateMachine.ChangeState(ePlayerState.Dash);
 		Vector3 direction = GameMng.Ins.player.GetForward();
 		for (int i = 0; i < Count; ++i)

@@ -22,8 +22,6 @@ public class SkillExplosion : Skill
 	{
 		skillID = 9;
 		PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
-		skillType = skillData.skillType;
-		target = skillData.target;
 		damage = skillData.optionArr[(int)eExplosionSkillOption.Damage];
 		cooldownTime = skillData.optionArr[(int)eExplosionSkillOption.CoolTime];
 		throwTime = skillData.optionArr[(int)eExplosionSkillOption.ThrowTime];
@@ -51,7 +49,7 @@ public class SkillExplosion : Skill
 	{
 		for (int i = 0; i < explosionFireList.Count; ++i)
 		{
-			explosionFireList[i].Setting(skillType, damage, skillID, knockBackPower,throwTime,upScale);
+			explosionFireList[i].Setting(damage, skillID, knockBackPower,throwTime,upScale);
 		}
 	}
 	public override void OffSkill()
@@ -93,7 +91,7 @@ public class SkillExplosion : Skill
 			}
 		}
 		GameObject o = Instantiate(explosionFireList[0].gameObject);
-		o.GetComponent<ExplosionFire>().Setting(skillType, damage, skillID, knockBackPower, throwTime, upScale);
+		o.GetComponent<ExplosionFire>().Setting(damage, skillID, knockBackPower, throwTime, upScale);
 		explosionFireList.Add(o.GetComponent<ExplosionFire>());
 		return explosionFireList[explosionFireList.Count - 1];
 	}

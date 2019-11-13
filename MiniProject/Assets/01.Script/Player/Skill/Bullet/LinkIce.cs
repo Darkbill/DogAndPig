@@ -6,8 +6,8 @@ using UnityEngine;
 public class LinkIce : BulletPlayerSkill
 {
 	public float damage;
-	eAttackType Attacktype;
-	eBuffType bufftype;
+	eAttackType Attacktype = eAttackType.Water;
+	eBuffType bufftype = eBuffType.MoveSlow;
 	private int Id;
     private float per;
 	private float endTime;
@@ -18,17 +18,16 @@ public class LinkIce : BulletPlayerSkill
 
     private List<Monster> monsterpool;
 	private List<int> hitMonsterPool = new List<int>();
-	public void Setting(int id, float p, float _damage,eAttackType aType, eBuffType bType,float _endTime,float _changeValue,float iceSpeed,int mC)
+	public void Setting(int id, float p, float _damage,float _endTime,float _changeValue,float iceSpeed,int mC)
     {
         Id = id;
         per = p;
 		damage = _damage;
-		Attacktype = aType;
-		bufftype = bType;
 		endTime = _endTime;
 		changeValue = _changeValue;
 		speed = iceSpeed;
 		maxHitCount = mC;
+		gameObject.SetActive(false);
 	}
 	public void Setting()
 	{

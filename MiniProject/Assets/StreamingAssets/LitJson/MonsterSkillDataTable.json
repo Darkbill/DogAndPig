@@ -4,7 +4,6 @@
     "skillName": "fireDrop",
     "decal": "Default_Target",
     "skillType": 2,
-    "target": 1,
     "optionArr": [
       2,
       1,
@@ -16,7 +15,6 @@
     "skillName": "empty",
     "decal": "Default_Target",
     "skillType": 3,
-    "target": 1,
     "optionArr": [
       3,
       2,
@@ -28,7 +26,6 @@
     "skillName": "empty",
     "decal": "Default_Target",
     "skillType": 4,
-    "target": 1,
     "optionArr": [
       4,
       3,
@@ -40,7 +37,6 @@
     "skillName": "empty",
     "decal": "Default_Target",
     "skillType": 5,
-    "target": 1,
     "optionArr": [
       5,
       4,
@@ -52,7 +48,6 @@
     "skillName": "empty",
     "decal": "Default_Target",
     "skillType": 6,
-    "target": 1,
     "optionArr": [
       6,
       1,

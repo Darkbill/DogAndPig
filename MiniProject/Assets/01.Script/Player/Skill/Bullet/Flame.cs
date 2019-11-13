@@ -3,7 +3,7 @@ using GlobalDefine;
 public class Flame : BulletPlayerSkill
 {
 	private float damage;
-	private eAttackType attackType;
+	private eAttackType attackType = eAttackType.Fire;
 	public BoxCollider2D frameCollider;
 	private Vector3 dir;
 	private float speed;
@@ -12,10 +12,9 @@ public class Flame : BulletPlayerSkill
 	private float cTime;
 	private float dropSpeed;
 	private const float startScale = 0.75f;
-	public void Setting(eAttackType type,float _damage, float _upScaleSpeed,float _activeTime,float reSpeed)
+	public void Setting(float _damage, float _upScaleSpeed,float _activeTime,float reSpeed)
 	{
 		damage = _damage;
-		attackType = type;
 		upScaleSpeed = _upScaleSpeed;
 		activeTime = _activeTime;
 		dropSpeed = reSpeed;

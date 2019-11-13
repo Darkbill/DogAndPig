@@ -1,5 +1,4 @@
 ﻿using GlobalDefine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,8 +15,6 @@ public class SkillWaterPrison : Skill
     {
         skillID = 14;
         PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
-        skillType = skillData.skillType;
-        target = skillData.target;
         damage = skillData.optionArr[(int)eTripSkillOption.Damage];
         cooldownTime = skillData.optionArr[(int)eTripSkillOption.CoolTime];
         delayTime = cooldownTime;
@@ -40,10 +37,15 @@ public class SkillWaterPrison : Skill
         foreach(WaterBall o in waterlist)
             o.Setting(skillID, damage);
     }
-
-    #endregion
-
-    public List<WaterBall> waterlist = new List<WaterBall>();
+	public override void OffSkill()
+	{
+		foreach (WaterBall o in waterlist)
+			o.gameObject.SetActive(false);
+		prison.gameObject.SetActive(false);
+	}
+	#endregion
+	//TODO : 성민형 과제
+	public List<WaterBall> waterlist = new List<WaterBall>();
     public List<WaterBallHit> waterhitlist = new List<WaterBallHit>();
     public WaterPrison prison;
     //실제 쿨타임 도는 타이밍에 ActiveSkill();
@@ -61,12 +63,7 @@ public class SkillWaterPrison : Skill
         ActiveSkill();
         WaterSet();
     }
-	public override void OffSkill()
-	{
-        foreach (WaterBall o in waterlist)
-            o.gameObject.SetActive(false);
-        prison.gameObject.SetActive(false);
-	}
+
 	private void WaterSet()
     {
         Vector3 movevec = GameMng.Ins.player.GetForward();
@@ -81,6 +78,7 @@ public class SkillWaterPrison : Skill
 
         WaterBall o = Instantiate(waterlist[0], GameMng.Ins.skillMng.transform);
         o.gameObject.SetActive(true);
+		//값세팅
         SetBullet();
         o.BulletBase(movevec);
         waterlist.Add(o);

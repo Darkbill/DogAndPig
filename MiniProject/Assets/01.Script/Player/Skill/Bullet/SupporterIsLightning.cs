@@ -27,6 +27,7 @@ public class SupporterIsLightning : BulletPlayerSkill
         Speed = _speed;
         damage = _damage;
 		gameObject.transform.parent = GameMng.Ins.skillMng.transform;
+		gameObject.SetActive(false);
     }
     public void SetPosition(Vector3 pos)
 	{

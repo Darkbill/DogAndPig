@@ -19,8 +19,6 @@ public class SkillSupporterIsLightning : Skill
     {
         skillID = 15;
         PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
-        skillType = skillData.skillType;
-        target = skillData.target;
         damage = skillData.optionArr[(int)eSupporterIsLightningSkillOption.Damage];
         cooldownTime = skillData.optionArr[(int)eSupporterIsLightningSkillOption.CoolTime];
         attackspeed = skillData.optionArr[(int)eSupporterIsLightningSkillOption.AttackSpeed];
@@ -36,10 +34,15 @@ public class SkillSupporterIsLightning : Skill
             case eSkillOption.Damage:
                 damage += damage * changeValue;
                 break;
-                //TODO : skill15의 옵션은 소환수의 공격속도로?
             case eSkillOption.CoolTime:
-                attackspeed += attackspeed * changeValue;
+                cooldownTime -= cooldownTime * changeValue;
                 break;
+			case eSkillOption.Speed:
+				attackspeed += attackspeed * changeValue;
+				break;
+			case eSkillOption.ActiveTime:
+				skillendtime += skillendtime * changeValue;
+				break;
         }
     }
     public override void SetBullet()

@@ -20,8 +20,6 @@ public class SkillHercules : Skill
 	{
 		skillID = 4;
 		PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
-		skillType = skillData.skillType;
-		target = skillData.target;
 		damage = skillData.optionArr[(int)eHerculesOption.Damage];
 		buftime = skillData.optionArr[(int)eHerculesOption.BufTime];
 		cooldownTime = skillData.optionArr[(int)eHerculesOption.CoolTime];

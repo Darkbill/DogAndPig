@@ -5,8 +5,6 @@ public class PlayerSkillData : TableBase
 	public string skillName;
 	public eSkillActiveType activeType;
 	public int price;
-	public eAttackType skillType;
-	public eSkillType target;
 	public float[] optionArr;
 	public int[] changeAbleOption;
 	public PlayerSkillData()

@@ -20,8 +20,6 @@ public class SkillIceNova : Skill
 	{
 		skillID = 8;
 		PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
-		skillType = skillData.skillType;
-		target = skillData.target;
 		damage = skillData.optionArr[(int)eNovaSkillOption.Damage];
 		cooldownTime = skillData.optionArr[(int)eNovaSkillOption.CoolTime];
 		delayTime = cooldownTime;
@@ -45,11 +43,12 @@ public class SkillIceNova : Skill
 	}
 	public override void SetBullet()
 	{
-
+		nova.Setting(skillID, debufPer /* slow per*/, damage, slowPer, debufEndTime);
+		nova.transform.parent = GameMng.Ins.skillMng.transform;
 	}
 	public override void OffSkill()
 	{
-
+		nova.gameObject.SetActive(false);
 	}
 	#endregion
 
@@ -59,16 +58,10 @@ public class SkillIceNova : Skill
 	{
 		base.OnButtonDown();
 		ActiveSkill();
-	}
-	public override void ActiveSkill()
-	{
-		nova.Setting(skillID, debufPer /* slow per*/, damage, slowPer, debufEndTime);
 		gameObject.transform.position = GameMng.Ins.player.transform.position +
-			new Vector3(0, GameMng.Ins.player.calStat.size * 3);
+										new Vector3(0, GameMng.Ins.player.calStat.size * 3);
 		nova.transform.position = GameMng.Ins.player.transform.position;
-		nova.transform.parent = GameMng.Ins.skillMng.transform;
 		nova.gameObject.SetActive(true);
-		base.ActiveSkill();
 	}
 	public override void OnDrag()
 	{

@@ -20,17 +20,11 @@ public class SkillThounderCalling : Skill
 	{
 		skillID = 13;
 		PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
-		skillType = skillData.skillType;
-		target = skillData.target;
 		damage = skillData.optionArr[(int)eThoumderOption.Damage];
 		cooldownTime = skillData.optionArr[(int)eThoumderOption.CoolTime];
 		maxcount = skillData.optionArr[(int)eThoumderOption.MaxCount];
 		randrange = (int)skillData.optionArr[(int)eThoumderOption.RandRange];
 		delayTime = cooldownTime;
-		for (int i = 0; i < thounderlist.Count; ++i)
-		{
-			thounderlist[i].transform.parent = GameMng.Ins.skillMng.transform;
-		}
 		gameObject.SetActive(false);
 	}
 	public override void SetItemBuff(eSkillOption type, float changeValue)
@@ -48,7 +42,7 @@ public class SkillThounderCalling : Skill
 	public override void SetBullet()
 	{
         foreach (Thounder o in thounderlist)
-            o.Setting(skillID, damage);
+            o.Setting(damage);
 	}
 	public override void OffSkill()
 	{
@@ -67,19 +61,10 @@ public class SkillThounderCalling : Skill
 	{
 		GameMng.Ins.SetSkillAim(skillID);
 		ActiveSkill();
-	}
-	public override void ActiveSkill()
-	{
-		base.ActiveSkill();
 		count = 0;
-	}
-	public override void OnDrag()
-	{
-		base.OnDrag();
 	}
 	public override void OnDrop()
 	{
-		base.OnDrop();
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		startpos = new Vector3(mousePos.x, mousePos.y, 0);
 		skillOn = true;
@@ -92,7 +77,7 @@ public class SkillThounderCalling : Skill
 			SkillCall();
 		}
 	}
-
+	//TODO : 성민형 과제
 	private void SkillCall()
 	{
 		thounderlist[0].transform.position = startpos;
