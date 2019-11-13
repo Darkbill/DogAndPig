@@ -72,7 +72,6 @@ public class SkillRoundTrip : Skill
 	{
 		base.OnDrop();
 		ActiveSkill();
-
 		Vector3 movevec = GameMng.Ins.player.GetForward();
 		for (int i = 0; i < recognition.Count; ++i)
 		{

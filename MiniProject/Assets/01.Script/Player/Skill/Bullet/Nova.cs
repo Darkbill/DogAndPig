@@ -29,8 +29,6 @@ public class Nova : BulletPlayerSkill
 		effectCnt = 0;
         collider2d.size = new Vector2(0, 0);
     }
-
-
     private void FixedUpdate()
     {
         if(effectCnt >= 5)
@@ -38,7 +36,8 @@ public class Nova : BulletPlayerSkill
             gameObject.SetActive(false);
             return;
         }
-        collider2d.size += fixedUpSiz;
+		gameObject.transform.position = GameMng.Ins.player.transform.position;
+		collider2d.size += fixedUpSiz;
         if (!particlesystem[1].isPlaying)
         {
             for(int i = 0;i<particlesystem.Count;++i)

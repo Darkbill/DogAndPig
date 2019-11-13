@@ -40,8 +40,8 @@ public class FireBall : BulletPlayerSkill
 			gameObject.SetActive(false);
 		}
 		delayTime += Time.deltaTime;
-        StartCoroutine(CircleSet());
-        if(!rotateset)
+		if(gameObject.activeSelf == true) StartCoroutine(CircleSet());
+		if (!rotateset)
         {
             gameObject.transform.position = GameMng.Ins.player.transform.position + BulletMovVec;
             BulletMovVec = Quaternion.Euler(0, 0, speed) * BulletMovVec;

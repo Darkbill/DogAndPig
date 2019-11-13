@@ -74,13 +74,11 @@ public class SkillIceNova : Skill
 	private void Update()
 	{
 		delayTime += Time.deltaTime;
-		moveset();
 	}
 
 	private void moveset()
 	{
-		gameObject.transform.position = GameMng.Ins.player.transform.position +
-			new Vector3(0, GameMng.Ins.player.calStat.size * 3);
-		nova.transform.position = GameMng.Ins.player.transform.position;
+		//gameObject.transform.position = GameMng.Ins.player.transform.position +
+		//	new Vector3(0, GameMng.Ins.player.calStat.size * 3);
 	}
 }

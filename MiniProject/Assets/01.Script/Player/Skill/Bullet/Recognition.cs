@@ -26,12 +26,12 @@ public class Recognition : BulletPlayerSkill
 	}
 	public void Setting(Vector3 pos, Vector3 moveVec)
     {
-        gameObject.transform.position = pos;
+		gameObject.SetActive(true);
+		gameObject.transform.position = pos;
         bulletMovevec = moveVec;
         pokRange = 0;
         particle.Play();
         turnOn = false;
-		gameObject.SetActive(true);
     }
 
     private void Update()
