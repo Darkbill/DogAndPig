@@ -17,28 +17,26 @@ public class Lightning : BulletPlayerSkill
     public int SplitCnt;
     public float Speed;
 	private float buffEndTime;
-	private float buffActivePer;
 
     private const float splitCnt = 4;
 	List<Lightning> lightningList = new List<Lightning>();
 
-    public void Setting(int id, int splitcnt, float p, float damage,float _buffEndTime)
+    public void Setting(int id, float p, float damage,float _buffEndTime)
     {
         Id = id;
         per = p;
-        SetTimer = 0.0f;
-        SplitCnt = splitcnt;
-        MaxTimer = SplitCnt;
-        Speed = (Rand.Random() % 10 / 3 + 1f) / 2;
-        SetTimer = 0.0f;
 		buffEndTime = _buffEndTime;
 		gameObject.SetActive(false);
 	}
-	public void Setting(Vector3 pos,Quaternion angle)
+	public void Setting(Vector3 pos,Quaternion angle, int splitcnt)
 	{
-		gameObject.transform.position = pos;
+        Speed = (Rand.Random() % 10 / 3 + 1f) / 2;
+        gameObject.transform.position = pos;
 		gameObject.transform.rotation = angle;
-		gameObject.SetActive(true);
+        SplitCnt = splitcnt;
+        MaxTimer = SplitCnt;
+        SetTimer = 0.0f;
+        gameObject.SetActive(true);
 	}
     private void Update()
     {
@@ -71,23 +69,28 @@ public class Lightning : BulletPlayerSkill
         {
             if (lightningList.Count == i)
             {
-                Lightning light = Instantiate(
-                    this,
-                    gameObject.transform.position,
-                    Quaternion.Euler(0, 0, 180 * 2 / 4 * Count + randnum));
-                light.transform.parent = GameMng.Ins.skillMng.transform;
-                light.Setting(Id, SplitCnt - 1, per, damage, buffEndTime);
-                lightningList.Add(light);
+                GameObject light = Instantiate(gameObject, GameMng.Ins.skillMng.transform);
+                light.GetComponent<Lightning>().Setting(Id, per, damage, buffEndTime);
+                light.GetComponent<Lightning>().Setting(gameObject.transform.position,
+                                    Quaternion.Euler(0, 0, 180 * 2 / 4 * Count + randnum),
+                                    SplitCnt - 1);
+                lightningList.Add(light.GetComponent<Lightning>());
                 ++Count;
             }
             if (!lightningList[i].gameObject.activeSelf)
             {
-                lightningList[i].transform.position = gameObject.transform.position;
-                lightningList[i].transform.rotation = Quaternion.Euler(0, 0, 180 * 2 / 4 * Count + randnum);
-                lightningList[i].Setting(Id, SplitCnt - 1, per, damage, buffEndTime);
-                lightningList[i].gameObject.SetActive(true);
+                lightningList[i].Setting(gameObject.transform.position, 
+                    Quaternion.Euler(0, 0, 180 * 2 / 4 * Count + randnum), 
+                    SplitCnt - 1);
                 ++Count;
             }
         }
+    }
+    
+    public void OffSkillSet()
+    {
+        foreach (Lightning o in lightningList)
+            o.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

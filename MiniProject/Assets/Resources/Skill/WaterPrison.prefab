@@ -52,7 +52,9 @@ MonoBehaviour:
   activeFlag: 0
   waterlist:
   - {fileID: 209215420049142209}
-  prison: {fileID: 2511328198719576893}
+  waterhitlist: []
+  prison:
+  - {fileID: 2511328198719576893}
 --- !u!1 &1053848237740358493
 GameObject:
   m_ObjectHideFlags: 0

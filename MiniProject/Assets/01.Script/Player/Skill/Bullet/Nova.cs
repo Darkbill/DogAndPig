@@ -16,6 +16,7 @@ public class Nova : BulletPlayerSkill
 
     public List<ParticleSystem> particlesystem;
     public CapsuleCollider2D collider2d;
+    public GameObject orbParticle;
 
     private Vector2 fixedUpSiz = new Vector2(3.0f / 20, 1.3f / 20);
 
@@ -26,18 +27,30 @@ public class Nova : BulletPlayerSkill
 		damage = _damage;
 		slowPer = _slowPer;
 		endTime = _endTime;
-		effectCnt = 0;
+        orbParticle.transform.parent = GameMng.Ins.skillMng.transform;
+    }
+
+    public void SystemSetting()
+    {
+        effectCnt = 0;
+        gameObject.SetActive(true);
         collider2d.size = new Vector2(0, 0);
+        orbParticle.SetActive(true);
+        orbParticle.GetComponent<ParticleSystem>().Simulate(0.1f);
+        orbParticle.GetComponent<ParticleSystem>().Play();
     }
     private void FixedUpdate()
     {
         if(effectCnt >= 5)
         {
             gameObject.SetActive(false);
+            orbParticle.SetActive(false);
             return;
         }
 		gameObject.transform.position = GameMng.Ins.player.transform.position;
-		collider2d.size += fixedUpSiz;
+        orbParticle.transform.position = GameMng.Ins.player.transform.position +
+                                        new Vector3(0, GameMng.Ins.player.calStat.size * 3);
+        collider2d.size += fixedUpSiz;
         if (!particlesystem[1].isPlaying)
         {
             for(int i = 0;i<particlesystem.Count;++i)

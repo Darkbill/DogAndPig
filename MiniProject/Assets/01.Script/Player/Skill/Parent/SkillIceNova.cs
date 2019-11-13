@@ -48,6 +48,7 @@ public class SkillIceNova : Skill
 	}
 	public override void OffSkill()
 	{
+        nova.orbParticle.SetActive(false);
 		nova.gameObject.SetActive(false);
 	}
 	#endregion
@@ -58,10 +59,7 @@ public class SkillIceNova : Skill
 	{
 		base.OnButtonDown();
 		ActiveSkill();
-		gameObject.transform.position = GameMng.Ins.player.transform.position +
-										new Vector3(0, GameMng.Ins.player.calStat.size * 3);
-		nova.transform.position = GameMng.Ins.player.transform.position;
-		nova.gameObject.SetActive(true);
+        nova.SystemSetting();
 	}
 	public override void OnDrag()
 	{
@@ -74,11 +72,5 @@ public class SkillIceNova : Skill
 	private void Update()
 	{
 		delayTime += Time.deltaTime;
-	}
-
-	private void moveset()
-	{
-		//gameObject.transform.position = GameMng.Ins.player.transform.position +
-		//	new Vector3(0, GameMng.Ins.player.calStat.size * 3);
 	}
 }
