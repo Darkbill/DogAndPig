@@ -1,14 +1,24 @@
-﻿using System;
+﻿using GlobalDefine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Meteor : MonoBehaviour
 {
+    eAttackType Attacktype = eAttackType.Fire;
+
     public Vector3 pos = new Vector3();
-    private const float radius = 0.8f;
-    private const float damage = 10.0f;
-    public void Setting()
+    public float radius;
+    public float damage;
+
+    public void Setting(float _radius, float _damage)
+    {
+        radius = _radius;
+        damage = _damage;
+    }
+
+    public void SystemSetting()
     {
         gameObject.GetComponent<ParticleSystem>().Play();
         OnPlayerEnterHit();
@@ -20,6 +30,10 @@ public class Meteor : MonoBehaviour
         if(range < radius)
         {
             GameMng.Ins.player.Damage(GlobalDefine.eAttackType.Fire, damage);
+            GameMng.Ins.HitToEffect(Attacktype,
+                        GameMng.Ins.player.transform.position + new Vector3(0, GameMng.Ins.player.calStat.size),
+                        gameObject.transform.position,
+                        GameMng.Ins.player.calStat.size);
         }
     }
 

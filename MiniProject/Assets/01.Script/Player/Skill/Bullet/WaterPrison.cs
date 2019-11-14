@@ -31,6 +31,7 @@ public class WaterPrison : BulletPlayerSkill
 
     public override void Crash(Monster monster)
     {
+        //if(monster == null)
         monster.Damage(Attacktype, 
             GameMng.Ins.player.calStat.damage, 
             damage, 

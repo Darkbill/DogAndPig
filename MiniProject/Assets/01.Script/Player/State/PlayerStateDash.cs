@@ -11,6 +11,8 @@ public class PlayerStateDash : PlayerState
     Vector3 target = new Vector3();
     Vector3 movVec = new Vector3();
 	Vector3 dir;
+
+    bool notDash = false;
     public PlayerStateDash(Player o) : base(o)
     {
     }
@@ -20,6 +22,8 @@ public class PlayerStateDash : PlayerState
 		dir = playerObject.GetForward();
 		movVec = dir * Range;
         target = playerObject.transform.position + movVec;
+        playerObject.GetComponent<CapsuleCollider2D>().enabled = false;
+        notDash = false;
     }
 
     public override bool OnTransition()
@@ -31,6 +35,21 @@ public class PlayerStateDash : PlayerState
         {
             return true;
         }
+        //TODO : 대쉬 몬스터 충돌 시 멈춤
+        //var monsterpool = GameMng.Ins.monsterPool.monsterList;
+        //notDash = false;
+        //foreach (Monster o in monsterpool)
+        //{
+        //    if((target - o.transform.position).magnitude < o.monsterData.size + playerObject.calStat.size)
+        //    {
+        //        notDash = true;
+        //        break;
+        //    }
+        //}
+        //RaycastHit2D hitmonster = 
+        //    Physics2D.Raycast(ray.origin, ray.direction, playerObject.calStat.size, 1 << LayerMask.NameToLayer("Default"));
+        //if (hitmonster.collider.CompareTag("Monster") && notDash)
+        //    return false;
         return false;
     }
 
@@ -45,9 +64,9 @@ public class PlayerStateDash : PlayerState
     }
     public override void OnEnd()
     {
-
+        playerObject.GetComponent<CapsuleCollider2D>().enabled = true;
     }
-    
+
     public void Dash()
     {
         if (Vector3.Distance(playerObject.transform.position, target) > 0.5f)

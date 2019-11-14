@@ -33,18 +33,18 @@ public class SkillBurningMeteor : Skill
 
     public Meteor meteor;
 
-	private const int MaxCount = 30;
+	private const int MaxCount = 10;
 	private const int Radius = 10;
-	private int Count = 0;
+	private int Count;
+
+    private float bulletradius = 0.9f;
 
     public List<Meteor> MeteorList = new List<Meteor>();
 
 	bool skillbut = false;
-
-	private float worldtargettimer = 0.0f;
-
     public override void ActiveSkill()
 	{
+        Count = 2;
 		base.ActiveSkill();
 	}
 	public override void SetBullet()
@@ -71,6 +71,7 @@ public class SkillBurningMeteor : Skill
                 Quaternion.Euler(60, 0, 0),
                 gameObject.transform);
             o.gameObject.SetActive(false);
+            o.Setting(bulletradius, damage);
             MeteorList.Add(o);
         }
 
@@ -108,18 +109,13 @@ public class SkillBurningMeteor : Skill
                     break;
                 continue;
             }
-
             o = new Vector3((float)Rand.Range((int)-mapsiz.x, (int)mapsiz.x) / 10,
                 (float)Rand.Range((int)-mapsiz.y, (int)mapsiz.y) / 10, 0);
-            if ((MeteorList[i].transform.position + o).x < -DefineClass.MapSizX / 10 ||
-                (MeteorList[i].transform.position + o).x > DefineClass.MapSizX / 10 ||
-                (MeteorList[i].transform.position + o).y < -DefineClass.MapSizY / 10 ||
-                (MeteorList[i].transform.position + o).y > DefineClass.MapSizY / 10)
-
+            if (CheckForOutMap(MeteorList[i], o, i))
             {
-				--i;
-				continue;
-			}
+                --i;
+                continue;
+            }
             MeteorList[i].transform.position = o;
             GameMng.Ins.objectPool.effectPool.GetHitTargetEff(MeteorList[i].transform.position,skillID);
 
@@ -128,6 +124,25 @@ public class SkillBurningMeteor : Skill
 		}
         skillbut = false;
 	}
+
+    private bool CheckForOutMap(Meteor _meteor, Vector3 _randvec, int _index)
+    {
+        Vector3 pos = _meteor.transform.position + _randvec;
+
+        if (pos.x < -DefineClass.MapSizX / 10 ||
+                pos.x > DefineClass.MapSizX / 10 ||
+                pos.y < -DefineClass.MapSizY / 10 ||
+                pos.y > DefineClass.MapSizY / 10)
+            return false;
+
+        for(int i = 0;i<_index;++i)
+        {
+            if ((MeteorList[i].transform.position - pos).magnitude < bulletradius)
+                return false;
+        }
+        return true;
+    }
+
     public void MeteorRun(Vector3 pos)
     {
         for(int i = 0;i<MeteorList.Count;++i)
@@ -135,7 +150,7 @@ public class SkillBurningMeteor : Skill
             if(!MeteorList[i].gameObject.activeSelf)
             {
                 MeteorList[i].transform.position = pos;
-                MeteorList[i].Setting();
+                MeteorList[i].SystemSetting();
                 MeteorList[i].gameObject.SetActive(true);
                 break;
             }
