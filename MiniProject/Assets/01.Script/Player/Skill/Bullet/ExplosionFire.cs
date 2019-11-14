@@ -57,6 +57,13 @@ public class ExplosionFire : BulletPlayerSkill
 		thrower.SetActive(true);
 		StartCoroutine(Throw(mousePos));
 	}
+	internal void StartThrow(Vector2 pos)
+	{
+		Vector3 mousePos = Camera.main.ScreenToWorldPoint(pos);
+		mousePos = new Vector3(mousePos.x, mousePos.y, 0);
+		thrower.SetActive(true);
+		StartCoroutine(Throw(mousePos));
+	}
 	IEnumerator Throw(Vector3 pos)
 	{
 		thrower.gameObject.transform.position = GameMng.Ins.player.transform.position + new Vector3(0, GameMng.Ins.player.calStat.size, 0);

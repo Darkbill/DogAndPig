@@ -150,8 +150,15 @@ public class GameMng : MonoBehaviour
 	public void EndSkillAim()
 	{
 		//에임 필요한 스킬 발동 후 드래그 종료시 호출 //컴퓨터 빌드시 AimState에서, 모바일 빌드시 터치End일 때 호출
-		//ActiveSkill(aimSkillID);
 		skillMng.skillDict[aimSkillID].OnDrop();
+		player.isAim = false;
+		UIMngInGame.Ins.OnSkillDrop();
+		aimSkillID = -1;
+	}
+	public void EndSkillAim(Vector2 pos)
+	{
+		//모바일빌드 시 마우스위치가 아닌 터치위치 기반으로 스킬 발동
+		skillMng.skillDict[aimSkillID].OnDrop(pos);
 		player.isAim = false;
 		UIMngInGame.Ins.OnSkillDrop();
 		aimSkillID = -1;

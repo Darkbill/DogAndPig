@@ -41,5 +41,9 @@ public abstract class Skill : MonoBehaviour
 	{
 
 	}
+	public virtual void OnDrop(Vector2 pos)
+	{
+
+	}
 	public abstract void OffSkill();
 }

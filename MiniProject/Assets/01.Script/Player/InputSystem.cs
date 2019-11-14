@@ -10,6 +10,7 @@ public class InputSystem : MonoBehaviour
 	private void Update()
 	{
 		/* 컴퓨터 빌드 */
+#if UNITY_EDITOR_WIN
 		if (Input.GetMouseButtonDown(0))
 		{
 			if (isSkillDrag)
@@ -39,7 +40,7 @@ public class InputSystem : MonoBehaviour
             UIMngInGame.Ins.InerruptGame(0);
             UIMngInGame.Ins.InerruptGameSet();
         }
-
+#else
 		/* 모바일 빌드 */
 		if (Input.touchCount > 0)
 		{
@@ -55,12 +56,13 @@ public class InputSystem : MonoBehaviour
 					}
 					else if (tempTouchs.fingerId == skillTouchID)
 					{
-						GameMng.Ins.EndSkillAim();
+						GameMng.Ins.EndSkillAim(tempTouchs.position);
 						skillTouchID = -1;
 					}
 				}
 				else if (tempTouchs.phase == TouchPhase.Began)
 				{
+					Debug.Log(isSkillDrag);
 					if (isSkillDrag)
 					{
 						UIMngInGame.Ins.OnSkillDrag(tempTouchs.fingerId);
@@ -75,5 +77,6 @@ public class InputSystem : MonoBehaviour
 				}
 			}
 		}
+#endif
 	}
 }

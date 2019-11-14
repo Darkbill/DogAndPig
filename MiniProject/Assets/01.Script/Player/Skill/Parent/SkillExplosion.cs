@@ -76,6 +76,12 @@ public class SkillExplosion : Skill
 		ActiveSkill();
 		GetActiveAbleExplosion().StartThrow();
 	}
+	public override void OnDrop(Vector2 pos)
+	{
+		base.OnDrop();
+		ActiveSkill();
+		GetActiveAbleExplosion().StartThrow(pos);
+	}
 	private void Update()
 	{
 		delayTime += Time.deltaTime;
