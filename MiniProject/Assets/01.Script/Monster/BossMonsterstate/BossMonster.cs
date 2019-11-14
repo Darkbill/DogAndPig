@@ -8,6 +8,7 @@
         ColliderOnOff(false);
         GameMng.Ins.objectPool.goodmng.RunningSelect(1, 10, gameObject.transform.position);
         GameMng.Ins.objectPool.goodmng.RunningSelect(2, 5, gameObject.transform.position);
+		GameMng.Ins.AddExp(true);
         BossSkill01.SkillButtonOff();
     }
 	public override void DamageResult(int d)

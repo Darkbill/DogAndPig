@@ -97,7 +97,7 @@ public class PlayerInfoUI : MonoBehaviour
 	}
 	public void AddEXP()
 	{
-		expImage.fillAmount = GameMng.Ins.player.GetEXPFill();
+		RenewPlayerInfo();
 	}
 	public void StageStart()
 	{

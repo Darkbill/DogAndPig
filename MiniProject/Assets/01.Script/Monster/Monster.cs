@@ -152,7 +152,6 @@ public class Monster : MonoBehaviour
 		active = false;
 		ColliderOnOff(false);
 		GameMng.Ins.MonsterDead();
-		GameMng.Ins.AddEXP(GameMng.stageLevel);
 	}
 	#endregion
 

@@ -57,13 +57,14 @@ public class GameMng : MonoBehaviour
 	{
 		JsonMng.Ins.playerInfoDataTable.playerLevel = 1;
 		JsonMng.Ins.playerInfoDataTable.exp = 0;
-		AddEXP(exp);
+		AddExpToValue(exp);
 		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
 	}
 	public void StageClear()
 	{
         objectPool.goodmng.AllRunningSelect();
         portal.NextStagePotal();
+		AddExp(false);
 	}
 	public void StartStage()
 	{
@@ -86,7 +87,7 @@ public class GameMng : MonoBehaviour
 	public void WorldClear()
 	{
 		Time.timeScale = 0;
-		JsonMng.Ins.playerInfoDataTable.clearLevel++;
+		if(worldLevel == JsonMng.Ins.playerInfoDataTable.clearLevel + 1) JsonMng.Ins.playerInfoDataTable.clearLevel++;
 		UIMngInGame.Ins.AllClear();
 	}
 	public void MonsterDead()
@@ -116,9 +117,16 @@ public class GameMng : MonoBehaviour
 		JsonMng.Ins.playerInfoDataTable.AddDiamond(dia);
 		UIMngInGame.Ins.AddDiamond(dia);
 	}
-	public void AddEXP(int exp)
+	public void AddExpToValue(int exp)
 	{
+		//테스트용 함수
 		player.AddEXP(exp);
+		UIMngInGame.Ins.AddEXP();
+	}
+	public void AddExp(bool isBoss)
+	{
+		if(isBoss) player.AddEXP(worldLevel * worldLevel * stageLevel * 3);
+		else player.AddEXP(worldLevel * worldLevel * stageLevel);
 		UIMngInGame.Ins.AddEXP();
 	}
 	public void ActiveSkill(int skillID)
