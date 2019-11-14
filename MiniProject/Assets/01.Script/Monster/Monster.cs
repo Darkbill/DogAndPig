@@ -121,12 +121,12 @@ public class Monster : MonoBehaviour
 	}
 	public void Damage(eAttackType attackType, float damage, float skillDamage)
 	{
-		float d = (damage + skillDamage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
+		float d = (damage * skillDamage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
 		DamageResult((int)d);
 	}
 	public void Damage(eAttackType attackType, float PlayerDmage, float skillDamage, ConditionData condition, float activePer)
 	{
-		float d = (PlayerDmage + skillDamage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
+		float d = (PlayerDmage * skillDamage - monsterData.armor) * monsterData.GetResist(attackType).CalculatorDamage();
 		bool isBuff = monsterData.GetResist(attackType).GetBuff(activePer);
 		if (isBuff)
 		{
