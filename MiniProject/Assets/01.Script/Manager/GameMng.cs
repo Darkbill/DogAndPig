@@ -29,6 +29,7 @@ public class GameMng : MonoBehaviour
 	public ObjectPool objectPool;
 	public InputSystem inputSystem;
 	public Portal portal;
+	public HPUIMng hpUIMng;
 	//테스트코드
 	public static int stageLevel;
 	public static int worldLevel;
@@ -159,5 +160,9 @@ public class GameMng : MonoBehaviour
 		aimSkillID = -1;
 		player.isAim = false;
 		UIMngInGame.Ins.OffSkillAim();
+	}
+	public void SetHPMonster(Monster monster)
+	{
+		hpUIMng.Setting(monster);
 	}
 }

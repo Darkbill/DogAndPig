@@ -18,11 +18,11 @@ public class PlayerInfoUI : MonoBehaviour
 	private Vector3 healthGageImagePos;
 	private Coroutine fillCoroutine;
 	private float saveDamage = 0;
-
+	public GameObject playerInfoUI;
 	public void Setting()
 	{
 		RenewPlayerInfo();
-		healthGageImagePos = healthGageImage.transform.position;
+		healthGageImagePos = healthGageImage.transform.localPosition;
 	}
 	public void RenewPlayerInfo()
 	{
@@ -31,8 +31,7 @@ public class PlayerInfoUI : MonoBehaviour
 		diaText.text = JsonMng.Ins.playerInfoDataTable.diamond.ToString();
 		float cHp = GameMng.Ins.player.calStat.healthPoint;
 		if (cHp < 0) cHp = 0;
-		healthText.text = string.Format("{0} / {1} ", cHp,
-			GameMng.Ins.player.GetFullHP());
+		healthText.text = cHp.ToString();
 		healthGageImage.fillAmount = cHp / GameMng.Ins.player.GetFullHP();
 		stageLevelText.text = GameMng.stageLevel.ToString();
 		expImage.fillAmount = GameMng.Ins.player.GetEXPFill();
@@ -52,8 +51,7 @@ public class PlayerInfoUI : MonoBehaviour
 		fillCoroutine = StartCoroutine(IEDamageToPlayer(damage, saveDamage, 0.5f));
 		float cHp = GameMng.Ins.player.calStat.healthPoint;
 		if (cHp < 0) cHp = 0;
-		healthText.text = string.Format("{0} / {1} ", cHp,
-			GameMng.Ins.player.GetFullHP());
+		healthText.text = cHp.ToString();
 	}
 	IEnumerator IEDamageToPlayer(int damage, float save, float duration)
 	{
@@ -77,8 +75,7 @@ public class PlayerInfoUI : MonoBehaviour
 	}
 	private void OnPlayerDamageHPShake()
 	{
-		healthGageImage.transform.position = healthGageImagePos;
-		healthGageImage.transform.DOShakePosition(0.1f, 10.0f, 10, 90, false, true).OnComplete(() => { healthGageImage.transform.position = healthGageImagePos; });
+		healthGageImage.transform.DOShakePosition(0.1f, 10.0f, 10, 90, false, true).OnComplete(() => { healthGageImage.transform.localPosition = healthGageImagePos; });
 	}
 	public void AddGold(int gold)
 	{
@@ -108,5 +105,9 @@ public class PlayerInfoUI : MonoBehaviour
 		stageLevelText.transform.localScale = new Vector3(2, 2, 2);
 		stageLevelText.transform.DOScale(1, 0.5f);
 		//TODO : NextStage연출
+	}
+	private void Update()
+	{
+		playerInfoUI.transform.position = GameMng.Ins.player.transform.position + new Vector3(0,1,0);
 	}
 }

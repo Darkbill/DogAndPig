@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using GlobalDefine;
+﻿using GlobalDefine;
 public class GhoulMonsterStateMachine : StateMachine
 {
 	public GhoulMonster monster;

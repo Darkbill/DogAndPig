@@ -93,8 +93,10 @@ public class MonsterPool : MonoBehaviour
 		for (int i = 0; i < stageDataTable.Count; ++i)
 		{
 			monsterList[spawnMonsterCount].gameObject.SetActive(true);
-			SelectEffect(monsterList[spawnMonsterCount].transform.position);
 			if (stageDataTable[i].boss == 1) SetBossInfo(spawnMonsterCount);
+			else GameMng.Ins.SetHPMonster(monsterList[spawnMonsterCount]);
+			SelectEffect(monsterList[spawnMonsterCount].transform.position);
+			
 			spawnMonsterCount++;
 		}
 	}
