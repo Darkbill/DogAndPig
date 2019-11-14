@@ -76,13 +76,13 @@ public class SkillSpawnFireArrow : Skill
 		base.OnButtonDown();
 		GameMng.Ins.SetSkillAim(skillID);
 	}
-	public override void OnDrag()
-	{
-		base.OnDrag();
-	}
 	public override void OnDrop()
 	{
-		base.OnDrop();
+		ActiveSkill();
+		CreateGate();
+	}
+	public override void OnDrop(Vector2 pos)
+	{
 		ActiveSkill();
 		CreateGate();
 	}

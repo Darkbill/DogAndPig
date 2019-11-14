@@ -127,4 +127,9 @@ public class SkillFlameThrower : Skill
 		base.OnDrop();
 		activeFlag = false;
 	}
+	public override void OnDrop(Vector2 pos)
+	{
+		base.OnDrop();
+		activeFlag = false;
+	}
 }
