@@ -62,7 +62,6 @@ public class InputSystem : MonoBehaviour
 				}
 				else if (tempTouchs.phase == TouchPhase.Began)
 				{
-					Debug.Log(isSkillDrag);
 					if (isSkillDrag)
 					{
 						UIMngInGame.Ins.OnSkillDrag(tempTouchs.fingerId);

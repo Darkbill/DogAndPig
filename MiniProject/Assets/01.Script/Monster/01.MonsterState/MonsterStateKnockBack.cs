@@ -33,14 +33,13 @@ public class MonsterStateKnockBack : MonsterStateBase
         foreach(Ray2D ray in rayarray)
         {
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 0.5f, 1 << LayerMask.NameToLayer("Wall"));
-            if (hit.collider == null) break;
+            if (hit.collider == null) continue;
             if (hit.collider.CompareTag("Wall"))
                 return true;
         }
 
         if (setspeed <= 0)
 		{
-			monsterObject.StateMachine.ChangeStateIdle();
 			return true;
 		}
 		return false;
@@ -48,7 +47,11 @@ public class MonsterStateKnockBack : MonsterStateBase
 
 	public override void Tick()
 	{
-		if (OnTransition() == true) return;
+		if (OnTransition() == true)
+		{
+			monsterObject.StateMachine.ChangeStateIdle();
+			return;
+		}
 		KnockBack();
 	}
 

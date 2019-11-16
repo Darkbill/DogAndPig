@@ -7,8 +7,14 @@ public class Aim : MonoBehaviour
 	public void SetTouchID(int _touchID)
 	{
 		touchID = _touchID;
+		gameObject.SetActive(true);
+		SetPos();
 	}
 	void Update()
+	{
+		SetPos();
+	}
+	private void SetPos()
 	{
 #if UNITY_EDITOR_WIN
 		gameObject.transform.position = Input.mousePosition;
@@ -23,6 +29,5 @@ public class Aim : MonoBehaviour
 			}
 		}
 #endif
-
 	}
 }

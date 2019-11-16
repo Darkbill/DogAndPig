@@ -136,7 +136,7 @@ public class GameMng : MonoBehaviour
 	public void SetSkillAim(int skillID)
 	{
 		//에임이 필요한 스킬 발동시 호출
-		if (aimSkillID != -1) OffSkillAim();
+		OffSkillAim();
 		aimSkillID = skillID;
 		inputSystem.isSkillDrag = true;
 		UIMngInGame.Ins.HightLightSkillSet(true);

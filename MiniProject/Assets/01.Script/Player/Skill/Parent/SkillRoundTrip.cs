@@ -88,7 +88,6 @@ public class SkillRoundTrip : Skill
 
     public override void OnDrop(Vector2 pos)
     {
-        base.OnDrop(pos);
         ActiveSkill();
         Vector3 movevec = GameMng.Ins.player.GetForward();
         for (int i = 0; i < recognition.Count; ++i)

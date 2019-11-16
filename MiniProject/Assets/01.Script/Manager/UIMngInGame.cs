@@ -78,9 +78,8 @@ public class UIMngInGame : MonoBehaviour
     }
 	public void OnSkillDrag(int touchID)
 	{
-		aimImage.SetTouchID(touchID);
-		aimImage.gameObject.SetActive(true);
 		GameMng.Ins.StartSkillAim();
+		aimImage.SetTouchID(touchID);
 	}
 	public void OnSkillDrop()
 	{
