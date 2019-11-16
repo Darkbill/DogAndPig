@@ -72,7 +72,23 @@ public class SkillThounderCalling : Skill
         thoundersystem.Add(clone);
         ActiveSkill();
     }
-	private void Update()
+    public override void OnDrop(Vector2 pos)
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(pos);
+		mousePos = new Vector3(mousePos.x, mousePos.y, 0);
+        foreach (ThounderSystem o in thoundersystem)
+        {
+            o.SystemSetting(mousePos);
+            ActiveSkill();
+            return;
+        }
+        ThounderSystem clone = Instantiate(thoundersystem[0], GameMng.Ins.skillMng.transform);
+        clone.Setting(damage, randrange, maxcount);
+        clone.SystemSetting(mousePos);
+        thoundersystem.Add(clone);
+        ActiveSkill();
+    }
+    private void Update()
 	{
 		delayTime += Time.deltaTime;
 	}

@@ -85,7 +85,26 @@ public class SkillRoundTrip : Skill
 		o.SystemSetting(GameMng.Ins.player.transform.position, movevec);
 		recognition.Add(o);
 	}
-	private void Update()
+
+    public override void OnDrop(Vector2 pos)
+    {
+        base.OnDrop(pos);
+        ActiveSkill();
+        Vector3 movevec = GameMng.Ins.player.GetForward();
+        for (int i = 0; i < recognition.Count; ++i)
+        {
+            if (recognition[i].gameObject.activeSelf) continue;
+            recognition[i].SystemSetting(GameMng.Ins.player.transform.position, movevec);
+            return;
+        }
+
+        Recognition o = Instantiate(recognition[0], GameMng.Ins.skillMng.transform);
+        o.Setting(damage, tripSpeed, range);
+        o.SystemSetting(GameMng.Ins.player.transform.position, movevec);
+        recognition.Add(o);
+    }
+
+    private void Update()
 	{
 		delayTime += Time.deltaTime;
 	}

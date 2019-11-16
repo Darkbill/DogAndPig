@@ -88,6 +88,23 @@ public class SkillSupporterIsLightning : Skill
 		o.Setting(skillID, damage, attackspeed, skillendtime);
 		o.SystemSetting(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
+    public override void OnDrop(Vector2 pos)
+    {
+        base.OnDrop();
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(pos);
+        mousePos = new Vector3(mousePos.x, mousePos.y, 0);
+        for (int i = 0; i < supporter.Count; ++i)
+        {
+            if (supporter[i].gameObject.activeSelf) continue;
+            supporter[i].SystemSetting(mousePos);
+            return;
+        }
+
+        SupporterIsLightning o = Instantiate(supporter[0], GameMng.Ins.skillMng.transform);
+        supporter.Add(o);
+        o.Setting(skillID, damage, attackspeed, skillendtime);
+        o.SystemSetting(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+    }
     private void Update()
     {
         delayTime += Time.deltaTime;

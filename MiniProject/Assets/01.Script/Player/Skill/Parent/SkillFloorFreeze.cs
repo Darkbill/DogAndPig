@@ -85,7 +85,6 @@ public class SkillFloorFreeze : Skill
 	public override void OnDrop()
 	{
 		float degree = GameMng.Ins.player.degree;
-		Vector3 pos = new Vector3(Mathf.Cos(degree), Mathf.Sin(degree), 0);
 		for (int i = 0; i < FreezenShot.Count; ++i)
 		{
 			if (FreezenShot[i].gameObject.activeSelf)
@@ -101,7 +100,27 @@ public class SkillFloorFreeze : Skill
 		o.angleSet(degree - 90, GameMng.Ins.player.transform.position);
 		FreezenShot.Add(o);
 	}
-	void Update()
+
+    public override void OnDrop(Vector2 pos)
+    {
+        float degree = GameMng.Ins.player.degree;
+        for (int i = 0; i < FreezenShot.Count; ++i)
+        {
+            if (FreezenShot[i].gameObject.activeSelf)
+                continue;
+            base.OnDrop();
+            ActiveSkill();
+            FreezenShot[i].angleSet(degree - 90, GameMng.Ins.player.transform.position);
+            return;
+        }
+        ActiveSkill();
+        Freezen o = Instantiate(FreezenShot[0], GameMng.Ins.skillMng.transform);
+        o.Setting(skillID, DebufTime, DebufEffectPer, DebufActivePer, damage);
+        o.angleSet(degree - 90, GameMng.Ins.player.transform.position);
+        FreezenShot.Add(o);
+    }
+
+    void Update()
 	{
 		delayTime += Time.deltaTime;
 	}

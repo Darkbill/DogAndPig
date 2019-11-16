@@ -36,4 +36,12 @@ public class StageSlotUI : MonoBehaviour
 		GameMng.stageLevel = 1;
 		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
 	}
+
+    public void OnClickStageTest()
+    {
+        //TODO : 전 스테이지일 경우 무조건 광고
+        GameMng.worldLevel = worldID;
+        GameMng.stageLevel = 1;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("RunningTest");
+    }
 }

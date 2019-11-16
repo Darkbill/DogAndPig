@@ -63,8 +63,15 @@ public class SkillWaterPrison : Skill
         ActiveSkill();
         WaterSet();
     }
+    public override void OnDrop(Vector2 pos)
+    {
+        base.OnDrop();
+        ActiveSkill();
+        WaterSet();
+    }
 
-	private void WaterSet()
+
+    private void WaterSet()
     {
         Vector3 movevec = GameMng.Ins.player.GetForward();
         for (int i = 0; i < waterlist.Count; ++i)

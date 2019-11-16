@@ -11,23 +11,63 @@ public class ExplosionDarkness : BulletPlayerSkill
 
     private int Id = 12;
     public List<GameObject> effectObjlist = new List<GameObject>();
+    public GameObject charge;
     public ParticleSystem system;
     private float size;
+    private bool DragStart = false;
+    private float maxChargeTime;
+    private float chargeSpeed;
 
-    public void Setting(int id, float siz, float dmg)
+    public void Setting(int id, float dmg, float maxtime, float chargespeed)
     {
         Id = id;
-        size = siz;
+        this.damage = dmg;
+        maxChargeTime = maxtime;
+        chargeSpeed = chargespeed;
+        gameObject.GetComponent<CircleCollider2D>().enabled = false;
+    }
+
+    public void SystemSetting(Vector3 pos)
+    {
+        SubSystemSetting(false);
+        if (size < 1.0f) size = 1.0f;
         foreach (GameObject obj in effectObjlist)
             obj.transform.localScale = Vector3.one * size;
-        this.damage = dmg;
+
+        gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        gameObject.transform.position = pos;
         system.Play();
+    }
+
+    public void SubSystemSetting(bool drag)
+    {
+        gameObject.SetActive(true);
+        system.Stop();
+        DragStart = drag;
+        if (drag)
+            charge.GetComponent<ParticleSystem>().Play();
+        else
+            charge.GetComponent<ParticleSystem>().Stop();
+    }
+
+    private void ExplosionCharge()
+    {
+        if (DragStart)
+        {
+            if (size < maxChargeTime)
+                size += Time.deltaTime * chargeSpeed;
+            charge.transform.position = GameMng.Ins.player.transform.position;
+        }
     }
 
     private void Update()
     {
-        if (!system.isPlaying)
+        ExplosionCharge();
+        if (!system.isPlaying && !DragStart)
+        {
             gameObject.SetActive(false);
+            gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        }
     }
 
     public override void Crash(Monster monster)
