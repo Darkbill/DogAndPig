@@ -6,7 +6,7 @@ public class BossMonsterStateMachine : StateMachine
 	public BossMonster monster;
 	public override void Setting()
     {
-        monster.BossSkill01 = Instantiate(Resources.Load(string.Format("Skill_FireBullet"), 
+        monster.BossSkill01 = Instantiate(Resources.Load(string.Format("Skill/MonsterSKill/Skill_FireBullet"), 
             typeof(SkillBurningMeteor)) as SkillBurningMeteor);
         stateDict.Add(eMonsterState.Idle, new MonsterStateIdle(monster));
         stateDict.Add(eMonsterState.Move, new MonsterStateMove(monster));

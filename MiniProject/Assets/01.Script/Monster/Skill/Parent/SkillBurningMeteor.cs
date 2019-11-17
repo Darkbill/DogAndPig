@@ -13,8 +13,6 @@ public class SkillBurningMeteor : Skill
 	}
 
 	private const float rSiz = 3;
-
-	eAttackType attackType = eAttackType.Fire;
 	private float damage;
 	private string decal;
 	public override void SkillSetting()
@@ -49,10 +47,6 @@ public class SkillBurningMeteor : Skill
 	}
 	public override void SetBullet()
 	{
-	}
-	private void FinishAttack()
-	{
-
 	}
 	public override void OffSkill()
 	{
