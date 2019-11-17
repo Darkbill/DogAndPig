@@ -302,5 +302,21 @@
     "changeAbleOption": [
       
     ]
+  },
+  {
+    "skillID": 18,
+    "skillName": "WindMine",
+    "activeType": 3,
+    "price": 2000,
+    "optionArr": [
+      3,
+      1,
+      10,
+      1
+    ],
+    "changeAbleOption": [
+      1,
+      2
+    ]
   }
 ]
