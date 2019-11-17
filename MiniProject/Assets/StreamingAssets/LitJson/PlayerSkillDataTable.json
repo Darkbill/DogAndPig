@@ -272,5 +272,20 @@
       3,
       4
     ]
+  },
+  {
+    "skillID": 16,
+    "skillName": "WindStep",
+    "activeType": 1,
+    "price": 500,
+    "optionArr": [
+      3,
+      6,
+      2,
+      1.5
+    ],
+    "changeAbleOption": [
+      
+    ]
   }
 ]
