@@ -60,7 +60,8 @@ public class WindKnockback : BulletPlayerSkill
         var hitMonsterList = GameMng.Ins.monsterPool.monsterList;
         foreach(Monster m in hitMonsterList)
         {
-            if((m.transform.position - GameMng.Ins.player.transform.position).magnitude < radius && m.gameObject.activeSelf)
+            if (m == null) continue;
+            if ((m.transform.position - GameMng.Ins.player.transform.position).magnitude < radius && m.gameObject.activeSelf)
                 m.OutStateAdd(new ConditionData(debuftype, skillID, 0, radius), 
                     m.transform.position - GameMng.Ins.player.transform.position);
         }

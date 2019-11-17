@@ -287,5 +287,20 @@
     "changeAbleOption": [
       
     ]
+  },
+  {
+    "skillID": 17,
+    "skillName": "CheryBlossom",
+    "activeType": 1,
+    "price": 500,
+    "optionArr": [
+      3,
+      5,
+      1.5,
+      5
+    ],
+    "changeAbleOption": [
+      
+    ]
   }
 ]

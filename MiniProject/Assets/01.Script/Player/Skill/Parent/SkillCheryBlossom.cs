@@ -6,24 +6,24 @@ using UnityEngine;
 public class SkillCheryBlossom : Skill
 {
     #region SkillSetting
-    enum sCheeryBlossom
+    enum sCheryBlossom
     {
         Damage,
         CoolTime,
-        FastSpeed,
+        Radius,
         BufEndTime,
     }
     private float damage;
-    private float fastSpeed;
+    private float radius;
     private float bufEndtime;
     public override void SkillSetting()
     {
-        skillID = 15;
+        skillID = 17;
         PlayerSkillData skillData = JsonMng.Ins.playerSkillDataTable[skillID];
-        damage = skillData.optionArr[(int)sCheeryBlossom.Damage];
-        cooldownTime = skillData.optionArr[(int)sCheeryBlossom.CoolTime];
-        fastSpeed = skillData.optionArr[(int)sCheeryBlossom.FastSpeed];
-        bufEndtime = skillData.optionArr[(int)sCheeryBlossom.BufEndTime];
+        damage = skillData.optionArr[(int)sCheryBlossom.Damage];
+        cooldownTime = skillData.optionArr[(int)sCheryBlossom.CoolTime];
+        radius = skillData.optionArr[(int)sCheryBlossom.Radius];
+        bufEndtime = skillData.optionArr[(int)sCheryBlossom.BufEndTime];
         delayTime = cooldownTime;
         gameObject.SetActive(false);
     }
@@ -38,9 +38,6 @@ public class SkillCheryBlossom : Skill
             case eSkillOption.CoolTime:
                 cooldownTime -= cooldownTime * changeValue;
                 break;
-            case eSkillOption.Speed:
-                fastSpeed += fastSpeed * changeValue;
-                break;
             case eSkillOption.ActiveTime:
                 bufEndtime += bufEndtime * changeValue;
                 break;
@@ -48,22 +45,20 @@ public class SkillCheryBlossom : Skill
     }
     public override void SetBullet()
     {
-        //foreach (SupporterIsLightning o in supporter)
-        //    o.Setting(skillID, damage, attackspeed, skillendtime);
+        blossom.Setting(damage, delayTime, radius);
     }
     public override void OffSkill()
     {
-        //foreach (SupporterIsLightning o in supporter)
-        //    o.gameObject.SetActive(false);
+        blossom.gameObject.SetActive(false);
     }
     #endregion
 
-    //public List<SupporterIsLightning> supporter = new List<SupporterIsLightning>();
+    public CheryBlossomSystem blossom;
 
     //실제 쿨타임 도는 타이밍에 ActiveSkill();
     public override void OnButtonDown()
     {
-        //GameMng.Ins.SetSkillAim(skillID);
+        blossom.SystemSetting();
     }
     public override void ActiveSkill()
     {
