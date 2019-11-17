@@ -1,0 +1,153 @@
+
+ice_mage.png
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_l_1
+  rotate: true
+  xy: 724, 68
+  size: 58, 66
+  orig: 58, 66
+  offset: 0, 0
+  index: -1
+arm_l_2
+  rotate: true
+  xy: 910, 106
+  size: 20, 54
+  orig: 20, 54
+  offset: 0, 0
+  index: -1
+arm_l_3
+  rotate: false
+  xy: 792, 72
+  size: 38, 54
+  orig: 38, 54
+  offset: 0, 0
+  index: -1
+arm_r_1
+  rotate: true
+  xy: 552, 28
+  size: 30, 48
+  orig: 30, 48
+  offset: 0, 0
+  index: -1
+arm_r_2
+  rotate: false
+  xy: 318, 6
+  size: 50, 40
+  orig: 50, 40
+  offset: 0, 0
+  index: -1
+arm_r_3
+  rotate: false
+  xy: 602, 30
+  size: 40, 28
+  orig: 40, 28
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 654, 68
+  size: 68, 58
+  orig: 68, 58
+  offset: 0, 0
+  index: -1
+buttock_1
+  rotate: false
+  xy: 446, 12
+  size: 52, 46
+  orig: 52, 46
+  offset: 0, 0
+  index: -1
+buttock_2
+  rotate: false
+  xy: 372, 2
+  size: 72, 56
+  orig: 72, 56
+  offset: 0, 0
+  index: -1
+coat
+  rotate: false
+  xy: 280, 48
+  size: 90, 78
+  orig: 90, 78
+  offset: 0, 0
+  index: -1
+eye_1
+  rotate: true
+  xy: 372, 60
+  size: 66, 92
+  orig: 66, 92
+  offset: 0, 0
+  index: -1
+eye_2
+  rotate: true
+  xy: 466, 60
+  size: 66, 92
+  orig: 66, 92
+  offset: 0, 0
+  index: -1
+head_1
+  rotate: true
+  xy: 560, 60
+  size: 66, 92
+  orig: 66, 92
+  offset: 0, 0
+  index: -1
+head_2
+  rotate: true
+  xy: 500, 16
+  size: 42, 50
+  orig: 42, 50
+  offset: 0, 0
+  index: -1
+leg_l_1
+  rotate: true
+  xy: 966, 90
+  size: 36, 38
+  orig: 36, 38
+  offset: 0, 0
+  index: -1
+leg_l_2
+  rotate: false
+  xy: 832, 84
+  size: 40, 42
+  orig: 40, 42
+  offset: 0, 0
+  index: -1
+leg_l_3
+  rotate: false
+  xy: 910, 82
+  size: 40, 22
+  orig: 40, 22
+  offset: 0, 0
+  index: -1
+leg_r_1
+  rotate: true
+  xy: 280, 2
+  size: 44, 36
+  orig: 44, 36
+  offset: 0, 0
+  index: -1
+leg_r_2
+  rotate: false
+  xy: 874, 84
+  size: 34, 42
+  orig: 34, 42
+  offset: 0, 0
+  index: -1
+leg_r_3
+  rotate: false
+  xy: 552, 6
+  size: 38, 20
+  orig: 38, 20
+  offset: 0, 0
+  index: -1
+weapon
+  rotate: true
+  xy: 2, 22
+  size: 104, 276
+  orig: 104, 276
+  offset: 0, 0
+  index: -1

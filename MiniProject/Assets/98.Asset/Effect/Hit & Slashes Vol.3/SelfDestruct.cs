@@ -7,7 +7,7 @@ public class SelfDestruct : MonoBehaviour {
 
 	void Start () {
 		if ( selfdestruct_in != 0){ 
-			//Destroy (gameObject, selfdestruct_in);
+			Destroy (gameObject, selfdestruct_in);
 		}
 	}
 }

@@ -1,0 +1,153 @@
+
+frozen_skeleton.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_l_1
+  rotate: true
+  xy: 228, 2
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+arm_l_2
+  rotate: true
+  xy: 454, 44
+  size: 38, 56
+  orig: 38, 56
+  offset: 0, 0
+  index: -1
+arm_l_3
+  rotate: true
+  xy: 2, 6
+  size: 36, 46
+  orig: 36, 46
+  offset: 0, 0
+  index: -1
+arm_r_1
+  rotate: true
+  xy: 258, 20
+  size: 8, 44
+  orig: 8, 44
+  offset: 0, 0
+  index: -1
+arm_r_2
+  rotate: true
+  xy: 50, 14
+  size: 28, 48
+  orig: 28, 48
+  offset: 0, 0
+  index: -1
+arm_r_3
+  rotate: true
+  xy: 100, 14
+  size: 28, 46
+  orig: 28, 46
+  offset: 0, 0
+  index: -1
+body
+  rotate: true
+  xy: 320, 64
+  size: 62, 72
+  orig: 62, 72
+  offset: 0, 0
+  index: -1
+buttock
+  rotate: false
+  xy: 394, 64
+  size: 58, 62
+  orig: 58, 62
+  offset: 0, 0
+  index: -1
+coat
+  rotate: true
+  xy: 230, 74
+  size: 52, 88
+  orig: 52, 88
+  offset: 0, 0
+  index: -1
+coat_l
+  rotate: false
+  xy: 454, 84
+  size: 56, 42
+  orig: 56, 42
+  offset: 0, 0
+  index: -1
+coat_r
+  rotate: false
+  xy: 230, 30
+  size: 54, 42
+  orig: 54, 42
+  offset: 0, 0
+  index: -1
+eye_1
+  rotate: false
+  xy: 2, 44
+  size: 74, 82
+  orig: 74, 82
+  offset: 0, 0
+  index: -1
+eye_2
+  rotate: false
+  xy: 78, 44
+  size: 74, 82
+  orig: 74, 82
+  offset: 0, 0
+  index: -1
+head_1
+  rotate: false
+  xy: 154, 44
+  size: 74, 82
+  orig: 74, 82
+  offset: 0, 0
+  index: -1
+head_2
+  rotate: false
+  xy: 406, 30
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+leg_l_1
+  rotate: true
+  xy: 440, 14
+  size: 28, 32
+  orig: 28, 32
+  offset: 0, 0
+  index: -1
+leg_l_2
+  rotate: false
+  xy: 286, 30
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+leg_l_3
+  rotate: false
+  xy: 148, 18
+  size: 38, 24
+  orig: 38, 24
+  offset: 0, 0
+  index: -1
+leg_r_1
+  rotate: false
+  xy: 366, 30
+  size: 38, 32
+  orig: 38, 32
+  offset: 0, 0
+  index: -1
+leg_r_2
+  rotate: true
+  xy: 320, 30
+  size: 32, 44
+  orig: 32, 44
+  offset: 0, 0
+  index: -1
+leg_r_3
+  rotate: false
+  xy: 188, 20
+  size: 38, 22
+  orig: 38, 22
+  offset: 0, 0
+  index: -1
