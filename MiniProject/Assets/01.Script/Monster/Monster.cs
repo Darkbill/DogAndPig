@@ -244,7 +244,7 @@ public class Monster : MonoBehaviour
 	public void ActiveOff()
 	{
 		//애니메이션 호출 함수
-		Destroy(gameObject);
+		gameObject.SetActive(false);
 	}
 
 	public ConditionData ConditionMainGet() { return conditionMain; }

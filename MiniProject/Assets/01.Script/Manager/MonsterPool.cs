@@ -96,7 +96,6 @@ public class MonsterPool : MonoBehaviour
 			if (stageDataTable[i].boss == 1) SetBossInfo(spawnMonsterCount);
 			else GameMng.Ins.SetHPMonster(monsterList[spawnMonsterCount]);
 			SelectEffect(monsterList[spawnMonsterCount].transform.position);
-			
 			spawnMonsterCount++;
 		}
 	}
@@ -148,6 +147,7 @@ public class MonsterPool : MonoBehaviour
 		eff.transform.position = pos;
 		eff.SetActive(true);
 		monsterEffectList.Add(eff);
+		StartCoroutine(IEWaitEffect(monsterEffectList.Count-1));
 
 	}
 	private IEnumerator IEWaitEffect(int num)

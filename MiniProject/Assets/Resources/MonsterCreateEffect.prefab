@@ -14155,7 +14155,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7530810262327372857}
-  - component: {fileID: 7573840122190524979}
   m_Layer: 0
   m_Name: MonsterCreateEffect
   m_TagString: Untagged
@@ -14180,19 +14179,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
---- !u!114 &7573840122190524979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7532533942494752753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 669dd119cc8e52546bec8a0ce0026fb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selfdestruct_in: 8
 --- !u!1 &7532561171506216653
 GameObject:
   m_ObjectHideFlags: 0
