@@ -38,14 +38,17 @@ public class SkillCheryBlossom : Skill
             case eSkillOption.CoolTime:
                 cooldownTime -= cooldownTime * changeValue;
                 break;
-            case eSkillOption.ActiveTime:
+            case eSkillOption.BuffChangeValue:
+                radius += radius * changeValue;
+                break;
+            case eSkillOption.BuffEndTime:
                 bufEndtime += bufEndtime * changeValue;
                 break;
         }
     }
     public override void SetBullet()
     {
-        blossom.Setting(damage, delayTime, radius);
+        blossom.Setting(skillID, damage, delayTime, radius);
     }
     public override void OffSkill()
     {

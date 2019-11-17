@@ -78,7 +78,7 @@ public class WindMineSystem : BulletPlayerSkill
 
         foreach(Monster m in monsterpool)
         {
-            if (m == null || !m.gameObject.activeSelf) continue;
+            if (m == null || !m.gameObject.activeSelf || !m.active) continue;
             if((m.transform.position - transform.position).magnitude < radius)
             {
                 m.Damage(attackType, GameMng.Ins.player.calStat.damage, damage);
@@ -93,6 +93,7 @@ public class WindMineSystem : BulletPlayerSkill
 
     public override void Crash(Monster monster)
     {
+        if (!monster.active) return;
         minecollider2d.enabled = false;
         minePreparations.SetActive(true);
         minePreparations.GetComponent<ParticleSystem>().Play();

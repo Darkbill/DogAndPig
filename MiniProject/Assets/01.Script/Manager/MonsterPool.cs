@@ -30,6 +30,7 @@ public class MonsterPool : MonoBehaviour
 				string.Format("MonsterCreateEffect"),
 				typeof(GameObject))) as GameObject;
 			eff.transform.position = new Vector3();
+            eff.transform.parent = GameMng.Ins.objectPool.effectPool.transform;
 			eff.SetActive(false);
 			monsterEffectList.Add(eff);
 		}

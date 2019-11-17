@@ -33,6 +33,7 @@ public class WindKnockback : BulletPlayerSkill
     {
         gameObject.SetActive(true);
         knockbackParticle.Play();
+        knockbackParticle.Play();
         bufParticle.Play();
         setTime = 0.0f;
         CrashKnockback();
@@ -60,7 +61,7 @@ public class WindKnockback : BulletPlayerSkill
         var hitMonsterList = GameMng.Ins.monsterPool.monsterList;
         foreach(Monster m in hitMonsterList)
         {
-            if (m == null) continue;
+            if (m == null || !m.active || !m.gameObject.activeSelf) continue;
             if ((m.transform.position - GameMng.Ins.player.transform.position).magnitude < radius && m.gameObject.activeSelf)
                 m.OutStateAdd(new ConditionData(debuftype, skillID, 0, radius), 
                     m.transform.position - GameMng.Ins.player.transform.position);

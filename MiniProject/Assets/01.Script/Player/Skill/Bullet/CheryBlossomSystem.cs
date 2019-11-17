@@ -18,8 +18,9 @@ public class CheryBlossomSystem : MonoBehaviour
     private float firstPlayerHp;
     private int skillId;
 
-    public void Setting(float _damage, float _delayTime, float _radius)
+    public void Setting(int _skillid, float _damage, float _delayTime, float _radius)
     {
+        skillId = _skillid;
         damage = _damage;
         delayTime = _delayTime;
         setTime = 0.0f;
@@ -79,7 +80,6 @@ public class CheryBlossomSystem : MonoBehaviour
         float nowHealthPoint = GameMng.Ins.player.calStat.healthPoint;
         if (firstPlayerHp > nowHealthPoint)
         {
-            //GameMng.Ins.DamageToPlayer(eAttackType.Physics, (nowHealthPoint - firstPlayerHp));
             firstPlayerHp = nowHealthPoint;
             ReflectAttack();
             foreach (GameObject p in mainParticleobj)
@@ -104,7 +104,7 @@ public class CheryBlossomSystem : MonoBehaviour
 
         foreach(Monster m in monsterpool)
         {
-            if (m == null) continue;
+            if (m == null || !m.active || !m.gameObject.activeSelf) continue;
             if((m.transform.position - transform.position).magnitude < radius)
             {
                 m.Damage(Attacktype, GameMng.Ins.player.calStat.damage);

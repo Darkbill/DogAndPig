@@ -12,8 +12,6 @@ public class WaterBallHit : BulletPlayerSkill
     private float per;
     private Vector3 moveset = Vector3.right;
 
-    private float slowPer;
-    private float endTime;
     public bool AttackCheck = true;
 
     public ParticleSystem system;
@@ -37,7 +35,7 @@ public class WaterBallHit : BulletPlayerSkill
 
     public override void Crash(Monster monster)
     {
-        monster.Damage(Attacktype, GameMng.Ins.player.calStat.damage, damage, new ConditionData(bufftype, id, endTime, slowPer), per);
+        monster.Damage(Attacktype, GameMng.Ins.player.calStat.damage);
         GameMng.Ins.HitToEffect(Attacktype,
             monster.transform.position + new Vector3(0, monster.monsterData.size),
             gameObject.transform.position,
