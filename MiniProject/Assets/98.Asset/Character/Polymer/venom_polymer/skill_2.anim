@@ -4133,4 +4133,20 @@ AnimationClip:
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 1.0666667
+    functionName: EndAttack
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: a2e811aca8f0cce48bdafb070700b9af,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.3333334
+    functionName: ChangeStateEndAttack
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: 2692aa037849cea4382b554d1165bdb0,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
