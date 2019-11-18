@@ -35,8 +35,7 @@ public class SkillSplitLightning : Skill
 		cooldownTime = skillData.optionArr[(int)eFloorFreezeOption.CoolTime];
 		buffEndTime = skillData.optionArr[(int)eFloorFreezeOption.EndTime];
 		delayTime = cooldownTime;
-		for (int i = 0; i < BulletLst.Count; ++i)
-			BulletLst[i].transform.parent = GameMng.Ins.skillMng.transform;
+		gameObject.SetActive(false); 
 	}
 	public override void SetItemBuff(eSkillOption type, float changeValue)
 	{

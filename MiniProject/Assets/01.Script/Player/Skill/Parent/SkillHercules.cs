@@ -25,6 +25,7 @@ public class SkillHercules : Skill
 		cooldownTime = skillData.optionArr[(int)eHerculesOption.CoolTime];
 		activePer = skillData.optionArr[(int)eHerculesOption.KnockBackPer];
 		delayTime = cooldownTime;
+		gameObject.SetActive(false);
 	}
 	public override void SetItemBuff(eSkillOption type, float changeValue)
 	{

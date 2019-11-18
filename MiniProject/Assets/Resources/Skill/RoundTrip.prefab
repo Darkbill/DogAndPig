@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5884815988705359014}
   - component: {fileID: 5886031764652934718}
   - component: {fileID: 5989687855780557632}
-  - component: {fileID: 5976931320872746156}
   - component: {fileID: 287950877922598639}
   - component: {fileID: 8438650588786549179}
   m_Layer: 0
@@ -45,7 +44,7 @@ ParticleSystem:
   m_GameObject: {fileID: 6011267666427188740}
   serializedVersion: 6
   lengthInSec: 0.05
-  simulationSpeed: 4
+  simulationSpeed: 6
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
@@ -4832,26 +4831,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6011267666427188740}
   m_Mesh: {fileID: 0}
---- !u!114 &5976931320872746156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6011267666427188740}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5ef696be2a8c5145a239f4b7f058edc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Material: {fileID: 2100000, guid: ccc62c395c619bf4ba0c0990b5cdf5a6, type: 2}
-  LifeTime: 0.5
-  Emit: 0
-  Widths:
-  - 0.8
-  - 0.2
-  MinVertexDistance: 2.37
-  PointCount: 100
 --- !u!114 &287950877922598639
 MonoBehaviour:
   m_ObjectHideFlags: 0

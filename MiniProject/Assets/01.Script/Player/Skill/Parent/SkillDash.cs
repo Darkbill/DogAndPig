@@ -51,9 +51,6 @@ public class SkillDash : Skill
 	private float damage;
 	private const int Count = 10;
 	private eAttackType attackType = eAttackType.Wind;
-
-
-
 	List<Monster> Attack = new List<Monster>();
 	public override void OnButtonDown()
 	{

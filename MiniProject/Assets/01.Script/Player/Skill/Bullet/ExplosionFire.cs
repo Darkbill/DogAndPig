@@ -24,6 +24,7 @@ public class ExplosionFire : BulletPlayerSkill
 		throwTime = _throwTime;
 		upScale = _upScale;
 		gameObject.transform.parent = GameMng.Ins.skillMng.transform;
+		gameObject.SetActive(false);
 	}
 	public override void Crash(Monster monster)
 	{

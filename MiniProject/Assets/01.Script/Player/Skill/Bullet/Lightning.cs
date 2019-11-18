@@ -26,6 +26,7 @@ public class Lightning : BulletPlayerSkill
         Id = id;
         per = p;
 		buffEndTime = _buffEndTime;
+		gameObject.transform.parent = GameMng.Ins.skillMng.transform;
 		gameObject.SetActive(false);
 	}
 	public void SystemSetting(Vector3 pos,Quaternion angle, int splitcnt)

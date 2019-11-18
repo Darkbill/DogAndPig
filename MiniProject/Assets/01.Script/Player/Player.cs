@@ -171,7 +171,6 @@ public class Player : MonoBehaviour
 			AddEXP(Mathf.Abs(saveEXP));
 		}
 	}
-
 	private void LevelUP()
 	{
 		JsonMng.Ins.playerInfoDataTable.playerLevel++;

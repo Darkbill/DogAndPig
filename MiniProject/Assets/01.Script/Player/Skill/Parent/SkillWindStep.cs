@@ -24,6 +24,7 @@ public class SkillWindStep : Skill
         speedPer = skillData.optionArr[(int)eWindStepOption.SpeedPer];
         radius = skillData.optionArr[(int)eWindStepOption.Radius];
         delayTime = cooldownTime;
+		gameObject.SetActive(false);
     }
     public override void SetItemBuff(eSkillOption type, float changeValue)
     {
