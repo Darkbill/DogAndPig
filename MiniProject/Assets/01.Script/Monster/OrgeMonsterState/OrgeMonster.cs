@@ -33,4 +33,15 @@ public class OrgeMonster : Monster
 		}
 		return false;
 	}
+	public override void DamageResult(int d)
+	{
+		if (d < 1) d = 1;
+		monsterData.healthPoint -= d;
+		UIMngInGame.Ins.DamageToBoss(d, transform.position);
+		if (monsterData.healthPoint <= 0) Dead();
+	}
+	public void AllClear()
+	{
+		GameMng.Ins.WorldClear();
+	}
 }
