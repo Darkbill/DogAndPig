@@ -9710,9 +9710,18 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.5
-    functionName: AttackStart
+    functionName: AttackCheckEnd
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11500000, guid: 6b56a68de01cde24195918114e1d8b60,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.1666666
+    functionName: ChangeStateIdle
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: b1ce1e70c67116348827138a823ad737,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
