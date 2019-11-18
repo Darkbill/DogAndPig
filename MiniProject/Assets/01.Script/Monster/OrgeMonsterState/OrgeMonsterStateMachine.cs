@@ -3,8 +3,8 @@ using GlobalDefine;
 public class OrgeMonsterStateMachine : StateMachine
 {
 	public OrgeMonster monster;
-	private const float skillCoolTime = 10f;
-	private float skillDelayTime = 10f;
+	private const float skillCoolTime = 3f;
+	private float skillDelayTime = 3f;
 	public override void Setting()
 	{
 		stateDict.Add(eMonsterState.Idle, new MonsterStateIdle(monster));
@@ -21,6 +21,13 @@ public class OrgeMonsterStateMachine : StateMachine
 	{
 		skillDelayTime += Time.deltaTime;
 		cState.Tick();
+		if(SKillDelayCheck())
+		{
+			monster.skillFlag = true;
+			ChangeState(eMonsterState.SkillAttack);
+			skillDelayTime = 0;
+			return;
+		}
 		if (cState.GetType() == typeof(MonsterStateIdle))
 		{
 			UpdateState();
@@ -28,14 +35,7 @@ public class OrgeMonsterStateMachine : StateMachine
 	}
 	public override void UpdateState()
 	{
-		if (SKillDelayCheck())
-		{
-			monster.skillFlag = true;
-			ChangeState(eMonsterState.SkillAttack);
-			skillDelayTime = 0;
-			return;
-		}
-		else if (monster.AttackDistanceCheck())
+		if (monster.AttackDistanceCheck())
 		{
 			if (monster.AttackDelayCheck() && monster.AttackCheck())
 			{

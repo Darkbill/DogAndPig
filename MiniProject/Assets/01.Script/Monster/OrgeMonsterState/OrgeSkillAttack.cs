@@ -2,8 +2,8 @@
 using UnityEngine;
 public class OrgeSkillAttack : MonsterStateBase
 {
-	private const float holdTime = 1f;
-	private const float moveSpeed = 5f;
+	private const float holdTime = 0.5f;
+	private const float moveSpeed = 10f;
 	private float cTime;
 	private Vector3 toPlayerDir;
 	private Vector3 endPos;
@@ -22,7 +22,7 @@ public class OrgeSkillAttack : MonsterStateBase
 				new Vector3(0, GameMng.Ins.player.calStat.size, 0);
 		toPlayerDir.z = 0;
 		moveDir = toPlayerDir.normalized;
-		Debug.Log(moveDir);
+		monsterObject.Angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
 	}
 	public override bool OnTransition()
 	{
@@ -38,7 +38,6 @@ public class OrgeSkillAttack : MonsterStateBase
 			if(CheckDistance())
 			{
 				monsterObject.ChangeAnimation(eMonsterAnimation.Skill);
-				monsterObject.StateMachine.ChangeStateIdle();
 			}
 			else
 			{
@@ -49,7 +48,7 @@ public class OrgeSkillAttack : MonsterStateBase
 	private bool CheckDistance()
 	{
 		float m = (monsterObject.transform.position - endPos).magnitude;
-		if(m <= 0.25f)
+		if(m <= monsterObject.monsterData.attackRange / 2)
 		{
 			return true;
 		}
