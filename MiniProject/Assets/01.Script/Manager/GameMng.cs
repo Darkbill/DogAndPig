@@ -50,7 +50,13 @@ public class GameMng : MonoBehaviour
 		player.PlayerSetting();
 		worldLevel = 0;
 		aimSkillID = -1;
+		WorldStartToRecord();
 		isRecord = true;
+	}
+	public void WorldStartToRecord()
+	{
+		monsterPool.WorldStart(worldLevel);
+		stageLevel = 1;
 	}
 	public void LoadGame()
 	{

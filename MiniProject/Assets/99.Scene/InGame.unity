@@ -4477,6 +4477,7 @@ MonoBehaviour:
   inputSystem: {fileID: 979259865}
   portal: {fileID: 9214245829053109506}
   hpUIMng: {fileID: 1734689590}
+  isRecord: 0
   exp: 0
   aimSkillID: 0
 --- !u!4 &547203918

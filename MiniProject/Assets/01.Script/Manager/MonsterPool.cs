@@ -168,4 +168,14 @@ public class MonsterPool : MonoBehaviour
 	{
 		return monsterList[bossIndex].monsterData.healthPoint / JsonMng.Ins.monsterDataTable[monsterList[bossIndex].MonsterID].healthPoint;
 	}
+	public void Reset()
+	{
+		spawnMonsterCount = 0;
+		GameMng.Ins.hpUIMng.OffAllHPUI();
+		for(int i = 0; i < monsterList.Count; ++i)
+		{
+			Destroy(monsterList[i].gameObject);
+		}
+		WorldStart(0);
+	}
 }

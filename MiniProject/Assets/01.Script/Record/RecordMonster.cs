@@ -6,4 +6,8 @@
 		ChangeAnimation(GlobalDefine.eMonsterAnimation.Idle);
 		MonsterSetting();
 	}
+	public override void DamageResult(int d)
+	{
+		monsterData.healthPoint -= d;
+	}
 }

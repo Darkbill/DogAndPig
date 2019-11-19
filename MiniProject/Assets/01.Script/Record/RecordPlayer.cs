@@ -13,7 +13,7 @@ public class RecordPlayer : Player
 	private bool isEventMove;
 	private bool[] downState = new bool[4];
 	private Vector3 startPos;
-	private int skillID;
+	public int skillID;
 	private void Start()
 	{
 		startPos = gameObject.transform.position;
@@ -28,6 +28,10 @@ public class RecordPlayer : Player
 	}
 	public void MoveToEvent(int _skillID)
 	{
+		//전체상태 초기화
+		GameMng.Ins.skillMng.OffSkill();
+		GameMng.Ins.monsterPool.Reset();
+		gameObject.transform.position = startPos;
 		skillID = _skillID;
 		var i = JsonMng.Ins.recordDataTable[skillID];
 		var e = i.playerEventList;

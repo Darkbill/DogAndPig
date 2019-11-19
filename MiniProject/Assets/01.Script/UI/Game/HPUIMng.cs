@@ -20,4 +20,11 @@ public class HPUIMng : MonoBehaviour
 		hpUIList.Add(o.GetComponent<HPUI>());
 		return hpUIList[hpUIList.Count - 1];
 	}
+	public void OffAllHPUI()
+	{
+		for(int i = 0; i < hpUIList.Count; ++i)
+		{
+			hpUIList[i].SetOff();
+		}
+	}
 }

@@ -52,10 +52,6 @@ public class Recorder : MonoBehaviour
 	public RecordPlayer player;
 	public SkillMng skillMng;
 	private int skillID = 18;
-	private void Awake()
-	{
-
-	}
 	private void Update()
 	{
 		if (recordFlag == false && Input.GetKeyDown(KeyCode.Return))
@@ -70,10 +66,6 @@ public class Recorder : MonoBehaviour
 		if(recordFlag == false && Input.GetKeyDown(KeyCode.F2))
 		{
 			SaveAll();
-		}
-		if (recordFlag == false && Input.GetKeyDown(KeyCode.F3))
-		{
-			player.MoveToEvent(skillID);
 		}
 		if (recordFlag)
 		{ 

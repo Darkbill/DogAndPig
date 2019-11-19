@@ -32,9 +32,9 @@ public class UIMng : MonoBehaviour
 	public SkillInfoUI skillInfoUI;
 	public SkillBuyUI skillBuyUI;
 	public InventoryUI inventoryUI;
-
 	public GameObject[] boxArr;
 	public GameObject clickBox;
+	public RecordPlayer record;
 	public int selectID;
 
 	/* Setting */
@@ -109,6 +109,7 @@ public class UIMng : MonoBehaviour
 	{
 		OffSelectBox();
 		skillInfoUI.ShowSkillInfo(selectID);
+		record.MoveToEvent(selectID);
 	}
 
 	public void OnClickSkillBuyUI()
