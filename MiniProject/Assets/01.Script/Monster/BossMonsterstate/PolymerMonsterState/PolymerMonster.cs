@@ -8,6 +8,7 @@ public class PolymerMonster : Monster
     private const float attackRadian = 1.0f;
 
     public SkillMucusAttack skill01;
+    public SkillPoisonSpike skill02;
 
     public bool skillFlag = false;
 
@@ -38,6 +39,13 @@ public class PolymerMonster : Monster
         skill01.gameObject.SetActive(true);
         skill01.SkillStart();
     }
+
+    public void MonsterPoisionSpikeSkill()
+    {
+        skill02.gameObject.SetActive(true);
+        skill02.SkillStart(this);
+    }
+
 
     public void EndAttack()
     {

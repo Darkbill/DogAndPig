@@ -1389,6 +1389,7 @@ MonoBehaviour:
   MonsterID: 1
   delayTime: 0
   skill01: {fileID: 5855969019809024490, guid: 10a172bcffb5a5e4eb5607b921ba8419, type: 3}
+  skill02: {fileID: 1212448025354557384, guid: 9b633f758c3ae814394c736fe3efe150, type: 3}
   skillFlag: 0
 --- !u!114 &8924923966565646731
 MonoBehaviour:

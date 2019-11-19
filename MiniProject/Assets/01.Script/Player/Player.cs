@@ -192,7 +192,7 @@ public class Player : MonoBehaviour
 		int monsterIndex = -1;
         for (int i = 0; i < monsterPool.Count; ++i)
 		{
-			if (monsterPool[i].active == false) continue;
+			if (monsterPool[i].active == false || !monsterPool[i].gameObject.activeSelf) continue;
 
 			if (att.BaseAttack(GetForward(),
 				(monsterPool[i].gameObject.transform.position + new Vector3(0, monsterPool[i].monsterData.size, 0)) - (transform.position + new Vector3(0,calStat.size,0)),

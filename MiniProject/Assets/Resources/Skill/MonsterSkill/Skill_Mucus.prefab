@@ -4862,6 +4862,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mucusEffect: {fileID: 97759876602741211}
+  mucusEffectScaleSet:
+  - {fileID: 97759876602741211}
+  - {fileID: 82769101172006855}
+  - {fileID: 97699897972881995}
 --- !u!1 &260258321564284215
 GameObject:
   m_ObjectHideFlags: 0

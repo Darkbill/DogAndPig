@@ -16,6 +16,7 @@ public class Mucus : MonoBehaviour
     private bool stopCheck;
 
     public ParticleSystem mucusEffect;
+    public List<ParticleSystem> mucusEffectScaleSet = new List<ParticleSystem>();
 
     public void Setting(int _id, float _time, float _damage, float _radius)
     {
@@ -27,8 +28,10 @@ public class Mucus : MonoBehaviour
         gameObject.SetActive(false);
         gameObject.transform.parent = GameMng.Ins.skillMng.transform;
 
-        //TODO : radian 기본 값 1. 테스트
-        radius = 1;
+        //TODO : radian 기본 값 1.5 테스트
+        radius = 1.5f;
+        foreach (ParticleSystem p in mucusEffectScaleSet)
+            p.gameObject.transform.localScale *= radius;
 
     }
 
@@ -64,7 +67,7 @@ public class Mucus : MonoBehaviour
     {
         if((gameObject.transform.position - GameMng.Ins.player.transform.position).magnitude < radius)
         {
-            GameMng.Ins.player.AddBuff(new ConditionData(eBuffType.MoveSlow, skillId, 3, 1));
+            GameMng.Ins.player.AddBuff(new ConditionData(eBuffType.MoveSlow, skillId, 0.3f, 1));
         }
     }
 }

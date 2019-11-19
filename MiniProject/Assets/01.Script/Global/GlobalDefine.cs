@@ -138,6 +138,7 @@
 		Damage,
 		Attack,
 		SkillAttack,
+        SkillAttack2,
 		Dash,
 		Stun,
 		KnockBack,
@@ -179,6 +180,7 @@
         Attack,
         Skill,
         Dead,
+        Skill2,
     }
 
 	public enum eAttackType
