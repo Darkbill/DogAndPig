@@ -39,11 +39,11 @@ public class PlayerStateIdle : PlayerState
 	{
 		if (OnTransition() == true) return;
 
-		//if (playerObject.playerStateMachine.AttackDelay())
-		//{
-		//	GameMng.Ins.player.AttackStart();
-		//}
-		if (playerObject.isAim)
+        if (playerObject.playerStateMachine.AttackDelay())
+        {
+            GameMng.Ins.player.AttackStart();
+        }
+        if (playerObject.isAim)
 		{
 			Vector3 aimPos = Camera.main.ScreenToWorldPoint(UIMngInGame.Ins.aimImage.transform.position);
 			Vector3 dir = aimPos - playerObject.transform.position;

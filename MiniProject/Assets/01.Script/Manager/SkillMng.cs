@@ -6,7 +6,7 @@ public class SkillMng : MonoBehaviour
 	public Dictionary<int, Skill> skillDict = new Dictionary<int, Skill>();
 	private void Awake()
 	{
-		return;
+		//return;
 		var playerSkillArr = JsonMng.Ins.playerInfoDataTable.setSkillList;
 		for(int i = 0; i < playerSkillArr.Count; ++i)
 		{
@@ -43,6 +43,7 @@ public class SkillMng : MonoBehaviour
 	/* 테스트코드 */
 	public void LoadAll()
 	{
+        /*
 		var playerSkillArr = JsonMng.Ins.playerInfoDataTable.haveSkillList;
 		skillDict.Clear();
 		for (int i = 0; i < playerSkillArr.Count; ++i)
@@ -68,5 +69,6 @@ public class SkillMng : MonoBehaviour
 		{
 			eM.Current.Value.SetBullet();
 		}
+        //*/
 	}
 }

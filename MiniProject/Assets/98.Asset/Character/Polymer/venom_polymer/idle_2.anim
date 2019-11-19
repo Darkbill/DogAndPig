@@ -3057,7 +3057,7 @@ AnimationClip:
   - time: 0.36666667
     functionName: MonsterSkillAtt
     data: 
-    objectReferenceParameter: {fileID: 11500000, guid: a2e811aca8f0cce48bdafb070700b9af,
+    objectReferenceParameter: {fileID: 11500000, guid: d73147a362276dc4b86948d09063d6b9,
       type: 3}
     floatParameter: 0
     intParameter: 0
@@ -3065,7 +3065,7 @@ AnimationClip:
   - time: 0.9
     functionName: ChangeStateEndAttack
     data: 
-    objectReferenceParameter: {fileID: 11500000, guid: 2692aa037849cea4382b554d1165bdb0,
+    objectReferenceParameter: {fileID: 11500000, guid: 01f1f41e9f335fb4dbc8b74c8c5cfca0,
       type: 3}
     floatParameter: 0
     intParameter: 0
