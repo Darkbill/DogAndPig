@@ -4832,3 +4832,11 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 1
+    functionName: ChangeStateEndAttack
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: 01f1f41e9f335fb4dbc8b74c8c5cfca0,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

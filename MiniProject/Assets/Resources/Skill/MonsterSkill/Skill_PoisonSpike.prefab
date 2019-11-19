@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 6185200152075751735}
   - component: {fileID: 4562522005803013776}
   - component: {fileID: 7541441481117468983}
+  - component: {fileID: 5194092126805582547}
   m_Layer: 0
   m_Name: Whirl_Ball_Frost (1)
   m_TagString: Untagged
@@ -4932,7 +4933,18 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.3
+--- !u!210 &5194092126805582547
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282230854840783657}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 102
 --- !u!1 &473853422503139465
 GameObject:
   m_ObjectHideFlags: 0
@@ -48508,6 +48520,7 @@ GameObject:
   - component: {fileID: 537151741968267547}
   - component: {fileID: 1597772528121066150}
   - component: {fileID: 5743725803181052331}
+  - component: {fileID: 1536121023627280467}
   m_Layer: 0
   m_Name: Whirl_Ball_Frost (5)
   m_TagString: Untagged
@@ -53366,7 +53379,18 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.3
+--- !u!210 &1536121023627280467
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3737852961840419908}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 102
 --- !u!1 &3905087931772625406
 GameObject:
   m_ObjectHideFlags: 0
@@ -72742,6 +72766,7 @@ GameObject:
   - component: {fileID: 6276444851172665323}
   - component: {fileID: 4043024804540207782}
   - component: {fileID: 7847200440559094051}
+  - component: {fileID: 6124581290381013645}
   m_Layer: 0
   m_Name: Whirl_Ball_Frost (3)
   m_TagString: Untagged
@@ -77600,7 +77625,18 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.3
+--- !u!210 &6124581290381013645
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6116539349640975494}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 102
 --- !u!1 &6823868440236712450
 GameObject:
   m_ObjectHideFlags: 0
@@ -77614,6 +77650,7 @@ GameObject:
   - component: {fileID: 1920253227370445972}
   - component: {fileID: 7875270458357842427}
   - component: {fileID: 233460408098291391}
+  - component: {fileID: 808171872311948860}
   m_Layer: 0
   m_Name: Whirl_Ball_Frost (4)
   m_TagString: Untagged
@@ -82472,7 +82509,18 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.3
+--- !u!210 &808171872311948860
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6823868440236712450}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 102
 --- !u!1 &7069028684108535365
 GameObject:
   m_ObjectHideFlags: 0
@@ -116372,6 +116420,7 @@ GameObject:
   - component: {fileID: 7680515707998619451}
   - component: {fileID: 5547141469320629207}
   - component: {fileID: 373313398043756071}
+  - component: {fileID: 6508904736181271767}
   m_Layer: 0
   m_Name: Whirl_Ball_Frost (2)
   m_TagString: Untagged
@@ -121230,7 +121279,18 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.3
+--- !u!210 &6508904736181271767
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9059546048171630599}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 102
 --- !u!1 &9212206477885270991
 GameObject:
   m_ObjectHideFlags: 0
@@ -126082,6 +126142,7 @@ GameObject:
   - component: {fileID: 9016063779976247257}
   - component: {fileID: 7172033654261133874}
   - component: {fileID: 311934825314146749}
+  - component: {fileID: 4480529992444046056}
   m_Layer: 0
   m_Name: Whirl_Ball_Frost
   m_TagString: Untagged
@@ -130940,7 +131001,18 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
+--- !u!210 &4480529992444046056
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9212404504109260733}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 102
 --- !u!1 &9212903119331619321
 GameObject:
   m_ObjectHideFlags: 0

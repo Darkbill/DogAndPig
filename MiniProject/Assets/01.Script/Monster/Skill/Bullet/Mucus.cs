@@ -17,6 +17,7 @@ public class Mucus : MonoBehaviour
 
     public ParticleSystem mucusEffect;
     public List<ParticleSystem> mucusEffectScaleSet = new List<ParticleSystem>();
+    public List<ParticleSystem> mucusEffectArraySet = new List<ParticleSystem>();
 
     public void Setting(int _id, float _time, float _damage, float _radius)
     {
@@ -32,6 +33,9 @@ public class Mucus : MonoBehaviour
         radius = 1.5f;
         foreach (ParticleSystem p in mucusEffectScaleSet)
             p.gameObject.transform.localScale *= radius;
+
+        foreach (ParticleSystem mp in mucusEffectArraySet)
+            mp.gameObject.transform.localScale *= radius;
 
     }
 

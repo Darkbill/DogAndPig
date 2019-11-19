@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using GlobalDefine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -57,13 +58,15 @@ public class PoisonSpike : MonoBehaviour
             gameObject.SetActive(false);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.collider.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            //TODO : Player Hit
-            gameObject.SetActive(false);
-            Debug.Log("충돌");
+            GameMng.Ins.player.Damage(eAttackType.Water, damage);
+            GameMng.Ins.HitToEffect(eAttackType.Water,
+                        GameMng.Ins.player.transform.position + new Vector3(0, GameMng.Ins.player.calStat.size),
+                        gameObject.transform.position,
+                        GameMng.Ins.player.calStat.size);
         }
     }
 }
