@@ -9,7 +9,7 @@ public class InputSystem : MonoBehaviour
 
 	private void Update()
 	{
-		if (GameMng.Ins.isRecord == true) return;
+		if (GameMng.Ins.isRecord) return;
 		/* 컴퓨터 빌드 */
 #if UNITY_EDITOR_WIN
 		if (Input.GetMouseButtonDown(0))

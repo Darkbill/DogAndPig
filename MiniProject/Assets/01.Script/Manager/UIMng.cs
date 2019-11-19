@@ -40,10 +40,7 @@ public class UIMng : MonoBehaviour
 	/* Setting */
 	private void Start()
 	{
-		if(JsonMng.Ins.IsDone == false)
-		{
-			JsonMng.Ins.LoadAll();
-		}
+		if(JsonMng.Ins.IsDone == false) return;
 		else Setting();
 	}
 	public void Setting()

@@ -18,7 +18,6 @@ public class RecordPlayer : Player
 	{
 		startPos = gameObject.transform.position;
 	}
-	
 	private void Update()
 	{
 		if (CheckMove())
@@ -45,14 +44,13 @@ public class RecordPlayer : Player
 	}
 	private IEnumerator StartEventMove(List<EventValue> eventList,List<MouseEventValue> mouseEventList)
 	{
-		gameObject.transform.position = startPos;
 		float cTime = 0;
 		int indexCount = 0;
 		int mouseIndexCount = 0;
 		while(true)
 		{
 			cTime += Time.deltaTime;
-			if(indexCount < eventList.Count && eventList[indexCount].time <= cTime)
+			if (indexCount < eventList.Count && eventList[indexCount].time <= cTime)
 			{
 				ChangePlayerMoveState(eventList[indexCount].inputStiring,eventList[indexCount].isdDown);
 				indexCount++;

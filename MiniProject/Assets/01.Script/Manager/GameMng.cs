@@ -40,10 +40,13 @@ public class GameMng : MonoBehaviour
 	public int aimSkillID;
 	private void Start()
 	{
-		if (isRecord && JsonMng.Ins.IsDone)
+		Time.timeScale = 1;
+		if (JsonMng.Ins.IsDone == false)
 		{
-			StartToRecord();
+			JsonMng.Ins.LoadAll();
+			return;
 		}
+		else if (isRecord) StartToRecord();
 		else LoadGame();
 	}
 	public void StartToRecord()
@@ -56,13 +59,12 @@ public class GameMng : MonoBehaviour
 	}
 	public void WorldStartToRecord()
 	{
-		monsterPool.WorldStart(worldLevel);
 		stageLevel = 1;
+		monsterPool.WorldStart(worldLevel);
 	}
 	public void LoadGame()
 	{
 		//테스트 코드
-		Time.timeScale = 1;
 		aimSkillID = -1;
 		player.PlayerSetting();
 		WorldStart();
@@ -98,9 +100,9 @@ public class GameMng : MonoBehaviour
 	}
 	public void WorldStart()
 	{
+		stageLevel = 1;
 		UIMngInGame.Ins.StageStart();
 		monsterPool.WorldStart(worldLevel);
-		stageLevel = 1;
 	}
 	public void WorldClear()
 	{
