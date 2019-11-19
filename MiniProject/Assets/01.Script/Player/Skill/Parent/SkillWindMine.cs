@@ -74,6 +74,7 @@ public class SkillWindMine : Skill
     public override void OnDrop(Vector2 pos)
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(pos);
+		mousePos.z = 0;
         CreateAndPool(mousePos);
         ActiveSkill();
     }

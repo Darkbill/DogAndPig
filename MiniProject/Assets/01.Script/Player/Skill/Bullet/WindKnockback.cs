@@ -58,7 +58,15 @@ public class WindKnockback : BulletPlayerSkill
 
     private void CrashKnockback()
     {
-        var hitMonsterList = GameMng.Ins.monsterPool.monsterList;
+		List<Monster> hitMonsterList;
+		try
+		{
+			hitMonsterList = GameMng.Ins.monsterPool.monsterList;
+		}
+		catch
+		{
+			return;
+		}
         foreach(Monster m in hitMonsterList)
         {
             if (m == null || !m.active || !m.gameObject.activeSelf) continue;

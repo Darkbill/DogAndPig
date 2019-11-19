@@ -31,15 +31,26 @@ public class GameMng : MonoBehaviour
 	public Portal portal;
 	public HPUIMng hpUIMng;
 	//테스트코드
+	public bool isRecord;
 	public static int stageLevel;
 	public static int worldLevel;
 	[Range(0, 10700)]
 	public int exp;
 	[HideInInspector]
 	public int aimSkillID;
-	private void Awake()
+	private void Start()
 	{
+		if (JsonMng.Ins.IsDone == false) return;
 		LoadGame();
+		isRecord = false;
+	}
+	public void StartToRecord()
+	{
+		skillMng.LoadAll();
+		player.PlayerSetting();
+		worldLevel = 0;
+		aimSkillID = -1;
+		isRecord = true;
 	}
 	public void LoadGame()
 	{

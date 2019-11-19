@@ -104,7 +104,6 @@ public class PlayerInfoUI : MonoBehaviour
 		stageLevelText.text = GameMng.stageLevel.ToString();
 		stageLevelText.transform.localScale = new Vector3(2, 2, 2);
 		stageLevelText.transform.DOScale(1, 0.5f);
-		//TODO : NextStage연출
 	}
 	private void Update()
 	{

@@ -19792,7 +19792,6 @@ GameObject:
   - component: {fileID: 3777669457859502685}
   - component: {fileID: 3953578184387418365}
   - component: {fileID: 3938200310451611705}
-  - component: {fileID: 3889502435025679439}
   m_Layer: 0
   m_Name: StartDash
   m_TagString: Untagged
@@ -24597,22 +24596,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &3889502435025679439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3776248737143542339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e21234e3c8e43a6ad12673095f01bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RunAtStart: 1
-  RunDelay: 0
-  SetupAtStart: 1
-  LifeTime: 1
 --- !u!1 &4136266237672423081
 GameObject:
   m_ObjectHideFlags: 0

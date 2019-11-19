@@ -92,5 +92,4 @@ public class SkillThounderCalling : Skill
 	{
 		delayTime += Time.deltaTime;
 	}
-	//TODO : 성민형 과제
 }

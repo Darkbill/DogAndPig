@@ -11,7 +11,6 @@ public class GoodMng : MonoBehaviour
     private const int experienceCnt = 100;
     private const int rangeMaxCnt = 7;
 
-    //TODO : Gold 80 / Dia 20 pooling
 
     public Gold goldbase;
     public Diamond diabase;

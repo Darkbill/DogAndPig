@@ -39,7 +39,14 @@ public class LinkIce : BulletPlayerSkill
 	}
     private void NextPosSet()
     {
-		monsterpool = GameMng.Ins.monsterPool.monsterList;
+		try
+		{
+			monsterpool = GameMng.Ins.monsterPool.monsterList;
+		}
+		catch
+		{
+			return;
+		}
 		int index = FindMonster();
 		if (index == -1)
 		{

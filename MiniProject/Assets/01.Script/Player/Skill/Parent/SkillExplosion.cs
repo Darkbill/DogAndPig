@@ -72,13 +72,11 @@ public class SkillExplosion : Skill
 	}
 	public override void OnDrop()
 	{
-		base.OnDrop();
 		ActiveSkill();
 		GetActiveAbleExplosion().StartThrow();
 	}
 	public override void OnDrop(Vector2 pos)
 	{
-		base.OnDrop();
 		ActiveSkill();
 		GetActiveAbleExplosion().StartThrow(pos);
 	}

@@ -10,7 +10,7 @@ public abstract class Skill : MonoBehaviour
 	abstract public void SkillSetting();
 	public virtual void ActiveSkill()
 	{
-		UIMngInGame.Ins.CoolDownAllSkill();
+		if(GameMng.Ins.isRecord == false) UIMngInGame.Ins.CoolDownAllSkill();
 		gameObject.SetActive(true);
 		delayTime = 0;
 	}

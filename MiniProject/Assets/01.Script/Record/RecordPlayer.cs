@@ -13,6 +13,7 @@ public class RecordPlayer : Player
 	private bool isEventMove;
 	private bool[] downState = new bool[4];
 	private Vector3 startPos;
+	private int skillID;
 	private void Start()
 	{
 		startPos = gameObject.transform.position;
@@ -25,24 +26,39 @@ public class RecordPlayer : Player
 			Move();
 		}
 	}
-	public void MoveToEvent(List<EventValue> eventList)
+	public void MoveToEvent(int _skillID)
 	{
-		StartCoroutine(StartEventMove(eventList));
+		skillID = _skillID;
+		var i = JsonMng.Ins.recordDataTable[skillID];
+		var e = i.playerEventList;
+		var m = i.mouseEventList;
+		StartCoroutine(StartEventMove(e, m));
 	}
-	private IEnumerator StartEventMove(List<EventValue> eventList)
+	public void MoveToEvent(List<EventValue> eventList,List<MouseEventValue> mouseEventList,int _skillID)
+	{
+		StartCoroutine(StartEventMove(eventList,mouseEventList));
+		skillID = _skillID;
+	}
+	private IEnumerator StartEventMove(List<EventValue> eventList,List<MouseEventValue> mouseEventList)
 	{
 		gameObject.transform.position = startPos;
 		float cTime = 0;
 		int indexCount = 0;
+		int mouseIndexCount = 0;
 		while(true)
 		{
 			cTime += Time.deltaTime;
-			if(eventList[indexCount].time <= cTime)
+			if(indexCount < eventList.Count && eventList[indexCount].time <= cTime)
 			{
 				ChangePlayerMoveState(eventList[indexCount].inputStiring,eventList[indexCount].isdDown);
 				indexCount++;
 			}
-			if (indexCount == eventList.Count) yield break;
+			if (mouseIndexCount < mouseEventList.Count && mouseEventList[mouseIndexCount].time <= cTime)
+			{
+				ChangeMouserState(new Vector2(mouseEventList[mouseIndexCount].xPos, mouseEventList[mouseIndexCount].yPos), mouseEventList[mouseIndexCount].isdDown);
+				mouseIndexCount++;
+			}
+			if (indexCount == eventList.Count && mouseIndexCount == mouseEventList.Count) yield break;
 			else yield return null;
 		}
 	}
@@ -63,14 +79,14 @@ public class RecordPlayer : Player
 				ChangeState(eDownType.Up, isDown);
 				break;
 			case "Skill":
-				ActiveSkill();
+				GameMng.Ins.skillMng.skillDict[skillID].OnButtonDown();
 				break;
 		}
 	}
-	private void ActiveSkill()
+	private void ChangeMouserState(Vector3 pos, bool isDown)
 	{
-		Debug.Log("스킬");
-		GameMng.Ins.skillMng.skillDict[1].ActiveSkill();
+		if(isDown) GameMng.Ins.skillMng.skillDict[skillID].OnDrag();
+		else GameMng.Ins.skillMng.skillDict[skillID].OnDrop(pos);
 	}
 	private void ChangeState(eDownType type, bool isDown)
 	{

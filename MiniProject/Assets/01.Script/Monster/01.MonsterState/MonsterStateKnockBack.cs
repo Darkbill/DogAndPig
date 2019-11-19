@@ -19,7 +19,6 @@ public class MonsterStateKnockBack : MonsterStateBase
 
 	public override bool OnTransition()
 	{
-        //TODO : right, left, up, down vec
         Ray2D[] rayarray = new Ray2D[4];
         rayarray[0] = new Ray2D(monsterObject.transform.position + new Vector3(0, monsterObject.monsterData.size),
             Vector3.right);

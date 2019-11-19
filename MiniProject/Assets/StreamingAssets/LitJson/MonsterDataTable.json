@@ -112,7 +112,7 @@
     "moveSpeed": 1,
     "rotationSpeed": 180,
     "attackType": 1,
-    "attackSpeed": 2,
+    "attackSpeed": 1.5,
     "attackRange": 1.5,
     "attackAngle": 40,
     "healthPoint": 50,
@@ -147,7 +147,7 @@
     "skillIndex": 0
   },
   {
-    "monsterID": 8,
+    "monsterID": 99,
     "monsterName": "h",
     "size": 0.3,
     "moveType": 1,
@@ -157,7 +157,7 @@
     "attackSpeed": 1,
     "attackRange": 15,
     "attackAngle": 20,
-    "healthPoint": 10,
+    "healthPoint": 10000,
     "damage": 3,
     "armor": 2,
     "physicsResist": 500,

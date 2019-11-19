@@ -19,7 +19,7 @@ public class Monster : MonoBehaviour
 		MonsterSetting();
 	}
 
-	private void MonsterSetting()
+	public void MonsterSetting()
 	{
 		monsterData = JsonMng.Ins.monsterDataTable[MonsterID].Copy();
 		active = true;

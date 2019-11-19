@@ -143,7 +143,7 @@ public class MonsterPool : MonoBehaviour
 			}
 		}
 		GameObject eff = Instantiate(Resources.Load(
-				string.Format("MonsterCreateTestEffect"),
+				string.Format("MonsterCreateEffect"),
 				typeof(GameObject))) as GameObject;
 		eff.transform.position = pos;
 		eff.SetActive(true);
@@ -168,5 +168,4 @@ public class MonsterPool : MonoBehaviour
 	{
 		return monsterList[bossIndex].monsterData.healthPoint / JsonMng.Ins.monsterDataTable[monsterList[bossIndex].MonsterID].healthPoint;
 	}
-
 }

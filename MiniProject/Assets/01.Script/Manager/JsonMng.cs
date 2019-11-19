@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using LitJson;
-using System.Text;
 
 public class JsonMng : MonoBehaviour
 {
@@ -36,7 +35,8 @@ public class JsonMng : MonoBehaviour
 	public PlayerInfoData playerInfoDataTable { get; private set; } = new PlayerInfoData();
 	public PlayerData playerDataTable { get; private set; } = new PlayerData();
 	public Dictionary<int, PlayerSkillTextData> playerSkillTextDataTable { get; private set; } = new Dictionary<int, PlayerSkillTextData>();
-	private const int AllDownCount = 9;
+	public Dictionary<int, RecordData> recordDataTable { get; private set; } = new Dictionary<int, RecordData>();
+	private const int AllDownCount = 10;
 	private int cDownCount = 0;
 	public bool IsDone
 	{
@@ -54,16 +54,16 @@ public class JsonMng : MonoBehaviour
 	public void LoadAll()
 	{
 		LoadPlayerData();
+		LoadPlayerSkillTextData();
 		LoadPlayerInfoData();
 		LoadPlayerSkillData();
 		LoadItemData();
+		LoadRecordData();
 		LoadMonsterData();
 		LoadMonsterSkillData();
 		LoadExpDataTable();
 		LoadStageData();
-		LoadPlayerSkillTextData();
 	}
-	
 	private IEnumerator StartLoadPlayerData<T>(string fileName,T table) where T : class
 	{
 		string path = string.Format("{0}/LitJson/{1}.json", Application.streamingAssetsPath, fileName);
@@ -79,10 +79,7 @@ public class JsonMng : MonoBehaviour
 		}
 		else playerInfoDataTable = table as PlayerInfoData;
 		cDownCount++;
-		if (cDownCount == AllDownCount)
-		{
-			UIMng.Ins.Setting();
-		}
+		CheckDone();
 	}
 	private IEnumerator StartLoad<T>(string fileName, Dictionary<int, T> table) where T : TableBase
 	{
@@ -99,10 +96,7 @@ public class JsonMng : MonoBehaviour
 				table.Add(save.GetTableID(), save);
 			}
 			cDownCount++;
-			if (cDownCount == AllDownCount)
-			{
-				UIMng.Ins.Setting();
-			}
+			CheckDone();
 		}
 		catch
 		{
@@ -143,10 +137,7 @@ public class JsonMng : MonoBehaviour
 			}
 		}
 		cDownCount++;
-		if (cDownCount == AllDownCount)
-		{
-			UIMng.Ins.Setting();
-		}
+		CheckDone();
 	}
 	private void LoadItemData()
 	{
@@ -184,10 +175,15 @@ public class JsonMng : MonoBehaviour
 	{
 		StartCoroutine(StartLoad("PlayerSkillTextDataTable", playerSkillTextDataTable));
 	}
+	private void LoadRecordData()
+	{
+		StartCoroutine(StartLoad("RecordDataTable", recordDataTable));
+	}
 	public Dictionary<int,List<StageDataTable>> GetWorldData(int worldLevel)
 	{
 		return stageDataTable[worldLevel];
 	}
+
 	public int GetRandomSkillIndex()
 	{
 		int maxCount = playerSkillDataTable.Count;
@@ -206,5 +202,13 @@ public class JsonMng : MonoBehaviour
 		string path = string.Format("{0}/LitJson/{1}.json", Application.streamingAssetsPath, "PlayerInfoDataTable");
 		JsonData data = JsonMapper.ToJson(playerInfoDataTable);
 		System.IO.File.WriteAllText(path, data.ToString());
+	}
+	private void CheckDone()
+	{
+		if (cDownCount == AllDownCount)
+		{
+			UIMng.Ins.Setting();
+			GameMng.Ins.StartToRecord();
+		}
 	}
 }

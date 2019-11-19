@@ -46,7 +46,6 @@ public class SkillWaterPrison : Skill
         }
 	}
 	#endregion
-	//TODO : 성민형 과제
 	public List<WaterBall> waterlist = new List<WaterBall>();
     //실제 쿨타임 도는 타이밍에 ActiveSkill();
     public override void OnButtonDown()

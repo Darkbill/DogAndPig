@@ -47,6 +47,7 @@ public class UIMngInGame : MonoBehaviour
 
 	private void Start()
     {
+		if (JsonMng.Ins.IsDone == false) return;
         UISetting();
     }
 	public void ActiveBuff(int skillIndex)

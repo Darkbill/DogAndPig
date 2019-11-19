@@ -54,7 +54,6 @@ public class FireArrowGate : MonoBehaviour
 		{
 			activeDelay += Time.deltaTime;
 			initTime += Time.deltaTime;
-			Debug.Log(activeDelay);
 			if (activeDelay >= activeTime)
 			{
 				OffSkill();

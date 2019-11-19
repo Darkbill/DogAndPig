@@ -42,6 +42,7 @@ public class ExplosionFire : BulletPlayerSkill
 	{
 		explosion.gameObject.SetActive(false);
 		thrower.gameObject.SetActive(false);
+		gameObject.SetActive(false);
 	}
 	private IEnumerator OffCollider()
 	{
@@ -53,6 +54,7 @@ public class ExplosionFire : BulletPlayerSkill
 	}
 	internal void StartThrow()
 	{
+		gameObject.SetActive(true);
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		mousePos = new Vector3(mousePos.x, mousePos.y, 0);
 		thrower.SetActive(true);
@@ -60,8 +62,9 @@ public class ExplosionFire : BulletPlayerSkill
 	}
 	internal void StartThrow(Vector2 pos)
 	{
+		gameObject.SetActive(true);
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint(pos);
-		mousePos = new Vector3(mousePos.x, mousePos.y, 0);
+		mousePos.z = 0;
 		thrower.SetActive(true);
 		StartCoroutine(Throw(mousePos));
 	}

@@ -172,6 +172,7 @@ public class UIMng : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
+			GameMng.worldLevel = 0;
 			UnityEngine.SceneManagement.SceneManager.LoadScene("Record");
 		}
 	}
