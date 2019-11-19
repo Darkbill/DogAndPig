@@ -40,9 +40,11 @@ public class GameMng : MonoBehaviour
 	public int aimSkillID;
 	private void Start()
 	{
-		if (JsonMng.Ins.IsDone == false) return;
-		LoadGame();
-		isRecord = false;
+		if (isRecord && JsonMng.Ins.IsDone)
+		{
+			StartToRecord();
+		}
+		else LoadGame();
 	}
 	public void StartToRecord()
 	{
@@ -51,7 +53,6 @@ public class GameMng : MonoBehaviour
 		worldLevel = 0;
 		aimSkillID = -1;
 		WorldStartToRecord();
-		isRecord = true;
 	}
 	public void WorldStartToRecord()
 	{
