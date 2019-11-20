@@ -3,14 +3,10 @@ using GlobalDefine;
 public class OrgeMonster : Monster
 {
 	public Vector3 toPlayerDir;
-	public bool skillFlag;
-	public void AttackCheckEnd()
+	public SwordDance swordDance;
+	private void Start()
 	{
-		//애니메이션 호출 함수
-		if(CheckDistance())
-		{
-			GameMng.Ins.DamageToPlayer(eAttackType.Physics, monsterData.damage);
-		}
+		swordDance.Setting(10, 2);
 	}
 	public void SkillCheckEnd()
 	{
@@ -43,5 +39,29 @@ public class OrgeMonster : Monster
 	public void AllClear()
 	{
 		GameMng.Ins.WorldClear();
+	}
+	public void ShotSwordDanceLeft()
+	{
+		ShotSwordDance(true);
+	}
+	public void ShotSwordDanceRight()
+	{
+		ShotSwordDance(false);
+	}
+	public void ShotSwordDance(bool isLeft)
+	{
+		Vector3 dir = GameMng.Ins.player.transform.position - gameObject.transform.position;
+		Vector3 rightVector = gameObject.transform.right;
+		bool lookLeft;
+		if (rightVector.x == -1) lookLeft = true;
+		else lookLeft = false;
+		if(isLeft)
+		{
+			swordDance.Shot(dir, gameObject.transform.position,monsterData.size, lookLeft);
+		}
+		else
+		{
+			swordDance.Shot(dir, gameObject.transform.position, monsterData.size, lookLeft);
+		}
 	}
 }
