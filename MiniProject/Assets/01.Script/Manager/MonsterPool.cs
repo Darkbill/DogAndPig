@@ -27,7 +27,7 @@ public class MonsterPool : MonoBehaviour
 		for (int i = 0; i < poolSiz; ++i)
 		{
 			GameObject eff = Instantiate(Resources.Load(
-				string.Format("MonsterCreateEffect"),
+				string.Format("Effect/MonsterCreateEffect"),
 				typeof(GameObject))) as GameObject;
 			eff.transform.position = new Vector3();
             eff.transform.parent = GameMng.Ins.objectPool.effectPool.transform;

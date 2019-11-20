@@ -147,6 +147,27 @@
     "skillIndex": 0
   },
   {
+    "monsterID": 8,
+    "monsterName": "Puppeteer",
+    "size": 0.5,
+    "moveType": 1,
+    "moveSpeed": 1,
+    "rotationSpeed": 180,
+    "attackType": 1,
+    "attackSpeed": 2,
+    "attackRange": 2,
+    "attackAngle": 40,
+    "healthPoint": 50,
+    "damage": 15,
+    "armor": 2,
+    "physicsResist": 500,
+    "fireResist": 500,
+    "waterResist": 500,
+    "windResist": 500,
+    "lightningResist": 500,
+    "skillIndex": 0
+  },
+  {
     "monsterID": 99,
     "monsterName": "h",
     "size": 0.3,

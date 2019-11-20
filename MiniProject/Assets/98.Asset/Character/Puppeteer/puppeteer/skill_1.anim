@@ -20509,23 +20509,18 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.4
-    functionName: AttackStart
+    functionName: MonsterSkillAtt
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11500000, guid: b29c35305c599ea44935ddc3788ca409,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.8666667
-    functionName: AttackStart
+  - time: 1.8333334
+    functionName: ChangeStateEndAttack
     data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.3666667
-    functionName: AttackStart
-    data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11500000, guid: c47728a5e62a91244b50075fbb66e8d1,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

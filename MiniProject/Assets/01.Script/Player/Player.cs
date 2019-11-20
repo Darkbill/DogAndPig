@@ -90,11 +90,32 @@ public class Player : MonoBehaviour
 		}
 		UIMngInGame.Ins.DamageToPlayer(d);
 	}
-	/* Damage */
-	#endregion
-	#region Buff
-	/* Buff */
-	private void UpdateBuff(float delayTime)
+    /* Damage */
+    #endregion
+    #region Buff
+    /* Buff */
+
+    public void OutStateAdd(ConditionData condition, Vector3 knockBackDir = new Vector3())
+    {
+        conditionMain = condition;
+        AddConditionlist(conditionMain, knockBackDir);
+    }
+
+    private void AddConditionlist(ConditionData condition, Vector3 knockBackDir = new Vector3())
+    {
+        switch (condition.buffType)
+        {
+            //case eBuffType.Stun:
+            //    playerStateMachine.ChangeStateStun();
+            //    GameMng.Ins.monsterPool.SelectEffect(gameObject, condition);
+            //    break;
+            case eBuffType.NockBack:
+                playerStateMachine.ChangeStateKnockBack(knockBackDir, condition.changeValue);
+                break;
+        }
+    }
+
+    private void UpdateBuff(float delayTime)
 	{
 		for (int i = 0; i < conditionList.Count; ++i)
 		{

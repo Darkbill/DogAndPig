@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 97406892908387503}
   - component: {fileID: 260249023587113842}
   - component: {fileID: 5288220985289420097}
-  - component: {fileID: 2215749754702850787}
   m_Layer: 0
   m_Name: MucusEffectTime0.3
   m_TagString: Untagged
@@ -4871,17 +4870,6 @@ MonoBehaviour:
   mucusEffectArraySet:
   - {fileID: 4646381005477156992}
   - {fileID: 4613153244176119502}
---- !u!210 &2215749754702850787
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 260249023587113853}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 101
 --- !u!1 &260258321564284215
 GameObject:
   m_ObjectHideFlags: 0
@@ -4893,7 +4881,6 @@ GameObject:
   - component: {fileID: 258897822162529845}
   - component: {fileID: 97699897972881995}
   - component: {fileID: 97593045834543019}
-  - component: {fileID: 175096016974286266}
   m_Layer: 0
   m_Name: PS_Sparks
   m_TagString: Untagged
@@ -9712,17 +9699,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!210 &175096016974286266
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 260258321564284215}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 101
 --- !u!1 &260269213252821205
 GameObject:
   m_ObjectHideFlags: 0
@@ -9734,7 +9710,6 @@ GameObject:
   - component: {fileID: 258668139353185457}
   - component: {fileID: 82769101172006855}
   - component: {fileID: 99075043680585989}
-  - component: {fileID: 2042455569529664129}
   m_Layer: 0
   m_Name: PS_Splash
   m_TagString: Untagged
@@ -14553,17 +14528,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!210 &2042455569529664129
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 260269213252821205}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 101
 --- !u!1 &4810266486147481538
 GameObject:
   m_ObjectHideFlags: 0
