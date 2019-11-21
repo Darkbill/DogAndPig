@@ -29,14 +29,19 @@ public class LevelDesignMng : MonoBehaviour
 	#endregion
 	public Dropdown stageDropDwon;
 	public Dropdown worldDropDown;
+
 	public MonsterExam monsterExam;
+	//ViewPort
 	public GameObject gameView;
+	//Stage에 표시되는 Monster들의 정보
 	public List<MonsterExam> monsterExamList;
+	//전체 World와 Stage Data
 	public Dictionary<int, Dictionary<int, List<StageDataTable>>> stageDataTable { get; private set; }
 												= new Dictionary<int, Dictionary<int, List<StageDataTable>>>();
 	public Text expText;
 	public Text goldText;
 
+	//Monster, World, Stage 추가 생성을 위한 UI
 	public Text monsterIndex;
 	public Text monsterLevel;
 	public Toggle monsterToggle;
@@ -48,9 +53,11 @@ public class LevelDesignMng : MonoBehaviour
 	}
 	private void Setting()
 	{
+		//전체 데이터 기준으로 드롭다운 박스와 가장 낮은 Stage표시
 		worldDropDown.ClearOptions();
 		stageDropDwon.ClearOptions();
 		List<int> stage = new List<int>();
+		//드롭박스 셋팅
 		var i = stageDataTable.GetEnumerator();
 		while (i.MoveNext())
 		{
@@ -62,6 +69,7 @@ public class LevelDesignMng : MonoBehaviour
 		{
 			stageDropDwon.options.Add(new Dropdown.OptionData() { text = j.Current.Key.ToString() });
 		}
+		//가장 낮은 스테이지 셋팅
 		int firstStage = GetFirstStage(firstWorld);
 		ShowGetInfo(firstWorld);
 		ShowStageInfo(firstWorld,firstStage);
@@ -72,6 +80,7 @@ public class LevelDesignMng : MonoBehaviour
 	}
 	private void UpgaradeStageOption(int worldNumber)
 	{
+		//Stage 추가,제거 새로고침
 		stageDropDwon.ClearOptions();
 		var j = stageDataTable[worldNumber].GetEnumerator();
 		while (j.MoveNext())
@@ -98,6 +107,7 @@ public class LevelDesignMng : MonoBehaviour
 		//expText.text = string.Format("EXP : {0}", count.ToString());
 		//goldText.text = string.Format("GOLD : {0}", count.ToString());
 	}
+	//가장 낮은 스테이지 불러오기
 	private int GetFirstWorld()
 	{
 		var i = stageDataTable.GetEnumerator();
@@ -124,8 +134,10 @@ public class LevelDesignMng : MonoBehaviour
 		}
 		return index;
 	}
+
 	public void ShowStageInfo(int worldNumber, int stageNumber)
 	{
+		//현재 월드,스테이지데이터로 화면상에 몬스터 표시
 		RemoveMonsterExamList();
 		List<StageDataTable> stageList = stageDataTable[worldNumber][stageNumber];
 		for(int i = 0; i < stageList.Count; ++i)
@@ -143,6 +155,7 @@ public class LevelDesignMng : MonoBehaviour
 	}
 	public void ShowStageInfoToWorld(int worldNumber)
 	{
+		//world드롭박스 호출함수 월드 변경시 해당 월드 스테이지 드롭박스 갱신, 가장낮은 스테이지 표시
 		RemoveMonsterExamList();
 		List<StageDataTable> stageList = stageDataTable[worldNumber][GetFirstStage(worldNumber)];
 		for (int i = 0; i < stageList.Count; ++i)
@@ -182,6 +195,7 @@ public class LevelDesignMng : MonoBehaviour
 	}
 	public void SaveStage()
 	{
+		//수정한 스테이지 데이터 저장, 스테이지UI와 해당 스테이지 총 크기 비율로 계산한 위치,인덱스 등 저장
 		List<StageDataTable> tempList = new List<StageDataTable>();
 		for (int i = 0; i < monsterExamList.Count; ++i)
 		{
@@ -202,6 +216,7 @@ public class LevelDesignMng : MonoBehaviour
 	}
 	private void RemoveMonsterExamList()
 	{
+		//스테이지 또는 월드 갱신시 호출 화면에 있는 몬스터리스트 지우기
 		for(int i = 0; i < monsterExamList.Count; ++i)
 		{
 			if (monsterExamList[i] == null) continue;
@@ -209,6 +224,94 @@ public class LevelDesignMng : MonoBehaviour
 		}
 		monsterExamList.Clear();
 	}
+
+	public void RemoveStage()
+	{
+		stageDataTable[int.Parse(worldDropDown.captionText.text)].Remove(int.Parse(stageDropDwon.captionText.text));
+		Sort();
+		Setting();
+	}
+	public void RemoveWorld()
+	{
+		stageDataTable.Remove(int.Parse(worldDropDown.captionText.text));
+		Sort();
+		Setting();
+	}
+	public void CreateStage()
+	{
+		if (stageDataTable[int.Parse(worldText.text)].ContainsKey(int.Parse(stageText.text)))
+		{
+			Debug.LogError("이미 존재하는 Stage");
+		}
+		else
+		{
+			stageDataTable[int.Parse(worldText.text)].Add(int.Parse(stageText.text), new List<StageDataTable>());
+			Sort();
+			Setting();
+		}
+		stageText.text = "";
+	}
+	public void CreateMonster()
+	{
+		float xPos = 0;
+		float yPos = 0;
+		GameObject o = Instantiate(monsterExam.gameObject, gameView.transform);
+		MonsterExam e = o.GetComponent<MonsterExam>();
+		int boss;
+		if (monsterToggle.isOn) boss = 1;
+		else boss = 0;
+		e.Setting(monsterLevel.text, monsterIndex.text, xPos, yPos, boss);
+		monsterExamList.Add(e);
+		monsterLevel.text = "";
+		monsterIndex.text = "";
+	}
+	public void Sort()
+	{
+		//Stage 별로 다시 저장
+		Dictionary<int, Dictionary<int, List<StageDataTable>>> temp = new Dictionary<int, Dictionary<int, List<StageDataTable>>>();
+
+		while (stageDataTable.Count != 0)
+		{
+			int cIndex = int.MaxValue;
+			var e = stageDataTable.GetEnumerator();
+			while (e.MoveNext())
+			{
+				if (cIndex > e.Current.Key)
+				{
+					cIndex = e.Current.Key;
+				}
+			}
+			temp.Add(cIndex, stageDataTable[cIndex]);
+			stageDataTable.Remove(cIndex);
+		}
+		stageDataTable = temp;
+		var i = stageDataTable.GetEnumerator();
+		Dictionary<int, Dictionary<int, List<StageDataTable>>> tempAll = new Dictionary<int, Dictionary<int, List<StageDataTable>>>();
+		while (i.MoveNext())
+		{
+			var sort = stageDataTable[i.Current.Key];
+			Dictionary<int, List<StageDataTable>> tempValue = new Dictionary<int, List<StageDataTable>>();
+			while (sort.Count != 0)
+			{
+				int cIndex = int.MaxValue;
+				var e = i.Current.Value.GetEnumerator();
+				while (e.MoveNext())
+				{
+					if (cIndex > e.Current.Key)
+					{
+						cIndex = e.Current.Key;
+					}
+				}
+				tempValue.Add(cIndex, sort[cIndex]);
+				sort.Remove(cIndex);
+			}
+			tempAll.Add(i.Current.Key, tempValue);
+		}
+		stageDataTable = tempAll;
+	}
+	/// <summary>
+	/// 로드,수정,저장을 위한 테이블 불러오기
+	/// </summary>
 	private void LoadStageData()
 	{
 		StartCoroutine(StartLoad("StageDataTable", stageDataTable));
@@ -273,89 +376,5 @@ public class LevelDesignMng : MonoBehaviour
 		}
 		JsonData data = JsonMapper.ToJson(temp);
 		File.WriteAllText(path, data.ToString());
-	}
-	public void RemoveStage()
-	{
-		stageDataTable[int.Parse(worldDropDown.captionText.text)].Remove(int.Parse(stageDropDwon.captionText.text));
-		Sort();
-		Setting();
-	}
-	public void RemoveWorld()
-	{
-		stageDataTable.Remove(int.Parse(worldDropDown.captionText.text));
-		Sort();
-		Setting();
-	}
-	public void CreateStage()
-	{
-		if(stageDataTable[int.Parse(worldText.text)].ContainsKey(int.Parse(stageText.text)))
-		{
-			Debug.LogError("이미 존재하는 Stage");
-		}
-		else
-		{
-			stageDataTable[int.Parse(worldText.text)].Add(int.Parse(stageText.text), new List<StageDataTable>());
-			Sort();
-			Setting();
-		}
-		stageText.text = "";
-	}
-	public void CreateMonster()
-	{
-		float xPos = 0;
-		float yPos = 0;
-		GameObject o = Instantiate(monsterExam.gameObject, gameView.transform);
-		MonsterExam e = o.GetComponent<MonsterExam>();
-		int boss;
-		if (monsterToggle.isOn) boss = 1;
-		else boss = 0;
-		e.Setting(monsterLevel.text, monsterIndex.text, xPos, yPos, boss);
-		monsterExamList.Add(e);
-		monsterLevel.text = "";
-		monsterIndex.text = "";
-	}
-	public void Sort()
-	{
-		//Stage 별로 다시 저장
-		Dictionary<int, Dictionary<int, List<StageDataTable>>> temp = new Dictionary<int, Dictionary<int, List<StageDataTable>>>();
-		
-		while (stageDataTable.Count != 0)
-		{
-			int cIndex = int.MaxValue;
-			var e = stageDataTable.GetEnumerator();
-			while (e.MoveNext())
-			{
-				if (cIndex > e.Current.Key)
-				{
-					cIndex = e.Current.Key;
-				}
-			}
-			temp.Add(cIndex, stageDataTable[cIndex]);
-			stageDataTable.Remove(cIndex);
-		}
-		stageDataTable = temp;
-		var i = stageDataTable.GetEnumerator();
-		Dictionary<int, Dictionary<int, List<StageDataTable>>> tempAll = new Dictionary<int, Dictionary<int, List<StageDataTable>>>();
-		while (i.MoveNext())
-		{
-			var sort = stageDataTable[i.Current.Key];
-			Dictionary<int, List<StageDataTable>> tempValue = new Dictionary<int, List<StageDataTable>>();
-			while (sort.Count != 0)
-			{
-				int cIndex = int.MaxValue;
-				var e = i.Current.Value.GetEnumerator();
-				while (e.MoveNext())
-				{
-					if (cIndex > e.Current.Key)
-					{
-						cIndex = e.Current.Key;
-					}
-				}
-				tempValue.Add(cIndex, sort[cIndex]);
-				sort.Remove(cIndex);
-			}
-			tempAll.Add(i.Current.Key,tempValue);
-		}
-		stageDataTable = tempAll;
 	}
 }

@@ -20,6 +20,7 @@ public class RecordPlayer : Player
 	}
 	private void Update()
 	{
+		//움직임과 스킬 사용만을 재동작
 		if (CheckMove())
 		{
 			Move();
@@ -32,6 +33,7 @@ public class RecordPlayer : Player
 		GameMng.Ins.monsterPool.Reset();
 		gameObject.transform.position = startPos;
 		skillID = _skillID;
+		//재생 스킬에 맞는 키 입력 시간, 정보 로드
 		var i = JsonMng.Ins.recordDataTable[skillID];
 		var e = i.playerEventList;
 		var m = i.mouseEventList;
@@ -49,6 +51,7 @@ public class RecordPlayer : Player
 		int mouseIndexCount = 0;
 		while(true)
 		{
+			//시간을 비교하여 마우스, 키입력 이벤트에 맞는 함수 실행
 			cTime += Time.deltaTime;
 			if (indexCount < eventList.Count && eventList[indexCount].time <= cTime)
 			{
