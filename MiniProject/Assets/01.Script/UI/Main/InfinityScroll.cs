@@ -6,23 +6,25 @@ public class InfinityScroll : MonoBehaviour
 {
 	public ContentItem itemExam;
 	public GameObject scrollView;
-	public int upPadding;
+	private Rect itemSize;
+	private Rect scrolViewSize;
+
+	public int upPadding;			//위,왼쪽 여유 공간을 위한 변수
 	public int leftPadding;
 
-	private List<ContentItem> contentList = new List<ContentItem>();
-	private List<PlayerSkillData> itemList = new List<PlayerSkillData>();
+	private List<ContentItem> contentList = new List<ContentItem>();		//화면에 보여지는 Content Item의 리스트, Item의 크기에 따라 자동 셋팅
+	private List<PlayerSkillData> itemList = new List<PlayerSkillData>();   //스크롤에 보여줄 아이템들의 리스트
 
-	int verCount;
-	int horCount;
-	int showCount;
+	private int verCount;			//화면 크기와 아이템크기,UpPadding 대비 보여줄 수 있는 상,하 아이템의 갯수
+	private int horCount;           //화면 크기와 아이템크기,LeftPadding 대비 보여줄 수 있는 좌,우 아이템의 갯수
+	private int showCount;			//전체 ScrollView에 보여줄 수 있는 아이템의 갯수
 
-	private Rect itemSize;
-	Rect scrolViewSize;
-	Vector3 changePos;
-	int headContent;
-	int tailContent;
-	int firstItem;
-	int lastItem;
+	private Vector3 changePos;
+	private int headContent;        //위 아래로 보여주고 있는 contentList Index
+	private int tailContent;        
+	private int firstItem;          //위 아래로 보여주고 있는 itemList Index
+	private int lastItem;
+
 	public void Setting()
 	{
 		itemList = JsonMng.Ins.playerSkillDataTable.ToList();
@@ -42,80 +44,12 @@ public class InfinityScroll : MonoBehaviour
 		changePos = new Vector3(c, itemSize.height + upPadding, 0);
 		gameObject.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
 
+		//화면의 크기가 전체 아이템의 크기보다 크면 기본 스크롤 사용
 		if (showCount >= itemList.Count) SetBasicScroll(itemList.Count);
 		else SetInfinityScroll(itemList.Count);
 		itemExam.gameObject.SetActive(false);
 		SetItemList();
 	}
-	public void BuySkill(int sI)
-	{
-		for(int i = 0; i < contentList.Count; ++i)
-		{
-			if(contentList[i].skillID == sI)
-			{
-				contentList[i].Setting(sI);
-			}
-		}
-	}
-	private void Update()
-	{
-		float cPos = gameObject.transform.localPosition.y;
-		float topValue = Mathf.Ceil(cPos / (itemSize.size.y + upPadding));
-		if (topValue > firstItem / horCount)
-		{
-			Vector3 nextStartPos = contentList[tailContent].gameObject.transform.localPosition;
-			nextStartPos.x = contentList[headContent].transform.localPosition.x;
-			for (int i = 0; i < horCount; ++i)
-			{
-				firstItem++;
-				lastItem++;
-				contentList[headContent].gameObject.transform.localPosition =
-					nextStartPos + new Vector3(changePos.x * i, -changePos.y, 0);
-				if (lastItem < itemList.Count)
-				{
-					contentList[headContent].Setting(itemList[lastItem].skillID);
-				}
-				else
-				{
-					contentList[headContent].gameObject.SetActive(false);
-				}
-				tailContent = headContent;
-				headContent++;
-				if (headContent == contentList.Count) headContent = 0;
-			}
-		}
-		else if (topValue < firstItem / horCount)
-		{
-			Vector3 nextStartPos = contentList[headContent].gameObject.transform.localPosition;
-			int saveTail = tailContent - horCount;
-			if (saveTail < 0) saveTail = contentList.Count - 1;
-			int saveHead = tailContent - horCount + 1;
-			int savefirst = firstItem - horCount * 2;
-			firstItem = savefirst;
-			tailContent = saveHead;
-			for (int i = 0; i < horCount; ++i)
-			{
-				contentList[tailContent].gameObject.transform.localPosition =
-					nextStartPos + new Vector3(changePos.x * i, +changePos.y, 0);
-				if (firstItem < 0)
-				{
-					contentList[tailContent].gameObject.SetActive(false);
-				}
-				else
-				{
-					contentList[tailContent].Setting(itemList[firstItem].skillID);
-				}
-				tailContent++;
-				firstItem++;
-				lastItem--;
-			}
-			headContent = saveHead;
-			tailContent = saveTail;
-			firstItem = savefirst + horCount;
-		}
-	}
-
-
 	private void SetInfinityScroll(int itemCount)
 	{
 		CreateUpSpace();
@@ -156,6 +90,7 @@ public class InfinityScroll : MonoBehaviour
 
 	private void SetItemList()
 	{
+		//아이템의 이미지,텍스트 값의 변경을 위한 함수
 		if (itemList.Count <= showCount)
 		{
 			scrollView.GetComponent<ScrollRect>().vertical = false;
@@ -175,5 +110,83 @@ public class InfinityScroll : MonoBehaviour
 		tailContent = contentList.Count - 1;
 		firstItem = 0;
 		lastItem = contentList.Count - 1 - horCount;
+	}
+
+	private void Update()
+	{
+		//매 틱마다 스크롤위치와 아이템 크기를 비교하여 보여주는 라인이 변경되었는지 체크
+		float cPos = gameObject.transform.localPosition.y;
+		float topValue = Mathf.Ceil(cPos / (itemSize.size.y + upPadding));
+		if (topValue > firstItem / horCount)
+		{
+			ChangeDownScroll();
+		}
+		else if (topValue < firstItem / horCount)
+		{
+			ChangeUpScroll();
+		}
+	}
+	private void ChangeDownScroll()
+	{
+		Vector3 nextStartPos = contentList[tailContent].gameObject.transform.localPosition;
+		nextStartPos.x = contentList[headContent].transform.localPosition.x;
+		for (int i = 0; i < horCount; ++i)
+		{
+			firstItem++;
+			lastItem++;
+			contentList[headContent].gameObject.transform.localPosition =
+				nextStartPos + new Vector3(changePos.x * i, -changePos.y, 0);
+			if (lastItem < itemList.Count)
+			{
+				contentList[headContent].Setting(itemList[lastItem].skillID);
+			}
+			else
+			{
+				contentList[headContent].gameObject.SetActive(false);
+			}
+			tailContent = headContent;
+			headContent++;
+			if (headContent == contentList.Count) headContent = 0;
+		}
+	}
+	private void ChangeUpScroll()
+	{
+		Vector3 nextStartPos = contentList[headContent].gameObject.transform.localPosition;
+		int saveTail = tailContent - horCount;
+		if (saveTail < 0) saveTail = contentList.Count - 1;
+		int saveHead = tailContent - horCount + 1;
+		int savefirst = firstItem - horCount * 2;
+		firstItem = savefirst;
+		tailContent = saveHead;
+		for (int i = 0; i < horCount; ++i)
+		{
+			contentList[tailContent].gameObject.transform.localPosition =
+				nextStartPos + new Vector3(changePos.x * i, +changePos.y, 0);
+			if (firstItem < 0)
+			{
+				contentList[tailContent].gameObject.SetActive(false);
+			}
+			else
+			{
+				contentList[tailContent].Setting(itemList[firstItem].skillID);
+			}
+			tailContent++;
+			firstItem++;
+			lastItem--;
+		}
+		headContent = saveHead;
+		tailContent = saveTail;
+		firstItem = savefirst + horCount;
+	}
+
+	public void BuySkill(int sI)
+	{
+		for (int i = 0; i < contentList.Count; ++i)
+		{
+			if (contentList[i].skillID == sI)
+			{
+				contentList[i].Setting(sI);
+			}
+		}
 	}
 }
