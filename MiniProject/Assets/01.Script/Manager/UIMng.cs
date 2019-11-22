@@ -166,12 +166,12 @@ public class UIMng : MonoBehaviour
 	}
 
 	/* 테스트코드 */
-	private void Update()
-	{
-		//if (Input.GetKeyDown(KeyCode.Escape))
-		//{
-		//	GameMng.worldLevel = 0;
-		//	UnityEngine.SceneManagement.SceneManager.LoadScene("Record");
-		//}
-	}
+	//private void Update()
+	//{
+	//	if (Input.GetKeyDown(KeyCode.Escape))
+	//	{
+	//		GameMng.worldLevel = 0;
+	//		UnityEngine.SceneManagement.SceneManager.LoadScene("Record");
+	//	}
+	//}
 }
