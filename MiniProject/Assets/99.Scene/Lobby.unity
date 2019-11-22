@@ -106746,6 +106746,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttack: 0
   attackDelayTime: 0
+  knockBackDir: {x: 0, y: 0, z: 0}
+  knockBackPower: 0
 --- !u!50 &5928148790482134119
 Rigidbody2D:
   serializedVersion: 4

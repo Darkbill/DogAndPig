@@ -4652,6 +4652,7 @@ GameObject:
   - component: {fileID: 6549802885132353137}
   - component: {fileID: 6529966679470647747}
   - component: {fileID: 234739279101372674}
+  - component: {fileID: 4009546973325475392}
   m_Layer: 0
   m_Name: LightningHitEff
   m_TagString: Untagged
@@ -9354,6 +9355,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 6549802885132353137}
+--- !u!210 &4009546973325475392
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6367378417064455759}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 101
 --- !u!1 &6367705110325342987
 GameObject:
   m_ObjectHideFlags: 0

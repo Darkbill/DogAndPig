@@ -85,14 +85,14 @@ public class SkillTripleAttack : Skill
 
     private IEnumerator TripleAttackStart(float[] array, Vector3 pos)
     {
-        bulletSetTrue(0, 4, array, pos);
+        bulletSetTrue(0, 4, array, pos, 0);
         yield return new WaitForSeconds(0.5f);
-        bulletSetTrue(2, 6, array, pos);
+        bulletSetTrue(2, 6, array, pos, -10);
         yield return new WaitForSeconds(0.5f);
-        bulletSetTrue(0, 6, array, pos);
+        bulletSetTrue(0, 6, array, pos, 0);
     }
 
-    private void bulletSetTrue(int _count, int max, float[] array, Vector3 pos)
+    private void bulletSetTrue(int _count, int max, float[] array, Vector3 pos, float changeAngle)
     {
         int count = _count;
         foreach (TripleAttackBullet o in bullet)
@@ -100,7 +100,7 @@ public class SkillTripleAttack : Skill
             if (count >= max) break;
             if (!o.gameObject.activeSelf)
             {
-                o.SystemSetting(array[count], pos);
+                o.SystemSetting(array[count] + changeAngle, pos);
                 ++count;
             }
         }

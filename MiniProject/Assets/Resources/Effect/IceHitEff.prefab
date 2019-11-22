@@ -4697,6 +4697,7 @@ GameObject:
   - component: {fileID: 3927261936151357023}
   - component: {fileID: 3962322204355139825}
   - component: {fileID: -4427539450865615333}
+  - component: {fileID: 3635802424906717989}
   m_Layer: 0
   m_Name: IceHitEff
   m_TagString: Untagged
@@ -9398,6 +9399,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 3927261936151357023}
+--- !u!210 &3635802424906717989
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3763191338405592073}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 101
 --- !u!1 &3763293287460042649
 GameObject:
   m_ObjectHideFlags: 0

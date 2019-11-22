@@ -13,7 +13,7 @@ public class SkillWindMine : Skill
         BombDamage,
         Radius,
     }
-    //TODO : randrange는 해당 값의 /10하고 나오는 값.
+
     private float damage;
     private float bombDamage;
     private float radius;

@@ -12,6 +12,7 @@ public class PuppeteerMonsterStateMachine : StateMachine
     private float skillAttackDelayTime = 0.0f;
     private float skillAttackCoolTime = 0.0f;
 
+    //몬스터 생성 시 최대 HP정보를 저장하기 위함
     private float firstHealthPoint;
     public override void Setting()
     {

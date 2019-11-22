@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4764761183592390404}
   - component: {fileID: 4763645128277373466}
   - component: {fileID: -7205107597666782859}
+  - component: {fileID: 1077894178851094037}
   m_Layer: 0
   m_Name: PhysicsHitEff
   m_TagString: Untagged
@@ -4770,6 +4771,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 4764761183592390404}
+--- !u!210 &1077894178851094037
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4672774687244844580}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 101
 --- !u!1 &4672828247331969662
 GameObject:
   m_ObjectHideFlags: 0
