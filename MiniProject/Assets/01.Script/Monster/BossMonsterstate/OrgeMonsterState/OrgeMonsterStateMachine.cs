@@ -4,7 +4,7 @@ public class OrgeMonsterStateMachine : StateMachine
 {
 	public OrgeMonster monster;
 	private const float skillCoolTime = 6f;
-	private const float skillCoolTime2 = 5f;
+	private const float skillCoolTime2 = 2f;
 	private float skillDelayTime = 4f;
 	private float skillDelayTime2 = 1f;
 	public override void Setting()
@@ -14,7 +14,7 @@ public class OrgeMonsterStateMachine : StateMachine
 		stateDict.Add(eMonsterState.Dead, new MonsterStateDead(monster));
 		stateDict.Add(eMonsterState.KnockBack, new MonsterStateKnockBack(monster));
 		stateDict.Add(eMonsterState.Stun, new MonsterStateStun(monster));
-		stateDict.Add(eMonsterState.Attack, new OrgeStateSwordDance(monster));
+		stateDict.Add(eMonsterState.Attack, new MonsterStateAttack(monster));
 		stateDict.Add(eMonsterState.SkillAttack2, new OrgeStateSwordDance(monster));
 		stateDict.Add(eMonsterState.SkillAttack, new OrgeSkillAttack(monster));
 		cState = stateDict[eMonsterState.Idle];
@@ -33,7 +33,7 @@ public class OrgeMonsterStateMachine : StateMachine
 		}
 		if (SkillDelayCheck2())
 		{
-			if(Rand.Percent(50))
+			if (Rand.Percent(50))
 			{
 				ChangeStateAttack();
 			}
@@ -45,6 +45,7 @@ public class OrgeMonsterStateMachine : StateMachine
 		if (cState.GetType() == typeof(MonsterStateIdle))
 		{
 			UpdateState();
+
 		}
 	}
 	public override void UpdateState()

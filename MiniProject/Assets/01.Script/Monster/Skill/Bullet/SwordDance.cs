@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using GlobalDefine;
 public class SwordDance : MonoBehaviour
 {
 	private float damage;
@@ -13,18 +13,16 @@ public class SwordDance : MonoBehaviour
 		speed = _speed;
 		gameObject.transform.parent = GameMng.Ins.objectPool.transform;
 	}
-	public void Shot(Vector3 dir, Vector3 startPos,float size,bool lookLeft)
+	public void Shot(Vector3 dir, Vector3 startPos,float size,float degree,bool isLeft,bool lookRight)
 	{
 		//날아가는 방향, 시작 위치, 몬스터사이즈에 따른 위치 조정
-		if (lookLeft)
-		{
-			gameObject.transform.position = startPos + new Vector3(-size, size, 0);
-		}
-		else
-		{
-			gameObject.transform.position = startPos + new Vector3(size, size, 0);
-		}
-		direction = dir;
+		gameObject.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
+		gameObject.transform.position = startPos;
+
+		if (lookRight) gameObject.transform.position = startPos + new Vector3(size, size, 0);
+		else gameObject.transform.position = startPos + new Vector3(-size, size, 0);
+
+		direction = dir.normalized;
 		cTime = 0;
 		gameObject.SetActive(true);
 	}
@@ -41,7 +39,7 @@ public class SwordDance : MonoBehaviour
 	{
 		if(collision.CompareTag("Player"))
 		{
-			GameMng.Ins.DamageToPlayer(GlobalDefine.eAttackType.Physics, damage);
+			GameMng.Ins.DamageToPlayer(eAttackType.Physics, damage);
 			gameObject.SetActive(false);
 		}
 	}
