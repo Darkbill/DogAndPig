@@ -24,7 +24,7 @@ public class PuppeteerMonsterStateMachine : StateMachine
             typeof(SkillTripleAttack)) as SkillTripleAttack);
 
         stateDict.Add(eMonsterState.Idle, new MonsterStateIdle(monster));
-        stateDict.Add(eMonsterState.Move, new MonsterStateMove(monster));
+        stateDict.Add(eMonsterState.Move, new PuppeteerMove(monster));
         stateDict.Add(eMonsterState.SkillAttack, new PuppeteerSkillAttack(monster));
         stateDict.Add(eMonsterState.SkillAttack2, new PuppeteerSkillJump(monster));
         stateDict.Add(eMonsterState.Attack, new MonsterStateAttack(monster));

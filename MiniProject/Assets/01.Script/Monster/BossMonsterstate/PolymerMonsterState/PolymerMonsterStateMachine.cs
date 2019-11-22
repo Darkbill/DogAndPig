@@ -17,7 +17,7 @@ public class PolymerMonsterStateMachine : StateMachine
         monster.skill02 = Instantiate(Resources.Load(string.Format("Skill/MonsterSKill/Skill_PoisonSpike"),
             typeof(SkillPoisonSpike)) as SkillPoisonSpike);
         stateDict.Add(eMonsterState.Idle, new MonsterStateIdle(monster));
-        stateDict.Add(eMonsterState.Move, new MonsterStateMove(monster));
+        stateDict.Add(eMonsterState.Move, new PolymerMove(monster));
         stateDict.Add(eMonsterState.SkillAttack, new PolymerSkillAttack(monster));
         stateDict.Add(eMonsterState.SkillAttack2, new PolymerSkillAttackPoisonSpike(monster));
         stateDict.Add(eMonsterState.Attack, new MonsterStateAttack(monster));

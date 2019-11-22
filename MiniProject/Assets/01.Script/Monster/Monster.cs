@@ -39,6 +39,7 @@ public class Monster : MonoBehaviour
 			gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
 		else
 			gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
+
         float radius = gameObject.GetComponent<CircleCollider2D>().radius;
         monsterDirection.transform.localScale = Vector3.one * radius;
         monsterDirection.transform.rotation = Quaternion.Euler(0, 0, Angle);
