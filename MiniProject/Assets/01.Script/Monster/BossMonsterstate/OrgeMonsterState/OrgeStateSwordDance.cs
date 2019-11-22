@@ -7,7 +7,7 @@ public class OrgeStateSwordDance : MonsterStateBase
 
 	public override void OnStart()
 	{
-		monsterObject.ChangeAnimation(eMonsterAnimation.Attack);
+		monsterObject.ChangeAnimation(eMonsterAnimation.Skill2);
 	}
 
 	public override bool OnTransition()

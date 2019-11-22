@@ -6,7 +6,7 @@ public class OrgeMonster : Monster
 	public SwordDance swordDance;
 	private void Start()
 	{
-		swordDance.Setting(10, 2);
+		swordDance.Setting(10, 7);
 	}
 	public void SkillCheckEnd()
 	{
@@ -52,16 +52,9 @@ public class OrgeMonster : Monster
 	{
 		Vector3 dir = GameMng.Ins.player.transform.position - gameObject.transform.position;
 		Vector3 rightVector = gameObject.transform.right;
-		bool lookLeft;
-		if (rightVector.x == -1) lookLeft = true;
-		else lookLeft = false;
-		if(isLeft)
-		{
-			swordDance.Shot(dir, gameObject.transform.position,monsterData.size, lookLeft);
-		}
-		else
-		{
-			swordDance.Shot(dir, gameObject.transform.position, monsterData.size, lookLeft);
-		}
+		bool isRight;
+		if (gameObject.transform.right.x == 1) isRight = true;
+		else isRight = false;
+		swordDance.Shot(dir, gameObject.transform.position, monsterData.size, Angle,isLeft, isRight);
 	}
 }
