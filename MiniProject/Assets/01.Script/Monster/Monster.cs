@@ -6,7 +6,8 @@ public class Monster : MonoBehaviour
 {
 	public MonsterData monsterData;
 	public StateMachine StateMachine;
-	private List<ConditionData> conditionList = new List<ConditionData>();
+    public GameObject monsterDirection;
+    private List<ConditionData> conditionList = new List<ConditionData>();
 	private ConditionData conditionMain = new ConditionData();
 	public Animator monsterAnimator;
 	protected ObjectSetAttack att = new ObjectSetAttack();
@@ -14,10 +15,13 @@ public class Monster : MonoBehaviour
 	public bool active;
 	public int MonsterID = 1;
 	public float delayTime = 0;
+
 	private void Awake()
 	{
 		MonsterSetting();
-	}
+        float pos = gameObject.transform.position.y / 100;
+        gameObject.transform.position += new Vector3(0, 0, pos);
+    }
 
 	public void MonsterSetting()
 	{
@@ -35,7 +39,10 @@ public class Monster : MonoBehaviour
 			gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
 		else
 			gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
-	}
+        float radius = gameObject.GetComponent<CircleCollider2D>().radius;
+        monsterDirection.transform.localScale = Vector3.one * radius;
+        monsterDirection.transform.rotation = Quaternion.Euler(0, 0, Angle);
+    }
 	#region StateCheck
 	public bool AttackDelayCheck()
 	{

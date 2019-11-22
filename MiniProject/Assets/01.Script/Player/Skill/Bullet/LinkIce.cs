@@ -33,8 +33,8 @@ public class LinkIce : BulletPlayerSkill
 	{
 		gameObject.SetActive(true);
 		hitMonsterPool.Clear();
-		gameObject.transform.position = GameMng.Ins.player.transform.position +
-								new Vector3(0, GameMng.Ins.player.calStat.size);
+        gameObject.transform.position = GameMng.Ins.player.transform.position;// +
+								//new Vector3(0, GameMng.Ins.player.calStat.size);
 		NextPosSet();
 	}
     private void NextPosSet()
@@ -54,8 +54,8 @@ public class LinkIce : BulletPlayerSkill
 			return;
 		}
 		nextPos = (monsterpool[index].transform.position +
-			new Vector3(0, monsterpool[index].monsterData.size) -
-			gameObject.transform.position);
+			//new Vector3(0, monsterpool[index].monsterData.size) -
+			- gameObject.transform.position);
 
 		float degree = Mathf.Atan2(nextPos.y, nextPos.x) * Mathf.Rad2Deg;
         gameObject.transform.eulerAngles = new Vector3(0, 0, degree);
@@ -94,7 +94,7 @@ public class LinkIce : BulletPlayerSkill
     {
 		monster.Damage(Attacktype, GameMng.Ins.player.calStat.damage, damage, new ConditionData(bufftype, Id, endTime, changeValue), per);
 		GameMng.Ins.HitToEffect(Attacktype,
-            monster.transform.position + new Vector3(0, monster.monsterData.size),
+            monster.transform.position, // + new Vector3(0, monster.monsterData.size),
             gameObject.transform.position,
             monster.monsterData.size);
 		if (hitMonsterPool.Count == maxHitCount)

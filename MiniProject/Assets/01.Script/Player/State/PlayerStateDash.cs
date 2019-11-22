@@ -22,7 +22,7 @@ public class PlayerStateDash : PlayerState
 		dir = playerObject.GetForward();
 		movVec = dir * Range;
         target = playerObject.transform.position + movVec;
-        playerObject.GetComponent<CapsuleCollider2D>().enabled = false;
+        playerObject.GetComponent<CircleCollider2D>().enabled = false;
         notDash = false;
     }
 
@@ -64,7 +64,7 @@ public class PlayerStateDash : PlayerState
     }
     public override void OnEnd()
     {
-        playerObject.GetComponent<CapsuleCollider2D>().enabled = true;
+        playerObject.GetComponent<CircleCollider2D>().enabled = true;
     }
 
     public void Dash()

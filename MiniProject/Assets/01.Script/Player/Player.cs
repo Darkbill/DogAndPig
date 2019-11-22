@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 	public PlayerData calStat;
 	public PlayerStateMachine playerStateMachine;
 	public Animator playerAnimator;
+    public GameObject playerDirection;
 	public float degree;
 	// * private * //
 	private List<ConditionData> conditionList = new List<ConditionData>();
@@ -27,7 +28,9 @@ public class Player : MonoBehaviour
 	public void CalculatorStat()
 	{
 		calStat = JsonMng.Ins.playerDataTable.AddStat(skillStat, conditionList);
-	}
+        float pos = gameObject.transform.position.y / 100;
+        gameObject.transform.position += new Vector3(0, 0, pos);
+    }
 	public void CalculatorBuffStat()
 	{
 		//HP를 제외한 값만 초기 데이터에서 불러오기 위함
@@ -41,7 +44,8 @@ public class Player : MonoBehaviour
 		{
 			Vector3 dir = attackMonster.transform.position - transform.position;
 			degree = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-		}
+
+        }
 		if (Mathf.Abs(degree) != 90)
 		{
 			if (degree > 90 || degree < -90)
@@ -54,7 +58,11 @@ public class Player : MonoBehaviour
 			}
 		}
 
-	}
+        float radius = gameObject.GetComponent<CircleCollider2D>().radius;
+        playerDirection.transform.localScale = Vector3.one * radius;
+        playerDirection.transform.rotation = Quaternion.Euler(0, 0, degree);
+
+    }
 	private void Update()
 	{
 		UpdateBuff(Time.deltaTime);

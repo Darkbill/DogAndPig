@@ -30,7 +30,7 @@ public class PlayerStateMove : PlayerState
 
         rightHorizontal = Input.GetAxis("HorizontalArrow");
         rightVertical = Input.GetAxis("VerticalArrow");
-        Debug.DrawRay(playerObject.transform.position, new Vector3(rightHorizontal, rightVertical));
+
 #else
 		if (playerObject.isMove == false)
 			return true;
@@ -71,6 +71,7 @@ public class PlayerStateMove : PlayerState
 #if UNITY_EDITOR_WIN
         Mov.iSpeed = playerObject.calStat.moveSpeed;
         playerObject.transform.position += Mov.Move(fHorizontal, fVertical);
+
         if(rightHorizontal != 0 || rightVertical != 0)
             playerObject.degree = Mathf.Atan2(rightVertical, rightHorizontal) * Mathf.Rad2Deg;
         else
@@ -91,5 +92,18 @@ public class PlayerStateMove : PlayerState
 				GameMng.Ins.EndSkillAim();
 			}
 		}
+
+        //TODO : z값에 대한 처리
+
+        Vector3 pos = playerObject.transform.position;
+        pos.z = pos.y / 100;
+
+        playerObject.transform.position = pos;
+
+        //Vector3 pp = playerObject.transform.position;
+        //if(playerObject.transform.position.z >= -playerObject.calStat.size * 2)
+        //    playerObject.transform.position = new Vector3(pp.x, pp.y, -playerObject.calStat.size * 2);
+        //if(playerObject.transform.position.z <= -DefineClass.MapSizY * 2 / 10)
+        //    playerObject.transform.position = new Vector3(pp.x, pp.y, -DefineClass.MapSizY * 2 / 10);
     }
 }
