@@ -17,6 +17,7 @@ public class SkillFloorFreeze : Skill
 		DebufTime,
 		ActiveTime,
 	}
+
 	private float damage;
 	private float width;
 	private float height;
