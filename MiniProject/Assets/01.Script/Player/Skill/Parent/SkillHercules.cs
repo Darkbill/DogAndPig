@@ -7,8 +7,8 @@ public class SkillHercules : Skill
 	enum eHerculesOption
 	{
 		Damage,
-		BufTime,
 		CoolTime,
+		BufTime,
 		KnockBackPer,
 	}
 	private float damage;

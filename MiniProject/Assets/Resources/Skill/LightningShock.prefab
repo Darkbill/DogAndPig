@@ -67,7 +67,6 @@ MonoBehaviour:
   SetTimer: 0
   MoveVec: {x: 0, y: 0, z: 0}
   EndPos: {x: 0, y: 0, z: 0}
-  SplitCheck: 0
   SplitCnt: 0
   Speed: 0
 --- !u!1 &913509138721607959
@@ -79,7 +78,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 913509138721607945}
-  - component: {fileID: 913509138721607958}
+  - component: {fileID: 8127057747316956423}
   m_Layer: 0
   m_Name: LightningShock
   m_TagString: Untagged
@@ -105,7 +104,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &913509138721607958
+--- !u!114 &8127057747316956423
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,7 +113,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 913509138721607959}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01f2914c09b5c3b4d9eb7d3c21addbd3, type: 3}
+  m_Script: {fileID: 11500000, guid: 85a53e2ff33129b4fb3028144d9d5e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skillID: 0
@@ -122,11 +121,7 @@ MonoBehaviour:
   cooldownTime: 0
   delayTime: 0
   activeFlag: 0
-  BulletLst:
-  - {fileID: 1786213487904964920}
-  - {fileID: 2214921648248484306}
-  - {fileID: 1992378430917122795}
-  - {fileID: 3363991624930538305}
+  BulletLst: []
   lightning: {fileID: 913509137894385659}
 --- !u!1 &2164195492321317709
 GameObject:
@@ -395,7 +390,6 @@ MonoBehaviour:
   SetTimer: 0
   MoveVec: {x: 0, y: 0, z: 0}
   EndPos: {x: 0, y: 0, z: 0}
-  SplitCheck: 0
   SplitCnt: 0
   Speed: 0
 --- !u!1 &3075959507126724132
@@ -565,7 +559,6 @@ MonoBehaviour:
   SetTimer: 0
   MoveVec: {x: 0, y: 0, z: 0}
   EndPos: {x: 0, y: 0, z: 0}
-  SplitCheck: 0
   SplitCnt: 0
   Speed: 0
 --- !u!1 &3361514456161650737
@@ -1335,7 +1328,6 @@ MonoBehaviour:
   SetTimer: 0
   MoveVec: {x: 0, y: 0, z: 0}
   EndPos: {x: 0, y: 0, z: 0}
-  SplitCheck: 0
   SplitCnt: 0
   Speed: 0
 --- !u!1 &6484160871372977671

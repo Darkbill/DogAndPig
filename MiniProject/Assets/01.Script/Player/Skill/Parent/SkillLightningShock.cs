@@ -1,18 +1,16 @@
 ﻿using GlobalDefine;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillSplitLightning : Skill
+public class SkillLightningShock : Skill
 {
 	#region SkillSetting
 	enum eFloorFreezeOption
 	{
 		Damage,
+		CoolTime,
 		SturnPer,
 		SturnTime,
-		CoolTime,
 		EndTime,
 	}
 	private float damage;
@@ -35,7 +33,7 @@ public class SkillSplitLightning : Skill
 		cooldownTime = skillData.optionArr[(int)eFloorFreezeOption.CoolTime];
 		buffEndTime = skillData.optionArr[(int)eFloorFreezeOption.EndTime];
 		delayTime = cooldownTime;
-		gameObject.SetActive(false); 
+		gameObject.SetActive(false);
 	}
 	public override void SetItemBuff(eSkillOption type, float changeValue)
 	{
@@ -57,16 +55,16 @@ public class SkillSplitLightning : Skill
 	}
 	public override void SetBullet()
 	{
-        foreach(Lightning o in BulletLst)
-        {
-            o.Setting(skillID, sturnper, damage, buffEndTime);
-        }
+		foreach (Lightning o in BulletLst)
+		{
+			o.Setting(skillID, sturnper, damage, buffEndTime);
+		}
 	}
 	public override void OffSkill()
 	{
 		for (int i = 0; i < BulletLst.Count; ++i)
 		{
-            BulletLst[i].OffSkillSet();
+			BulletLst[i].OffSkillSet();
 		}
 	}
 	#endregion
@@ -88,17 +86,17 @@ public class SkillSplitLightning : Skill
 			{
 				GameObject light = Instantiate(lightning, GameMng.Ins.skillMng.transform);
 				light.GetComponent<Lightning>().Setting(skillID, sturnper, damage, buffEndTime);
-				light.GetComponent<Lightning>().SystemSetting(GameMng.Ins.player.transform.position, 
-                    Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count),
-                    SplitCnt);
-                BulletLst.Add(light.GetComponent<Lightning>());
+				light.GetComponent<Lightning>().SystemSetting(GameMng.Ins.player.transform.position,
+					Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count),
+					SplitCnt);
+				BulletLst.Add(light.GetComponent<Lightning>());
 				++Count;
 			}
 			if (!BulletLst[i].gameObject.activeSelf)
 			{
-				BulletLst[i].SystemSetting(GameMng.Ins.player.transform.position, 
-                    Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count),
-                    SplitCnt);
+				BulletLst[i].SystemSetting(GameMng.Ins.player.transform.position,
+					Quaternion.Euler(0, 0, Angle180 * 2 / 4 * Count),
+					SplitCnt);
 				++Count;
 			}
 		}

@@ -5,7 +5,7 @@ public class OrgeMonsterStateMachine : StateMachine
 	public OrgeMonster monster;
 	private const float skillCoolTime = 6f;
 	private const float skillCoolTime2 = 2f;
-	private float skillDelayTime = 4f;
+	private float skillDelayTime = 5f;
 	private float skillDelayTime2 = 1f;
 	public override void Setting()
 	{

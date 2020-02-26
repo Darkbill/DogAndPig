@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using GlobalDefine;
-public class SkillCircleShot : Skill
+public class SkillFireShield : Skill
 {
 	#region SkillSetting
 	enum eCircleShotOption
 	{
 		Damage,
-		EndTimer,
 		CoolTime,
+		EndTimer,
 		fireSpeed,
 		fireDuration,
 	}
@@ -49,7 +49,7 @@ public class SkillCircleShot : Skill
 	{
 		for (int i = 0; i < BulletLst.Count; ++i)
 		{
-			BulletLst[i].Setting(damage, fireSpeed, endTime, duration);	
+			BulletLst[i].Setting(damage, fireSpeed, endTime, duration);
 		}
 	}
 	public override void OffSkill()

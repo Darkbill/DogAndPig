@@ -2,15 +2,15 @@
 using GlobalDefine;
 using System.Collections.Generic;
 
-public class SkillFloorFreeze : Skill
+public class SkillIceGround : Skill
 {
 	#region SkillSetting
 	enum eFloorFreezeOption
 	{
 		Damage,
+		CoolTime,
 		Width,
 		Height,
-		CoolTime,
 		DebufIndex,
 		DebufActivePer,
 		DebugEffectPer,
@@ -102,26 +102,26 @@ public class SkillFloorFreeze : Skill
 		FreezenShot.Add(o);
 	}
 
-    public override void OnDrop(Vector2 pos)
-    {
-        float degree = GameMng.Ins.player.degree;
-        for (int i = 0; i < FreezenShot.Count; ++i)
-        {
-            if (FreezenShot[i].gameObject.activeSelf)
-                continue;
-            base.OnDrop();
-            ActiveSkill();
-            FreezenShot[i].angleSet(degree - 90, GameMng.Ins.player.transform.position);
-            return;
-        }
-        ActiveSkill();
-        Freezen o = Instantiate(FreezenShot[0], GameMng.Ins.skillMng.transform);
-        o.Setting(skillID, DebufTime, DebufEffectPer, DebufActivePer, damage);
-        o.angleSet(degree - 90, GameMng.Ins.player.transform.position);
-        FreezenShot.Add(o);
-    }
+	public override void OnDrop(Vector2 pos)
+	{
+		float degree = GameMng.Ins.player.degree;
+		for (int i = 0; i < FreezenShot.Count; ++i)
+		{
+			if (FreezenShot[i].gameObject.activeSelf)
+				continue;
+			base.OnDrop();
+			ActiveSkill();
+			FreezenShot[i].angleSet(degree - 90, GameMng.Ins.player.transform.position);
+			return;
+		}
+		ActiveSkill();
+		Freezen o = Instantiate(FreezenShot[0], GameMng.Ins.skillMng.transform);
+		o.Setting(skillID, DebufTime, DebufEffectPer, DebufActivePer, damage);
+		o.angleSet(degree - 90, GameMng.Ins.player.transform.position);
+		FreezenShot.Add(o);
+	}
 
-    void Update()
+	void Update()
 	{
 		delayTime += Time.deltaTime;
 	}
