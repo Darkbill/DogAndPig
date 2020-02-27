@@ -58246,7 +58246,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 106746249210254273}
-  - component: {fileID: 1095909737339015481}
+  - component: {fileID: 2161766690215426645}
   m_Layer: 0
   m_Name: LightningSupport
   m_TagString: Untagged
@@ -58269,7 +58269,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1095909737339015481
+--- !u!114 &2161766690215426645
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58278,7 +58278,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4762228917245646945}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a9a23d689d74714dac80e50ee3b3d85, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d2e696528f67bc49a6bea02a330a4b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skillID: 0
