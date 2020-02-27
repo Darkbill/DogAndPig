@@ -139,7 +139,7 @@ public class Player : MonoBehaviour
 			conditionMain.currentTime -= delayTime;
 			if (conditionMain.currentTime <= 0)
 			{
-				Debug.Log("상태이상이 풀렸습니다.");
+				LogManager.Instance.PrintLog(LogManager.eLogType.Logic, "상태이상이 풀렸습니다");
 				conditionMain = null;
 				playerStateMachine.ChangeState(ePlayerState.Move);
 			}
@@ -184,7 +184,7 @@ public class Player : MonoBehaviour
 				playerStateMachine.ChangeState(ePlayerState.Stun);
 				break;
 		}
-        Debug.Log("상태이상에 걸렸습니다.");
+		LogManager.Instance.PrintLog(LogManager.eLogType.Logic, "상태이상이 걸렸습니다");
     }
 
 

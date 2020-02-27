@@ -88,7 +88,7 @@ public class PlayerInfoData
 	{
 		if (haveItemList.Count == Define.inventoryCount)
 		{
-			UnityEngine.Debug.Log("슬롯 부족");
+			LogManager.Instance.PrintLog(LogManager.eLogType.Error, "***** 슬롯 부족 *****");
 			return;
 		}
 		haveItemList.Add(equipItemList[index].Copy());

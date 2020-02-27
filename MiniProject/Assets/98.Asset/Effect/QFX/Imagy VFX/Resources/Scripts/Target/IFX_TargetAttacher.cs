@@ -26,7 +26,7 @@ namespace QFX.IFX
             var anchor = FindChildByRecursion(parent, anchorName);
             if (anchor == null)
             {
-                Debug.LogWarning("FxAnchor not found");
+                //Debug.LogWarning("FxAnchor not found");
                 return;
             }
 

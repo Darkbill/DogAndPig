@@ -241,7 +241,7 @@ public class LevelDesignMng : MonoBehaviour
 	{
 		if (stageDataTable[int.Parse(worldText.text)].ContainsKey(int.Parse(stageText.text)))
 		{
-			Debug.LogError("이미 존재하는 Stage");
+			LogManager.Instance.PrintLog(LogManager.eLogType.Logic, "이미 존재하는 Stage");
 		}
 		else
 		{
@@ -364,7 +364,7 @@ public class LevelDesignMng : MonoBehaviour
 			{
 				if (j.Current.Value.Count == 0)
 				{
-					Debug.LogError("비어있는 스테이지가 있습니다.");
+					LogManager.Instance.PrintLog(LogManager.eLogType.Error, "비어있는 스테이지가 있습니다");
 					return;
 				}
 				for (int k = 0; k < j.Current.Value.Count; ++k)

@@ -70,7 +70,7 @@ public class GameMng : MonoBehaviour
 		WorldStart();
 		if (JsonMng.Ins.playerInfoDataTable.StartGame())
 		{
-			Debug.Log("광고");
+			LogManager.Instance.PrintLog(LogManager.eLogType.Normal, "***** 광고 *****");
 		}
 	}
 	public void ChangeStage()

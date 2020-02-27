@@ -87,7 +87,7 @@ public class InventoryUI : MonoBehaviour
 	{
 		if (JsonMng.Ins.playerInfoDataTable.haveItemList.Count == Define.inventoryCount)
 		{
-			Debug.Log("슬롯부족");
+			LogManager.Instance.PrintLog(LogManager.eLogType.Logic, "슬롯 부족");
 			return;
 		}
 		if (JsonMng.Ins.playerInfoDataTable.gold >= 100)

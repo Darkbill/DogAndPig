@@ -100,8 +100,7 @@ public class JsonMng : MonoBehaviour
 		}
 		catch
 		{
-			Debug.Log(fileName);
-			Debug.Log(jsonString);
+			LogManager.Instance.PrintLog(LogManager.eLogType.Error, string.Format("Err Table Name : {0}, String : {1}", fileName, jsonString));
 		}
 	}
 	private IEnumerator StartLoad<T>(string fileName, Dictionary<int,Dictionary<int,List<T>>> table) where T : StageDataTable

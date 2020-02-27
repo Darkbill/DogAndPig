@@ -16,6 +16,5 @@ public class FollowMouse : MonoBehaviour {
 		Vector3 position = Vector3.Lerp(transform.position, mouseScreenToWorld, 1.0f - Mathf.Exp(-speed * Time.deltaTime));
 
 		transform.position = position;
-		//Debug.Log (transform.position);
 	}
 }

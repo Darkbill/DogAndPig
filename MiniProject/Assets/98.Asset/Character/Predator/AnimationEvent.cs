@@ -28,7 +28,8 @@ public class AnimationEvent : MonoBehaviour {
 	}
 
 	public void AttackStartEffectObject () {
-		Debug.Log ("Fire Effect Object");
+		LogManager.Instance.PrintLog(LogManager.eLogType.Logic, "Attack STart");
+		LogManager.Instance.PrintLog(LogManager.eLogType.Logic, "Fire Effect");
 	}
 
 }
