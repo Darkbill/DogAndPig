@@ -1,7 +1,7 @@
 [
   {
     "monsterID": 1,
-    "monsterName": "a",
+    "monsterName": "Orc",
     "size": 0.3,
     "moveType": 1,
     "moveSpeed": 0.8,
@@ -22,7 +22,7 @@
   },
   {
     "monsterID": 2,
-    "monsterName": "b",
+    "monsterName": "Archer",
     "size": 0.25,
     "moveType": 1,
     "moveSpeed": 1,
@@ -43,7 +43,7 @@
   },
   {
     "monsterID": 3,
-    "monsterName": "c",
+    "monsterName": "Gob",
     "size": 0.3,
     "moveType": 1,
     "moveSpeed": 1.8,
