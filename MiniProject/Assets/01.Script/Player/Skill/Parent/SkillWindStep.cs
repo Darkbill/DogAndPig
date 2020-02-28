@@ -28,18 +28,21 @@ public class SkillWindStep : Skill
     }
     public override void SetItemBuff(eSkillOption type, float changeValue)
     {
-        //switch (type)
-        //{
-        //    case eSkillOption.Damage:
-        //        damage += damage * changeValue;
-        //        break;
-        //    case eSkillOption.CoolTime:
-        //        cooldownTime -= cooldownTime * changeValue;
-        //        break;
-        //    case eSkillOption.BuffActivePer:
-        //        activePer += activePer * changeValue;
-        //        break;
-        //}
+        switch (type)
+        {
+            case eSkillOption.ActiveTime:
+                buftime += buftime * changeValue;
+                break;
+            case eSkillOption.CoolTime:
+                cooldownTime -= cooldownTime * changeValue;
+                break;
+            case eSkillOption.Speed:
+                speedPer += speedPer * changeValue;
+                break;
+            case eSkillOption.BuffActivePer:
+                radius += radius * changeValue;
+                break;
+        }
     }
     public override void SetBullet()
     {

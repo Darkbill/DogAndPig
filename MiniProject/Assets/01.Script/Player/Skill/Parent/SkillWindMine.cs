@@ -39,10 +39,10 @@ public class SkillWindMine : Skill
                 cooldownTime -= cooldownTime * changeValue;
                 break;
             case eSkillOption.BuffActivePer:
-                bombDamage += bombDamage * changeValue;
+                radius += radius * changeValue;
                 break;
             case eSkillOption.BuffChangeValue:
-                radius += radius * changeValue;
+                bombDamage += bombDamage * changeValue;
                 break;
         }
     }

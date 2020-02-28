@@ -38,7 +38,7 @@ public class SkillCheryBlossom : Skill
             case eSkillOption.CoolTime:
                 cooldownTime -= cooldownTime * changeValue;
                 break;
-            case eSkillOption.BuffChangeValue:
+            case eSkillOption.BuffActivePer:
                 radius += radius * changeValue;
                 break;
             case eSkillOption.BuffEndTime:

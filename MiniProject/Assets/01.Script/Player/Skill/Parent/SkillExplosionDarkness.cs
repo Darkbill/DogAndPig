@@ -39,7 +39,10 @@ public class SkillExplosionDarkness : Skill
 			case eSkillOption.Speed:
 				chargeSpeed += chargeSpeed * changeValue;
 				break;
-		}
+            case eSkillOption.BuffActivePer:
+                maxChargeTime += maxChargeTime * changeValue;
+                break;
+        }
 	}
 	public override void SetBullet()
 	{

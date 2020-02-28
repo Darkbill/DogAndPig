@@ -37,6 +37,12 @@ public class SkillThounderCalling : Skill
 			case eSkillOption.CoolTime:
 				cooldownTime -= cooldownTime * changeValue;
 				break;
+            case eSkillOption.BuffActivePer:
+                randrange += (int)(randrange * changeValue);
+                break;
+            case eSkillOption.BuffChangeValue:
+                maxcount += maxcount * changeValue;
+                break;
 		}
 	}
 	public override void SetBullet()

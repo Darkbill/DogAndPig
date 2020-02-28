@@ -105,6 +105,8 @@ public class Player : MonoBehaviour
 
     public void OutStateAdd(ConditionData condition, Vector3 knockBackDir = new Vector3())
     {
+        if (calStat.healthPoint <= 0)
+            return;
         conditionMain = condition;
         AddConditionlist(conditionMain, knockBackDir);
     }
