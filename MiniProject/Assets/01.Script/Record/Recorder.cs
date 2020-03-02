@@ -56,15 +56,18 @@ public class Recorder : MonoBehaviour
 	{
 		if (recordFlag == false && Input.GetKeyDown(KeyCode.Return))
 		{
+			//엔티키로 녹화시작
 			recordFlag = true;
 			startTime = Time.time;
 		}
 		if(recordFlag == false && Input.GetKeyDown(KeyCode.F1))
 		{
+			//F1로 녹화 종료
 			player.MoveToEvent(eventList,mouseEventList, skillID);
 		}
 		if(recordFlag == false && Input.GetKeyDown(KeyCode.F2))
 		{
+			//F2로 저장
 			SaveAll();
 		}
 		if (recordFlag)

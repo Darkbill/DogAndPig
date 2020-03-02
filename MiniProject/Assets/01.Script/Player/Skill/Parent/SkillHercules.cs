@@ -48,7 +48,10 @@ public class SkillHercules : Skill
 	}
 	public override void OffSkill()
 	{
-
+		if(GameMng.Ins.isRecord)
+		{
+			gameObject.SetActive(false);
+		}
 	}
 	#endregion
 	public override void OnButtonDown()

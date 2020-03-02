@@ -9,11 +9,13 @@ public class RecordPlayer : Player
 		Right,
 		Up,
 		Down,
+		Max,
 	}
 	private bool isEventMove;
 	private bool[] downState = new bool[4];
 	private Vector3 startPos;
 	public int skillID;
+	Coroutine saveCo;
 	private void Start()
 	{
 		startPos = gameObject.transform.position;
@@ -28,6 +30,16 @@ public class RecordPlayer : Player
 	}
 	public void MoveToEvent(int _skillID)
 	{
+		if (saveCo != null)
+		{
+			LogManager.Instance.PrintLog(LogManager.eLogType.Normal, "Reset Co");
+			StopCoroutine(saveCo);
+			for(int j = 0; j < (int)eDownType.Max; ++j)
+			{
+				ChangeState((eDownType)j, false);
+			}
+			saveCo = null;
+		}
 		//전체상태 초기화
 		GameMng.Ins.skillMng.OffSkill();
 		GameMng.Ins.monsterPool.Reset();
@@ -37,7 +49,8 @@ public class RecordPlayer : Player
 		var i = JsonMng.Ins.recordDataTable[skillID];
 		var e = i.playerEventList;
 		var m = i.mouseEventList;
-		StartCoroutine(StartEventMove(e, m));
+		saveCo = StartCoroutine(StartEventMove(e, m));
+		LogManager.Instance.PrintLog(LogManager.eLogType.Normal, "Start Co");
 	}
 	public void MoveToEvent(List<EventValue> eventList,List<MouseEventValue> mouseEventList,int _skillID)
 	{
@@ -63,7 +76,11 @@ public class RecordPlayer : Player
 				ChangeMouserState(new Vector2(mouseEventList[mouseIndexCount].xPos, mouseEventList[mouseIndexCount].yPos), mouseEventList[mouseIndexCount].isdDown);
 				mouseIndexCount++;
 			}
-			if (indexCount == eventList.Count && mouseIndexCount == mouseEventList.Count) yield break;
+			if (indexCount == eventList.Count && mouseIndexCount == mouseEventList.Count)
+			{
+				saveCo = null;
+				yield break;
+			}
 			else yield return null;
 		}
 	}
@@ -128,5 +145,9 @@ public class RecordPlayer : Player
 		{
 			gameObject.transform.position += Vector3.up * calStat.moveSpeed * Time.deltaTime;
 		}
+	}
+	public void ResetPlayer()
+	{
+		//SkillMng.ins
 	}
 }

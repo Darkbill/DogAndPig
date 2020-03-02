@@ -51,7 +51,11 @@ public class SkillWindStep : Skill
     public override void OffSkill()
     {
         windbullet.OffSkill();
-    }
+		if (GameMng.Ins.isRecord)
+		{
+			gameObject.SetActive(false);
+		}
+	}
     #endregion
 
     public WindKnockback windbullet;
@@ -71,4 +75,5 @@ public class SkillWindStep : Skill
     {
         delayTime += Time.deltaTime;
     }
+
 }

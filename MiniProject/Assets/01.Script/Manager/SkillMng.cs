@@ -57,4 +57,12 @@ public class SkillMng : MonoBehaviour
 			}
 		}
 	}
+	public void AllAcitveOff()
+	{
+		Transform[] child = GetComponentsInChildren<Transform>();
+		foreach(Transform i in child)
+		{
+			i.gameObject.SetActive(false);
+		}
+	}
 }
