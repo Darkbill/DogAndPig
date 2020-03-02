@@ -15,7 +15,6 @@ public class FPSManager : MonoBehaviour
 		float frameTime = Time.deltaTime;
 		string frameTimeStr = string.Format("{0:F2} ms", frameTime * 1000);
 		float frame = 1 / frameTime;
-		Debug.Log(frame);
 		if(worstFrame > frame)
 		{
 			worstFrame = frame;

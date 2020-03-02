@@ -64,7 +64,7 @@
   },
   {
     "monsterID": 4,
-    "monsterName": "d",
+    "monsterName": "Lava",
     "size": 1,
     "moveType": 1,
     "moveSpeed": 0.1,
@@ -85,7 +85,7 @@
   },
   {
     "monsterID": 5,
-    "monsterName": "e",
+    "monsterName": "EleteArcher",
     "size": 0.25,
     "moveType": 1,
     "moveSpeed": 1,
@@ -169,7 +169,7 @@
   },
   {
     "monsterID": 99,
-    "monsterName": "h",
+    "monsterName": "Sample",
     "size": 0.3,
     "moveType": 1,
     "moveSpeed": 0.1,
