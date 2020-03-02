@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class FPSManager : MonoBehaviour
 {
 	public Text frameText;
-	public float worstFrame;
+	private float worstFrame = float.MaxValue;
 	public float averagerFrame;
 	private void Awake()
 	{
@@ -15,7 +15,12 @@ public class FPSManager : MonoBehaviour
 		float frameTime = Time.deltaTime;
 		string frameTimeStr = string.Format("{0:F2} ms", frameTime * 1000);
 		float frame = 1 / frameTime;
-		string frameStr = string.Format("{0:F2} fps", frame);
-		frameText.text = string.Format("{0} {1}", frameTimeStr, frameStr);
+		Debug.Log(frame);
+		if(worstFrame > frame)
+		{
+			worstFrame = frame;
+		}
+		string frameStr = string.Format("{0:F0} fps", frame);
+		frameText.text = string.Format("{0} {1} worst : {2:F0}", frameTimeStr, frameStr, worstFrame);
 	}
 }
