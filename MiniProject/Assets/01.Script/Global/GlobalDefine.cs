@@ -2,6 +2,9 @@
 {
     static class DefineClass
     {
+        public const int WidthSiz = 1920;
+        public const int HeightSiz = 1200;
+
         public const float MapSizX = 50;
         public const float MapSizY = 35;
     }

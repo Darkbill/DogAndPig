@@ -85,15 +85,11 @@ public class GoodBase : MonoBehaviour
         {
             float range = (gameObject.transform.position - endPos).magnitude;
 
-            if (range < 0.5f)
+            if (range < 0.1f)
                 break;
             Vector3 movevec = (endPos - gameObject.transform.position).normalized;
             gameObject.transform.position += movevec * Time.deltaTime * 5;
             yield return null;
-        }
-        if(gameObject.activeSelf)
-        {
-            gameObject.SetActive(false);
         }
     }
 }

@@ -62,4 +62,12 @@ public class GoodMng : MonoBehaviour
             if(o.gameObject.activeSelf)
                 o.ClearRunning();
     }
+
+    public bool GoodsExistence()
+    {
+        foreach (GoodBase o in goodlist)
+            if (o.gameObject.activeSelf)
+                return false;
+        return true;
+    }
 }

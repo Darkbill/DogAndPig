@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using GlobalDefine;
+using DG.Tweening;
+using System.Collections;
 public class GameMng : MonoBehaviour
 {
 	#region SINGLETON
@@ -83,8 +85,14 @@ public class GameMng : MonoBehaviour
 	public void StageClear()
 	{
         objectPool.goodmng.AllRunningSelect();
-        portal.NextStagePotal();
+		StartCoroutine(StageCoinSelect());
 		AddExp(false);
+	}
+
+	private IEnumerator StageCoinSelect()
+	{
+		while (!objectPool.goodmng.GoodsExistence()) { yield return null; }
+		portal.NextStagePotal();
 	}
 	public void StartStage()
 	{
@@ -106,8 +114,13 @@ public class GameMng : MonoBehaviour
 	}
 	public void WorldClear()
 	{
+		StartCoroutine(BossCoinSelect());
+	}
+	private IEnumerator BossCoinSelect()
+	{
+		while (!objectPool.goodmng.GoodsExistence()) { yield return null; }
 		Time.timeScale = 0;
-		if(worldLevel == JsonMng.Ins.playerInfoDataTable.clearLevel + 1) JsonMng.Ins.playerInfoDataTable.clearLevel++;
+		if (worldLevel == JsonMng.Ins.playerInfoDataTable.clearLevel + 1) JsonMng.Ins.playerInfoDataTable.clearLevel++;
 		UIMngInGame.Ins.AllClear();
 	}
 	public void MonsterDead()
